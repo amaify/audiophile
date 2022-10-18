@@ -22,8 +22,6 @@
 @layer components {
 	/* Button */
 	.phile-btn {
-		width: 16.8em;
-		height: 4em;
 		font-size: 1.3em;
 		line-height: 1.8em;
 		letter-spacing: 1px;
@@ -37,6 +35,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		width: 16.8em;
+		height: 4em;
 	}
 
 	.phile-btn-1 {
