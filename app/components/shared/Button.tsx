@@ -7,9 +7,10 @@ import ArrowRightIcon from "../../assets/shared/desktop/icon-arrow-right.svg";
 interface Props {
 	btnType: number;
 	btnText: string;
+	to: string;
 }
 
-const Button = ({ btnText, btnType }: Props) => {
+const Button = ({ btnText, btnType, to }: Props) => {
 	const buttonStyle = clsx(
 		"[ phile-btn ]",
 		btnType === 1 && "[ phile-btn-1 ]",
@@ -17,7 +18,7 @@ const Button = ({ btnText, btnType }: Props) => {
 		btnType === 3 && "[ phile-btn-3 ]"
 	);
 	return (
-		<Link href="#">
+		<Link href={to}>
 			<a className={buttonStyle}>
 				<span>{btnText}</span>
 				{btnType === 3 && (

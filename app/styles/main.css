@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap");
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #000000;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.heading-1 {
+  font-size: 5.6em;
+  line-height: 58px;
+  letter-spacing: 2px;
+}
+
+.heading-2 {
+  font-size: 4em;
+  line-height: 44px;
+  letter-spacing: 1.5px;
+}
+
+.heading-3 {
+  font-size: 3.2em;
+  line-height: 36px;
+  letter-spacing: 1.15px;
+}
+
+.heading-4 {
+  font-size: 2.8em;
+  line-height: 38px;
+  letter-spacing: 2px;
+}
+
+.heading-5 {
+  font-size: 2.4em;
+  line-height: 33px;
+  letter-spacing: 1.7px;
+}
+
+.heading-6 {
+  font-size: 1.8em;
+  line-height: 24px;
+  letter-spacing: 1.3px;
+}
+
+.overline-text {
+  font-size: 1.4em;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 10px;
+}
+
+.sub-title {
+  font-size: 1.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 19px;
+  letter-spacing: 1px;
+  color: #d87d4a;
+}
+
+.body-text {
+  font-size: 1.5em;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+.nav-link {
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 25px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.nav-link-active {
+  color: #d87d4a;
+}
+
+.nav-link:hover {
+  color: #d87d4a;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@layer base {
+  html {
+    font-family: "Manrope", sans-serif;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+
+.phile-btn {
+  font-size: 1.3em;
+  line-height: 1.8em;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.phile-btn-1,
+.phile-btn-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 16.8em;
+  height: 4em;
+}
+
+.phile-btn-1 {
+  background: #d87d4a;
+  color: white;
+}
+
+.phile-btn-1:hover {
+  background: #fbaf85;
+}
+
+.phile-btn-2 {
+  background: transparent;
+  color: black;
+  border: 1px solid black;
+}
+
+.phile-btn-2:hover {
+  background: black;
+  color: white;
+}
+
+.phile-btn-3 span:first-child {
+  color: black;
+  opacity: 0.5;
+  margin-right: 13.32px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.phile-btn-3 span:first-child:hover {
+  color: #d87d4a;
+  opacity: 1;
+}
+
+.hero {
+  background-image: url("../assets/home/desktop/image-hero.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+/*# sourceMappingURL=main.css.map */

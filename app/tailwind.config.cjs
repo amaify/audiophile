@@ -14,6 +14,7 @@ module.exports = {
 		"bg-error",
 		"bg-warning",
 		"bg-success",
+		"bg-hero-image",
 		"border-success",
 		"border-error",
 		"border-warning",
@@ -22,7 +23,11 @@ module.exports = {
 		"form-warning",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			backgroundImage: {
+				"hero-image": "url('/assets/home/desktop/image-hero.jpg')",
+			},
+		},
 	},
 	plugins: [],
 };
