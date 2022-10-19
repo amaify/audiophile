@@ -1,0 +1,49 @@
+.phile-btn {
+	font-size: 1.3em;
+	line-height: 1.8em;
+	letter-spacing: 1px;
+	font-weight: 700;
+	text-transform: uppercase;
+	transition: all 0.3s;
+}
+
+.phile-btn-1,
+.phile-btn-2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 16.8em;
+	height: 4em;
+}
+
+.phile-btn-1 {
+	background: #d87d4a;
+	color: white;
+
+	&:hover {
+		background: #fbaf85;
+	}
+}
+
+.phile-btn-2 {
+	background: transparent;
+	color: black;
+	border: 1px solid black;
+
+	&:hover {
+		background: black;
+		color: white;
+	}
+}
+
+.phile-btn-3 span:first-child {
+	color: black;
+	opacity: 0.5;
+	margin-right: 13.32px;
+	transition: all 0.3s;
+
+	&:hover {
+		color: #d87d4a;
+		opacity: 1;
+	}
+}
