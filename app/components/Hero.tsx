@@ -1,14 +1,14 @@
 import React from "react";
-import Navigation from "./shared/Navigation/Navigation";
+import Navigation from "./shared/Navigation";
 import { Meta } from "./shared/Meta";
 import Button from "./shared/Button";
 
 const Hero = () => {
 	return (
 		<div className="[ hero ] relative">
-			<Meta />
+			<Meta pageTitle="Audiophile - Home" />
 			<div className="px-[175px]">
-				<Navigation />
+				<Navigation detailsPage={false} />
 
 				<div className="w-[398px] absolute top-[285px] left-[175px]">
 					<p className="[ overline-text ] text-white opacity-50 mb-[24px]">
@@ -22,7 +22,7 @@ const Hero = () => {
 						Experience natural, lifelike audio and exceptional build quality
 						made for the passionate music enthusiast.
 					</p>
-					<Button btnText="see product" btnType={1} to="headphones" />
+					<Button btnText="see product" btnType={1} to="headphones/xx99" />
 				</div>
 			</div>
 		</div>
