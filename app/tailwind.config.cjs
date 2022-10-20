@@ -13,6 +13,7 @@ module.exports = {
 		"text-success",
 		"bg-error",
 		"bg-warning",
+		"bg-primary",
 		"bg-success",
 		"bg-hero-image",
 		"border-success",
@@ -26,6 +27,12 @@ module.exports = {
 		extend: {
 			backgroundImage: {
 				"hero-image": "url('/assets/home/desktop/image-hero.jpg')",
+			},
+
+			colors: {
+				primary: "#D87D4A",
+				primaryHover: "#fbaf85",
+				error: "#CD2C2C",
 			},
 		},
 	},

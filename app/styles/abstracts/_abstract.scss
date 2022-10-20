@@ -68,6 +68,19 @@ h6 {
 	line-height: 25px;
 }
 
+//after:content-[''] after:bg-[#FFFFFF] after:w-full after:h-[1px] after:opacity-20 after:mt-[36px]
+
+.nav {
+	&::after {
+		content: "";
+		background-color: $color-white;
+		width: 100%;
+		height: 1px;
+		opacity: 20%;
+		margin-top: 36px;
+	}
+}
+
 .nav-link {
 	font-size: 1.3em;
 	font-weight: bold;
@@ -83,5 +96,10 @@ h6 {
 
 	&:hover {
 		color: $color-primary;
+	}
+}
+
+.footer {
+	&::after {
 	}
 }

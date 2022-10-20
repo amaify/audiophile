@@ -4,15 +4,21 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { navLinks } from "./utils";
 import { clsx } from "clsx";
-import BrandLogo from "../../../assets/shared/desktop/logo.svg";
-import CartIcon from "../../../assets/shared/desktop/icon-cart.svg";
+import BrandLogo from "../../assets/shared/desktop/logo.svg";
+import CartIcon from "../../assets/shared/desktop/icon-cart.svg";
 
-const Navigation = () => {
+interface Props {
+	detailsPage: boolean;
+}
+
+const Navigation = ({ detailsPage }: Props) => {
 	const router = useRouter();
 	const { pathname } = router;
 
 	return (
-		<div className="flex flex-wrap pt-[32px] || after:content-[''] after:bg-[#FFFFFF] after:w-full after:h-[1px] after:opacity-20 after:mt-[36px]">
+		<div
+			className={clsx("flex flex-wrap pt-[32px]", !detailsPage && "[ nav ]")}
+		>
 			<div className="mr-auto hover: cursor-pointer">
 				<Link href="/">
 					<div>
