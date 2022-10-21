@@ -1,45 +1,23 @@
 import React from "react";
-import { navLinks } from "./utils";
-import BrandLogo from "../../assets/shared/desktop/logo.svg";
+import NavigationLinks from "./NavLink";
 import FacebookIcon from "../../assets/shared/desktop/icon-facebook.svg";
 import TwitterIcon from "../../assets/shared/desktop/icon-twitter.svg";
 import InstagramIcon from "../../assets/shared/desktop/icon-instagram.svg";
 import Image from "next/image";
 import Link from "next/link";
-import clsx from "clsx";
 import { useRouter } from "next/router";
+import Brand from "./Brand";
 
 const Footer = () => {
 	const router = useRouter();
 	const { pathname } = router;
 	return (
 		<div className="relative before:content-[' '] before:w-[101px] before:h-[4px] before:bg-primary before:block before:absolute before:top-0 before:left-[165px]">
-			<div className="bg-black pt-[75px] px-[165px] pb-[48px]">
-				<div className="flex mb-[36px]">
-					<div className="mr-auto hover: cursor-pointer">
-						<Link href="/">
-							<div>
-								<Image src={BrandLogo} alt="Brand Logo of Audiophile" />
-							</div>
-						</Link>
-					</div>
+			<div className="bg-black pt-[75px] px-[165px] pb-[48px] w-full">
+				<div className="flex mb-[36px] flex-wrap">
+					<Brand />
 
-					<ul className="flex gap-[34px]">
-						{navLinks.map((link) => (
-							<li key={link.name}>
-								<Link href={`${link.slug}`}>
-									<a
-										className={clsx(
-											"[ nav-link ]",
-											pathname === link.slug && "[ nav-link-active ]"
-										)}
-									>
-										{link.name}
-									</a>
-								</Link>
-							</li>
-						))}
-					</ul>
+					<NavigationLinks pathName={pathname} isFooter={true} />
 				</div>
 
 				<div className="flex items-end">
