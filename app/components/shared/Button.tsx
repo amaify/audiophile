@@ -15,7 +15,8 @@ const Button = ({ btnText, btnType, to }: Props) => {
 		"[ phile-btn ]",
 		btnType === 1 && "[ phile-btn-1 ]",
 		btnType === 2 && "[ phile-btn-2 ]",
-		btnType === 3 && "[ phile-btn-3 ]"
+		btnType === 3 && "[ phile-btn-3 ]",
+		btnType === 4 && "[ phile-btn-4 ]"
 	);
 	return (
 		<Link href={to}>
