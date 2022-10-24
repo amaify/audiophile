@@ -29,6 +29,7 @@ module.exports = {
 				darkGrey: "#F1F1F1",
 			},
 			margin: {
+				lg: "160px",
 				xl: "20em",
 			},
 			padding: {
