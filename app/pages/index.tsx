@@ -12,13 +12,13 @@ import SubFooter from "../components/shared/SubFooter";
 
 const Home: NextPage = () => {
 	return (
-		<div>
+		<section>
 			<Hero />
-			<div className="mt-[200px] mb-[168px] px-[165px]">
+			<div className="mt-[200px] mb-[168px] px-[325px]">
 				<ProductThumbnails />
 			</div>
 
-			<div className="px-[165px] mb-[200px]">
+			<div className="px-[325px] mb-[200px]">
 				<div className="flex flex-col gap-[48px]">
 					<div className="bg-primary rounded-lg relative w-full h-[560px] overflow-hidden">
 						<div className="absolute top-[15%] left-[118px] z-10">
@@ -55,7 +55,7 @@ const Home: NextPage = () => {
 					</div>
 
 					<div>
-						<div className=" relative w-full">
+						<div className="relative w-full">
 							<Image
 								src={Speakerzx7Image}
 								alt="ZX7 Speaker"
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
 
 			<SubFooter />
 			<Footer />
-		</div>
+		</section>
 	);
 };
 

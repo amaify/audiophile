@@ -7,10 +7,10 @@ const Hero = () => {
 	return (
 		<div className="[ hero ] relative">
 			<Meta pageTitle="Audiophile - Home" />
-			<div className="px-[175px]">
+			<div className="px-[325px]">
 				<Navigation detailsPage={false} />
 
-				<div className="w-[398px] absolute top-[30%] left-[175px]">
+				<div className="w-[398px] absolute top-[30%] left-[325px]">
 					<p className="[ overline-text ] text-white opacity-50 mb-[24px]">
 						new product
 					</p>

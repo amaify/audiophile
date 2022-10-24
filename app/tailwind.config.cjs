@@ -32,7 +32,7 @@ module.exports = {
 				xl: "20em",
 			},
 			padding: {
-				xl: "165px",
+				xl: "325px",
 			},
 		},
 	},
