@@ -12,8 +12,8 @@ const Footer = () => {
 	const router = useRouter();
 	const { pathname } = router;
 	return (
-		<div className="relative before:content-[' '] before:w-[101px] before:h-[4px] before:bg-primary before:block before:absolute before:top-0 before:left-[165px]">
-			<div className="bg-black pt-[75px] px-[165px] pb-[48px] w-full">
+		<div className="relative before:content-[' '] before:w-[101px] before:h-[4px] before:bg-primary before:block before:absolute before:top-0 before:left-[325px]">
+			<div className="bg-black pt-[75px] px-xl pb-[48px] w-full">
 				<div className="flex mb-[36px] flex-wrap">
 					<Brand />
 
