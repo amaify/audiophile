@@ -6,11 +6,11 @@ import EarphonesImage from "../../assets/shared/desktop/image-category-thumbnail
 
 const ProductThumbnails = () => {
 	return (
-		<div className="flex gap-[30px]">
+		<section className="flex gap-[30px]">
 			<Thumbnail thumbnailTitle="headphones" thumbnailImage={HeadphoneImage} />
 			<Thumbnail thumbnailTitle="speakers" thumbnailImage={SpeakerImage} />
 			<Thumbnail thumbnailTitle="earphones" thumbnailImage={EarphonesImage} />
-		</div>
+		</section>
 	);
 };
 

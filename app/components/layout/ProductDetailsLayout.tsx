@@ -2,21 +2,32 @@ import React from "react";
 import { Meta } from "../shared/Meta";
 import Navigation from "../shared/Navigation";
 import Footer from "../shared/Footer";
+import ProductThumbnails from "../shared/ProductThumbnails";
+import SubFooter from "../shared/SubFooter";
 
 interface Props {
 	children: React.ReactNode;
+	pageTitle: string;
 }
 
-const ProductDetailsLayout = ({ children }: Props) => {
+const ProductDetailsLayout = ({ children, pageTitle }: Props) => {
 	return (
-		<div className="">
-			<Meta pageTitle="XX99 MARK II HEADPONES" />
-			<div className="bg-black h-[97px] px-[165px]">
+		<section>
+			<Meta pageTitle={pageTitle} />
+
+			<div className="bg-black h-[97px] px-xl">
 				<Navigation detailsPage={true} />
 			</div>
-			{children}
+
+			<div className="px-xl mt-[79px] mb-lg">{children}</div>
+
+			<section className="mb-lg px-xl">
+				<ProductThumbnails />
+			</section>
+
+			<SubFooter />
 			<Footer />
-		</div>
+		</section>
 	);
 };
 

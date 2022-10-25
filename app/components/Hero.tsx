@@ -5,8 +5,8 @@ import Button from "./shared/Button";
 
 const Hero = () => {
 	return (
-		<div className="[ hero ] relative">
-			<Meta pageTitle="Audiophile - Home" />
+		<header className="[ hero ] relative">
+			<Meta pageTitle="Home" />
 			<div className="px-[325px]">
 				<Navigation detailsPage={false} />
 
@@ -25,7 +25,7 @@ const Hero = () => {
 					<Button btnText="see product" btnType={1} to="headphones/xx99" />
 				</div>
 			</div>
-		</div>
+		</header>
 	);
 };
 

@@ -10,10 +10,7 @@ const Earphones = () => {
 	);
 
 	return (
-		<ProductCategoryLayout
-			layoutTitle="Earphones"
-			pageTitle="Audiophile - Earphones"
-		>
+		<ProductCategoryLayout layoutTitle="Earphones">
 			<section className="w-full flex flex-col gap-[160px]">
 				{productData.map((data) => {
 					return (

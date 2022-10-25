@@ -12,13 +12,13 @@ const Footer = () => {
 	const router = useRouter();
 	const { pathname } = router;
 	return (
-		<div className="relative before:content-[' '] before:w-[101px] before:h-[4px] before:bg-primary before:block before:absolute before:top-0 before:left-[325px]">
+		<footer className="relative before:content-[' '] before:w-[101px] before:h-[4px] before:bg-primary before:block before:absolute before:top-0 before:left-[325px]">
 			<div className="bg-black pt-[75px] px-xl pb-[48px] w-full">
-				<div className="flex mb-[36px] flex-wrap">
+				<nav className="flex mb-[36px] flex-wrap">
 					<Brand />
 
 					<NavigationLinks pathName={pathname} isFooter={true} />
-				</div>
+				</nav>
 
 				<div className="flex items-end">
 					<p className="[ body-text ] text-white opacity-50 w-[540px] mr-auto">
@@ -56,7 +56,7 @@ const Footer = () => {
 					Copyright 2021. All Rights Reserved
 				</p>
 			</div>
-		</div>
+		</footer>
 	);
 };
 

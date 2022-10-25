@@ -12,10 +12,7 @@ const Headphones = () => {
 	);
 
 	return (
-		<ProductCategoryLayout
-			layoutTitle="Headphones"
-			pageTitle="Audiophile - Headphones"
-		>
+		<ProductCategoryLayout layoutTitle="Headphones">
 			<section className="w-full flex flex-col gap-[160px]">
 				{productData.map((data) => {
 					let productImage = MarkOneHeadphone;

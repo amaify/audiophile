@@ -10,10 +10,7 @@ const Speakers = () => {
 		(data) => data.productCategory === "speakers"
 	);
 	return (
-		<ProductCategoryLayout
-			layoutTitle="Speakers"
-			pageTitle="Audiophile - Speakers"
-		>
+		<ProductCategoryLayout layoutTitle="Speakers">
 			<section className="w-full flex flex-col gap-[160px]">
 				{productData.map((data) => {
 					let productImage = ZX9Speaker;
