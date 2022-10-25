@@ -4,14 +4,19 @@ import Navigation from "../shared/Navigation";
 import Footer from "../shared/Footer";
 import ProductThumbnails from "../shared/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
+import { useRouter } from "next/router";
 
 interface Props {
 	children: React.ReactNode;
-	pageTitle: string;
 	layoutTitle: string;
 }
 
-const ProductCategoryLayout = ({ children, pageTitle, layoutTitle }: Props) => {
+const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
+	const router = useRouter();
+
+	const pathName = router.pathname.split("/").join("");
+	const pageTitle = pathName.charAt(0).toUpperCase() + pathName.slice(1);
+
 	return (
 		<div>
 			<Meta pageTitle={pageTitle} />

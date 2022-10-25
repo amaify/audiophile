@@ -16,7 +16,7 @@ const Navigation = ({ detailsPage }: Props) => {
 	const { pathname } = router;
 
 	return (
-		<div
+		<nav
 			className={clsx("flex flex-wrap pt-[32px]", !detailsPage && "[ nav ]")}
 		>
 			<Brand />
@@ -29,7 +29,7 @@ const Navigation = ({ detailsPage }: Props) => {
 					</div>
 				</Link>
 			</div>
-		</div>
+		</nav>
 	);
 };
 

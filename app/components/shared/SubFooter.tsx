@@ -2,7 +2,7 @@ import React from "react";
 
 const SubFooter = () => {
 	return (
-		<div className="mb-xl flex px-xl gap-[30px]">
+		<section className="mb-xl flex px-xl gap-[30px]">
 			<div className="w-1/2 mr-auto self-center">
 				<h2 className="[ heading-2 ] mb-[32px]">
 					<span className="block">bringing you the</span>
@@ -20,7 +20,7 @@ const SubFooter = () => {
 				</p>
 			</div>
 			<div className="w-[1/2] [ test-img ] h-[600px]"></div>
-		</div>
+		</section>
 	);
 };
 
