@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
 import MarkOneHeadphone from "../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg";
 import MarkTwoHeadphone from "../../assets/shared/desktop/image-xx99-mark-two-headphones.jpg";
 import XX59Headphone from "../../assets/shared/desktop/image-xx59-headphones.jpg";
+import ZX9SPEAKER from "../../assets/shared/desktop/image-zx9-speaker.jpg";
 import AllData from "../../data.json";
 
 //GALLARY IMAGES
@@ -19,12 +20,34 @@ import XX99MarkTwoGallaryThree from "../../assets/product-xx99-mark-two-headphon
 import XX59GallaryImageOne from "../../assets/product-xx59-headphones/desktop/image-gallery-1.jpg";
 import XX59GallaryImageTwo from "../../assets/product-xx59-headphones/desktop/image-gallery-2.jpg";
 import XX59GallaryImageThree from "../../assets/product-xx59-headphones/desktop/image-gallery-3.jpg";
+import Button from "../../components/shared/Button";
+import AddToCart from "../../components/shared/AddToCart";
+import ProductFeature from "../../components/shared/ProductFeature";
 
 const HeadphoneDetails = () => {
 	const router = useRouter();
 	const { slug } = router.query;
 
+	const [shuffledArray, setShuffledArray] = useState<any>([]);
+	const [productQuantity, setProductQuantity] = useState<number>(1);
+
 	const productDetails = AllData.find((data) => data.slug === slug);
+
+	const shuffleArray = () => {
+		const newArray = AllData.filter(
+			(data) => data.productTitle !== productDetails?.productTitle
+		);
+
+		for (let i = newArray.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			const temp = newArray[i];
+			newArray[i] = newArray[j];
+			newArray[j] = temp;
+		}
+		return newArray.slice(0, 3);
+	};
+
+	useEffect(() => setShuffledArray(shuffleArray()), []);
 
 	let productImage = MarkOneHeadphone;
 	if (productDetails?.productTitle === "xx99 mark ii headphones")
@@ -86,53 +109,14 @@ const HeadphoneDetails = () => {
 							{productDetails?.productDescription}
 						</p>
 						<h6 className="[ heading-6 ] mb-[47px]">{formattedNumber}</h6>
-						<div className="flex gap-[16px]">
-							<div className="bg-darkGrey w-[120px] h-[53px] flex items-center justify-center px-[15px]">
-								<p className="font-bold text-black text-[2em] opacity-25 leading-[18px] mr-auto hover:text-primary hover:opacity-100 hover:cursor-pointer">
-									&#8722;
-								</p>
-								<p className="mr-auto text-[1.7em] font-bold leading-[18px] tracking-[1px]">
-									1
-								</p>
-								<p className="font-bold text-black text-[2em] opacity-25 leading-[18px] hover:text-primary hover:opacity-100 hover:cursor-pointer">
-									&#43;
-								</p>
-							</div>
-							<button className="[ phile-btn phile-btn-1 ]">add to cart</button>
-						</div>
+						<AddToCart
+							productQuantity={productQuantity}
+							setProductQuantity={setProductQuantity}
+						/>
 					</div>
 				</div>
 
-				<div className="flex gap-[125px] mb-lg">
-					<div className="w-[50.5%]">
-						<h3 className="[ heading-3 ] mb-[32px]">features</h3>
-						<p className="[ body-text ] text-black opacity-50">
-							<span className="block mb-[16px]">
-								{productDetails?.productFeatures["para-1"]}
-							</span>
-							<span>{productDetails?.productFeatures["para-2"]}</span>
-						</p>
-					</div>
-
-					<div>
-						<h3 className="[ heading-3 ] mb-[32px]">in the box</h3>
-						<ul>
-							{productDetails?.productBoxContent.map((boxContent) => (
-								<li
-									className="[ body-text ] mb-[8px] text-black"
-									key={boxContent.content}
-								>
-									<span className="text-primary font-bold mr-[21px] opacity-100">
-										{boxContent.quantity}
-									</span>
-									<span className="opacity-50 capitalize">
-										{boxContent.content}
-									</span>
-								</li>
-							))}
-						</ul>
-					</div>
-				</div>
+				<ProductFeature productDetails={productDetails} />
 
 				<div className="flex gap-[30px] w-full">
 					<div className="flex flex-col gap-[32px] w-[35%] relative">
@@ -159,6 +143,34 @@ const HeadphoneDetails = () => {
 							layout="fill"
 							objectFit="cover"
 						/>
+					</div>
+				</div>
+
+				<div className="mt-lg mb-[250px]">
+					<h3 className="[ heading-3 ] text-center mb-[64px]">
+						you may also like
+					</h3>
+					<div className="flex gap-[30px]">
+						{shuffledArray.map((item: any) => (
+							<div
+								className="flex flex-col items-center"
+								key={item.productTitle}
+							>
+								<Image
+									src={MarkOneHeadphone}
+									alt="XX99 Mark I headphone"
+									className="rounded-lg"
+								/>
+								<h5 className="[ heading-5 ] mt-[40px] mb-[32px]">
+									{item.productTitle.split("headphones")}
+								</h5>
+								<Button
+									btnText="see product"
+									btnType={1}
+									to={`/${item.productCategory}/${item.slug}`}
+								/>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>

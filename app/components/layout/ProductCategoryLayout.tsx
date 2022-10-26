@@ -26,7 +26,7 @@ const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
 					<h2 className="[ heading-2 ] text-white">{layoutTitle}</h2>
 				</div>
 			</div>
-			<div className="px-xl my-lg">{children}</div>
+			<div className="px-xl my-[250px]">{children}</div>
 			<section className="mb-lg px-xl">
 				<ProductThumbnails />
 			</section>
