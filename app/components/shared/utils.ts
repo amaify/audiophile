@@ -9,3 +9,12 @@ export const navLinks: NavigationLInks[] = [
 	{ name: "speakers", slug: "/speakers" },
 	{ name: "earphones", slug: "/earphones" },
 ];
+
+export const formatPrice = (productPrice: any) =>
+	new Intl.NumberFormat("en-GB", {
+		style: "currency",
+		currency: "GBP",
+	}).format(productPrice);
+
+export const itemPriceSum = (cartItems: any) =>
+	cartItems.reduce((acc: any, curr: any) => acc + curr.price, 0);

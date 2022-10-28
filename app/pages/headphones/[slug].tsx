@@ -5,7 +5,6 @@ import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
 import MarkOneHeadphone from "../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg";
 import MarkTwoHeadphone from "../../assets/shared/desktop/image-xx99-mark-two-headphones.jpg";
 import XX59Headphone from "../../assets/shared/desktop/image-xx59-headphones.jpg";
-import ZX9SPEAKER from "../../assets/shared/desktop/image-zx9-speaker.jpg";
 import AllData from "../../data.json";
 
 //GALLARY IMAGES
@@ -21,15 +20,15 @@ import XX59GallaryImageOne from "../../assets/product-xx59-headphones/desktop/im
 import XX59GallaryImageTwo from "../../assets/product-xx59-headphones/desktop/image-gallery-2.jpg";
 import XX59GallaryImageThree from "../../assets/product-xx59-headphones/desktop/image-gallery-3.jpg";
 import Button from "../../components/shared/Button";
-import AddToCart from "../../components/shared/AddToCart";
+import AddToCart from "../../components/shared/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
+import { formatPrice } from "../../components/shared/utils";
 
 const HeadphoneDetails = () => {
 	const router = useRouter();
 	const { slug } = router.query;
 
 	const [shuffledArray, setShuffledArray] = useState<any>([]);
-	const [productQuantity, setProductQuantity] = useState<number>(1);
 
 	const productDetails = AllData.find((data) => data.slug === slug);
 
@@ -74,11 +73,6 @@ const HeadphoneDetails = () => {
 			XX99MarkOneGallaryThree,
 		];
 
-	const formattedNumber = new Intl.NumberFormat("en-GB", {
-		style: "currency",
-		currency: "GBP",
-	}).format(productDetails ? +productDetails.productPrice : 0);
-
 	return (
 		<ProductDetailsLayout pageTitle={productDetails?.productTitle ?? ""}>
 			<div>
@@ -108,11 +102,13 @@ const HeadphoneDetails = () => {
 						<p className="[ body-text ] opacity-50 mb-[32px]">
 							{productDetails?.productDescription}
 						</p>
-						<h6 className="[ heading-6 ] mb-[47px]">{formattedNumber}</h6>
-						<AddToCart
-							productQuantity={productQuantity}
-							setProductQuantity={setProductQuantity}
-						/>
+						<h6 className="[ heading-6 ] mb-[47px]">
+							{formatPrice(productDetails ? +productDetails.productPrice : 0)}
+						</h6>
+						<div className="flex gap-[16px]">
+							<AddToCart />
+							<button className="[ phile-btn phile-btn-1 ]">add to cart</button>
+						</div>
 					</div>
 				</div>
 

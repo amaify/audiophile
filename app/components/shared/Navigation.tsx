@@ -1,11 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { clsx } from "clsx";
 import NavigationLinks from "./NavLink";
-import CartIcon from "../../assets/shared/desktop/icon-cart.svg";
 import Brand from "./Brand";
+import Cart from "./Cart/Cart";
 
 interface Props {
 	detailsPage: boolean;
@@ -21,14 +20,7 @@ const Navigation = ({ detailsPage }: Props) => {
 		>
 			<Brand />
 			<NavigationLinks pathName={pathname} />
-
-			<div className="hover: cursor-pointer">
-				<Link href="#">
-					<div>
-						<Image src={CartIcon} alt="A shopping Cart" layout="fixed" />
-					</div>
-				</Link>
-			</div>
+			<Cart />
 		</nav>
 	);
 };

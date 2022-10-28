@@ -118,6 +118,7 @@ h6 {
   }
   body {
     height: 100%;
+    overflow: hidden;
   }
 }
 
@@ -216,5 +217,11 @@ h6 {
   background-size: cover;
   width: 50%;
   border-radius: 8px;
+}
+
+.cart-items {
+  position: absolute;
+  top: 10em;
+  right: 0;
 }
 /*# sourceMappingURL=main.css.map */
