@@ -2,7 +2,7 @@ import React from "react";
 
 const SubFooter = () => {
 	return (
-		<section className="mb-xl flex px-xl gap-[30px]">
+		<section className="mb-xl flex px-xl gap-[30px] relative -z-10">
 			<div className="w-1/2 mr-auto self-center">
 				<h2 className="[ heading-2 ] mb-[32px]">
 					<span className="block">bringing you the</span>

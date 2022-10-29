@@ -97,6 +97,10 @@ h6 {
   color: #d87d4a;
 }
 
+.layout-index {
+  z-index: 15;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -218,9 +222,20 @@ h6 {
   border-radius: 8px;
 }
 
+.cart-backdrop {
+  position: fixed;
+  background: #000000;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  z-index: -3;
+  opacity: 0.5;
+}
+
 .cart-items {
   position: absolute;
   top: 10em;
   right: 0;
+  z-index: 20;
 }
 /*# sourceMappingURL=main.css.map */

@@ -14,11 +14,11 @@ const Home: NextPage = () => {
 	return (
 		<section>
 			<Hero />
-			<div className="mt-[200px] mb-[168px] px-[325px]">
+			<div className="mt-[200px] mb-[168px] px-[325px] relative -z-10">
 				<ProductThumbnails />
 			</div>
 
-			<div className="px-[325px] mb-[200px]">
+			<div className="px-[325px] mb-[200px] relative -z-10">
 				<div className="flex flex-col gap-[48px]">
 					<div className="bg-primary rounded-lg relative w-full h-[560px] overflow-hidden">
 						<div className="absolute top-[15%] left-[118px] z-10">

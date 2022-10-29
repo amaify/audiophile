@@ -68,8 +68,6 @@ h6 {
 	line-height: 25px;
 }
 
-//after:content-[''] after:bg-[#FFFFFF] after:w-full after:h-[1px] after:opacity-20 after:mt-[36px]
-
 .nav {
 	&::after {
 		content: "";
@@ -97,4 +95,8 @@ h6 {
 	&:hover {
 		color: $color-primary;
 	}
+}
+
+.layout-index {
+	z-index: 15;
 }
