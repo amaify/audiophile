@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import IncOrDecCartItems from "../IncOrDecCartItems";
+import IncOrDecCartItems from "./IncOrDecCartItems";
 import XX99MarkTwoHeadphone from "../../../assets/cart/image-xx99-mark-two-headphones.jpg";
 import XX59Headphone from "../../../assets/cart/image-xx59-headphones.jpg";
 import YX1Earphones from "../../../assets/cart/image-yx1-earphones.jpg";
