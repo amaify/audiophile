@@ -15,7 +15,7 @@ const ProductDetailsLayout = ({ children, pageTitle }: Props) => {
 		<section>
 			<Meta pageTitle={pageTitle} />
 
-			<div className="bg-black h-[97px] px-xl">
+			<div className="bg-black h-[97px] px-xl relative z-50">
 				<Navigation detailsPage={true} />
 			</div>
 

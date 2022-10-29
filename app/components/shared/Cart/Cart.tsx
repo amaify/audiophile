@@ -17,7 +17,15 @@ const Cart = () => {
 				/>
 			</div>
 
-			{showCart && <CartItems />}
+			{showCart && (
+				<>
+					<div
+						className="[ cart-backdrop ]"
+						onClick={() => setShowCart((prevState) => !prevState)}
+					></div>
+					<CartItems />
+				</>
+			)}
 		</div>
 	);
 };
