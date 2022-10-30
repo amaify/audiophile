@@ -1,31 +1,33 @@
 import React, { useState } from "react";
+import {
+	incrementCount,
+	decrementCount,
+	selectValue,
+} from "../../../store/reducers/IncOrDecrementCount";
+import { useDispatch, useSelector } from "react-redux";
 
 interface Props {
 	itemQuantity?: number;
 }
 
 const IncOrDecCartItems = ({ itemQuantity }: Props) => {
-	const [productQuantity, setProductQuantity] = useState<number>(
-		itemQuantity ?? 1
-	);
+	const dispatch = useDispatch();
+	const itemCount = useSelector(selectValue);
+
 	return (
 		<div className="bg-darkGrey w-[120px] h-[53px] flex items-center justify-center px-[15px]">
 			<p
 				className="font-bold text-black text-[2em] opacity-25 leading-[18px] mr-auto hover:text-primary hover:opacity-100 hover:cursor-pointer"
-				onClick={() =>
-					setProductQuantity((prevState) =>
-						prevState === 1 ? 1 : prevState - 1
-					)
-				}
+				onClick={() => itemCount > 1 && dispatch(decrementCount())}
 			>
 				&#8722;
 			</p>
 			<p className="mr-auto text-[1.7em] font-bold leading-[18px] tracking-[1px]">
-				{productQuantity}
+				{itemQuantity ?? itemCount}
 			</p>
 			<p
 				className="font-bold text-black text-[2em] opacity-25 leading-[18px] hover:text-primary hover:opacity-100 hover:cursor-pointer"
-				onClick={() => setProductQuantity((prevState) => prevState + 1)}
+				onClick={() => dispatch(incrementCount())}
 			>
 				&#43;
 			</p>

@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { addToCart, selectValue } from "../../store/reducers/addItemToCart";
-import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../store/reducers/addItemToCart";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	resetCount,
+	selectValue,
+} from "../../store/reducers/IncOrDecrementCount";
 import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
 import MarkOneHeadphone from "../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg";
 import MarkTwoHeadphone from "../../assets/shared/desktop/image-xx99-mark-two-headphones.jpg";
@@ -25,13 +29,12 @@ import Button from "../../components/shared/Button";
 import AddToCart from "../../components/shared/Cart/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
 import { formatPrice } from "../../components/shared/utils";
-import { RootState } from "../../store/store";
 
 const HeadphoneDetails = () => {
 	const router = useRouter();
 	const { slug } = router.query;
+	const itemCount = useSelector(selectValue);
 	const dispatch = useDispatch();
-	const cartState = useSelector(selectValue);
 
 	const [shuffledArray, setShuffledArray] = useState<any>([]);
 
@@ -51,6 +54,9 @@ const HeadphoneDetails = () => {
 		return newArray.slice(0, 3);
 	};
 
+	useEffect(() => {
+		dispatch(resetCount());
+	}, [slug]);
 	useEffect(() => setShuffledArray(shuffleArray()), []);
 
 	let productImage = MarkOneHeadphone;
@@ -120,8 +126,8 @@ const HeadphoneDetails = () => {
 											addToCart({
 												title: productDetails.productTitle,
 												price: productDetails.productPrice,
-												quantity: 1,
-												totalPrice: productDetails.productPrice * 3,
+												itemCount: itemCount,
+												totalPrice: productDetails.productPrice * itemCount,
 											})
 										)
 									}
