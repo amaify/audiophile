@@ -1,3 +1,5 @@
+import { Cart, CartItem } from "../../store/Types/Cart";
+
 interface NavigationLInks {
 	name: string;
 	slug: string;
@@ -16,5 +18,5 @@ export const formatPrice = (productPrice: any) =>
 		currency: "GBP",
 	}).format(productPrice);
 
-export const itemPriceSum = (cartItems: any) =>
-	cartItems.reduce((acc: any, curr: any) => acc + curr.price, 0);
+export const itemPriceSum = (cartItems: CartItem[]) =>
+	cartItems.reduce((acc, curr) => acc + curr.totalPrice, 0);

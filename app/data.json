@@ -1,5 +1,6 @@
 [
 	{
+		"id": 1,
 		"productCategory": "headphones",
 		"slug": "xx99-mark-ii-headphones",
 		"productTitle": "xx99 mark ii headphones",
@@ -19,6 +20,7 @@
 	},
 
 	{
+		"id": 2,
 		"productCategory": "headphones",
 		"slug": "xx99-mark-i-headphones",
 		"productTitle": "xx99 mark i headphones",
@@ -37,6 +39,7 @@
 	},
 
 	{
+		"id": 3,
 		"productCategory": "headphones",
 		"slug": "xx59-headphones",
 		"productTitle": "xx59 headphones",
@@ -55,6 +58,7 @@
 	},
 
 	{
+		"id": 4,
 		"productCategory": "speakers",
 		"slug": "zx9-speaker",
 		"productTitle": "zx9 speaker",
@@ -74,6 +78,7 @@
 	},
 
 	{
+		"id": 5,
 		"productCategory": "speakers",
 		"slug": "zx7-speaker",
 		"productTitle": "zx7 speaker",
@@ -93,6 +98,7 @@
 	},
 
 	{
+		"id": 6,
 		"productCategory": "earphones",
 		"slug": "yx1-wireless-earphones",
 		"productTitle": "yx1 wireless earphones",

@@ -1,4 +1,5 @@
 export type CartItem = {
+	id: number;
 	title: string;
 	itemCount: number;
 	price: number;
