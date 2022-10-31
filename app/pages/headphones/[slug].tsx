@@ -29,6 +29,7 @@ import Button from "../../components/shared/Button";
 import AddToCart from "../../components/shared/Cart/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
 import { formatPrice } from "../../components/shared/utils";
+import { CartItem } from "../../store/Types/Cart";
 
 const HeadphoneDetails = () => {
 	const router = useRouter();
@@ -56,8 +57,8 @@ const HeadphoneDetails = () => {
 
 	useEffect(() => {
 		dispatch(resetCount());
-	}, [slug]);
-	useEffect(() => setShuffledArray(shuffleArray()), []);
+		setShuffledArray(shuffleArray());
+	}, []);
 
 	let productImage = MarkOneHeadphone;
 	if (productDetails?.productTitle === "xx99 mark ii headphones")
@@ -83,6 +84,20 @@ const HeadphoneDetails = () => {
 			XX99MarkOneGallaryTwo,
 			XX99MarkOneGallaryThree,
 		];
+
+	const onAddToCart = (productDetails: any) => {
+		dispatch(
+			addToCart({
+				id: productDetails.id,
+				title: productDetails.productTitle,
+				price: productDetails.productPrice,
+				itemCount: itemCount,
+				totalPrice: productDetails.productPrice * itemCount,
+			})
+		);
+
+		dispatch(resetCount());
+	};
 
 	return (
 		<ProductDetailsLayout pageTitle={productDetails?.productTitle ?? ""}>
@@ -118,19 +133,10 @@ const HeadphoneDetails = () => {
 								{formatPrice(productDetails ? +productDetails.productPrice : 0)}
 							</h6>
 							<div className="flex gap-[16px]">
-								<AddToCart />
+								<AddToCart isCartVisible={false} itemQuantity={itemCount} />
 								<button
 									className="[ phile-btn phile-btn-1 ]"
-									onClick={() =>
-										dispatch(
-											addToCart({
-												title: productDetails.productTitle,
-												price: productDetails.productPrice,
-												itemCount: itemCount,
-												totalPrice: productDetails.productPrice * itemCount,
-											})
-										)
-									}
+									onClick={() => onAddToCart(productDetails)}
 								>
 									add to cart
 								</button>
