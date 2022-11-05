@@ -27,6 +27,7 @@ module.exports = {
 				primaryHover: "#fbaf85",
 				error: "#CD2C2C",
 				darkGrey: "#F1F1F1",
+				grey: "#F2F2F2",
 			},
 			margin: {
 				lg: "160px",

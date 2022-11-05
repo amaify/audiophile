@@ -6,7 +6,6 @@ import XX99MarkTwoHeadphone from "../../../assets/cart/image-xx99-mark-two-headp
 import XX59Headphone from "../../../assets/cart/image-xx59-headphones.jpg";
 import YX1Earphones from "../../../assets/cart/image-yx1-earphones.jpg";
 import Link from "next/link";
-import CartData from "./data.json";
 import { formatPrice, itemPriceSum } from "../utils";
 import {
 	removeAllItems,
@@ -15,13 +14,12 @@ import {
 
 const CartItems = () => {
 	const dispatch = useDispatch();
-	const cartItems = CartData;
-	const data = useSelector(selectValue);
+	const { cart } = useSelector(selectValue);
 
 	return (
 		<div className="bg-white flex flex-col py-[31px] pr-[31px] pl-[33px] rounded-lg w-[425px] [ cart-items ]">
 			<div className="mb-[32px] flex">
-				<h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${data.cart.length})`}</h6>
+				<h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${cart.length})`}</h6>
 				<p
 					className="[ body-text ] text-black opacity-50 capitalize hover: cursor-pointer underline"
 					onClick={() => dispatch(removeAllItems())}
@@ -31,8 +29,8 @@ const CartItems = () => {
 			</div>
 
 			<div className="mb-[32px] flex flex-col gap-[24px]">
-				{data.cart.length > 0 ? (
-					data.cart.map((item) => {
+				{cart.length > 0 ? (
+					cart.map((item) => {
 						let itemImage = XX99MarkTwoHeadphone;
 						if (item.title.includes("xx59")) itemImage = XX59Headphone;
 						if (item.title.includes("yx1")) itemImage = YX1Earphones;
@@ -42,7 +40,7 @@ const CartItems = () => {
 								<div className="flex items-center gap-[16px] mr-auto">
 									<Image
 										src={itemImage}
-										alt="XX99 Mark Two Headphones"
+										alt={item.title}
 										width={84}
 										height={84}
 										className="rounded-[8px]"
@@ -74,7 +72,7 @@ const CartItems = () => {
 					total
 				</p>
 				<p className="[ body-text ] text-black">
-					{formatPrice(itemPriceSum(data.cart))}
+					{formatPrice(itemPriceSum(cart))}
 				</p>
 			</div>
 			<Link href="/checkout">

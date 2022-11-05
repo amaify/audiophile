@@ -7,17 +7,15 @@ import Brand from "./Brand";
 import Cart from "./Cart/Cart";
 
 interface Props {
-	detailsPage: boolean;
+	removeHero: boolean;
 }
 
-const Navigation = ({ detailsPage }: Props) => {
+const Navigation = ({ removeHero }: Props) => {
 	const router = useRouter();
 	const { pathname } = router;
 
 	return (
-		<nav
-			className={clsx("flex flex-wrap pt-[32px]", !detailsPage && "[ nav ]")}
-		>
+		<nav className={clsx("flex flex-wrap pt-[32px]", !removeHero && "[ nav ]")}>
 			<Brand />
 			<NavigationLinks pathName={pathname} />
 			<Cart />
