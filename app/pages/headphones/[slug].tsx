@@ -100,7 +100,10 @@ const HeadphoneDetails = () => {
 	};
 
 	return (
-		<ProductDetailsLayout pageTitle={productDetails?.productTitle ?? ""}>
+		<ProductDetailsLayout
+			pageTitle={productDetails?.productTitle ?? ""}
+			removeSubFooter={false}
+		>
 			{productDetails && (
 				<div>
 					<button

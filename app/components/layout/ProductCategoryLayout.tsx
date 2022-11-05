@@ -21,7 +21,7 @@ const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
 		<div>
 			<Meta pageTitle={pageTitle} />
 			<div className="bg-black h-[336px] px-xl relative z-20">
-				<Navigation detailsPage={false} />
+				<Navigation removeHero={false} />
 				<div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2">
 					<h2 className="[ heading-2 ] text-white">{layoutTitle}</h2>
 				</div>

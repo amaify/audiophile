@@ -238,4 +238,54 @@ h6 {
   right: 0;
   z-index: 20;
 }
+
+.input {
+  width: 100%;
+  border-radius: 8px;
+  padding: 18px 24px;
+  outline: none;
+  caret-color: #d87d4a;
+  border: 1px solid #cfcfcf;
+}
+
+.input::-webkit-input-placeholder {
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0.4;
+  line-height: 19px;
+}
+
+.input:-ms-input-placeholder {
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0.4;
+  line-height: 19px;
+}
+
+.input::-ms-input-placeholder {
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0.4;
+  line-height: 19px;
+}
+
+.input::placeholder {
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0.4;
+  line-height: 19px;
+}
+
+.input:focus {
+  border: 1px solid #d87d4a;
+}
+
+.payment-method {
+  padding: 18px 24px;
+  border-radius: 8px;
+}
 /*# sourceMappingURL=main.css.map */
