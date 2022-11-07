@@ -7,9 +7,12 @@ import XX99MarkTwoHeadphone from "../assets/cart/image-xx99-mark-two-headphones.
 import XX59Headphone from "../assets/cart/image-xx59-headphones.jpg";
 import YX1Earphones from "../assets/cart/image-yx1-earphones.jpg";
 import { formatPrice } from "./shared/utils";
-import Link from "next/link";
 
-const CheckoutSummary = () => {
+interface Props {
+	setConfirmation: (value: boolean) => void;
+}
+
+const CheckoutSummary = ({ setConfirmation }: Props) => {
 	const { cart, total } = useSelector(selectValue);
 	return (
 		<div className="bg-white self-start px-[33px] py-[32px] w-[30%] rounded-lg">
@@ -78,11 +81,12 @@ const CheckoutSummary = () => {
 				<span>{formatPrice(total)}</span>
 			</p>
 
-			<Link href="/checkout">
-				<a className="inline-block bg-primary hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]">
-					Continue and Pay
-				</a>
-			</Link>
+			<button
+				className="inline-block bg-primary hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]"
+				onClick={() => setConfirmation(true)}
+			>
+				Continue and Pay
+			</button>
 		</div>
 	);
 };

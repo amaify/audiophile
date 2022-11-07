@@ -6,6 +6,7 @@ import Footer from "../../components/shared/Footer";
 import { Meta } from "../../components/shared/Meta";
 import CheckoutSummary from "../../components/Summary";
 import { FormInput } from "../../Types/FormInput";
+import Confirmation from "../../components/PaymentConfirmation";
 
 const Checkout = () => {
 	const router = useRouter();
@@ -25,6 +26,7 @@ const Checkout = () => {
 		zipCode: "",
 		paymentMethod: "online",
 	});
+	const [confirmation, setConfirmation] = useState<boolean>(false);
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -34,6 +36,7 @@ const Checkout = () => {
 
 	return (
 		<section>
+			{confirmation && <Confirmation setConfirmation={setConfirmation} />}
 			<Meta pageTitle="Checkout" />
 			<div className="bg-black h-[97px] px-xl relative z-50">
 				<Navigation removeHero={true} />
@@ -195,7 +198,7 @@ const Checkout = () => {
 							)}
 						</section>
 					</form>
-					<CheckoutSummary />
+					<CheckoutSummary setConfirmation={setConfirmation} />
 				</div>
 			</div>
 			<Footer />

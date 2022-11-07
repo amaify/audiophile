@@ -244,6 +244,11 @@ h6 {
   border-radius: 8px;
   padding: 18px 24px;
   outline: none;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 19px;
+  color: #000000;
+  letter-spacing: -0.25px;
   caret-color: #d87d4a;
   border: 1px solid #cfcfcf;
 }
