@@ -1,19 +1,33 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectValue } from "../store/reducers/addItemToCart";
+import { clsx } from "clsx";
 import Image from "next/image";
 
 import XX99MarkTwoHeadphone from "../assets/cart/image-xx99-mark-two-headphones.jpg";
 import XX59Headphone from "../assets/cart/image-xx59-headphones.jpg";
 import YX1Earphones from "../assets/cart/image-yx1-earphones.jpg";
-import { formatPrice } from "./shared/utils";
+import { formatPrice } from "./util/utils";
+import { FormInput, InputError } from "../Types/FormInput";
+import { validatePayButton } from "./util/utils";
 
 interface Props {
+	value: FormInput;
+	paymentMethod: string;
+	error: Record<string, InputError>;
 	setConfirmation: (value: boolean) => void;
 }
 
-const CheckoutSummary = ({ setConfirmation }: Props) => {
+const CheckoutSummary = ({
+	value,
+	paymentMethod,
+	error,
+	setConfirmation,
+}: Props) => {
 	const { cart, total } = useSelector(selectValue);
+	const isDisabled = validatePayButton(value, paymentMethod);
+	const isError = Object.values(error).some((value) => value.errorState);
+
 	return (
 		<div className="bg-white self-start px-[33px] py-[32px] w-[30%] rounded-lg">
 			<h6 className="[ heading-6 ] font-bold mb-[31px]">summary</h6>
@@ -82,8 +96,13 @@ const CheckoutSummary = ({ setConfirmation }: Props) => {
 			</p>
 
 			<button
-				className="inline-block bg-primary hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]"
+				className={clsx(
+					"inline-block bg-primary hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]",
+					(!isDisabled || isError) &&
+						"disabled:bg-gray-300 disabled:cursor-not-allowed"
+				)}
 				onClick={() => setConfirmation(true)}
+				disabled={!isDisabled || isError}
 			>
 				Continue and Pay
 			</button>

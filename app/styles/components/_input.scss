@@ -11,6 +11,18 @@
 	caret-color: $color-primary;
 	border: 1px solid #cfcfcf;
 
+	&:focus {
+		border: 1px solid $color-primary;
+	}
+
+	&-error {
+		border: 2px solid #cd2c2c;
+
+		&:focus {
+			border: 2px solid #cd2c2c;
+		}
+	}
+
 	&::placeholder {
 		color: $color-black;
 		font-size: 14px;
@@ -18,14 +30,9 @@
 		opacity: 0.4;
 		line-height: 19px;
 	}
-
-	&:focus {
-		border: 1px solid $color-primary;
-	}
 }
 
 .payment-method {
-	// border: 1px solid #cfcfcf;
 	padding: 18px 24px;
 	border-radius: 8px;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import Link from "next/link";
-import { navLinks } from "./utils";
+import { navLinks } from "../util/utils";
 
 interface Props {
 	pathName: string;

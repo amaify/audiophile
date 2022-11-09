@@ -1,5 +1,6 @@
-import React from "react";
+import React, { ChangeEvent, FocusEvent } from "react";
 import { clsx } from "clsx";
+import { InputError } from "../../Types/FormInput";
 
 interface Props {
 	control: string;
@@ -11,7 +12,9 @@ interface Props {
 	placeholder?: string;
 	style?: string;
 	checked?: boolean;
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	error?: Record<string, InputError>;
+	onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -24,14 +27,21 @@ const Input = ({
 	placeholder,
 	style,
 	checked,
+	error,
+	onBlur,
 	onChange,
 }: Props) => {
 	return (
 		<>
 			{control === "text" && (
-				<div className={clsx("flex flex-col gap-[9px]", style && style)}>
+				<div
+					className={clsx("flex flex-col gap-[9px] relative", style && style)}
+				>
 					<label
-						className="text-[12px] text-black font-bold leading-4 capitalize"
+						className={clsx(
+							"text-[12px] text-black font-bold leading-4 capitalize",
+							error && error[`${name}`]?.errorState ? "text-red-600" : null
+						)}
 						htmlFor={id}
 					>
 						{label}
@@ -41,11 +51,20 @@ const Input = ({
 						id={id}
 						name={name}
 						value={value}
+						onBlur={onBlur}
 						onChange={onChange}
 						placeholder={placeholder}
 						autoComplete="off"
-						className="[ input ]"
+						className={clsx(
+							"[ input ]",
+							error && error[`${name}`]?.errorState ? "[ input-error ]" : null
+						)}
 					/>
+					{error && error[`${name}`]?.errorState ? (
+						<p className="text-red-600 font-medium text-base capitalize leading-4 absolute top-0 right-0">
+							{error[`${name}`]?.errorMessage}
+						</p>
+					) : null}
 				</div>
 			)}
 
@@ -53,7 +72,7 @@ const Input = ({
 				<label
 					className={clsx(
 						style && style,
-						"[ payment-method ] border hover:cursor-pointer",
+						"[ payment-method ] border hover:cursor-pointer hover:border-primary",
 						checked && "border-primary"
 					)}
 					htmlFor={id}
