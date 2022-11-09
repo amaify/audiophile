@@ -9,6 +9,7 @@ import CheckoutSummary from "../../components/Summary";
 import { FormInput, InputError } from "../../Types/FormInput";
 import Confirmation from "../../components/PaymentConfirmation";
 import { InputValidation } from "../../components/util/validateInputFields";
+import { validatePayButton } from "../../components/util/utils";
 
 const Checkout = () => {
 	const router = useRouter();
@@ -32,6 +33,9 @@ const Checkout = () => {
 	const [paymentMethod, setPaymentMethod] = useState<string>("online");
 	const [error, setError] = useState<Record<string, InputError>>({});
 
+	const isDisabled = validatePayButton(value, paymentMethod);
+	const isError = Object.values(error).some((value) => value.errorState);
+
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 
@@ -50,7 +54,7 @@ const Checkout = () => {
 
 	return (
 		<section>
-			{confirmation && <Confirmation setConfirmation={setConfirmation} />}
+			{confirmation && <Confirmation />}
 			<Meta pageTitle="Checkout" />
 			<div className="bg-black h-[97px] px-xl relative z-50">
 				<Navigation removeHero={true} />
@@ -241,9 +245,8 @@ const Checkout = () => {
 						</section>
 					</form>
 					<CheckoutSummary
-						value={value}
-						paymentMethod={paymentMethod}
-						error={error}
+						isError={isError}
+						isDisabled={isDisabled}
 						setConfirmation={setConfirmation}
 					/>
 				</div>

@@ -4,17 +4,10 @@ import HeadphoneImage from "../assets/cart/image-xx99-mark-two-headphones.jpg";
 import Image from "next/image";
 import LinkButton from "./shared/Link";
 
-interface Props {
-	setConfirmation: (value: boolean) => void;
-}
-
-const Confirmation = ({ setConfirmation }: Props) => {
+const Confirmation = () => {
 	return (
 		<div>
-			<div
-				className="fixed top-0 left-0 w-full h-full bg-black opacity-40 z-10"
-				onClick={() => setConfirmation(false)}
-			></div>
+			<div className="fixed top-0 left-0 w-full h-full bg-black opacity-40 z-10"></div>
 
 			<div className="bg-white fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 p-[48px] rounded-lg w-[540px]">
 				<div className="w-[50px] h-[50px] bg-primary relative rounded-full mb-[33px]">
