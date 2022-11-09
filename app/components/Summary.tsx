@@ -12,21 +12,13 @@ import { FormInput, InputError } from "../Types/FormInput";
 import { validatePayButton } from "./util/utils";
 
 interface Props {
-	value: FormInput;
-	paymentMethod: string;
-	error: Record<string, InputError>;
+	isDisabled: boolean;
+	isError: boolean;
 	setConfirmation: (value: boolean) => void;
 }
 
-const CheckoutSummary = ({
-	value,
-	paymentMethod,
-	error,
-	setConfirmation,
-}: Props) => {
+const CheckoutSummary = ({ isError, isDisabled, setConfirmation }: Props) => {
 	const { cart, total } = useSelector(selectValue);
-	const isDisabled = validatePayButton(value, paymentMethod);
-	const isError = Object.values(error).some((value) => value.errorState);
 
 	return (
 		<div className="bg-white self-start px-[33px] py-[32px] w-[30%] rounded-lg">
