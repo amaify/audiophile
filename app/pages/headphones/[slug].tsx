@@ -28,7 +28,7 @@ import XX59GallaryImageThree from "../../assets/product-xx59-headphones/desktop/
 import Button from "../../components/shared/Button";
 import AddToCart from "../../components/shared/Cart/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
-import { formatPrice } from "../../components/shared/utils";
+import { formatPrice } from "../../components/util/utils";
 import { CartItem } from "../../store/Types/Cart";
 
 const HeadphoneDetails = () => {

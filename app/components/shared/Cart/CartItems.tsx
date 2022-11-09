@@ -6,7 +6,7 @@ import XX99MarkTwoHeadphone from "../../../assets/cart/image-xx99-mark-two-headp
 import XX59Headphone from "../../../assets/cart/image-xx59-headphones.jpg";
 import YX1Earphones from "../../../assets/cart/image-yx1-earphones.jpg";
 import Link from "next/link";
-import { formatPrice, itemPriceSum } from "../utils";
+import { formatPrice, itemPriceSum } from "../../util/utils";
 import {
 	removeAllItems,
 	selectValue,
@@ -21,7 +21,7 @@ const CartItems = () => {
 			<div className="mb-[32px] flex">
 				<h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${cart.length})`}</h6>
 				<p
-					className="[ body-text ] text-black opacity-50 capitalize hover: cursor-pointer underline"
+					className="[ body-text ] text-black opacity-50 capitalize hover: cursor-pointer underline hover:text-primary hover:opacity-100"
 					onClick={() => dispatch(removeAllItems())}
 				>
 					remove all

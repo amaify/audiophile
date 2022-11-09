@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { BanknotesIcon } from "@heroicons/react/24/solid";
 import Input from "../../components/shared/Input";
 import Navigation from "../../components/shared/Navigation";
 import Footer from "../../components/shared/Footer";
 import { Meta } from "../../components/shared/Meta";
 import CheckoutSummary from "../../components/Summary";
-import { FormInput } from "../../Types/FormInput";
+import { FormInput, InputError } from "../../Types/FormInput";
 import Confirmation from "../../components/PaymentConfirmation";
+import { InputValidation } from "../../components/util/validateInputFields";
 
 const Checkout = () => {
 	const router = useRouter();
+
 	const methodOfPayment = [
 		{ label: "e-Money", method: "online" },
 		{ label: "Cash on Delivery", method: "cash" },
@@ -24,14 +27,25 @@ const Checkout = () => {
 		emailAddress: "",
 		phoneNumber: "",
 		zipCode: "",
-		paymentMethod: "online",
 	});
 	const [confirmation, setConfirmation] = useState<boolean>(false);
+	const [paymentMethod, setPaymentMethod] = useState<string>("online");
+	const [error, setError] = useState<Record<string, InputError>>({});
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 
 		setValue((prevState) => ({ ...prevState, [name]: value }));
+	};
+
+	const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		const { errorState, errorMessage } = InputValidation(name, value);
+
+		setError((prevState) => ({
+			...prevState,
+			[name]: { errorState: errorState, errorMessage: errorMessage },
+		}));
 	};
 
 	return (
@@ -65,6 +79,8 @@ const Checkout = () => {
 									type="text"
 									value={value.name}
 									style="w-[50%]"
+									error={error}
+									onBlur={(e) => onInputBlur(e)}
 									onChange={onInputChange}
 								/>
 								<Input
@@ -76,6 +92,8 @@ const Checkout = () => {
 									type="email"
 									value={value.emailAddress}
 									style="w-[50%]"
+									error={error}
+									onBlur={(e) => onInputBlur(e)}
 									onChange={onInputChange}
 								/>
 							</div>
@@ -89,6 +107,8 @@ const Checkout = () => {
 								type="text"
 								value={value.phoneNumber}
 								style="w-[49%]"
+								error={error}
+								onBlur={(e) => onInputBlur(e)}
 								onChange={onInputChange}
 							/>
 						</section>
@@ -104,6 +124,8 @@ const Checkout = () => {
 								type="text"
 								value={value.address}
 								style="w-full"
+								error={error}
+								onBlur={(e) => onInputBlur(e)}
 								onChange={onInputChange}
 							/>
 
@@ -117,6 +139,8 @@ const Checkout = () => {
 									type="text"
 									value={value.zipCode}
 									style="w-[50%]"
+									error={error}
+									onBlur={(e) => onInputBlur(e)}
 									onChange={onInputChange}
 								/>
 
@@ -129,6 +153,8 @@ const Checkout = () => {
 									type="text"
 									value={value.city}
 									style="w-[50%]"
+									error={error}
+									onBlur={(e) => onInputBlur(e)}
 									onChange={onInputChange}
 								/>
 							</div>
@@ -141,6 +167,8 @@ const Checkout = () => {
 								type="text"
 								value={value.country}
 								style="w-[49%]"
+								error={error}
+								onBlur={(e) => onInputBlur(e)}
 								onChange={onInputChange}
 							/>
 						</section>
@@ -162,14 +190,14 @@ const Checkout = () => {
 											value={m.method}
 											label={m.label}
 											style="w-full"
-											onChange={onInputChange}
-											checked={value.paymentMethod === m.method}
+											onChange={() => setPaymentMethod(m.method)}
+											checked={paymentMethod === m.method}
 											key={m.method}
 										/>
 									))}
 								</div>
 							</div>
-							{value.paymentMethod === "online" && (
+							{paymentMethod === "online" ? (
 								<div className="flex gap-[16px] ">
 									<Input
 										control="text"
@@ -180,6 +208,8 @@ const Checkout = () => {
 										type="tel"
 										value={value.cardNumber}
 										style="w-[50%]"
+										error={error}
+										onBlur={(e) => onInputBlur(e)}
 										onChange={onInputChange}
 									/>
 
@@ -192,13 +222,30 @@ const Checkout = () => {
 										type="tel"
 										value={value?.cardPin}
 										style="w-[50%]"
+										error={error}
+										onBlur={(e) => onInputBlur(e)}
 										onChange={onInputChange}
 									/>
+								</div>
+							) : (
+								<div className="flex">
+									<BanknotesIcon className="h-20 w-20 mr-10" fill="#d87d4a" />
+									<p className="[ body-text ] text-black font-medium opacity-50 w-[70%]">
+										The &lsquo;Cash on Delivery&rsquo; option enables you to pay
+										in cash when our delivery courier arrives at your residence.
+										Just make sure your address is correct so that your order
+										will not be cancelled.
+									</p>
 								</div>
 							)}
 						</section>
 					</form>
-					<CheckoutSummary setConfirmation={setConfirmation} />
+					<CheckoutSummary
+						value={value}
+						paymentMethod={paymentMethod}
+						error={error}
+						setConfirmation={setConfirmation}
+					/>
 				</div>
 			</div>
 			<Footer />

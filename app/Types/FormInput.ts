@@ -7,6 +7,10 @@ export interface FormInput {
 	city: string;
 	country: string;
 	cardNumber: string | number;
-	cardPin: string;
-	paymentMethod: string;
+	cardPin: string | number;
+}
+
+export interface InputError {
+	errorState: boolean;
+	errorMessage: string;
 }
