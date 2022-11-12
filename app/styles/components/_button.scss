@@ -43,8 +43,8 @@
 	color: $color-white;
 
 	&:hover {
-		background: transparent;
-		border: 1px solid $color-black;
+		background: #4c4c4c;
+		border: 1px solid #4c4c4c;
 		color: $color-white;
 	}
 }
@@ -59,4 +59,8 @@
 		color: #d87d4a;
 		opacity: 1;
 	}
+}
+
+.phile-icon path {
+	stroke-width: 2;
 }

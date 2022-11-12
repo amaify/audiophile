@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import { BanknotesIcon } from "@heroicons/react/24/solid";
 import Input from "../../components/shared/Input";
 import Navigation from "../../components/shared/Navigation";
@@ -8,11 +9,16 @@ import { Meta } from "../../components/shared/Meta";
 import CheckoutSummary from "../../components/Summary";
 import { FormInput, InputError } from "../../Types/FormInput";
 import Confirmation from "../../components/PaymentConfirmation";
-import { InputValidation } from "../../components/util/validateInputFields";
+import { validateInputField } from "../../components/util/validateInputFields";
 import { validatePayButton } from "../../components/util/utils";
+import { selectValue } from "../../store/reducers/addItemToCart";
+import { Alert, AlertType } from "../../components/shared/Alert";
 
 const Checkout = () => {
 	const router = useRouter();
+	const { cart } = useSelector(selectValue);
+
+	if (cart.length === 0) router.push("/");
 
 	const methodOfPayment = [
 		{ label: "e-Money", method: "online" },
@@ -37,14 +43,23 @@ const Checkout = () => {
 	const isError = Object.values(error).some((value) => value.errorState);
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
+		const { name, value, type } = e.target;
 
 		setValue((prevState) => ({ ...prevState, [name]: value }));
+
+		if (isError) {
+			const { errorState, errorMessage } = validateInputField(value, type);
+
+			setError((prevState) => ({
+				...prevState,
+				[name]: { errorState: errorState, errorMessage: errorMessage },
+			}));
+		}
 	};
 
 	const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		const { errorState, errorMessage } = InputValidation(name, value);
+		const { name, value, type } = e.target;
+		const { errorState, errorMessage } = validateInputField(value, type);
 
 		setError((prevState) => ({
 			...prevState,
@@ -61,7 +76,7 @@ const Checkout = () => {
 			</div>
 			<div className="bg-grey px-xl pt-[7.9em] pb-[14.1em]">
 				<button
-					className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px]"
+					className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px] hover:opacity-100"
 					onClick={() => router.back()}
 				>
 					go back
@@ -70,6 +85,12 @@ const Checkout = () => {
 				<div className="flex gap-[30px]">
 					<form className="bg-white px-[4.8em] pt-[5.4em] pb-[4.8em] w-[70%] rounded-lg">
 						<h1 className="[ heading-3 ] mb-[41px]">Checkout</h1>
+						{cart.length === 0 && (
+							<Alert
+								message="To make an order, you should add an item to the cart!"
+								type={AlertType.Warning}
+							/>
+						)}
 						<section className="flex flex-col mb-[53px]">
 							<h2 className="[ sub-title ] mb-[16px]">Billing details</h2>
 
@@ -108,7 +129,7 @@ const Checkout = () => {
 								label="Phone Number"
 								name="phoneNumber"
 								placeholder="+1202-555-0136"
-								type="text"
+								type="tel"
 								value={value.phoneNumber}
 								style="w-[49%]"
 								error={error}

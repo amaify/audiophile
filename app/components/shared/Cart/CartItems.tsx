@@ -22,7 +22,7 @@ const CartItems = () => {
 				<h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${cart.length})`}</h6>
 				<p
 					className="[ body-text ] text-black opacity-50 capitalize hover: cursor-pointer underline hover:text-primary hover:opacity-100"
-					onClick={() => dispatch(removeAllItems())}
+					onClick={() => cart.length > 0 && dispatch(removeAllItems())}
 				>
 					remove all
 				</p>

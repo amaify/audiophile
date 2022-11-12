@@ -188,8 +188,8 @@ h6 {
 }
 
 .phile-btn-4:hover {
-  background: transparent;
-  border: 1px solid #000000;
+  background: #4c4c4c;
+  border: 1px solid #4c4c4c;
   color: #ffffff;
 }
 
@@ -204,6 +204,10 @@ h6 {
 .phile-btn-3 span:first-child:hover {
   color: #d87d4a;
   opacity: 1;
+}
+
+.phile-icon path {
+  stroke-width: 2;
 }
 
 .hero {
