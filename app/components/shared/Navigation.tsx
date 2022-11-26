@@ -12,12 +12,12 @@ interface Props {
 
 const Navigation = ({ removeHero }: Props) => {
 	const router = useRouter();
-	const { pathname } = router;
+	const { asPath } = router;
 
 	return (
 		<nav className={clsx("flex flex-wrap pt-[32px]", !removeHero && "[ nav ]")}>
 			<Brand />
-			<NavigationLinks pathName={pathname} />
+			<NavigationLinks pathName={asPath} />
 			<Cart />
 		</nav>
 	);

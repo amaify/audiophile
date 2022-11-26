@@ -10,14 +10,14 @@ import Brand from "./Brand";
 
 const Footer = () => {
 	const router = useRouter();
-	const { pathname } = router;
+	const { asPath } = router;
 	return (
 		<footer className="relative before:content-[' '] before:w-[101px] before:h-[4px] before:bg-primary before:block before:absolute before:top-0 before:left-[325px]">
 			<div className="bg-black pt-[75px] px-xl pb-[48px] w-full">
 				<nav className="flex mb-[36px] flex-wrap">
 					<Brand />
 
-					<NavigationLinks pathName={pathname} isFooter={true} />
+					<NavigationLinks pathName={asPath} isFooter={true} />
 				</nav>
 
 				<div className="flex items-end">
@@ -25,7 +25,7 @@ const Footer = () => {
 						Audiophile is an all in one stop to fulfill your audio needs. We're
 						a small team of music lovers and sound specialists who are devoted
 						to helping you get the most out of personal audio. Come and visit
-						our demo facility - we’re open 7 days a week.
+						our demo facility - we&sbquo;re open 7 days a week.
 					</p>
 
 					<div className="flex gap-[16px] items-baseline">

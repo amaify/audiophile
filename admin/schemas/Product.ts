@@ -4,9 +4,11 @@ import {
 	relationship,
 	timestamp,
 	bigInt,
+	checkbox,
 	float,
 	select,
 	json,
+	image,
 } from "@keystone-6/core/fields";
 import { document } from "@keystone-6/fields-document";
 import { Lists } from ".keystone/types";
@@ -14,7 +16,20 @@ import { Lists } from ".keystone/types";
 export const Product: ListConfig<Lists.Product.TypeInfo, any> = list({
 	fields: {
 		title: text({ validation: { isRequired: true } }),
-		slug: text({ validation: { isRequired: true } }),
+		newProduct: checkbox(),
+		cartTitle: text({
+			validation: { isRequired: true },
+			ui: { description: "Enter a short title of not more than 10 characters" },
+		}),
+		suggestionTitle: text({
+			validation: { isRequired: true },
+			ui: { description: "Enter a short suggestion title" },
+		}),
+		slug: text({
+			validation: { isRequired: true },
+		}),
+		previewImage: image({ storage: "product_images" }),
+		cartImage: image({ storage: "product_images" }),
 		category: select({
 			options: [
 				{ label: "Headphones", value: "headphones" },
@@ -22,7 +37,10 @@ export const Product: ListConfig<Lists.Product.TypeInfo, any> = list({
 				{ label: "Earphones", value: "earphones" },
 			],
 		}),
-		description: text({ validation: { isRequired: true } }),
+		description: text({
+			validation: { isRequired: true },
+			ui: { displayMode: "textarea" },
+		}),
 		price: float({ defaultValue: 0.0, validation: { isRequired: true } }),
 		features: document({
 			formatting: true,
@@ -37,5 +55,11 @@ export const Product: ListConfig<Lists.Product.TypeInfo, any> = list({
 			dividers: true,
 		}),
 		boxContent: json(),
+		gallery: json(),
+	},
+	ui: {
+		listView: {
+			initialColumns: ["title", "previewImage", "price"],
+		},
 	},
 });

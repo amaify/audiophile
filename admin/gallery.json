@@ -1,0 +1,20 @@
+[
+	{
+		"mobile": [
+			"https://amaify-audiophile.s3.amazonaws.com/xx59+Mark+One/mobile/image-gallery-1.jpg",
+			"https://amaify-audiophile.s3.amazonaws.com/xx59+Mark+One/mobile/image-gallery-2.jpg",
+			"https://amaify-audiophile.s3.amazonaws.com/xx59+Mark+One/mobile/image-gallery-3.jpg"
+		],
+
+		"tablet": [
+			"https://amaify-audiophile.s3.amazonaws.com/xx59+Mark+One/tablet/image-gallery-1.jpg",
+			"https://amaify-audiophile.s3.amazonaws.com/xx59+Mark+One/tablet/image-gallery-2.jpg",
+			"https://amaify-audiophile.s3.amazonaws.com/xx59+Mark+One/tablet/image-gallery-3.jpg"
+		],
+		"desktop": [
+			"https://amaify-audiophile.s3.amazonaws.com/xx59+Mark+One/desktop/image-gallery-1.jpg",
+			"https://amaify-audiophile.s3.amazonaws.com/xx59+Mark+One/desktop/image-gallery-2.jpg",
+			"https://amaify-audiophile.s3.amazonaws.com/xx59+Mark+One/desktop/image-gallery-3.jpg"
+		]
+	}
+]

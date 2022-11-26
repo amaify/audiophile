@@ -10,9 +10,20 @@ import { config } from "@keystone-6/core";
 
 // Look in the schema file for how we define our lists, and how users interact with them through graphql or the Admin UI
 import { lists } from "./schemas/index";
+import dotenv from "dotenv";
 
 // Keystone auth is configured separately - check out the basic auth setup we are importing from our auth file.
 import { withAuth, session } from "./auth";
+
+dotenv.config();
+
+const {
+	S3_BUCKET_NAME: bucketName,
+	S3_REGION: region,
+	S3_ACCESS_KEY_ID: accessKeyId,
+	S3_SECRET_ACCESS_KEY: secretAccessKey,
+	ASSET_BASE_URL: baseURL,
+} = process.env;
 
 export default withAuth(
 	// Using the config function helps typescript guide you to the available options.
@@ -33,5 +44,15 @@ export default withAuth(
 		},
 		lists,
 		session,
+		storage: {
+			product_images: {
+				kind: "s3",
+				type: "image",
+				bucketName: bucketName ?? "",
+				region: region ?? "",
+				accessKeyId: accessKeyId ?? "",
+				secretAccessKey: secretAccessKey ?? "",
+			},
+		},
 	})
 );

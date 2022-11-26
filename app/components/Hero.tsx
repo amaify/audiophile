@@ -8,7 +8,7 @@ const Hero = () => {
 		<header className="[ hero ] relative">
 			<Meta pageTitle="Home" />
 			<div className="px-[325px]">
-				<Navigation detailsPage={false} />
+				<Navigation removeHero={false} />
 
 				<div className="w-[398px] absolute top-[30%] left-[325px]">
 					<p className="[ overline-text ] text-white opacity-50 mb-[24px]">

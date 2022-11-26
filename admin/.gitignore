@@ -1,4 +1,6 @@
 node_modules
 .keystone/admin
 keystone.db
+key.txt
+rootkey.csv
 *.log
