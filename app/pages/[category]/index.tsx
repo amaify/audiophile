@@ -8,19 +8,14 @@ import ProductCategory from "../../components/shared/ProductCategory";
 
 import { gql } from "@apollo/client";
 import client from "../../helpers/apolloClient";
-import { useRouter } from "next/router";
 
-const Headphones = ({ data, x }: any) => {
+const Headphones = ({ data, slug }: any) => {
 	const productData = headphoneData.filter(
 		(headphone) => headphone.productCategory === "headphones"
 	);
 
-	// console.log(data);
-	// console.log(x);
-	// console.log(router.query);
-
 	return (
-		<ProductCategoryLayout layoutTitle={x}>
+		<ProductCategoryLayout layoutTitle={slug}>
 			<section className="w-full flex flex-col gap-[160px]">
 				{productData.map((data) => {
 					let productImage = MarkOneHeadphone;
@@ -45,7 +40,7 @@ const Headphones = ({ data, x }: any) => {
 
 export default Headphones;
 
-export async function getStaticPaths(context: any) {
+export async function getStaticPaths() {
 	return {
 		paths: [
 			{ params: { category: "headphones" } },
@@ -79,7 +74,7 @@ export async function getStaticProps(context: any) {
 	return {
 		props: {
 			data: data.products,
-			x: category,
+			slug: category,
 		},
 	};
 }
