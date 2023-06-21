@@ -9,7 +9,6 @@ datasource postgresql {
 
 generator client {
   provider = "prisma-client-js"
-  output   = "node_modules/.prisma/client"
 }
 
 model Post {
@@ -25,11 +24,12 @@ model Post {
 }
 
 model User {
-  id       String @id @default(cuid())
-  name     String @default("")
-  email    String @unique @default("")
-  password String
-  posts    Post[] @relation("Post_author")
+  id        String    @id @default(cuid())
+  name      String    @default("")
+  email     String    @unique @default("")
+  password  String
+  posts     Post[]    @relation("Post_author")
+  createdAt DateTime? @default(now())
 }
 
 model Product {

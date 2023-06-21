@@ -1,7 +1,5 @@
 node_modules
 .keystone/admin
-.env
 keystone.db
-key.txt
-rootkey.csv
+*.env
 *.log

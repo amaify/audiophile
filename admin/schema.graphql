@@ -14,8 +14,7 @@ type Post_content_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
 
-scalar DateTime
-  @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
+scalar DateTime @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
 
 input PostWhereUniqueInput {
   id: ID
@@ -89,21 +88,7 @@ input StringNullableFilter {
   startsWith: String
   endsWith: String
   mode: QueryMode
-  not: NestedStringNullableFilter
-}
-
-input NestedStringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringNullableFilter
+  not: StringNullableFilter
 }
 
 input DateTimeNullableFilter {
@@ -166,13 +151,9 @@ type User {
   name: String
   email: String
   password: PasswordState
-  posts(
-    where: PostWhereInput! = {}
-    orderBy: [PostOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Post!]
+  posts(where: PostWhereInput! = {}, orderBy: [PostOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostWhereUniqueInput): [Post!]
   postsCount(where: PostWhereInput! = {}): Int
+  createdAt: DateTime
 }
 
 type PasswordState {
@@ -192,6 +173,7 @@ input UserWhereInput {
   name: StringFilter
   email: StringFilter
   posts: PostManyRelationFilter
+  createdAt: DateTimeNullableFilter
 }
 
 input PostManyRelationFilter {
@@ -204,6 +186,7 @@ input UserOrderByInput {
   id: OrderDirection
   name: OrderDirection
   email: OrderDirection
+  createdAt: OrderDirection
 }
 
 input UserUpdateInput {
@@ -211,6 +194,7 @@ input UserUpdateInput {
   email: String
   password: String
   posts: PostRelateToManyForUpdateInput
+  createdAt: DateTime
 }
 
 input PostRelateToManyForUpdateInput {
@@ -230,6 +214,7 @@ input UserCreateInput {
   email: String
   password: String
   posts: PostRelateToManyForCreateInput
+  createdAt: DateTime
 }
 
 input PostRelateToManyForCreateInput {
@@ -341,9 +326,7 @@ input ImageFieldInput {
   upload: Upload!
 }
 
-"""
-The `Upload` scalar type represents a file upload.
-"""
+"""The `Upload` scalar type represents a file upload."""
 scalar Upload
 
 input ProductUpdateArgs {
@@ -370,10 +353,7 @@ input ProductCreateInput {
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
-scalar JSON
-  @specifiedBy(
-    url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf"
-  )
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 type Mutation {
   createPost(data: PostCreateInput!): Post
@@ -390,26 +370,16 @@ type Mutation {
   deleteUsers(where: [UserWhereUniqueInput!]!): [User]
   createProduct(data: ProductCreateInput!): Product
   createProducts(data: [ProductCreateInput!]!): [Product]
-  updateProduct(
-    where: ProductWhereUniqueInput!
-    data: ProductUpdateInput!
-  ): Product
+  updateProduct(where: ProductWhereUniqueInput!, data: ProductUpdateInput!): Product
   updateProducts(data: [ProductUpdateArgs!]!): [Product]
   deleteProduct(where: ProductWhereUniqueInput!): Product
   deleteProducts(where: [ProductWhereUniqueInput!]!): [Product]
   endSession: Boolean!
-  authenticateUserWithPassword(
-    email: String!
-    password: String!
-  ): UserAuthenticationWithPasswordResult
-  createInitialUser(
-    data: CreateInitialUserInput!
-  ): UserAuthenticationWithPasswordSuccess!
+  authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult
+  createInitialUser(data: CreateInitialUserInput!): UserAuthenticationWithPasswordSuccess!
 }
 
-union UserAuthenticationWithPasswordResult =
-    UserAuthenticationWithPasswordSuccess
-  | UserAuthenticationWithPasswordFailure
+union UserAuthenticationWithPasswordResult = UserAuthenticationWithPasswordSuccess | UserAuthenticationWithPasswordFailure
 
 type UserAuthenticationWithPasswordSuccess {
   sessionToken: String!
@@ -427,28 +397,13 @@ input CreateInitialUserInput {
 }
 
 type Query {
-  posts(
-    where: PostWhereInput! = {}
-    orderBy: [PostOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Post!]
+  posts(where: PostWhereInput! = {}, orderBy: [PostOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostWhereUniqueInput): [Post!]
   post(where: PostWhereUniqueInput!): Post
   postsCount(where: PostWhereInput! = {}): Int
-  users(
-    where: UserWhereInput! = {}
-    orderBy: [UserOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [User!]
+  users(where: UserWhereInput! = {}, orderBy: [UserOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: UserWhereUniqueInput): [User!]
   user(where: UserWhereUniqueInput!): User
   usersCount(where: UserWhereInput! = {}): Int
-  products(
-    where: ProductWhereInput! = {}
-    orderBy: [ProductOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Product!]
+  products(where: ProductWhereInput! = {}, orderBy: [ProductOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProductWhereUniqueInput): [Product!]
   product(where: ProductWhereUniqueInput!): Product
   productsCount(where: ProductWhereInput! = {}): Int
   keystone: KeystoneMeta!
@@ -462,8 +417,6 @@ type KeystoneMeta {
 }
 
 type KeystoneAdminMeta {
-  enableSignout: Boolean!
-  enableSessionItem: Boolean!
   lists: [KeystoneAdminUIListMeta!]!
   list(key: String!): KeystoneAdminUIListMeta
 }
@@ -483,8 +436,10 @@ type KeystoneAdminUIListMeta {
   pageSize: Int!
   labelField: String!
   fields: [KeystoneAdminUIFieldMeta!]!
+  groups: [KeystoneAdminUIFieldGroupMeta!]!
   initialSort: KeystoneAdminUISort
   isHidden: Boolean!
+  isSingleton: Boolean!
 }
 
 type KeystoneAdminUIFieldMeta {
@@ -493,6 +448,7 @@ type KeystoneAdminUIFieldMeta {
   description: String
   isOrderable: Boolean!
   isFilterable: Boolean!
+  isNonNull: [KeystoneAdminUIFieldMetaIsNonNull!]
   fieldMeta: JSON
   viewsIndex: Int!
   customViewsIndex: Int
@@ -500,6 +456,12 @@ type KeystoneAdminUIFieldMeta {
   listView: KeystoneAdminUIFieldMetaListView!
   itemView(id: ID): KeystoneAdminUIFieldMetaItemView
   search: QueryMode
+}
+
+enum KeystoneAdminUIFieldMetaIsNonNull {
+  read
+  create
+  update
 }
 
 type KeystoneAdminUIFieldMetaCreateView {
@@ -522,12 +484,24 @@ enum KeystoneAdminUIFieldMetaListViewFieldMode {
 
 type KeystoneAdminUIFieldMetaItemView {
   fieldMode: KeystoneAdminUIFieldMetaItemViewFieldMode
+  fieldPosition: KeystoneAdminUIFieldMetaItemViewFieldPosition
 }
 
 enum KeystoneAdminUIFieldMetaItemViewFieldMode {
   edit
   read
   hidden
+}
+
+enum KeystoneAdminUIFieldMetaItemViewFieldPosition {
+  form
+  sidebar
+}
+
+type KeystoneAdminUIFieldGroupMeta {
+  label: String!
+  description: String
+  fields: [KeystoneAdminUIFieldMeta!]!
 }
 
 type KeystoneAdminUISort {

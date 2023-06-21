@@ -18,41 +18,42 @@ import { withAuth, session } from "./auth";
 dotenv.config();
 
 const {
-	S3_BUCKET_NAME: bucketName,
-	S3_REGION: region,
-	S3_ACCESS_KEY_ID: accessKeyId,
-	S3_SECRET_ACCESS_KEY: secretAccessKey,
-	ASSET_BASE_URL: baseURL,
+  S3_BUCKET_NAME: bucketName,
+  S3_REGION: region,
+  S3_ACCESS_KEY_ID: accessKeyId,
+  S3_SECRET_ACCESS_KEY: secretAccessKey,
+  ASSET_BASE_URL: baseURL
 } = process.env;
 
 export default withAuth(
-	// Using the config function helps typescript guide you to the available options.
-	config({
-		// the db sets the database provider - we're using sqlite for the fastest startup experience
-		db: {
-			provider: "postgresql",
-			url: "postgres://postgres:test1234@localhost:5432/keystone",
-		},
-		// This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
-		ui: {
-			// For our starter, we check that someone has session data before letting them see the Admin UI.
-			isAccessAllowed: (context) => !!context.session?.data,
-		},
-		server: {
-			cors: { origin: ["http://localhost:3000"], credentials: true },
-			healthCheck: true,
-		},
-		lists,
-		session,
-		storage: {
-			product_images: {
-				kind: "s3",
-				type: "image",
-				bucketName: bucketName ?? "",
-				region: region ?? "",
-				accessKeyId: accessKeyId ?? "",
-				secretAccessKey: secretAccessKey ?? "",
-			},
-		},
-	})
+  // Using the config function helps typescript guide you to the available options.
+  config({
+    // the db sets the database provider - we're using sqlite for the fastest startup experience
+    db: {
+      provider: "postgresql",
+      url: "postgres://postgres:2251@localhost:5432/keystone"
+    },
+    // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
+    ui: {
+      // For our starter, we check that someone has session data before letting them see the Admin UI.
+      isAccessAllowed: (context) => !!context.session?.data
+    },
+    server: {
+      cors: { origin: ["http://localhost:8000"], credentials: true },
+      healthCheck: true,
+      port: 8000
+    },
+    lists,
+    session,
+    storage: {
+      product_images: {
+        kind: "s3",
+        type: "image",
+        bucketName: bucketName ?? "",
+        region: region ?? "",
+        accessKeyId: accessKeyId ?? "",
+        secretAccessKey: secretAccessKey ?? ""
+      }
+    }
+  })
 );

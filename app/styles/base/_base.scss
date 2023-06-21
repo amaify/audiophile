@@ -6,31 +6,23 @@
 *,
 *::after,
 *::before {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @layer base {
-	html {
-		font-family: "Manrope", sans-serif;
-		font-size: 62.5%;
-		scroll-behavior: smooth;
-		height: 100%;
-	}
+  html {
+    font-family: "Manrope", sans-serif;
+    font-size: 62.5%;
+    max-width: 1920px;
+    min-width: 325px;
+    scroll-behavior: smooth;
+    height: 100%;
+  }
 
-	body {
-		height: 100%;
-		// overflow: hidden;
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	html {
-		color-scheme: dark;
-	}
-	body {
-		color: white;
-		background: black;
-	}
+  body {
+    height: 100%;
+    // overflow: hidden;
+  }
 }

@@ -85,14 +85,11 @@ h6 {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #ffffff;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-
 .nav-link-active {
   color: #d87d4a;
 }
-
 .nav-link:hover {
   color: #d87d4a;
 }
@@ -109,14 +106,15 @@ h6 {
 *::before {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @layer base {
   html {
     font-family: "Manrope", sans-serif;
     font-size: 62.5%;
+    max-width: 1920px;
+    min-width: 325px;
     scroll-behavior: smooth;
     height: 100%;
   }
@@ -124,39 +122,21 @@ h6 {
     height: 100%;
   }
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
-
 .phile-btn {
   font-size: 1.3em;
   line-height: 1.8em;
   letter-spacing: 1px;
   font-weight: 700;
   text-transform: uppercase;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
 .phile-btn-1,
 .phile-btn-2,
 .phile-btn-4 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   width: 16.8em;
   height: 4em;
 }
@@ -165,7 +145,6 @@ h6 {
   background: #d87d4a;
   color: white;
 }
-
 .phile-btn-1:hover {
   background: #fbaf85;
 }
@@ -175,7 +154,6 @@ h6 {
   color: black;
   border: 1px solid black;
 }
-
 .phile-btn-2:hover {
   background: black;
   color: white;
@@ -186,7 +164,6 @@ h6 {
   border: 1px solid #000000;
   color: #ffffff;
 }
-
 .phile-btn-4:hover {
   background: #4c4c4c;
   border: 1px solid #4c4c4c;
@@ -197,10 +174,8 @@ h6 {
   color: black;
   opacity: 0.5;
   margin-right: 13.32px;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-
 .phile-btn-3 span:first-child:hover {
   color: #d87d4a;
   opacity: 1;
@@ -256,43 +231,22 @@ h6 {
   caret-color: #d87d4a;
   border: 1px solid #cfcfcf;
 }
-
 .input:focus {
   border: 1px solid #d87d4a;
 }
-
 .input-error {
   border: 2px solid #cd2c2c;
 }
-
 .input-error:focus {
   border: 2px solid #cd2c2c;
 }
-
-.input::-webkit-input-placeholder {
+.input::-moz-placeholder {
   color: #000000;
   font-size: 14px;
   font-weight: bold;
   opacity: 0.4;
   line-height: 19px;
 }
-
-.input:-ms-input-placeholder {
-  color: #000000;
-  font-size: 14px;
-  font-weight: bold;
-  opacity: 0.4;
-  line-height: 19px;
-}
-
-.input::-ms-input-placeholder {
-  color: #000000;
-  font-size: 14px;
-  font-weight: bold;
-  opacity: 0.4;
-  line-height: 19px;
-}
-
 .input::placeholder {
   color: #000000;
   font-size: 14px;
@@ -304,5 +258,4 @@ h6 {
 .payment-method {
   padding: 18px 24px;
   border-radius: 8px;
-}
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

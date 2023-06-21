@@ -6,38 +6,34 @@ import ProductThumbnails from "../shared/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
 
 interface Props {
-	children: React.ReactNode;
-	pageTitle: string;
-	removeSubFooter: boolean;
+  children: JSX.Element;
+  pageTitle: string;
+  removeSubFooter: boolean;
 }
 
-const ProductDetailsLayout = ({
-	children,
-	pageTitle,
-	removeSubFooter,
-}: Props) => {
-	return (
-		<section>
-			<Meta pageTitle={pageTitle} />
+const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter }: Props) => {
+  return (
+    <>
+      <Meta pageTitle={pageTitle} />
 
-			<div className="bg-black h-[97px] px-xl relative z-50">
-				<Navigation removeHero={true} />
-			</div>
+      <div className="bg-black h-[9.7rem] px-[17.5rem] relative z-50">
+        <Navigation removeHero={true} />
+      </div>
 
-			<div className="px-xl mt-[79px] mb-lg">{children}</div>
+      <div className="px-[17.5rem] mt-[7.9rem] mb-lg">{children}</div>
 
-			{!removeSubFooter && (
-				<>
-					<div className="mb-lg px-xl">
-						<ProductThumbnails />
-					</div>
+      {!removeSubFooter && (
+        <>
+          <div className="mb-lg px-[17.5rem]">
+            <ProductThumbnails />
+          </div>
 
-					<SubFooter />
-				</>
-			)}
-			<Footer />
-		</section>
-	);
+          <SubFooter />
+        </>
+      )}
+      <Footer />
+    </>
+  );
 };
 
 export default ProductDetailsLayout;
