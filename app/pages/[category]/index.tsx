@@ -5,76 +5,75 @@ import MarkTwoHeadphone from "../../assets/shared/desktop/image-xx99-mark-two-he
 import XX59Headphone from "../../assets/shared/desktop/image-xx59-headphones.jpg";
 import headphoneData from "../../data.json";
 import ProductCategory from "../../components/shared/ProductCategory";
-
-import { gql } from "@apollo/client";
 import client from "../../helpers/apolloClient";
+import { GET_PRODUCTS, type Products } from "../../queries/get-products";
+import { useRouter } from "next/router";
+import { ProductQuery } from "../../Types/data-fetching";
 
-const Headphones = ({ data, slug }: any) => {
-	const productData = headphoneData.filter(
-		(headphone) => headphone.productCategory === "headphones"
-	);
-
-	return (
-		<ProductCategoryLayout layoutTitle={slug}>
-			<section className="w-full flex flex-col gap-[160px]">
-				{productData.map((data) => {
-					let productImage = MarkOneHeadphone;
-					if (data.productTitle === "xx99 mark ii headphones")
-						productImage = MarkTwoHeadphone;
-					if (data.productTitle === "xx59 headphones")
-						productImage = XX59Headphone;
-					return (
-						<ProductCategory
-							key={data.slug}
-							productSlug={data.slug}
-							productDescription={data.productDescription}
-							productImage={productImage}
-							productTitle={data.productTitle}
-						/>
-					);
-				})}
-			</section>
-		</ProductCategoryLayout>
-	);
-};
-
-export default Headphones;
-
-export async function getStaticPaths() {
-	return {
-		paths: [
-			{ params: { category: "headphones" } },
-			{ params: { category: "speakers" } },
-			{ params: { category: "earphones" } },
-		],
-		fallback: false,
-	};
+interface Props {
+  data: Products;
 }
 
-export async function getStaticProps(context: any) {
-	const { params } = context;
-	const { category } = params;
+const Product = ({ data }: Props) => {
+  const router = useRouter();
+  const { query } = router;
+  const pageTitle = query.category as string;
+  const productData = headphoneData.filter((headphone) => headphone.productCategory === "headphones");
+  console.log(data);
 
-	const { data } = await client.query({
-		query: gql`
-			query {
-				products {
-					id
-					newProduct
-					title
-					slug
-					cartTitle
-					suggestionTitle
-					gallery
-				}
-			}
-		`,
-	});
+  return (
+    <ProductCategoryLayout layoutTitle={pageTitle}>
+      <section className="w-full flex flex-col gap-[160px]">
+        {productData.map((data) => {
+          let productImage = MarkOneHeadphone;
+          if (data.productTitle === "xx99 mark ii headphones") productImage = MarkTwoHeadphone;
+          if (data.productTitle === "xx59 headphones") productImage = XX59Headphone;
+          return (
+            <ProductCategory
+              key={data.slug}
+              productSlug={data.slug}
+              productDescription={data.productDescription}
+              productImage={productImage}
+              productTitle={data.productTitle}
+            />
+          );
+        })}
+      </section>
+    </ProductCategoryLayout>
+  );
+};
 
-	return {
-		props: {
-			data: data.products,
-			slug: category,
-		},
-	};
+export default Product;
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { category: "headphones" } },
+      { params: { category: "speakers" } },
+      { params: { category: "earphones" } }
+    ],
+    fallback: false
+  };
+}
+
+export async function getStaticProps(context: ProductQuery) {
+  const { category } = context.params;
+  const { data, error } = await client.query<Products>({
+    query: GET_PRODUCTS,
+    variables: { category: category }
+  });
+
+  if (error) {
+    return {
+      props: {
+        error: error
+      }
+    };
+  }
+
+  return {
+    props: {
+      data: data.products
+    }
+  };
 }

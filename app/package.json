@@ -6,13 +6,24 @@
     "dev": "next dev --port 9000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "ts-gql build",
+    "ts-gql:build": "ts-gql build",
+    "ts-gql:watch": "ts-gql watch"
+  },
+  "ts-gql": {
+    "mode": "mixed",
+    "schema": "./../admin/schema.graphql"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
     "@heroicons/react": "^2.0.12",
     "@keystone-6/document-renderer": "^1.1.2",
     "@reduxjs/toolkit": "^1.8.6",
+    "@ts-gql/compiler": "^0.16.3",
+    "@ts-gql/eslint-plugin": "^0.8.5",
+    "@ts-gql/next": "^17.0.0",
+    "@ts-gql/tag": "^0.7.0",
     "clsx": "^1.2.1",
     "graphql": "^16.6.0",
     "next": "12.3.1",
@@ -26,10 +37,14 @@
     "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "4.0.1",
+    "@graphql-codegen/client-preset": "4.0.1",
+    "@graphql-codegen/introspection": "4.0.0",
     "@types/node": "18.8.4",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.12",
+    "babel-plugin-graphql-tag": "^3.3.0",
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
     "postcss": "^8.4.17",
