@@ -229,8 +229,8 @@ type Product {
   cartTitle: String
   suggestionTitle: String
   slug: String
-  previewImage: ImageFieldOutput
-  cartImage: ImageFieldOutput
+  previewImage: CloudinaryImage_File
+  cartImage: CloudinaryImage_File
   category: String
   description: String
   price: Float
@@ -239,20 +239,52 @@ type Product {
   gallery: JSON
 }
 
-type ImageFieldOutput {
-  id: ID!
-  filesize: Int!
-  width: Int!
-  height: Int!
-  extension: ImageExtension!
-  url: String!
+type CloudinaryImage_File {
+  id: ID
+  filename: String
+  originalFilename: String
+  mimetype: String
+  encoding: String
+  publicUrl: String
+  publicUrlTransformed(transformation: CloudinaryImageFormat): String
 }
 
-enum ImageExtension {
-  jpg
-  png
-  webp
-  gif
+"""
+Mirrors the formatting options [Cloudinary provides](https://cloudinary.com/documentation/image_transformation_reference).
+All options are strings as they ultimately end up in a URL.
+"""
+input CloudinaryImageFormat {
+  """ Rewrites the filename to be this pretty string. Do not include `/` or `.`
+  """
+  prettyName: String
+  width: String
+  height: String
+  crop: String
+  aspect_ratio: String
+  gravity: String
+  zoom: String
+  x: String
+  y: String
+  format: String
+  fetch_format: String
+  quality: String
+  radius: String
+  angle: String
+  effect: String
+  opacity: String
+  border: String
+  background: String
+  overlay: String
+  underlay: String
+  default_image: String
+  delay: String
+  color: String
+  color_space: String
+  dpr: String
+  page: String
+  density: String
+  flags: String
+  transformation: String
 }
 
 type Product_features_Document {
@@ -273,7 +305,7 @@ input ProductWhereInput {
   cartTitle: StringFilter
   suggestionTitle: StringFilter
   slug: StringFilter
-  category: StringNullableFilter
+  category: StringFilter
   description: StringFilter
   price: FloatFilter
 }
@@ -312,18 +344,14 @@ input ProductUpdateInput {
   cartTitle: String
   suggestionTitle: String
   slug: String
-  previewImage: ImageFieldInput
-  cartImage: ImageFieldInput
+  previewImage: Upload
+  cartImage: Upload
   category: String
   description: String
   price: Float
   features: JSON
   boxContent: JSON
   gallery: JSON
-}
-
-input ImageFieldInput {
-  upload: Upload!
 }
 
 """The `Upload` scalar type represents a file upload."""
@@ -340,8 +368,8 @@ input ProductCreateInput {
   cartTitle: String
   suggestionTitle: String
   slug: String
-  previewImage: ImageFieldInput
-  cartImage: ImageFieldInput
+  previewImage: Upload
+  cartImage: Upload
   category: String
   description: String
   price: Float

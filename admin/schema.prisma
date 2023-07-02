@@ -33,26 +33,18 @@ model User {
 }
 
 model Product {
-  id                     String  @id @default(cuid())
-  title                  String  @default("")
-  newProduct             Boolean @default(false)
-  cartTitle              String  @default("")
-  suggestionTitle        String  @default("")
-  slug                   String  @default("")
-  previewImage_filesize  Int?
-  previewImage_extension String?
-  previewImage_width     Int?
-  previewImage_height    Int?
-  previewImage_id        String?
-  cartImage_filesize     Int?
-  cartImage_extension    String?
-  cartImage_width        Int?
-  cartImage_height       Int?
-  cartImage_id           String?
-  category               String?
-  description            String  @default("")
-  price                  Float   @default(0)
-  features               Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  boxContent             Json?
-  gallery                Json?
+  id              String  @id @default(cuid())
+  title           String  @default("")
+  newProduct      Boolean @default(false)
+  cartTitle       String  @default("")
+  suggestionTitle String  @default("")
+  slug            String  @default("")
+  previewImage    Json?
+  cartImage       Json?
+  category        String
+  description     String  @default("")
+  price           Float   @default(0)
+  features        Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  boxContent      Json?
+  gallery         Json?
 }

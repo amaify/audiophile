@@ -1,8 +1,22 @@
 import { list, ListConfig } from "@keystone-6/core";
-import { text, relationship, timestamp, bigInt, checkbox, float, select, json, image } from "@keystone-6/core/fields";
+import {
+  text,
+  relationship,
+  timestamp,
+  bigInt,
+  checkbox,
+  float,
+  select,
+  json,
+  image,
+} from "@keystone-6/core/fields";
 import { document } from "@keystone-6/fields-document";
 import { allowAll } from "@keystone-6/core/access";
+import { cloudinaryImage } from "@keystone-6/cloudinary";
+import dotenv from "dotenv";
 import type { Lists } from ".keystone/types";
+
+dotenv.config();
 
 export const Product: ListConfig<Lists.Product.TypeInfo, any> = list({
   access: allowAll,
@@ -11,27 +25,44 @@ export const Product: ListConfig<Lists.Product.TypeInfo, any> = list({
     newProduct: checkbox(),
     cartTitle: text({
       validation: { isRequired: true },
-      ui: { description: "Enter a short title of not more than 10 characters" }
+      ui: { description: "Enter a short title of not more than 10 characters" },
     }),
     suggestionTitle: text({
       validation: { isRequired: true },
-      ui: { description: "Enter a short suggestion title" }
+      ui: { description: "Enter a short suggestion title" },
     }),
     slug: text({
-      validation: { isRequired: true }
+      validation: { isRequired: true },
     }),
-    previewImage: image({ storage: "product_images" }),
-    cartImage: image({ storage: "product_images" }),
+    // previewImage: image({ storage: "product_images" }),
+    previewImage: cloudinaryImage({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER,
+      },
+    }),
+    // cartImage: image({ storage: "product_images" }),
+    cartImage: cloudinaryImage({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER,
+      },
+    }),
     category: select({
       options: [
         { label: "Headphones", value: "headphones" },
         { label: "Speakers", value: "speakers" },
-        { label: "Earphones", value: "earphones" }
-      ]
+        { label: "Earphones", value: "earphones" },
+      ],
+      validation: { isRequired: true },
     }),
     description: text({
       validation: { isRequired: true },
-      ui: { displayMode: "textarea" }
+      ui: { displayMode: "textarea" },
     }),
     price: float({ defaultValue: 0.0, validation: { isRequired: true } }),
     features: document({
@@ -41,17 +72,17 @@ export const Product: ListConfig<Lists.Product.TypeInfo, any> = list({
         [1, 1, 1],
         [2, 1],
         [1, 2],
-        [1, 2, 1]
+        [1, 2, 1],
       ],
       links: true,
-      dividers: true
+      dividers: true,
     }),
     boxContent: json(),
-    gallery: json()
+    gallery: json(),
   },
   ui: {
     listView: {
-      initialColumns: ["title", "previewImage", "price"]
-    }
-  }
+      initialColumns: ["title", "previewImage", "price"],
+    },
+  },
 });

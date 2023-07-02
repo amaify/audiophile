@@ -27,8 +27,23 @@ import AddToCart from "../../components/shared/Cart/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
 import { formatPrice } from "../../components/util/utils";
 import { CartItem } from "../../store/Types/Cart";
+import client from "@/helpers/apolloClient";
+import { GET_ALL_PRODUCTS, GET_PRODUCT, GET_PRODUCTS } from "@/queries/get-products";
+import { ParsedUrlQuery } from "querystring";
+import { ProductQuery, ProductsQuery } from "@/Types/data-fetching";
 
-const ProductDetails = () => {
+interface Params {
+  params: {
+    slug: string;
+  };
+}
+
+interface Props {
+  data: any;
+}
+
+const ProductDetails = ({ data }: Props) => {
+  console.log("DATA: ", data);
   const router = useRouter();
   const { slug } = router.query;
   const itemCount = useSelector(selectValue);
@@ -82,68 +97,112 @@ const ProductDetails = () => {
 
   return (
     <ProductDetailsLayout pageTitle={productDetails?.productTitle ?? ""} removeSubFooter={false}>
-      {productDetails ? (
-        <div>
-          <button
-            className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px]"
-            onClick={() => router.back()}
-          >
-            go back
-          </button>
+      <div>
+        <button
+          className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px]"
+          onClick={() => router.back()}
+        >
+          go back
+        </button>
 
-          <div className="flex gap-[125px] mb-lg">
-            <div className="w-1/2">
-              <Image src={productImage} alt={`${productDetails?.productTitle} Image`} className="rounded-lg" />
-            </div>
+        {productDetails ? (
+          <>
+            <div className="flex gap-[125px] mb-lg">
+              <div className="w-1/2">
+                <Image src={productImage} alt={`${productDetails?.productTitle} Image`} className="rounded-lg" />
+              </div>
 
-            <div className="w-[35%] self-center">
-              <p className="[ overline-text ] text-primary mb-[16px]">new product</p>
-              <h2 className="[ heading-2 ] mb-[32px]">{productDetails?.productTitle}</h2>
-              <p className="[ body-text ] opacity-50 mb-[32px]">{productDetails?.productDescription}</p>
-              <h6 className="[ heading-6 ] mb-[47px]">
-                {formatPrice(productDetails ? +productDetails.productPrice : 0)}
-              </h6>
-              <div className="flex gap-[16px]">
-                <AddToCart isCartVisible={false} itemQuantity={itemCount} />
-                <button className="[ phile-btn phile-btn-1 ]" onClick={() => handleAddtoCart(productDetails)}>
-                  add to cart
-                </button>
+              <div className="w-[35%] self-center">
+                <p className="[ overline-text ] text-primary mb-[16px]">new product</p>
+                <h2 className="[ heading-2 ] mb-[32px]">{productDetails?.productTitle}</h2>
+                <p className="[ body-text ] opacity-50 mb-[32px]">{productDetails?.productDescription}</p>
+                <h6 className="[ heading-6 ] mb-[47px]">
+                  {formatPrice(productDetails ? +productDetails.productPrice : 0)}
+                </h6>
+                <div className="flex gap-[16px]">
+                  <AddToCart isCartVisible={false} itemQuantity={itemCount} />
+                  <button className="[ phile-btn phile-btn-1 ]" onClick={() => handleAddtoCart(productDetails)}>
+                    add to cart
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          <ProductFeature productDetails={productDetails} />
+            <ProductFeature productDetails={productDetails} />
 
-          <div className="flex gap-[30px] w-full">
-            <div className="flex flex-col gap-[32px] w-[35%] relative">
-              <Image src={imageGallary[0]} alt="Image Gallery" className="rounded-lg" objectFit="cover" />
+            <div className="flex gap-[30px] w-full">
+              <div className="flex flex-col gap-[32px] w-[35%] relative">
+                <Image src={imageGallary[0]} alt="Image Gallery" className="rounded-lg" objectFit="cover" />
 
-              <Image src={imageGallary[1]} alt="Image Gallery" className="rounded-lg" objectFit="cover" />
+                <Image src={imageGallary[1]} alt="Image Gallery" className="rounded-lg" objectFit="cover" />
+              </div>
+
+              <div className="w-[65%] relative">
+                <Image
+                  src={imageGallary[2]}
+                  alt="Image Gallery"
+                  className="rounded-lg"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
             </div>
 
-            <div className="w-[65%] relative">
-              <Image src={imageGallary[2]} alt="Image Gallery" className="rounded-lg" layout="fill" objectFit="cover" />
+            <div className="mt-lg mb-[250px]">
+              <h3 className="[ heading-3 ] text-center mb-[64px]">you may also like</h3>
+              <div className="flex gap-[30px]">
+                {shuffledArray.map((item: any) => (
+                  <div className="flex flex-col items-center" key={item.productTitle}>
+                    <Image src={MarkOneHeadphone} alt="XX99 Mark I headphone" className="rounded-lg" />
+                    <h5 className="[ heading-5 ] mt-[40px] mb-[32px]">{item.productTitle.split("headphones")}</h5>
+                    <Button btnText="see product" btnType={1} to={`/${item.productCategory}/${item.slug}`} />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div className="mt-lg mb-[250px]">
-            <h3 className="[ heading-3 ] text-center mb-[64px]">you may also like</h3>
-            <div className="flex gap-[30px]">
-              {shuffledArray.map((item: any) => (
-                <div className="flex flex-col items-center" key={item.productTitle}>
-                  <Image src={MarkOneHeadphone} alt="XX99 Mark I headphone" className="rounded-lg" />
-                  <h5 className="[ heading-5 ] mt-[40px] mb-[32px]">{item.productTitle.split("headphones")}</h5>
-                  <Button btnText="see product" btnType={1} to={`/${item.productCategory}/${item.slug}`} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : (
-        <p>Nothing to see here!</p>
-      )}
+          </>
+        ) : (
+          <h1>Nothing to see here</h1>
+        )}
+      </div>
     </ProductDetailsLayout>
   );
 };
 
 export default ProductDetails;
+
+export const getStaticPaths = async () => {
+  const { data } = await client.query<ProductsQuery>({
+    query: GET_ALL_PRODUCTS
+  });
+
+  if (!data) return;
+
+  const { products } = data;
+  const paths = products?.map((product) => ({ params: { category: product.category, slug: product.slug } }));
+  return {
+    paths,
+    fallback: false
+  };
+};
+
+export const getStaticProps = async (context: Params) => {
+  const { slug } = context.params;
+
+  const { data } = await client.query<ProductsQuery>({
+    query: GET_PRODUCT,
+    variables: { slug: slug }
+  });
+
+  if (!data) {
+    return {
+      notFound: true
+    };
+  }
+
+  return {
+    props: {
+      data: data.products[0]
+    }
+  };
+};

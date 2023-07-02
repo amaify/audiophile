@@ -22,7 +22,7 @@ const {
   S3_REGION: region,
   S3_ACCESS_KEY_ID: accessKeyId,
   S3_SECRET_ACCESS_KEY: secretAccessKey,
-  ASSET_BASE_URL: baseURL
+  ASSET_BASE_URL: baseURL,
 } = process.env;
 
 export default withAuth(
@@ -31,17 +31,17 @@ export default withAuth(
     // the db sets the database provider - we're using sqlite for the fastest startup experience
     db: {
       provider: "postgresql",
-      url: "postgres://postgres:2251@localhost:5432/keystone"
+      url: "postgres://postgres:2251@localhost:5432/keystone",
     },
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {
       // For our starter, we check that someone has session data before letting them see the Admin UI.
-      isAccessAllowed: (context) => !!context.session?.data
+      isAccessAllowed: (context) => !!context.session?.data,
     },
     server: {
       cors: { origin: ["http://localhost:8000"], credentials: true },
       healthCheck: true,
-      port: 8000
+      port: 8000,
     },
     lists,
     session,
@@ -52,8 +52,8 @@ export default withAuth(
         bucketName: bucketName ?? "",
         region: region ?? "",
         accessKeyId: accessKeyId ?? "",
-        secretAccessKey: secretAccessKey ?? ""
-      }
-    }
+        secretAccessKey: secretAccessKey ?? "",
+      },
+    },
   })
 );

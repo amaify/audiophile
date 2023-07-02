@@ -112,6 +112,9 @@ var import_core3 = require("@keystone-6/core");
 var import_fields3 = require("@keystone-6/core/fields");
 var import_fields_document2 = require("@keystone-6/fields-document");
 var import_access3 = require("@keystone-6/core/access");
+var import_cloudinary = require("@keystone-6/cloudinary");
+var import_dotenv = __toESM(require("dotenv"));
+import_dotenv.default.config();
 var Product = (0, import_core3.list)({
   access: import_access3.allowAll,
   fields: {
@@ -128,14 +131,31 @@ var Product = (0, import_core3.list)({
     slug: (0, import_fields3.text)({
       validation: { isRequired: true }
     }),
-    previewImage: (0, import_fields3.image)({ storage: "product_images" }),
-    cartImage: (0, import_fields3.image)({ storage: "product_images" }),
+    // previewImage: image({ storage: "product_images" }),
+    previewImage: (0, import_cloudinary.cloudinaryImage)({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER
+      }
+    }),
+    // cartImage: image({ storage: "product_images" }),
+    cartImage: (0, import_cloudinary.cloudinaryImage)({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER
+      }
+    }),
     category: (0, import_fields3.select)({
       options: [
         { label: "Headphones", value: "headphones" },
         { label: "Speakers", value: "speakers" },
         { label: "Earphones", value: "earphones" }
-      ]
+      ],
+      validation: { isRequired: true }
     }),
     description: (0, import_fields3.text)({
       validation: { isRequired: true },
@@ -172,7 +192,7 @@ var lists = {
 };
 
 // keystone.ts
-var import_dotenv = __toESM(require("dotenv"));
+var import_dotenv2 = __toESM(require("dotenv"));
 
 // auth.ts
 var import_crypto = require("crypto");
@@ -208,7 +228,7 @@ var session = (0, import_session.statelessSessions)({
 });
 
 // keystone.ts
-import_dotenv.default.config();
+import_dotenv2.default.config();
 var {
   S3_BUCKET_NAME: bucketName,
   S3_REGION: region,
