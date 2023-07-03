@@ -5,32 +5,15 @@ import { addToCart } from "../../store/reducers/addItemToCart";
 import { useDispatch, useSelector } from "react-redux";
 import { resetCount, selectValue } from "../../store/reducers/IncOrDecrementCount";
 import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
-import MarkOneHeadphone from "../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg";
-import MarkTwoHeadphone from "../../assets/shared/desktop/image-xx99-mark-two-headphones.jpg";
-import XX59Headphone from "../../assets/shared/desktop/image-xx59-headphones.jpg";
-import AllData from "../../data.json";
 
-//GALLARY IMAGES
-import XX99MarkOneGallaryOne from "../../assets/product-xx99-mark-one-headphones/desktop/image-gallery-1.jpg";
-import XX99MarkOneGallaryTwo from "../../assets/product-xx99-mark-one-headphones/desktop/image-gallery-2.jpg";
-import XX99MarkOneGallaryThree from "../../assets/product-xx99-mark-one-headphones/desktop/image-gallery-3.jpg";
-
-import XX99MarkTwoGallaryOne from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg";
-import XX99MarkTwoGallaryTwo from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg";
-import XX99MarkTwoGallaryThree from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg";
-
-import XX59GallaryImageOne from "../../assets/product-xx59-headphones/desktop/image-gallery-1.jpg";
-import XX59GallaryImageTwo from "../../assets/product-xx59-headphones/desktop/image-gallery-2.jpg";
-import XX59GallaryImageThree from "../../assets/product-xx59-headphones/desktop/image-gallery-3.jpg";
 import Button from "../../components/shared/Button";
 import AddToCart from "../../components/shared/Cart/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
 import { formatPrice } from "../../components/util/utils";
-import { CartItem } from "../../store/Types/Cart";
 import client from "@/helpers/apolloClient";
-import { GET_ALL_PRODUCTS, GET_PRODUCT, GET_PRODUCTS } from "@/queries/get-products";
-import { ParsedUrlQuery } from "querystring";
-import { ProductQuery, ProductsQuery } from "@/Types/data-fetching";
+import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/get-products";
+import { Product, ProductsQuery } from "@/Types/data-fetching";
+import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
 
 interface Params {
   params: {
@@ -39,22 +22,22 @@ interface Params {
 }
 
 interface Props {
-  data: any;
+  data: Product;
+  allProducts: Product[];
 }
 
-const ProductDetails = ({ data }: Props) => {
-  console.log("DATA: ", data);
+const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
   const router = useRouter();
   const { slug } = router.query;
   const itemCount = useSelector(selectValue);
   const dispatch = useDispatch();
 
-  const [shuffledArray, setShuffledArray] = useState<any>([]);
+  console.log("hello world");
 
-  const productDetails = AllData.find((data) => data.slug === slug);
+  const [shuffledArray, setShuffledArray] = useState<Product[]>([]);
 
   const shuffleArray = () => {
-    const newArray = AllData.filter((data) => data.productTitle !== productDetails?.productTitle);
+    const newArray = allProducts.filter((data) => data.title !== productDetail.title);
 
     for (let i = newArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -65,38 +48,28 @@ const ProductDetails = ({ data }: Props) => {
     return newArray.slice(0, 3);
   };
 
-  useEffect(() => {
-    dispatch(resetCount());
-    setShuffledArray(shuffleArray());
-  }, []);
-
-  let productImage = MarkOneHeadphone;
-  if (productDetails?.productTitle === "xx99 mark ii headphones") productImage = MarkTwoHeadphone;
-  if (productDetails?.productTitle === "xx59 headphones") productImage = XX59Headphone;
-
-  let imageGallary = [XX59GallaryImageOne, XX59GallaryImageTwo, XX59GallaryImageThree];
-  if (productDetails?.productTitle === "xx99 mark ii headphones")
-    imageGallary = [XX99MarkTwoGallaryOne, XX99MarkTwoGallaryTwo, XX99MarkTwoGallaryThree];
-
-  if (productDetails?.productTitle === "xx99 mark i headphones")
-    imageGallary = [XX99MarkOneGallaryOne, XX99MarkOneGallaryTwo, XX99MarkOneGallaryThree];
-
-  const handleAddtoCart = (productDetails: any) => {
+  const handleAddtoCart = (productDetail: Product) => {
     dispatch(
       addToCart({
-        id: productDetails.id,
-        title: productDetails.productTitle,
-        price: productDetails.productPrice,
+        id: productDetail.id,
+        title: productDetail.cartTitle,
+        price: productDetail.price,
         itemCount: itemCount,
-        totalPrice: productDetails.productPrice * itemCount
+        cartImage: productDetail.cartImage.publicUrl,
+        totalPrice: productDetail.price * itemCount
       })
     );
 
     dispatch(resetCount());
   };
 
+  useEffect(() => {
+    dispatch(resetCount());
+    setShuffledArray(shuffleArray());
+  }, [slug]);
+
   return (
-    <ProductDetailsLayout pageTitle={productDetails?.productTitle ?? ""} removeSubFooter={false}>
+    <ProductDetailsLayout pageTitle={productDetail?.title ?? ""} removeSubFooter={false}>
       <div>
         <button
           className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px]"
@@ -105,57 +78,53 @@ const ProductDetails = ({ data }: Props) => {
           go back
         </button>
 
-        {productDetails ? (
+        {productDetail ? (
           <>
             <div className="flex gap-[125px] mb-lg">
               <div className="w-1/2">
-                <Image src={productImage} alt={`${productDetails?.productTitle} Image`} className="rounded-lg" />
+                <Image
+                  src={productDetail.previewImage.publicUrl}
+                  alt={`${productDetail.title} Image`}
+                  width={540}
+                  height={560}
+                  loading="lazy"
+                  className="rounded-lg object-contain"
+                />
               </div>
 
               <div className="w-[35%] self-center">
                 <p className="[ overline-text ] text-primary mb-[16px]">new product</p>
-                <h2 className="[ heading-2 ] mb-[32px]">{productDetails?.productTitle}</h2>
-                <p className="[ body-text ] opacity-50 mb-[32px]">{productDetails?.productDescription}</p>
-                <h6 className="[ heading-6 ] mb-[47px]">
-                  {formatPrice(productDetails ? +productDetails.productPrice : 0)}
-                </h6>
+                <h2 className="[ heading-2 ] mb-[32px]">{productDetail.title}</h2>
+                <p className="[ body-text ] opacity-50 mb-[32px]">{productDetail.description}</p>
+                <h6 className="[ heading-6 ] mb-[47px]">{formatPrice(+productDetail.price ?? 0)}</h6>
                 <div className="flex gap-[16px]">
                   <AddToCart isCartVisible={false} itemQuantity={itemCount} />
-                  <button className="[ phile-btn phile-btn-1 ]" onClick={() => handleAddtoCart(productDetails)}>
+                  <button className="[ phile-btn phile-btn-1 ]" onClick={() => handleAddtoCart(productDetail)}>
                     add to cart
                   </button>
                 </div>
               </div>
             </div>
 
-            <ProductFeature productDetails={productDetails} />
+            <ProductFeature productDetail={productDetail} />
 
-            <div className="flex gap-[30px] w-full">
-              <div className="flex flex-col gap-[32px] w-[35%] relative">
-                <Image src={imageGallary[0]} alt="Image Gallery" className="rounded-lg" objectFit="cover" />
+            <ProductDetailsGallery productDetail={productDetail} />
 
-                <Image src={imageGallary[1]} alt="Image Gallery" className="rounded-lg" objectFit="cover" />
-              </div>
-
-              <div className="w-[65%] relative">
-                <Image
-                  src={imageGallary[2]}
-                  alt="Image Gallery"
-                  className="rounded-lg"
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </div>
-            </div>
-
-            <div className="mt-lg mb-[250px]">
+            <div className="mt-lg mb-[25rem]">
               <h3 className="[ heading-3 ] text-center mb-[64px]">you may also like</h3>
               <div className="flex gap-[30px]">
-                {shuffledArray.map((item: any) => (
-                  <div className="flex flex-col items-center" key={item.productTitle}>
-                    <Image src={MarkOneHeadphone} alt="XX99 Mark I headphone" className="rounded-lg" />
-                    <h5 className="[ heading-5 ] mt-[40px] mb-[32px]">{item.productTitle.split("headphones")}</h5>
-                    <Button btnText="see product" btnType={1} to={`/${item.productCategory}/${item.slug}`} />
+                {shuffledArray.map((item) => (
+                  <div className="flex flex-col items-center" key={item.title}>
+                    <Image
+                      src={item.previewImage.publicUrl}
+                      alt={item.title}
+                      width={350}
+                      height={318}
+                      loading="lazy"
+                      className="rounded-lg object-contain"
+                    />
+                    <h5 className="[ heading-5 ] mt-[40px] mb-[32px]">{item.suggestionTitle}</h5>
+                    <Button btnText="see product" btnType={1} to={`/${item.category}/${item.slug}`} />
                   </div>
                 ))}
               </div>
@@ -188,13 +157,17 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: Params) => {
   const { slug } = context.params;
+  const [{ data: pageProduct }, { data: allProducts }] = await Promise.all([
+    await client.query<ProductsQuery>({
+      query: GET_PRODUCT,
+      variables: { slug: slug }
+    }),
+    await client.query<ProductsQuery>({
+      query: GET_ALL_PRODUCTS
+    })
+  ]);
 
-  const { data } = await client.query<ProductsQuery>({
-    query: GET_PRODUCT,
-    variables: { slug: slug }
-  });
-
-  if (!data) {
+  if (!pageProduct || !allProducts) {
     return {
       notFound: true
     };
@@ -202,7 +175,8 @@ export const getStaticProps = async (context: Params) => {
 
   return {
     props: {
-      data: data.products[0]
+      data: pageProduct.products[0],
+      allProducts: allProducts.products
     }
   };
 };

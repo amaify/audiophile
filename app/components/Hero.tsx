@@ -1,7 +1,9 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import Navigation from "./shared/Navigation";
-import { Meta } from "./shared/Meta";
 import Button from "./shared/Button";
+
+const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
 const Hero = () => {
   return (

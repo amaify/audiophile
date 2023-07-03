@@ -46,5 +46,7 @@ model Product {
   price           Float   @default(0)
   features        Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
   boxContent      Json?
-  gallery         Json?
+  galleryOne      Json?
+  galleryTwo      Json?
+  galleryThree    Json?
 }

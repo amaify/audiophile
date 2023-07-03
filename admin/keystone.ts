@@ -39,7 +39,13 @@ export default withAuth(
       isAccessAllowed: (context) => !!context.session?.data,
     },
     server: {
-      cors: { origin: ["http://localhost:8000"], credentials: true },
+      cors: {
+        origin: "*",
+        methods: "*",
+        credentials: true,
+        allowedHeaders: "*",
+        exposedHeaders: "*",
+      },
       healthCheck: true,
       port: 8000,
     },

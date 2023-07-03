@@ -1,8 +1,85 @@
 {
-  "extends": ["next/babel", "next/core-web-vitals"],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "next/babel",
+    "next/core-web-vitals",
+    "airbnb",
+    "plugin:@next/next/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@ts-gql"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "@ts-gql"],
+  "ignorePatterns": ["node_modules", "dist", "lib", "coverage", "**/*.d.ts"],
   "rules": {
-    "@ts-gql/ts-gql": "error"
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "import/no-import-module-exports": 0,
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "no-param-reassign": 0,
+    "no-restricted-exports": 0,
+    "no-unused-vars": 1,
+    "no-use-before-define": 0,
+    "react/function-component-definition": 0,
+    "react/jsx-filename-extension": 0,
+    "no-console": "error",
+    "react-hooks/exhaustive-deps": 0,
+    "react/jsx-no-bind": 0,
+    "react/jsx-no-constructed-context-values": 0,
+    "react/jsx-props-no-spreading": 0,
+    "@ts-gql/ts-gql": "error",
+    "react/require-default-props": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "printWidth": 120,
+        "trailingComma": "none"
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never",
+        "tsx": "never",
+        "jsx": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {},
+      "node": {
+        "extensions": [".js", ".jsx", ".json", ".ts", ".tsx"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["types.ts"],
+      "rules": {
+        "no-unused-vars": 0
+      }
+    }
+  ],
+  "globals": {
+    "JSX": true
   }
 }

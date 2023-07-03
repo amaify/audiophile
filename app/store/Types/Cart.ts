@@ -1,12 +1,13 @@
 export type CartItem = {
-	id: number;
-	title: string;
-	itemCount: number;
-	price: number;
-	totalPrice: number;
+  id: string;
+  title: string;
+  itemCount: number;
+  price: number;
+  cartImage: string;
+  totalPrice: number;
 };
 
 export type Cart = {
-	cart: CartItem[];
-	total: number;
+  cart: CartItem[];
+  total: number;
 };

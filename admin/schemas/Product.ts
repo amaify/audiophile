@@ -1,15 +1,5 @@
 import { list, ListConfig } from "@keystone-6/core";
-import {
-  text,
-  relationship,
-  timestamp,
-  bigInt,
-  checkbox,
-  float,
-  select,
-  json,
-  image,
-} from "@keystone-6/core/fields";
+import { text, checkbox, float, select, json } from "@keystone-6/core/fields";
 import { document } from "@keystone-6/fields-document";
 import { allowAll } from "@keystone-6/core/access";
 import { cloudinaryImage } from "@keystone-6/cloudinary";
@@ -78,7 +68,30 @@ export const Product: ListConfig<Lists.Product.TypeInfo, any> = list({
       dividers: true,
     }),
     boxContent: json(),
-    gallery: json(),
+    galleryOne: cloudinaryImage({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER,
+      },
+    }),
+    galleryTwo: cloudinaryImage({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER,
+      },
+    }),
+    galleryThree: cloudinaryImage({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER,
+      },
+    }),
   },
   ui: {
     listView: {

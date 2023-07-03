@@ -1,9 +1,11 @@
 import React from "react";
-import { Meta } from "../shared/Meta";
+import dynamic from "next/dynamic";
 import Navigation from "../shared/Navigation";
 import Footer from "../shared/Footer";
 import ProductThumbnails from "../shared/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
+
+const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
 interface Props {
   children: JSX.Element;

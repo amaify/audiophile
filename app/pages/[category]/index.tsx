@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import ProductCategory from "@/components/shared/ProductCategory";
 import ProductCategoryLayout from "@/components/layout/ProductCategoryLayout";
-import type { Product, ProductParam, ProductQuery, ProductsQuery } from "@/Types/data-fetching";
+import type { Product, ProductParam, ProductsQuery } from "@/Types/data-fetching";
 import { GET_PRODUCTS } from "@/queries/get-products";
 import client from "@/helpers/apolloClient";
 
@@ -55,6 +55,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: ProductParam) {
   const category = context.params.category;
+
+  console.log("CATEGORY: ", category);
   const { data, error } = await client.query<ProductsQuery>({
     query: GET_PRODUCTS,
     variables: { category: category }

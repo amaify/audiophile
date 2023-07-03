@@ -175,7 +175,30 @@ var Product = (0, import_core3.list)({
       dividers: true
     }),
     boxContent: (0, import_fields3.json)(),
-    gallery: (0, import_fields3.json)()
+    galleryOne: (0, import_cloudinary.cloudinaryImage)({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER
+      }
+    }),
+    galleryTwo: (0, import_cloudinary.cloudinaryImage)({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER
+      }
+    }),
+    galleryThree: (0, import_cloudinary.cloudinaryImage)({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER
+      }
+    })
   },
   ui: {
     listView: {
@@ -250,7 +273,13 @@ var keystone_default = withAuth(
       isAccessAllowed: (context) => !!context.session?.data
     },
     server: {
-      cors: { origin: ["http://localhost:8000"], credentials: true },
+      cors: {
+        origin: "*",
+        methods: "*",
+        credentials: true,
+        allowedHeaders: "*",
+        exposedHeaders: "*"
+      },
       healthCheck: true,
       port: 8e3
     },

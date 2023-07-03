@@ -8,9 +8,14 @@ const PRODUCT_FRAGMENT = gql`
     slug
     category
     description
+    features {
+      document
+    }
+    suggestionTitle
+    price
+    boxContent
     cartTitle
     suggestionTitle
-    gallery
     previewImage {
       publicUrl
     }
@@ -43,6 +48,16 @@ export const GET_PRODUCT = gql`
   query GET_PRODUCTS($slug: String!) {
     products(where: { slug: { equals: $slug } }) {
       ...product_fragment
+      cartTitle
+      galleryOne {
+        publicUrl
+      }
+      galleryTwo {
+        publicUrl
+      }
+      galleryThree {
+        publicUrl
+      }
     }
   }
 `;

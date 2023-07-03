@@ -5,71 +5,66 @@ import { Cart, CartItem } from "../Types/Cart";
 import { sumAllPrice } from "../util/util";
 
 const initialState: Cart = {
-	cart: [],
-	total: 0,
+  cart: [],
+  total: 0
 };
 
 export const addToCartSlice = createSlice({
-	name: "cart",
-	initialState,
-	reducers: {
-		addToCart: (state, action: PayloadAction<CartItem>) => {
-			const { cart } = state;
+  name: "cart",
+  initialState,
+  reducers: {
+    addToCart: (state, action: PayloadAction<CartItem>) => {
+      const { cart } = state;
 
-			cart.push(action.payload);
+      cart.push(action.payload);
 
-			const sum = sumAllPrice(cart);
+      const sum = sumAllPrice(cart);
 
-			state.total = sum;
-		},
+      state.total = sum;
+    },
 
-		removeFromCart: (state, action: PayloadAction<number>) => {
-			const index = state.cart.findIndex((item) => item.id === action.payload);
-			if (index !== -1) {
-				state.cart.splice(index, 1);
-			}
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      const index = state.cart.findIndex((item) => item.id === action.payload);
+      if (index !== -1) {
+        state.cart.splice(index, 1);
+      }
 
-			const sum = sumAllPrice(state.cart);
+      const sum = sumAllPrice(state.cart);
 
-			state.total = sum;
-		},
+      state.total = sum;
+    },
 
-		removeAllItems: (state) => {
-			state.cart = [];
-			state.total = 0;
-		},
+    removeAllItems: (state) => {
+      state.cart = [];
+      state.total = 0;
+    },
 
-		incrementCartCount: (state, action: PayloadAction<number>) => {
-			const item = state.cart.find((item) => item.id === action.payload);
+    incrementCartCount: (state, action: PayloadAction<string>) => {
+      const item = state.cart.find((item) => item.id === action.payload);
 
-			if (item) {
-				item.itemCount += 1;
-				item.totalPrice = item.itemCount * item.price;
-			}
-		},
+      if (item) {
+        item.itemCount += 1;
+        item.totalPrice = item.itemCount * item.price;
+      }
+    },
 
-		decrementCartCount: (state, action: PayloadAction<number>) => {
-			const item = state.cart.find((item) => item.id === action.payload);
+    decrementCartCount: (state, action: PayloadAction<string>) => {
+      const item = state.cart.find((item) => item.id === action.payload);
 
-			if (item) {
-				if (item.itemCount === 1) {
-					item.itemCount = 1;
-				} else {
-					item.itemCount -= 1;
-					item.totalPrice = item.itemCount * item.price;
-				}
-			}
-		},
-	},
+      if (item) {
+        if (item.itemCount === 1) {
+          item.itemCount = 1;
+        } else {
+          item.itemCount -= 1;
+          item.totalPrice = item.itemCount * item.price;
+        }
+      }
+    }
+  }
 });
 
-export const {
-	addToCart,
-	removeFromCart,
-	removeAllItems,
-	incrementCartCount,
-	decrementCartCount,
-} = addToCartSlice.actions;
+export const { addToCart, removeFromCart, removeAllItems, incrementCartCount, decrementCartCount } =
+  addToCartSlice.actions;
 
 export const selectValue = (state: RootState) => state.cart;
 
