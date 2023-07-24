@@ -7,7 +7,7 @@ import { resetCount, selectValue } from "../../store/reducers/IncOrDecrementCoun
 import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
 
 import Button from "../../components/shared/Button";
-import AddToCart from "../../components/shared/Cart/IncOrDecCartItems";
+import AddToCart from "../../components/Cart/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
 import { formatPrice } from "../../components/util/utils";
 import client from "@/helpers/apolloClient";

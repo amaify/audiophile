@@ -1,7 +1,7 @@
 import React from "react";
-import { incrementCount, decrementCount, selectValue } from "../../../store/reducers/IncOrDecrementCount";
+import { incrementCount, decrementCount, selectValue } from "../../store/reducers/IncOrDecrementCount";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, incrementCartCount, decrementCartCount } from "../../../store/reducers/addItemToCart";
+import { removeFromCart, incrementCartCount, decrementCartCount } from "../../store/reducers/addItemToCart";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
 interface Props {

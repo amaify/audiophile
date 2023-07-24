@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { clsx } from "clsx";
 import NavigationLinks from "./NavLink";
 import Brand from "./Brand";
-import Cart from "./Cart/Cart";
+import Cart from "../Cart/Cart";
 
 interface Props {
   removeHero: boolean;
