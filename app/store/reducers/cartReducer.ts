@@ -16,7 +16,6 @@ export const addToCartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
       const { cart } = state;
-      const sum = sumAllPrice(cart);
       const productInCart = cart.find((item) => item.id === action.payload.id);
 
       if (productInCart) {
@@ -26,6 +25,7 @@ export const addToCartSlice = createSlice({
         cart.push(action.payload);
       }
 
+      const sum = sumAllPrice(cart);
       state.total = sum;
       state.grandTotal = sum + 35;
     },

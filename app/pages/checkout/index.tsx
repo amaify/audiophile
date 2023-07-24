@@ -20,7 +20,7 @@ const Checkout = () => {
   const router = useRouter();
   const { cart } = useSelector(selectCart);
 
-  if (cart.length === 0) router.push("/");
+  // if (cart.length === 0) router.push("/");
 
   const methodOfPayment = [
     { label: "e-Money", method: "online" },
@@ -71,7 +71,7 @@ const Checkout = () => {
 
   return (
     <section>
-      {confirmation && <Confirmation />}
+      {confirmation && <Confirmation isOpen={confirmation} setConfirmation={setConfirmation} />}
       <Meta pageTitle="Checkout" />
       <div className="bg-black h-[97px] px-[17.5rem] relative z-50">
         <Navigation removeHero={true} />

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { clsx } from "clsx";
 import { selectCart } from "../store/reducers/cartReducer";
-import { formatPrice } from "./util/utils";
+import { formatPrice, itemPriceSum } from "./util/utils";
 
 interface Props {
   isDisabled: boolean;
@@ -12,6 +12,8 @@ interface Props {
 
 const CheckoutSummary = ({ isError, isDisabled, setConfirmation }: Props) => {
   const { cart, total, grandTotal } = useSelector(selectCart);
+
+  console.log("Total: ", total);
 
   return (
     <div className="bg-white self-start px-[3.3rem] py-[3.2rem] w-[30%] rounded-lg">
@@ -36,25 +38,29 @@ const CheckoutSummary = ({ isError, isDisabled, setConfirmation }: Props) => {
         )}
       </div>
 
-      <ul className="list-none flex flex-col gap-2 mb-[24px]">
-        <li className="[ body-text ] flex">
-          <span className=" text-black/50 font-medium leading-[25px] uppercase mr-auto">total</span>
-          <span className="font-bold">{formatPrice(total)}</span>
-        </li>
-        <li className="[ body-text ] flex">
-          <span className=" text-black/50 font-medium leading-[25px] uppercase mr-auto">shipping</span>
-          <span className="font-bold">{formatPrice(35)}</span>
-        </li>
-        <li className="[ body-text ] flex">
-          <span className=" text-black/50 font-medium leading-[25px] uppercase mr-auto">VAT (Included)</span>
-          <span className="font-bold">{formatPrice(1079)}</span>
-        </li>
-      </ul>
+      {cart.length > 0 && (
+        <>
+          <ul className="list-none flex flex-col gap-2 mb-[24px]">
+            <li className="[ body-text ] flex">
+              <span className=" text-black/50 font-medium leading-[25px] uppercase mr-auto">total</span>
+              <span className="font-bold">{formatPrice(total)}</span>
+            </li>
+            <li className="[ body-text ] flex">
+              <span className=" text-black/50 font-medium leading-[25px] uppercase mr-auto">shipping</span>
+              <span className="font-bold">{formatPrice(35)}</span>
+            </li>
+            <li className="[ body-text ] flex">
+              <span className=" text-black/50 font-medium leading-[25px] uppercase mr-auto">VAT (Included)</span>
+              <span className="font-bold">{formatPrice(1079)}</span>
+            </li>
+          </ul>
 
-      <p className="[ body-text ] flex mb-[32px]">
-        <span className="text-black/50 font-medium leading-[25px] uppercase mr-auto">Grand Total</span>
-        <span className="text-primary font-bold">{formatPrice(grandTotal)}</span>
-      </p>
+          <p className="[ body-text ] flex mb-[32px]">
+            <span className="text-black/50 font-medium leading-[25px] uppercase mr-auto">Grand Total</span>
+            <span className="text-primary font-bold">{formatPrice(grandTotal)}</span>
+          </p>
+        </>
+      )}
 
       <button
         className={clsx(
