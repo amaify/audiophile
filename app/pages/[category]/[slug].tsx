@@ -32,8 +32,6 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
   const itemCount = useSelector(selectValue);
   const dispatch = useDispatch();
 
-  console.log("hello world");
-
   const [shuffledArray, setShuffledArray] = useState<Product[]>([]);
 
   const shuffleArray = () => {

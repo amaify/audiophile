@@ -4,7 +4,7 @@ import BestGearImage from "../../assets/shared/desktop/image-best-gear.jpg";
 
 const SubFooter = () => {
   return (
-    <section className="mb-xl flex w-full px-[17.5em] gap-[12.5em] relative -z-10">
+    <section className="flex w-full gap-[12.5em] mb-[16rem] relative -z-10">
       <div className="w-1/2 self-center mr-auto">
         <h2 className="[ heading-2 ] mb-[32px]">
           <span className="block">bringing you the</span>
@@ -19,7 +19,7 @@ const SubFooter = () => {
           make Audiophile the best place to buy your portable audio equipment.
         </p>
       </div>
-      <div className="w-[54em] h-[58.8em]">
+      <div className="w-[54em]">
         <Image src={BestGearImage} alt="Best gear" className="w-full h-full" />
       </div>
     </section>

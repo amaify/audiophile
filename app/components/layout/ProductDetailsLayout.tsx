@@ -22,17 +22,19 @@ const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter }: Props) =
         <Navigation removeHero={true} />
       </div>
 
-      <div className="px-[17.5rem] mt-[7.9rem] mb-lg">{children}</div>
+      <div className="px-[17.5rem]">
+        <div className="mt-[7.9rem] mb-[16rem]">{children}</div>
 
-      {!removeSubFooter && (
-        <>
-          <div className="mb-lg px-[17.5rem]">
-            <ProductThumbnails />
-          </div>
+        {!removeSubFooter && (
+          <>
+            <div className="mb-[16rem]">
+              <ProductThumbnails />
+            </div>
 
-          <SubFooter />
-        </>
-      )}
+            <SubFooter />
+          </>
+        )}
+      </div>
       <Footer />
     </>
   );

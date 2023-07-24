@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         <ProductThumbnails />
       </div>
 
-      <div className="mb-[200px] px-[17.5rem] relative w-full">
+      <div className="mb-[20rem] px-[17.5rem] relative w-full">
         <div className="flex flex-col gap-[48px]">
           <div className="bg-primary rounded-lg relative w-full h-[56em] overflow-hidden">
             <div className="absolute top-[15%] left-[118px] w-[41.23em] h-[49.3em] z-10">

@@ -1,10 +1,10 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import Navigation from "../shared/Navigation";
 import Footer from "../shared/Footer";
 import ProductThumbnails from "../shared/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
-import { useRouter } from "next/router";
 
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
@@ -25,12 +25,13 @@ const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
           <h2 className="[ heading-2 ] text-white">{layoutTitle}</h2>
         </div>
       </div>
-      <div className="px-[17.5rem] my-[250px]">{children}</div>
-      <section className="mb-lg px-[17.5rem]">
+
+      <section className="flex flex-col gap-[16rem] px-[17.5rem]">
+        <div className="pt-[16rem]">{children}</div>
         <ProductThumbnails />
+        <SubFooter />
       </section>
 
-      <SubFooter />
       <Footer />
     </>
   );

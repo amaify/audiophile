@@ -12,7 +12,7 @@ const Hero = () => {
       <div className="">
         <Navigation removeHero={false} />
 
-        <div className="w-[398px] absolute top-[30%] left-[17.5rem]">
+        <div className="w-[39.8rem] absolute top-[30%] left-[17.5rem]">
           <p className="[ overline-text ] text-white opacity-50 mb-[24px]">new product</p>
           <h1 className="[ heading-1 ] text-white mb-[24px]">
             <span className="block">xx99 mark ii</span>

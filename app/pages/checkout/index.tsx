@@ -39,10 +39,10 @@ const Checkout = () => {
   });
   const [confirmation, setConfirmation] = useState<boolean>(false);
   const [paymentMethod, setPaymentMethod] = useState<string>("online");
-  const [error, setError] = useState<Record<string, InputError>>({});
+  const [error, setError] = useState<Record<string, string>>({});
 
   const isDisabled = validatePayButton(value, paymentMethod);
-  const isError = Object.values(error).some((value) => value.errorState);
+  const isError = Object.values(error).some((value) => value);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
@@ -50,22 +50,22 @@ const Checkout = () => {
     setValue((prevState) => ({ ...prevState, [name]: value }));
 
     if (isError) {
-      const { errorState, errorMessage } = validateInputField(value, type);
+      const validationMsg = validateInputField(value, type);
 
       setError((prevState) => ({
         ...prevState,
-        [name]: { errorState: errorState, errorMessage: errorMessage }
+        [name]: validationMsg
       }));
     }
   };
 
   const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
-    const { errorState, errorMessage } = validateInputField(value, type);
+    const validationMsg = validateInputField(value, type);
 
     setError((prevState) => ({
       ...prevState,
-      [name]: { errorState: errorState, errorMessage: errorMessage }
+      [name]: validationMsg
     }));
   };
 
@@ -73,10 +73,10 @@ const Checkout = () => {
     <section>
       {confirmation && <Confirmation />}
       <Meta pageTitle="Checkout" />
-      <div className="bg-black h-[97px] px-xl relative z-50">
+      <div className="bg-black h-[97px] px-[17.5rem] relative z-50">
         <Navigation removeHero={true} />
       </div>
-      <div className="bg-grey px-xl pt-[7.9em] pb-[14.1em]">
+      <div className="bg-grey px-[17.5rem] pt-[7.9em] pb-[14.1em]">
         <button
           className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px] hover:opacity-100"
           onClick={() => router.back()}
@@ -102,7 +102,7 @@ const Checkout = () => {
                   placeholder="Alexei Ward"
                   type="text"
                   value={value.name}
-                  style="w-[50%]"
+                  addedStyle="w-[50%]"
                   error={error}
                   onBlur={(e) => onInputBlur(e)}
                   onChange={onInputChange}
@@ -115,7 +115,7 @@ const Checkout = () => {
                   placeholder="alexei@mail.com"
                   type="email"
                   value={value.emailAddress}
-                  style="w-[50%]"
+                  addedStyle="w-[50%]"
                   error={error}
                   onBlur={(e) => onInputBlur(e)}
                   onChange={onInputChange}
@@ -130,7 +130,7 @@ const Checkout = () => {
                 placeholder="+1202-555-0136"
                 type="tel"
                 value={value.phoneNumber}
-                style="w-[49%]"
+                addedStyle="w-[49%]"
                 error={error}
                 onBlur={(e) => onInputBlur(e)}
                 onChange={onInputChange}
@@ -147,7 +147,7 @@ const Checkout = () => {
                 placeholder="1137 Williams Avenue"
                 type="text"
                 value={value.address}
-                style="w-full"
+                addedStyle="w-full"
                 error={error}
                 onBlur={(e) => onInputBlur(e)}
                 onChange={onInputChange}
@@ -162,7 +162,7 @@ const Checkout = () => {
                   placeholder="10001"
                   type="text"
                   value={value.zipCode}
-                  style="w-[50%]"
+                  addedStyle="w-[50%]"
                   error={error}
                   onBlur={(e) => onInputBlur(e)}
                   onChange={onInputChange}
@@ -176,7 +176,7 @@ const Checkout = () => {
                   placeholder="New York"
                   type="text"
                   value={value.city}
-                  style="w-[50%]"
+                  addedStyle="w-[50%]"
                   error={error}
                   onBlur={(e) => onInputBlur(e)}
                   onChange={onInputChange}
@@ -190,7 +190,7 @@ const Checkout = () => {
                 placeholder="United States"
                 type="text"
                 value={value.country}
-                style="w-[49%]"
+                addedStyle="w-[49%]"
                 error={error}
                 onBlur={(e) => onInputBlur(e)}
                 onChange={onInputChange}
@@ -211,7 +211,7 @@ const Checkout = () => {
                       name="paymentMethod"
                       value={m.method}
                       label={m.label}
-                      style="w-full"
+                      addedStyle="w-full"
                       onChange={() => setPaymentMethod(m.method)}
                       checked={paymentMethod === m.method}
                       key={m.method}
@@ -229,7 +229,7 @@ const Checkout = () => {
                     placeholder="238521993"
                     type="tel"
                     value={value.cardNumber}
-                    style="w-[50%]"
+                    addedStyle="w-[50%]"
                     error={error}
                     onBlur={(e) => onInputBlur(e)}
                     onChange={onInputChange}
@@ -243,7 +243,7 @@ const Checkout = () => {
                     placeholder="4422"
                     type="tel"
                     value={value?.cardPin}
-                    style="w-[50%]"
+                    addedStyle="w-[50%]"
                     error={error}
                     onBlur={(e) => onInputBlur(e)}
                     onChange={onInputChange}
