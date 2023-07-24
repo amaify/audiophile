@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { BanknotesIcon } from "@heroicons/react/24/solid";
 import type { FormInput, InputError } from "../../Types/FormInput";
-import { selectValue } from "@/store/reducers/addItemToCart";
+import { selectCart } from "@/store/reducers/cartReducer";
 import { validatePayButton } from "@/components/util/utils";
 import { validateInputField } from "@/components/util/validateInputFields";
 import { Alert, AlertType } from "@/components/shared/Alert";
@@ -18,7 +18,7 @@ const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
 const Checkout = () => {
   const router = useRouter();
-  const { cart } = useSelector(selectValue);
+  const { cart } = useSelector(selectCart);
 
   if (cart.length === 0) router.push("/");
 

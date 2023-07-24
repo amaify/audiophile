@@ -33,6 +33,6 @@ export const ProdQuantity = createSlice({
 
 export const { incrementCount, decrementCount, resetCount } = ProdQuantity.actions;
 
-export const selectValue = (state: RootState) => state.itemCount.value;
+export const selectItemCount = (state: RootState) => state.itemCount.value;
 
 export default ProdQuantity.reducer;

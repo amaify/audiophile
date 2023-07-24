@@ -37,8 +37,8 @@ module.exports = {
         grey: "#F2F2F2"
       },
       margin: {
-        lg: "160px",
-        xl: "20em"
+        lg: "16rem",
+        xl: "20rem"
       },
       padding: {
         xl: "325px"

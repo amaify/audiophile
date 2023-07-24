@@ -10,4 +10,5 @@ export type CartItem = {
 export type Cart = {
   cart: CartItem[];
   total: number;
+  grandTotal: number;
 };

@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import IncOrDecCartItems from "./IncOrDecCartItems";
-import { removeAllItems, selectValue } from "@/store/reducers/addItemToCart";
+import { removeAllItems, selectCart } from "@/store/reducers/cartReducer";
 import { formatPrice, itemPriceSum } from "@/components/util/utils";
 
 const CartItems = () => {
   const dispatch = useDispatch();
-  const { cart } = useSelector(selectValue);
+  const { cart } = useSelector(selectCart);
 
   return (
     <div className="bg-white flex flex-col py-[31px] pr-[31px] pl-[33px] rounded-lg w-[425px] [ cart-items ]">
@@ -37,7 +37,7 @@ const CartItems = () => {
             </div>
           ))
         ) : (
-          <p className="[ body-text ] text-center">Please add Items!</p>
+          <p className="[ body-text ] text-center">Your cart is empty!</p>
         )}
       </div>
 

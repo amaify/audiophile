@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { addToCart } from "../../store/reducers/addItemToCart";
+import { addToCart } from "../../store/reducers/cartReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { resetCount, selectValue } from "../../store/reducers/IncOrDecrementCount";
+import { resetCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
 import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
 
 import Button from "../../components/shared/Button";
@@ -29,7 +29,7 @@ interface Props {
 const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
   const router = useRouter();
   const { slug } = router.query;
-  const itemCount = useSelector(selectValue);
+  const itemCount = useSelector(selectItemCount);
   const dispatch = useDispatch();
 
   const [shuffledArray, setShuffledArray] = useState<Product[]>([]);

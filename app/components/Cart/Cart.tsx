@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import { Popover } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import CartIcon from "../../assets/shared/desktop/icon-cart.svg";
 import CartItems from "./CartItems";
-import { selectValue } from "../../store/reducers/addItemToCart";
+import { selectCart } from "../../store/reducers/cartReducer";
 
 const Cart = () => {
-  const [showCart, setShowCart] = useState<boolean>(false);
-  const { cart } = useSelector(selectValue);
+  const { cart } = useSelector(selectCart);
 
   return (
-    <div className="relative">
-      <div className="relative" onClick={() => setShowCart((prevState) => !prevState)}>
+    <Popover className="relative">
+      <Popover.Button className="outline-none border-none">
         <Image src={CartIcon} alt="A shopping Cart" layout="fixed" className="hover:cursor-pointer" />
         {cart.length > 0 && (
           <p className="w-9 h-9 bg-primary text-white absolute -top-[50%] left-[50%] text-center rounded-full">
@@ -20,15 +19,12 @@ const Cart = () => {
             </span>
           </p>
         )}
-      </div>
-
-      {showCart && (
-        <>
-          <div className="[ cart-backdrop ]" onClick={() => setShowCart((prevState) => !prevState)}></div>
-          <CartItems />
-        </>
-      )}
-    </div>
+      </Popover.Button>
+      <Popover.Overlay className="[ cart-backdrop ]" />
+      <Popover.Panel>
+        <CartItems />
+      </Popover.Panel>
+    </Popover>
   );
 };
 

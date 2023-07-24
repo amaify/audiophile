@@ -6,7 +6,8 @@ import { sumAllPrice } from "../util/util";
 
 const initialState: Cart = {
   cart: [],
-  total: 0
+  total: 0,
+  grandTotal: 0
 };
 
 export const addToCartSlice = createSlice({
@@ -15,12 +16,18 @@ export const addToCartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
       const { cart } = state;
-
-      cart.push(action.payload);
-
       const sum = sumAllPrice(cart);
+      const productInCart = cart.find((item) => item.id === action.payload.id);
+
+      if (productInCart) {
+        productInCart.itemCount += action.payload.itemCount;
+        productInCart.totalPrice += action.payload.totalPrice;
+      } else {
+        cart.push(action.payload);
+      }
 
       state.total = sum;
+      state.grandTotal = sum + 35;
     },
 
     removeFromCart: (state, action: PayloadAction<string>) => {
@@ -37,6 +44,7 @@ export const addToCartSlice = createSlice({
     removeAllItems: (state) => {
       state.cart = [];
       state.total = 0;
+      state.grandTotal = 0;
     },
 
     incrementCartCount: (state, action: PayloadAction<string>) => {
@@ -66,6 +74,6 @@ export const addToCartSlice = createSlice({
 export const { addToCart, removeFromCart, removeAllItems, incrementCartCount, decrementCartCount } =
   addToCartSlice.actions;
 
-export const selectValue = (state: RootState) => state.cart;
+export const selectCart = (state: RootState) => state.cart;
 
 export default addToCartSlice.reducer;
