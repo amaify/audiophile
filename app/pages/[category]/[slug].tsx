@@ -14,6 +14,7 @@ import client from "@/helpers/apolloClient";
 import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/get-products";
 import { Product, ProductsQuery } from "@/Types/data-fetching";
 import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
+import toast from "react-hot-toast";
 
 interface Params {
   params: {
@@ -99,7 +100,10 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
                   <AddToCart isCartVisible={false} itemQuantity={itemCount} addedStyle="w-[12rem] h-[4.8rem]" />
                   <button
                     className="[ phile-btn phile-btn-1 !h-[4.8rem] ]"
-                    onClick={() => handleAddtoCart(productDetail)}
+                    onClick={() => {
+                      handleAddtoCart(productDetail);
+                      toast.success("Item successfully added");
+                    }}
                   >
                     add to cart
                   </button>
