@@ -2,21 +2,23 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
-import LinkButton from "./shared/Link";
-import { selectCart } from "@/store/reducers/cartReducer";
 import { Dialog } from "@headlessui/react";
+// eslint-disable-next-line import/extensions
+import { selectCart } from "@/store/reducers/cartReducer";
+import LinkButton from "./shared/Link";
 import { formatPrice } from "./util/utils";
 
 interface Props {
   isOpen: boolean;
+  // eslint-disable-next-line no-unused-vars
   setConfirmation: (value: boolean) => void;
 }
 
 const Confirmation = ({ isOpen, setConfirmation }: Props) => {
   const { cart, grandTotal } = useSelector(selectCart);
   const [toggleItems, setToggleItems] = useState(false);
-  const cartItem = cart[0];
-  const cartItemPrice = cartItem.price * cartItem.itemCount;
+  const SingleCartItem = cart[0];
+  const cartItemPrice = SingleCartItem.price * SingleCartItem.itemCount;
 
   return (
     <Dialog open={isOpen} onClose={() => setConfirmation(false)} className="max-h-[71.3rem] overflow-auto">
@@ -43,21 +45,21 @@ const Confirmation = ({ isOpen, setConfirmation }: Props) => {
               {!toggleItems ? (
                 <div className="flex">
                   <div className="mr-4">
-                    <Image src={cartItem.cartImage} alt="A Headphone" width={50} height={50} />
+                    <Image src={SingleCartItem.cartImage} alt="A Headphone" width={50} height={50} />
                   </div>
 
                   <div className="self-center mr-auto">
-                    <p className="[ body-text ] uppercase text-black font-bold">{cartItem.title}</p>
+                    <p className="[ body-text ] uppercase text-black font-bold">{SingleCartItem.title}</p>
                     <p className="text-[14px] text-black font-bold opacity-50 leading-[25px]">
                       {formatPrice(cartItemPrice)}
                     </p>
                   </div>
 
-                  <p className="[ body-text ] font-bold text-black opacity-50">x{cartItem.itemCount}</p>
+                  <p className="[ body-text ] font-bold text-black opacity-50">x{SingleCartItem.itemCount}</p>
                 </div>
               ) : (
                 cart.map((cartItem) => (
-                  <div className="flex mb-[1.6rem]">
+                  <div className="flex mb-[1.6rem]" key={cartItem.id}>
                     <div className="mr-4">
                       <Image src={cartItem.cartImage} alt="A Headphone" width={50} height={50} />
                     </div>

@@ -1,16 +1,17 @@
+/* eslint-disable no-shadow */
 import { CartItem } from "../../store/Types/Cart";
 import { FormInput } from "../../Types/FormInput";
 
 interface NavigationLInks {
   name: string;
-  slug: string;
+  href: string;
 }
 
 export const navLinks: NavigationLInks[] = [
-  { name: "home", slug: "/" },
-  { name: "headphones", slug: "/headphones" },
-  { name: "speakers", slug: "/speakers" },
-  { name: "earphones", slug: "/earphones" }
+  { name: "home", href: "/" },
+  { name: "headphones", href: "/headphones" },
+  { name: "speakers", href: "/speakers" },
+  { name: "earphones", href: "/earphones" }
 ];
 
 export const formatPrice = (productPrice: number) =>

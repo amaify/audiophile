@@ -7,11 +7,12 @@ import { formatPrice, itemPriceSum } from "./util/utils";
 interface Props {
   isDisabled: boolean;
   isError: boolean;
+  // eslint-disable-next-line no-unused-vars
   setConfirmation: (value: boolean) => void;
 }
 
 const CheckoutSummary = ({ isError, isDisabled, setConfirmation }: Props) => {
-  const { cart, total, grandTotal } = useSelector(selectCart);
+  const { cart } = useSelector(selectCart);
 
   const submitBtnDisabled = !isDisabled || isError || cart.length === 0;
   return (

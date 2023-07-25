@@ -1,10 +1,11 @@
+/* eslint-disable import/extensions */
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import IncOrDecCartItems from "./IncOrDecCartItems";
 import { removeAllItems, selectCart } from "@/store/reducers/cartReducer";
 import { formatPrice, itemPriceSum } from "@/components/util/utils";
+import IncOrDecCartItems from "./IncOrDecCartItems";
 
 const CartItems = () => {
   const dispatch = useDispatch();
@@ -14,12 +15,12 @@ const CartItems = () => {
     <div className="bg-white flex flex-col py-[31px] pr-[31px] pl-[33px] rounded-lg w-[37.7rem] max-h-[48.8rem] overflow-auto [ cart-items ]">
       <div className="mb-[3.1rem] flex">
         <h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${cart.length})`}</h6>
-        <p
-          className="[ body-text ] text-black opacity-50 capitalize hover: cursor-pointer underline hover:text-primary hover:opacity-100"
+        <button
+          className="[ body-text ] text-black opacity-50 capitalize border-none outline-none hover:cursor-pointer underline hover:text-primary hover:opacity-100"
           onClick={() => cart.length > 0 && dispatch(removeAllItems())}
         >
           remove all
-        </p>
+        </button>
       </div>
 
       <div className="mb-[3.2rem] flex flex-col gap-[2.4rem]">
@@ -36,7 +37,7 @@ const CartItems = () => {
               <IncOrDecCartItems
                 itemQuantity={item.itemCount}
                 itemId={item.id}
-                isCartVisible={true}
+                isCartVisible
                 addedStyle="w-[9.6rem] h-[3.2rem]"
               />
             </div>
@@ -51,9 +52,9 @@ const CartItems = () => {
         <p className="[ body-text ] text-black">{formatPrice(itemPriceSum(cart))}</p>
       </div>
       <Link href="/checkout">
-        <a className="bg-primary hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]">
+        <span className="bg-primary hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]">
           checkout
-        </a>
+        </span>
       </Link>
     </div>
   );

@@ -1,9 +1,11 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from "react";
-import { incrementCount, decrementCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, incrementCartCount, decrementCartCount } from "../../store/reducers/cartReducer";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
+import { removeFromCart, incrementCartCount, decrementCartCount } from "../../store/reducers/cartReducer";
+import { incrementCount, decrementCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
 
 interface Props {
   itemQuantity: number;

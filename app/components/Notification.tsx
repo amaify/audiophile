@@ -4,10 +4,7 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 
 function Notification() {
   return (
-    <Toaster
-      position="bottom-left"
-      toastOptions={{ className: "", style: { background: "", color: "" }, duration: 5000 }}
-    >
+    <Toaster position="bottom-left" toastOptions={{ className: "", style: { background: "", color: "" } }}>
       {(t) => (
         <ToastBar toast={t}>
           {({ icon, message }) => (

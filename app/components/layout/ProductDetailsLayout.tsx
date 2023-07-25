@@ -19,7 +19,7 @@ const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter }: Props) =
       <Meta pageTitle={pageTitle} />
 
       <div className="bg-black h-[9.7rem] px-[17.5rem] relative z-50">
-        <Navigation removeHero={true} />
+        <Navigation removeHero />
       </div>
 
       <div className="px-[17.5rem]">

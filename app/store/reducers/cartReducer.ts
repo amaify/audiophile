@@ -48,7 +48,7 @@ export const addToCartSlice = createSlice({
     },
 
     incrementCartCount: (state, action: PayloadAction<string>) => {
-      const item = state.cart.find((item) => item.id === action.payload);
+      const item = state.cart.find((cartItem) => cartItem.id === action.payload);
 
       if (item) {
         item.itemCount += 1;
@@ -57,7 +57,7 @@ export const addToCartSlice = createSlice({
     },
 
     decrementCartCount: (state, action: PayloadAction<string>) => {
-      const item = state.cart.find((item) => item.id === action.payload);
+      const item = state.cart.find((cartItem) => cartItem.id === action.payload);
 
       if (item) {
         if (item.itemCount === 1) {

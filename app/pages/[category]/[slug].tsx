@@ -1,8 +1,14 @@
+/* eslint-disable import/extensions */
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { addToCart } from "../../store/reducers/cartReducer";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import client from "@/helpers/apolloClient";
+import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/get-products";
+import { Product, ProductsQuery } from "@/Types/data-fetching";
+import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
+import { addToCart } from "../../store/reducers/cartReducer";
 import { resetCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
 import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
 
@@ -10,11 +16,6 @@ import Button from "../../components/shared/Button";
 import AddToCart from "../../components/Cart/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
 import { formatPrice } from "../../components/util/utils";
-import client from "@/helpers/apolloClient";
-import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/get-products";
-import { Product, ProductsQuery } from "@/Types/data-fetching";
-import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
-import toast from "react-hot-toast";
 
 interface Params {
   params: {
@@ -38,6 +39,7 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
   const shuffleArray = () => {
     const newArray = allProducts.filter((data) => data.title !== productDetail.title);
 
+    // eslint-disable-next-line no-plusplus
     for (let i = newArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       const temp = newArray[i];
@@ -47,15 +49,15 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
     return newArray.slice(0, 3);
   };
 
-  const handleAddtoCart = (productDetail: Product) => {
+  const handleAddtoCart = (product: Product) => {
     dispatch(
       addToCart({
-        id: productDetail.id,
-        title: productDetail.cartTitle,
-        price: productDetail.price,
-        itemCount: itemCount,
-        cartImage: productDetail.cartImage.publicUrl,
-        totalPrice: productDetail.price * itemCount
+        id: product.id,
+        title: product.cartTitle,
+        price: product.price,
+        itemCount,
+        cartImage: product.cartImage.publicUrl,
+        totalPrice: product.price * itemCount
       })
     );
 
@@ -154,6 +156,7 @@ export const getStaticPaths = async () => {
 
   const { products } = data;
   const paths = products?.map((product) => ({ params: { category: product.category, slug: product.slug } }));
+  // eslint-disable-next-line consistent-return
   return {
     paths,
     fallback: false
@@ -165,7 +168,7 @@ export const getStaticProps = async (context: Params) => {
   const [{ data: pageProduct }, { data: allProducts }] = await Promise.all([
     await client.query<ProductsQuery>({
       query: GET_PRODUCT,
-      variables: { slug: slug }
+      variables: { slug }
     }),
     await client.query<ProductsQuery>({
       query: GET_ALL_PRODUCTS

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+
 interface Count {
   value: number;
 }
@@ -13,7 +14,6 @@ export const ProdQuantity = createSlice({
   initialState,
   reducers: {
     incrementCount: (state) => {
-      console.log(state);
       state.value += 1;
     },
 

@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import React from "react";
 import { useRouter } from "next/router";
 import ProductCategory from "@/components/shared/ProductCategory";
@@ -46,7 +47,7 @@ export default ProductsPage;
 
 export async function getStaticPaths() {
   const categories: Category[] = ["headphones", "speakers", "earphones"];
-  const paths = categories.map((category) => ({ params: { category: category } }));
+  const paths = categories.map((category) => ({ params: { category } }));
   return {
     paths,
     fallback: false
@@ -54,18 +55,16 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: ProductParam) {
-  const category = context.params.category;
-
-  console.log("CATEGORY: ", category);
+  const { category } = context.params;
   const { data, error } = await client.query<ProductsQuery>({
     query: GET_PRODUCTS,
-    variables: { category: category }
+    variables: { category }
   });
 
   if (!data) {
     return {
       props: {
-        error: error
+        error
       }
     };
   }

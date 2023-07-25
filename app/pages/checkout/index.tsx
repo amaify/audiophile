@@ -1,13 +1,14 @@
+/* eslint-disable import/extensions */
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { BanknotesIcon } from "@heroicons/react/24/solid";
-import type { FormInput, InputError } from "../../Types/FormInput";
 import { selectCart } from "@/store/reducers/cartReducer";
 import { validatePayButton } from "@/components/util/utils";
 import { validateInputField } from "@/components/util/validateInputFields";
 import { Alert, AlertType } from "@/components/shared/Alert";
+import type { FormInput } from "../../Types/FormInput";
 
 const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
 const CheckoutSummary = dynamic(import("@/components/Summary"), { ssr: false });
@@ -26,7 +27,7 @@ const Checkout = () => {
     { label: "e-Money", method: "online" },
     { label: "Cash on Delivery", method: "cash" }
   ];
-  const [value, setValue] = useState<FormInput>({
+  const [inputValue, setInputValue] = useState<FormInput>({
     name: "",
     address: "",
     cardNumber: "",
@@ -41,13 +42,13 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState<string>("online");
   const [error, setError] = useState<Record<string, string>>({});
 
-  const isDisabled = validatePayButton(value, paymentMethod);
-  const isError = Object.values(error).some((value) => value);
+  const isDisabled = validatePayButton(inputValue, paymentMethod);
+  const isError = Object.values(error).some((errorValue) => errorValue);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
 
-    setValue((prevState) => ({ ...prevState, [name]: value }));
+    setInputValue((prevState) => ({ ...prevState, [name]: value }));
 
     if (isError) {
       const validationMsg = validateInputField(value, type);
@@ -74,7 +75,7 @@ const Checkout = () => {
       {confirmation && <Confirmation isOpen={confirmation} setConfirmation={setConfirmation} />}
       <Meta pageTitle="Checkout" />
       <div className="bg-black h-[97px] px-[17.5rem] relative z-50">
-        <Navigation removeHero={true} />
+        <Navigation removeHero />
       </div>
       <div className="bg-grey px-[17.5rem] pt-[7.9em] pb-[14.1em]">
         <button
@@ -103,7 +104,7 @@ const Checkout = () => {
                       name="name"
                       placeholder="Alexei Ward"
                       type="text"
-                      value={value.name}
+                      value={inputValue.name}
                       addedStyle="w-[50%]"
                       error={error}
                       onBlur={(e) => onInputBlur(e)}
@@ -116,7 +117,7 @@ const Checkout = () => {
                       name="emailAddress"
                       placeholder="alexei@mail.com"
                       type="email"
-                      value={value.emailAddress}
+                      value={inputValue.emailAddress}
                       addedStyle="w-[50%]"
                       error={error}
                       onBlur={(e) => onInputBlur(e)}
@@ -131,7 +132,7 @@ const Checkout = () => {
                     name="phoneNumber"
                     placeholder="+1202-555-0136"
                     type="tel"
-                    value={value.phoneNumber}
+                    value={inputValue.phoneNumber}
                     addedStyle="w-[49%]"
                     error={error}
                     onBlur={(e) => onInputBlur(e)}
@@ -148,7 +149,7 @@ const Checkout = () => {
                     name="address"
                     placeholder="1137 Williams Avenue"
                     type="text"
-                    value={value.address}
+                    value={inputValue.address}
                     addedStyle="w-full"
                     error={error}
                     onBlur={(e) => onInputBlur(e)}
@@ -163,7 +164,7 @@ const Checkout = () => {
                       name="zipCode"
                       placeholder="10001"
                       type="text"
-                      value={value.zipCode}
+                      value={inputValue.zipCode}
                       addedStyle="w-[50%]"
                       error={error}
                       onBlur={(e) => onInputBlur(e)}
@@ -177,7 +178,7 @@ const Checkout = () => {
                       name="city"
                       placeholder="New York"
                       type="text"
-                      value={value.city}
+                      value={inputValue.city}
                       addedStyle="w-[50%]"
                       error={error}
                       onBlur={(e) => onInputBlur(e)}
@@ -191,7 +192,7 @@ const Checkout = () => {
                     name="country"
                     placeholder="United States"
                     type="text"
-                    value={value.country}
+                    value={inputValue.country}
                     addedStyle="w-[49%]"
                     error={error}
                     onBlur={(e) => onInputBlur(e)}
@@ -230,7 +231,7 @@ const Checkout = () => {
                         name="cardNumber"
                         placeholder="238521993"
                         type="tel"
-                        value={value.cardNumber}
+                        value={inputValue.cardNumber}
                         addedStyle="w-[50%]"
                         error={error}
                         onBlur={(e) => onInputBlur(e)}
@@ -244,7 +245,7 @@ const Checkout = () => {
                         name="cardPin"
                         placeholder="4422"
                         type="tel"
-                        value={value?.cardPin}
+                        value={inputValue?.cardPin}
                         addedStyle="w-[50%]"
                         error={error}
                         onBlur={(e) => onInputBlur(e)}

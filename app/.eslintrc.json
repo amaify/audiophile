@@ -6,13 +6,10 @@
   },
   "extends": [
     "eslint:recommended",
-    "next/babel",
-    "next/core-web-vitals",
     "airbnb",
     "plugin:@next/next/recommended",
     "plugin:prettier/recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:react/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -31,6 +28,9 @@
     "import/prefer-default-export": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/button-has-type": 0,
+    "no-useless-escape": 0,
     "no-param-reassign": 0,
     "no-restricted-exports": 0,
     "no-unused-vars": 1,
@@ -47,9 +47,7 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "auto",
-        "printWidth": 120,
-        "trailingComma": "none"
+        "endOfLine": "auto"
       }
     ],
     "import/extensions": [
