@@ -13,20 +13,19 @@ interface Props {
 const CheckoutSummary = ({ isError, isDisabled, setConfirmation }: Props) => {
   const { cart, total, grandTotal } = useSelector(selectCart);
 
-  console.log("Total: ", total);
-
+  const submitBtnDisabled = !isDisabled || isError || cart.length === 0;
   return (
-    <div className="bg-white self-start px-[3.3rem] py-[3.2rem] w-[30%] rounded-lg">
+    <div className="bg-white self-start px-[3.3rem] py-[3.2rem] w-[30%] max-h-[61.2rem] overflow-auto rounded-lg">
       <h6 className="[ heading-6 ] font-bold mb-[31px]">summary</h6>
       <div className="mb-[32px] flex flex-col gap-[24px]">
         {cart.length > 0 ? (
           cart.map((item) => (
             <div className="flex items-center" key={item.id}>
               <div className="flex items-center gap-[16px] mr-auto">
-                <Image src={item.cartImage} alt={item.title} width={84} height={84} className="rounded-[8px]" />
+                <Image src={item.cartImage} alt={item.title} width={64} height={64} className="rounded-[8px]" />
                 <div>
-                  <p className="[ body-text ] text-black font-bold uppercase">{item.title.substring(0, 5)}</p>
-                  <p className="[ body-text ] text-black/50 font-bold">{formatPrice(item.price)}</p>
+                  <p className="text-[1.5rem] text-black font-bold uppercase">{item.title.substring(0, 5)}</p>
+                  <p className="text-[1.4rem] text-black/50 font-bold">{formatPrice(item.price)}</p>
                 </div>
               </div>
 
@@ -65,10 +64,10 @@ const CheckoutSummary = ({ isError, isDisabled, setConfirmation }: Props) => {
       <button
         className={clsx(
           "inline-block bg-primary hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]",
-          (!isDisabled || isError) && "disabled:bg-gray-300 disabled:cursor-not-allowed"
+          submitBtnDisabled && "disabled:bg-gray-300 disabled:cursor-not-allowed"
         )}
         onClick={() => setConfirmation(true)}
-        disabled={!isDisabled || isError}
+        disabled={submitBtnDisabled}
       >
         Continue and Pay
       </button>

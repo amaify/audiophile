@@ -96,8 +96,11 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
                 <p className="[ body-text ] opacity-50 mb-[32px]">{productDetail.description}</p>
                 <h6 className="[ heading-6 ] mb-[47px]">{formatPrice(+productDetail.price ?? 0)}</h6>
                 <div className="flex gap-[16px]">
-                  <AddToCart isCartVisible={false} itemQuantity={itemCount} />
-                  <button className="[ phile-btn phile-btn-1 ]" onClick={() => handleAddtoCart(productDetail)}>
+                  <AddToCart isCartVisible={false} itemQuantity={itemCount} addedStyle="w-[12rem] h-[4.8rem]" />
+                  <button
+                    className="[ phile-btn phile-btn-1 !h-[4.8rem] ]"
+                    onClick={() => handleAddtoCart(productDetail)}
+                  >
                     add to cart
                   </button>
                 </div>

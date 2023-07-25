@@ -3,19 +3,21 @@ import { incrementCount, decrementCount, selectItemCount } from "../../store/red
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, incrementCartCount, decrementCartCount } from "../../store/reducers/cartReducer";
 import { TrashIcon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
 
 interface Props {
   itemQuantity: number;
   isCartVisible: boolean;
+  addedStyle: string;
   itemId?: string;
 }
 
-const IncOrDecCartItems = ({ itemQuantity, itemId, isCartVisible }: Props) => {
+const IncOrDecCartItems = ({ itemQuantity, itemId, isCartVisible, addedStyle }: Props) => {
   const dispatch = useDispatch();
   const itemCount = useSelector(selectItemCount);
 
   return (
-    <div className="bg-darkGrey w-[120px] h-[53px] flex items-center justify-center px-[15px]">
+    <div className={clsx("bg-darkGrey flex items-center justify-center px-[15px]", addedStyle)}>
       <p
         className="font-bold text-black text-[2em] opacity-25 leading-[18px] mr-auto hover:text-primary hover:opacity-100 hover:cursor-pointer"
         onClick={() =>
@@ -34,7 +36,7 @@ const IncOrDecCartItems = ({ itemQuantity, itemId, isCartVisible }: Props) => {
           </span>
         )}
       </p>
-      <p className="mr-auto text-[1.7em] font-bold leading-[18px] tracking-[1px]">{itemQuantity}</p>
+      <p className="mr-auto text-[1.3rem] font-bold leading-[18px] tracking-[1px]">{itemQuantity}</p>
       <p
         className="font-bold text-black text-[2em] opacity-25 leading-[18px] hover:text-primary hover:opacity-100 hover:cursor-pointer"
         onClick={() => (!isCartVisible ? dispatch(incrementCount()) : dispatch(incrementCartCount(itemId ?? "")))}
