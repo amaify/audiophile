@@ -7,8 +7,8 @@ import { selectCart } from "@/store/reducers/cartReducer";
 import { validatePayButton } from "@/components/util/utils";
 import { validateInputField } from "@/components/util/validateInputFields";
 import { Alert, AlertType } from "@/components/shared/Alert";
-import type { FormInput } from "../../Types/FormInput";
 import SubPageHeader from "@/components/shared/SubPageHeader";
+import type { FormInput } from "../../Types/FormInput";
 
 const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
 const CheckoutSummary = dynamic(import("@/components/Summary"), { ssr: false });
