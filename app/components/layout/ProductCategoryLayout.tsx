@@ -19,9 +19,9 @@ const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
   return (
     <>
       <Meta pageTitle={router.query.category as string} />
-      <div className="bg-black h-[336px] px-[17.5rem] relative z-20">
+      <div className="bg-black h-[33.6rem] px-[17.5rem] relative [ product-category-header ]">
         <Navigation removeHero={false} />
-        <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
           <h2 className="[ heading-2 ] text-white">{layoutTitle}</h2>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import Navigation from "../shared/Navigation";
 import Footer from "../shared/Footer";
 import ProductThumbnails from "../shared/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
+import SubPageHeader from "../shared/SubPageHeader";
 
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
@@ -18,9 +18,7 @@ const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter }: Props) =
     <>
       <Meta pageTitle={pageTitle} />
 
-      <div className="bg-black h-[9.7rem] px-[17.5rem] relative z-50">
-        <Navigation removeHero />
-      </div>
+      <SubPageHeader />
 
       <div className="px-[17.5rem]">
         <div className="mt-[7.9rem] mb-[16rem]">{children}</div>

@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -119,9 +118,9 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
 
             <div className="mt-lg mb-[25rem]">
               <h3 className="[ heading-3 ] text-center mb-[64px]">you may also like</h3>
-              <div className="flex gap-[30px]">
+              <div className="flex w-full gap-[30px]">
                 {shuffledArray.map((item) => (
-                  <div className="flex flex-col items-center" key={item.title}>
+                  <div className="flex flex-col items-center w-1/3" key={item.title}>
                     <Image
                       src={item.previewImage.publicUrl}
                       alt={item.title}

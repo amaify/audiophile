@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import NavigationLinks from "./NavLink";
 import FacebookIcon from "../../assets/shared/desktop/icon-facebook.svg";
 import TwitterIcon from "../../assets/shared/desktop/icon-twitter.svg";
@@ -9,15 +8,13 @@ import InstagramIcon from "../../assets/shared/desktop/icon-instagram.svg";
 import Brand from "./Brand";
 
 const Footer = () => {
-  const router = useRouter();
-  const { asPath } = router;
   return (
-    <footer className="relative before:content-[' '] before:w-[101px] before:h-[4px] before:bg-primary before:block before:absolute before:top-0 before:left-[17.5em]">
+    <footer className="relative after:content-[' '] after:w-[101px] after:h-[4px] after:bg-primary after:block after:absolute after:top-0 after:left-[17.5em] [ footer ]">
       <div className="bg-black pt-[75px] pb-[48px] px-[17.5em] w-full">
         <nav className="flex mb-[36px] flex-wrap">
           <Brand />
 
-          <NavigationLinks pathName={asPath} isFooter />
+          <NavigationLinks isFooter />
         </nav>
 
         <div className="flex items-end">

@@ -18,7 +18,10 @@ const NavigationLinks = ({ isFooter }: Props) => {
         <li key={link.name}>
           <Link href={`${link.href}`}>
             <span
-              className={clsx("[ nav-link ] hover:cursor-pointer", pathName === link.href && "[ nav-link-active ]")}
+              className={clsx(
+                "[ nav-link ] hover:cursor-pointer",
+                pathName.includes(link.name) && "[ nav-link-active ]"
+              )}
             >
               {link.name}
             </span>

@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React from "react";
 import { useRouter } from "next/router";
 import ProductCategory from "@/components/shared/ProductCategory";

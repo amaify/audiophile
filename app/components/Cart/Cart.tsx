@@ -14,13 +14,14 @@ const Cart = () => {
         <Image src={CartIcon} alt="A shopping Cart" layout="fixed" className="hover:cursor-pointer" />
         {cart.length > 0 && (
           <p className="w-9 h-9 bg-primary text-white absolute -top-[50%] left-[50%] text-center rounded-full">
-            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [ body-text ] font-bold">
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [ body-text ] font-light">
               {cart.length}
             </span>
           </p>
         )}
       </Popover.Button>
-      <Popover.Overlay className="[ cart-backdrop ]" />
+      <Popover.Overlay className="fixed inset-0 bg-black opacity-50 z-20" />
+
       <Popover.Panel>
         <CartItems />
       </Popover.Panel>

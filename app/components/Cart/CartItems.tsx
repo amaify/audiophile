@@ -12,7 +12,7 @@ const CartItems = () => {
   const { cart } = useSelector(selectCart);
 
   return (
-    <div className="bg-white flex flex-col py-[31px] pr-[31px] pl-[33px] rounded-lg w-[37.7rem] max-h-[48.8rem] overflow-auto [ cart-items ]">
+    <div className="bg-white flex flex-col py-[31px] pr-[31px] pl-[33px] rounded-lg w-[37.7rem] max-h-[48.8rem] overflow-auto absolute top-[10rem] right-0 z-30">
       <div className="mb-[3.1rem] flex">
         <h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${cart.length})`}</h6>
         <button

@@ -11,7 +11,14 @@ const Thumbnail = ({ thumbnailTitle, thumbnailImage }: Props) => {
   return (
     <div className="bg-darkGrey w-[33%] h-[204px] relative rounded-[8px]">
       <div className="absolute -bottom-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <Image src={thumbnailImage} alt="Headphone" width={200} height={200} layout="fixed" objectFit="contain" />
+        <Image
+          src={thumbnailImage}
+          alt={`${thumbnailTitle}`}
+          width={200}
+          height={200}
+          layout="fixed"
+          objectFit="contain"
+        />
       </div>
       <div className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
         <h6 className="[ heading-6 ] font-bold">{thumbnailTitle}</h6>

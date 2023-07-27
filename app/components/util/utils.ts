@@ -3,7 +3,7 @@ import { CartItem } from "../../store/Types/Cart";
 import { FormInput } from "../../Types/FormInput";
 
 interface NavigationLInks {
-  name: string;
+  name: "home" | "headphones" | "speakers" | "earphones";
   href: string;
 }
 

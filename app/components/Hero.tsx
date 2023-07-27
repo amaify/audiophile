@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <header className="[ hero ] relative px-[17.5rem]">
       <Meta pageTitle="Home" />
-      <div className="">
+      <div>
         <Navigation removeHero={false} />
 
         <div className="w-[39.8rem] absolute top-[30%] left-[17.5rem]">

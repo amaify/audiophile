@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
@@ -9,11 +8,11 @@ import { validatePayButton } from "@/components/util/utils";
 import { validateInputField } from "@/components/util/validateInputFields";
 import { Alert, AlertType } from "@/components/shared/Alert";
 import type { FormInput } from "../../Types/FormInput";
+import SubPageHeader from "@/components/shared/SubPageHeader";
 
 const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
 const CheckoutSummary = dynamic(import("@/components/Summary"), { ssr: false });
 const Input = dynamic(import("@/components/shared/Input"), { ssr: false });
-const Navigation = dynamic(import("@/components/shared/Navigation"), { ssr: false });
 const Confirmation = dynamic(import("@/components/PaymentConfirmation"), { ssr: false });
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
@@ -74,9 +73,7 @@ const Checkout = () => {
     <section>
       {confirmation && <Confirmation isOpen={confirmation} setConfirmation={setConfirmation} />}
       <Meta pageTitle="Checkout" />
-      <div className="bg-black h-[97px] px-[17.5rem] relative z-50">
-        <Navigation removeHero />
-      </div>
+      <SubPageHeader />
       <div className="bg-grey px-[17.5rem] pt-[7.9em] pb-[14.1em]">
         <button
           className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px] hover:opacity-100"

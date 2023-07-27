@@ -3,3 +3,12 @@
     margin-bottom: 1.2rem;
   }
 }
+
+.product-category-header,
+.sub-page-header {
+  @include responsive_layout(bp-xl) {
+    &::before {
+      @include extended_background(product, black);
+    }
+  }
+}

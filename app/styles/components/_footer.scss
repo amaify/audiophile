@@ -1,0 +1,9 @@
+.footer {
+  position: relative;
+
+  @include responsive_layout(bp-xl) {
+    &::before {
+      @include extended_background(footer, black);
+    }
+  }
+}

@@ -44,20 +44,11 @@
     "react/jsx-props-no-spreading": 0,
     "@ts-gql/ts-gql": "error",
     "react/require-default-props": 0,
+    "import/extensions": 0,
     "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto"
-      }
-    ],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "ts": "never",
-        "tsx": "never",
-        "jsx": "never"
       }
     ]
   },
