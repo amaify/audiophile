@@ -24,7 +24,6 @@ export const Product: ListConfig<Lists.Product.TypeInfo, any> = list({
     slug: text({
       validation: { isRequired: true },
     }),
-    // previewImage: image({ storage: "product_images" }),
     previewImage: cloudinaryImage({
       cloudinary: {
         apiKey: process.env.CLOUDINARY_API_KEY ?? "",
@@ -33,7 +32,6 @@ export const Product: ListConfig<Lists.Product.TypeInfo, any> = list({
         folder: process.env.CLOUDINARY_API_FOLDER,
       },
     }),
-    // cartImage: image({ storage: "product_images" }),
     cartImage: cloudinaryImage({
       cloudinary: {
         apiKey: process.env.CLOUDINARY_API_KEY ?? "",

@@ -131,7 +131,6 @@ var Product = (0, import_core3.list)({
     slug: (0, import_fields3.text)({
       validation: { isRequired: true }
     }),
-    // previewImage: image({ storage: "product_images" }),
     previewImage: (0, import_cloudinary.cloudinaryImage)({
       cloudinary: {
         apiKey: process.env.CLOUDINARY_API_KEY ?? "",
@@ -140,7 +139,6 @@ var Product = (0, import_core3.list)({
         folder: process.env.CLOUDINARY_API_FOLDER
       }
     }),
-    // cartImage: image({ storage: "product_images" }),
     cartImage: (0, import_cloudinary.cloudinaryImage)({
       cloudinary: {
         apiKey: process.env.CLOUDINARY_API_KEY ?? "",

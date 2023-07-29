@@ -21,7 +21,7 @@ const Hero = () => {
           <p className="[ body-text ] text-white opacity-75 w-[90%] mb-[40px]">
             Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
           </p>
-          <Button btnText="see product" btnType={1} to="headphones/xx99" />
+          <Button btnText="see product" btnType={1} to="headphones/xx99-mark-ii-headphones" />
         </div>
       </div>
     </header>
