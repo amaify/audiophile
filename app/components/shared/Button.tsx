@@ -18,16 +18,15 @@ const Button = ({ btnText, btnType, to }: Props) => {
     btnType === 3 && "[ phile-btn-3 ]",
     btnType === 4 && "[ phile-btn-4 ]"
   );
+
   return (
-    <Link href={to}>
-      <span className={buttonStyle}>
-        <span>{btnText}</span>
-        {btnType === 3 && (
-          <span>
-            <Image src={ArrowRightIcon} alt="Arrow Right" width="5px" height="10px" />
-          </span>
-        )}
-      </span>
+    <Link href={to} className={clsx(buttonStyle, "flex items-center justify-center w-full")}>
+      <span>{btnText}</span>
+      {btnType === 3 && (
+        <span>
+          <Image src={ArrowRightIcon} alt="Arrow Right" width={5} height={10} className="w-auto h-auto" />
+        </span>
+      )}
     </Link>
   );
 };

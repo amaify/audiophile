@@ -13,22 +13,17 @@ const NavigationLinks = ({ isFooter }: Props) => {
   const pathName = router.asPath;
 
   return (
-    <ul className={clsx("flex gap-[34px] flex-wrap", !isFooter && "mr-auto")}>
+    <nav className={clsx("flex gap-[34px] flex-wrap", !isFooter && "mr-auto")}>
       {navLinks.map((link) => (
-        <li key={link.name}>
-          <Link href={`${link.href}`}>
-            <span
-              className={clsx(
-                "[ nav-link ] hover:cursor-pointer",
-                pathName.includes(link.name) && "[ nav-link-active ]"
-              )}
-            >
-              {link.name}
-            </span>
-          </Link>
-        </li>
+        <Link
+          key={link.name}
+          href={`${link.href}`}
+          className={clsx("[ nav-link ] hover:cursor-pointer", pathName.includes(link.name) && "[ nav-link-active ]")}
+        >
+          {link.name}
+        </Link>
       ))}
-    </ul>
+    </nav>
   );
 };
 

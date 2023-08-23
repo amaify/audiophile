@@ -3,26 +3,19 @@ import Image, { StaticImageData } from "next/image";
 import Button from "./Button";
 
 interface Props {
-  thumbnailTitle: string;
-  thumbnailImage: StaticImageData;
+  title: string;
+  img: StaticImageData;
 }
 
-const Thumbnail = ({ thumbnailTitle, thumbnailImage }: Props) => {
+const Thumbnail = ({ title, img }: Props) => {
   return (
-    <div className="bg-darkGrey w-[33%] h-[204px] relative rounded-[8px]">
-      <div className="absolute -bottom-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <Image
-          src={thumbnailImage}
-          alt={`${thumbnailTitle}`}
-          width={200}
-          height={200}
-          layout="fixed"
-          objectFit="contain"
-        />
+    <div className="bg-darkGrey w-1/3 h-[20.4rem] relative rounded-lg">
+      <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <Image src={img} alt={title} className="w-[20rem] h-[20rem] object-contain" />
       </div>
       <div className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-        <h6 className="[ heading-6 ] font-bold">{thumbnailTitle}</h6>
-        <Button to={thumbnailTitle} btnText="shop" btnType={3} />
+        <h6 className="[ heading-6 ] font-bold">{title}</h6>
+        <Button to={`/${title}`} btnText="shop" btnType={3} />
       </div>
     </div>
   );

@@ -74,6 +74,7 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
         <button
           className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px]"
           onClick={() => router.back()}
+          title="go back"
         >
           go back
         </button>
@@ -88,7 +89,7 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
                   width={540}
                   height={560}
                   loading="lazy"
-                  className="rounded-lg object-contain"
+                  className="rounded-lg object-contain w-full h-full"
                 />
               </div>
 
@@ -118,17 +119,19 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
 
             <div className="mt-lg mb-[25rem]">
               <h3 className="[ heading-3 ] text-center mb-[64px]">you may also like</h3>
-              <div className="flex w-full gap-[30px]">
+              <div className="flex w-full gap-[3rem]">
                 {shuffledArray.map((item) => (
-                  <div className="flex flex-col items-center w-1/3" key={item.title}>
-                    <Image
-                      src={item.previewImage.publicUrl}
-                      alt={item.title}
-                      width={350}
-                      height={318}
-                      loading="lazy"
-                      className="rounded-lg object-contain"
-                    />
+                  <div className="flex flex-col items-center w-1/3 min-w-[35rem]" key={item.title}>
+                    <div className="w-full h-[31.8rem]">
+                      <Image
+                        src={item.previewImage.publicUrl}
+                        alt={item.title}
+                        width={350}
+                        height={318}
+                        loading="lazy"
+                        className="rounded-lg object-cover w-full h-full"
+                      />
+                    </div>
                     <h5 className="[ heading-5 ] mt-[40px] mb-[32px]">{item.suggestionTitle}</h5>
                     <Button btnText="see product" btnType={1} to={`/${item.category}/${item.slug}`} />
                   </div>

@@ -20,17 +20,18 @@ const ProductCategory = ({
   category
 }: Props) => {
   return (
-    <div className="flex gap-[17.5rem] even:flex-row-reverse">
-      <Image
-        src={productImage}
-        alt={productTitle}
-        width={540}
-        height={560}
-        loading="lazy"
-        objectFit="contain"
-        className="rounded-lg"
-      />
-      <div className="w-[35%] self-center">
+    <div className="flex gap-[12.5rem] even:flex-row-reverse">
+      <div className="w-[54rem] 2xl:w-1/2">
+        <Image
+          src={productImage}
+          alt={productTitle}
+          width={540}
+          height={560}
+          loading="lazy"
+          className="rounded-lg object-contain w-full h-full"
+        />
+      </div>
+      <div className="w-[44.5rem] self-center 2xl:w-1/2">
         {newProduct && <p className="[ overline-text ] text-primary mb-[16px]">new product</p>}
         <h2 className="[ heading-2 ] mb-[32px]">{productTitle}</h2>
         <p className="[ body-text ] opacity-50 mb-[40px]">{productDescription}</p>

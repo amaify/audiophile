@@ -5,13 +5,9 @@ import BrandLogo from "../../assets/shared/desktop/logo.svg";
 
 const Brand = () => {
   return (
-    <div className="mr-auto hover: cursor-pointer">
-      <Link href="/">
-        <div>
-          <Image src={BrandLogo} alt="Brand Logo of Audiophile" layout="fixed" />
-        </div>
-      </Link>
-    </div>
+    <Link href="/" className="mr-auto hover:cursor-pointer">
+      <Image src={BrandLogo} alt="Brand Logo of Audiophile" />
+    </Link>
   );
 };
 

@@ -11,7 +11,7 @@ const Cart = () => {
   return (
     <Popover className="relative">
       <Popover.Button className="outline-none border-none">
-        <Image src={CartIcon} alt="A shopping Cart" layout="fixed" className="hover:cursor-pointer" />
+        <Image src={CartIcon} alt="A shopping Cart" className="hover:cursor-pointer" />
         {cart.length > 0 && (
           <p className="w-9 h-9 bg-primary text-white absolute -top-[50%] left-[50%] text-center rounded-full">
             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [ body-text ] font-light">

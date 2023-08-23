@@ -14,7 +14,7 @@ function ProductDetailsGallery({ productDetail }: Props) {
           alt="Image Gallery"
           width={455}
           height={280}
-          className="rounded-lg object-cover"
+          className="rounded-lg object-cover w-full h-full"
         />
 
         <Image
@@ -22,8 +22,7 @@ function ProductDetailsGallery({ productDetail }: Props) {
           alt="Image Gallery"
           width={455}
           height={280}
-          className="rounded-lg"
-          objectFit="cover"
+          className="rounded-lg object-cover w-full h-full"
         />
       </div>
 
@@ -33,9 +32,7 @@ function ProductDetailsGallery({ productDetail }: Props) {
           alt="Image Gallery"
           width={635}
           height={592}
-          className="rounded-lg"
-          layout="fill"
-          objectFit="cover"
+          className="rounded-lg object-cover w-full h-full"
         />
       </div>
     </div>
