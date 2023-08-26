@@ -9,20 +9,21 @@ const Cart = () => {
   const { cart } = useSelector(selectCart);
 
   return (
-    <Popover className="relative">
+    <Popover>
       <Popover.Button className="outline-none border-none">
         <Image src={CartIcon} alt="Shopping Cart" className="hover:cursor-pointer" />
         {cart.length > 0 && (
-          <p className="w-9 h-9 bg-primary text-white absolute -top-[50%] left-[50%] text-center rounded-full">
+          <p className="w-9 h-9 bg-primary text-white absolute -top-1/2 left-1/2 text-center rounded-full">
             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [ body-text ] font-light">
               {cart.length}
             </span>
           </p>
         )}
       </Popover.Button>
-      <Popover.Overlay className="fixed inset-0 bg-black opacity-50 z-20" />
 
-      <div className="relative z-50">
+      <Popover.Overlay className="fixed inset-0 bg-black/50 z-20" />
+
+      <div className="w-full relative z-50">
         <Transition.Child
           enter="transition ease-in-out duration-300 transform"
           enterFrom="scale-0"

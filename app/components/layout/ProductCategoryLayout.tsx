@@ -5,6 +5,7 @@ import Navigation from "../shared/Navigation";
 import Footer from "../shared/Footer";
 import ProductThumbnails from "../shared/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
+import MobileNav from "../shared/MobileNav";
 
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
@@ -20,8 +21,9 @@ const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
   return (
     <>
       <Meta pageTitle={pageTitle} />
-      <div className="bg-black h-[33.6rem] px-[17.5rem] relative [ product-category-header ]">
+      <div className="bg-black h-[25rem] px-0 relative [ product-category-header ] md:px-[17.5rem] md:h-[33.6rem]">
         <Navigation removeHero={false} />
+        <MobileNav />
         <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
           <h2 className="[ heading-2 ] text-white">{layoutTitle}</h2>
         </div>

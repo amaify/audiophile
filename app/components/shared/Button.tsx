@@ -8,9 +8,10 @@ interface Props {
   btnType: number;
   btnText: string;
   to: string;
+  onClick?: () => void;
 }
 
-const Button = ({ btnText, btnType, to }: Props) => {
+const Button = ({ btnText, btnType, to, onClick }: Props) => {
   const buttonStyle = clsx(
     "[ phile-btn ]",
     btnType === 1 && "[ phile-btn-1 ]",
@@ -20,7 +21,7 @@ const Button = ({ btnText, btnType, to }: Props) => {
   );
 
   return (
-    <Link href={to} className={clsx(buttonStyle, "flex items-center justify-center w-full")}>
+    <Link href={to} className={clsx(buttonStyle, "flex items-center justify-center w-full")} onClick={onClick}>
       <span>{btnText}</span>
       {btnType === 3 && (
         <span>

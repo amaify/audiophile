@@ -14,7 +14,7 @@ const Hero = () => {
         <Navigation removeHero={false} />
         <MobileNav />
       </section>
-      <section className="w-full absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center md:w-[39.8rem] md:top-[30%] md:left-[17.5rem] md:-translate-x-0 md:-translate-y-0 md:text-left">
+      <section className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center md:w-[39.8rem] md:top-[30%] md:left-[17.5rem] md:-translate-x-0 md:-translate-y-0 md:text-left">
         <p className="[ overline-text ] text-white opacity-50 mb-6">new product</p>
         <h1 className="[ heading-1 ] text-white mb-6">
           <span className="block">xx99 mark ii</span>
