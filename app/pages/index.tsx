@@ -14,22 +14,22 @@ const Home: NextPage = () => {
   return (
     <section>
       <Hero />
-      <div className="mt-[20rem] mb-[16.8rem] px-[17.5rem] relative">
+      <div className="mb-[16.8rem] mt-48 px-[2.4rem] relative md:mt-[20rem] md:px-[17.5rem]">
         <ProductThumbnails />
       </div>
 
       <div className="px-[17.5rem] flex flex-col gap-[20rem] relative w-full">
-        <div className="flex flex-col gap-[48px]">
-          <div className="bg-primary rounded-lg relative w-full h-[56em] overflow-hidden">
-            <div className="absolute top-[15%] left-[118px] w-[41.23em] h-[49.3em] z-10">
+        <div className="flex flex-col gap-12">
+          <div className="bg-primary rounded-lg relative w-full h-[56rem] overflow-hidden">
+            <div className="absolute top-[15%] left-[11.8rem] w-[41.23rem] h-[49.3rem] z-10">
               <Image src={SpeakerZX9Image} alt="ZX9 Speaker" className="w-full" />
             </div>
             <div className="absolute -top-[12%] -left-[11%]">
-              <Image src={CirclePattern} alt="Pattern of Circles" width={1000} height={1000} objectFit="cover" />
+              <Image src={CirclePattern} alt="Pattern of Circles" width={1000} height={1000} className="object-cover" />
             </div>
 
-            <div className="w-[349px] absolute top-[133px] right-[95px]">
-              <h1 className="[ heading-1 ] text-white mb-[24px]">
+            <div className="w-[34.9rem] absolute top-[13.3rem] right-[9.5rem]">
+              <h1 className="[ heading-1 ] text-white mb-6">
                 <span className="block">zx9</span>
                 <span>speaker</span>
               </h1>
@@ -48,13 +48,13 @@ const Home: NextPage = () => {
             </div>
           </div>
 
-          <div className="flex gap-[30px] w-full">
-            <div className="w-1/2 h-[320px] relative">
+          <div className="flex gap-[3rem] w-full">
+            <div className="w-1/2 h-[32rem] relative">
               <Image src={EarphoneYX1Image} alt="YX1 Earphnes" className="rounded-lg w-full h-full object-cover" />
             </div>
-            <div className="bg-darkGrey h-[320px] w-1/2 rounded-[8px] relative">
-              <div className="absolute top-[101px] left-[95px]">
-                <h4 className="[ heading-4 ] mb-[3.2rem]">YX1 earphones</h4>
+            <div className="bg-darkGrey h-[32rem] w-1/2 rounded-lg relative">
+              <div className="absolute top-[10.1rem] left-[9.5rem]">
+                <h4 className="[ heading-4 ] mb-8">YX1 earphones</h4>
                 <Button btnText="see product" btnType={2} to="/earphones/yx1-wireless-earphones" />
               </div>
             </div>

@@ -1,4 +1,10 @@
 @mixin responsive_layout($break-point) {
+  @if ($break-point == bp-md) {
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  }
+
   @if ($break-point == bp-xl) {
     @media only screen and (min-width: 1550px) {
       @content;

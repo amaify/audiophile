@@ -1,4 +1,4 @@
-import { Popover } from "@headlessui/react";
+import { Popover, Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import CartIcon from "../../assets/shared/desktop/icon-cart.svg";
@@ -22,9 +22,20 @@ const Cart = () => {
       </Popover.Button>
       <Popover.Overlay className="fixed inset-0 bg-black opacity-50 z-20" />
 
-      <Popover.Panel>
-        <CartItems />
-      </Popover.Panel>
+      <div className="relative z-50">
+        <Transition.Child
+          enter="transition ease-in-out duration-300 transform"
+          enterFrom="scale-0"
+          enterTo="scale-100"
+          leave="transition ease-out duration-300 transform"
+          leaveFrom="scale-100"
+          leaveTo="scale-0"
+        >
+          <Popover.Panel>
+            <CartItems />
+          </Popover.Panel>
+        </Transition.Child>
+      </div>
     </Popover>
   );
 };

@@ -9,7 +9,7 @@ interface Props {
 
 const Thumbnail = ({ title, img }: Props) => {
   return (
-    <div className="bg-darkGrey w-1/3 h-[20.4rem] relative rounded-lg">
+    <div className="bg-darkGrey w-full h-[20.4rem] relative rounded-lg md:w-1/3">
       <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <Image src={img} alt={title} className="w-[20rem] h-[20rem] object-contain" />
       </div>

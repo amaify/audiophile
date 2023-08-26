@@ -12,7 +12,7 @@ const productThumbnail = [
 
 const ProductThumbnails = () => {
   return (
-    <section className="flex gap-[3rem]">
+    <section className="flex w-full flex-col gap-[9rem] md:flex-row md:gap-[3rem]">
       {productThumbnail.map((product) => (
         <Thumbnail key={product.title} title={product.title} img={product.img} />
       ))}
