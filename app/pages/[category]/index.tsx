@@ -21,7 +21,7 @@ const ProductsPage = ({ data, error }: Props) => {
 
   return (
     <ProductCategoryLayout layoutTitle={pageTitle}>
-      <section className="w-full flex flex-col gap-[16rem]">
+      <section className="w-full flex flex-col gap-[12rem] md:gap-[16rem]">
         {data.length > 0 ? (
           data.map((prodData) => (
             <ProductCategory

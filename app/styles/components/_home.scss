@@ -6,3 +6,24 @@
   width: 50%;
   border-radius: 8px;
 }
+
+.trial {
+  background-image: url("../assets/home/mobile/image-speaker-zx7.jpg");
+  height: 32rem;
+  background-size: cover;
+
+  @include responsive_layout(bp-md) {
+    background-image: url("../assets/home/desktop/image-speaker-zx7.jpg");
+  }
+
+  &-2 {
+    background-image: url("../assets/home/mobile/image-earphones-yx1.jpg");
+    height: 20rem;
+    background-size: cover;
+
+    @include responsive_layout(bp-md) {
+      background-image: url("../assets/home/desktop/image-earphones-yx1.jpg");
+      height: 32rem;
+    }
+  }
+}

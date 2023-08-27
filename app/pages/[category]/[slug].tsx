@@ -72,7 +72,7 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
     <ProductDetailsLayout pageTitle={productDetail?.title ?? ""} removeSubFooter={false}>
       <div>
         <button
-          className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px]"
+          className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[2.4rem] md:mb-[5.6rem]"
           onClick={() => router.back()}
           title="go back"
         >
@@ -81,8 +81,8 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
 
         {productDetail ? (
           <>
-            <div className="flex gap-[125px] mb-lg">
-              <div className="w-1/2">
+            <div className="flex flex-col gap-[3.2rem] mb-[8.8rem] md:mb-lg md:gap-[12.5rem] md:flex-row">
+              <div className="w-full md:w-1/2">
                 <Image
                   src={productDetail.previewImage.publicUrl}
                   alt={`${productDetail.title} Image`}
@@ -93,12 +93,12 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
                 />
               </div>
 
-              <div className="w-[35%] self-center">
-                <p className="[ overline-text ] text-primary mb-[16px]">new product</p>
-                <h2 className="[ heading-2 ] mb-[32px]">{productDetail.title}</h2>
-                <p className="[ body-text ] opacity-50 mb-[32px]">{productDetail.description}</p>
-                <h6 className="[ heading-6 ] mb-[47px]">{formatPrice(+productDetail.price ?? 0)}</h6>
-                <div className="flex gap-[16px]">
+              <div className="w-full self-center md:w-[35%]">
+                {productDetail.newProduct && <p className="[ overline-text ] text-primary mb-[1.6rem]">new product</p>}
+                <h2 className="[ heading-2 ] mb-[2.4rem] md:mb-[3.2rem]">{productDetail.title}</h2>
+                <p className="[ body-text ] opacity-50 mb-[2.4rem] md:mb-[3.2rem]">{productDetail.description}</p>
+                <h6 className="[ heading-6 ] mb-[3.1rem] md:mb-[4.7rem]">{formatPrice(+productDetail.price ?? 0)}</h6>
+                <div className="flex gap-[1.6rem]">
                   <AddToCart isCartVisible={false} itemQuantity={itemCount} addedStyle="w-[12rem] h-[4.8rem]" />
                   <button
                     className="[ phile-btn phile-btn-1 !h-[4.8rem] ]"
@@ -117,22 +117,23 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
 
             <ProductDetailsGallery productDetail={productDetail} />
 
-            <div className="mt-lg mb-[25rem]">
-              <h3 className="[ heading-3 ] text-center mb-[64px]">you may also like</h3>
-              <div className="flex w-full gap-[3rem]">
+            <div className="mt-[10rem] mb-[12rem] md:mt-lg md:mb-[25rem]">
+              <h3 className="[ heading-3 ] text-center mb-[4rem] md:mb-[6.4rem]">you may also like</h3>
+              <div className="flex flex-col w-full gap-[5.6rem] md:gap-[3rem] md:flex-row">
                 {shuffledArray.map((item) => (
-                  <div className="flex flex-col items-center w-1/3 min-w-[35rem]" key={item.title}>
+                  <div className="flex flex-col items-center w-full md:w-1/3 md:min-w-[35rem]" key={item.title}>
                     <div className="w-full h-[31.8rem]">
                       <Image
                         src={item.previewImage.publicUrl}
                         alt={item.title}
+                        sizes="100vw"
                         width={350}
                         height={318}
                         loading="lazy"
                         className="rounded-lg object-cover w-full h-full"
                       />
                     </div>
-                    <h5 className="[ heading-5 ] mt-[40px] mb-[32px]">{item.suggestionTitle}</h5>
+                    <h5 className="[ heading-5 ] mt-[3.2rem] mb-[3.2rem] md:mt-[4rem]">{item.suggestionTitle}</h5>
                     <Button btnText="see product" btnType={1} to={`/${item.category}/${item.slug}`} />
                   </div>
                 ))}

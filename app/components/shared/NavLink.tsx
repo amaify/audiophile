@@ -13,7 +13,13 @@ const NavigationLinks = ({ isFooter }: Props) => {
   const pathName = router.asPath;
 
   return (
-    <nav className={clsx("flex gap-[34px] flex-wrap", !isFooter && "mr-auto")}>
+    <nav
+      className={clsx(
+        "flex flex-col items-center gap-[1.6rem] flex-wrap md:flex-row md:gap-[3.4rem]",
+        !isFooter && "md:mr-auto",
+        isFooter && "mt-[4.8rem] md:mt-0"
+      )}
+    >
       {navLinks.map((link) => (
         <Link
           key={link.name}

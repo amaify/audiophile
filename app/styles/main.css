@@ -23,15 +23,28 @@ h6 {
 }
 
 .heading-2 {
-  font-size: 4rem;
-  line-height: 44px;
-  letter-spacing: 1.5px;
+  font-size: 2.8rem;
+  line-height: normal;
+  letter-spacing: 1px;
+}
+@media only screen and (min-width: 768px) {
+  .heading-2 {
+    font-size: 4rem;
+    line-height: 44px;
+    letter-spacing: 1.5px;
+  }
 }
 
 .heading-3 {
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   line-height: 36px;
-  letter-spacing: 1.15px;
+  letter-spacing: 0.857px;
+}
+@media only screen and (min-width: 768px) {
+  .heading-3 {
+    font-size: 3.2rem;
+    letter-spacing: 1.15px;
+  }
 }
 
 .heading-4 {
@@ -120,8 +133,16 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 16.8em;
-  height: 4em;
+  width: 16rem;
+  height: 4.8rem;
+}
+@media only screen and (min-width: 768px) {
+  .phile-btn-1,
+  .phile-btn-2,
+  .phile-btn-4 {
+    width: 16.8rem;
+    height: 4rem;
+  }
 }
 
 .phile-btn-1 {
@@ -226,6 +247,28 @@ h6 {
   background-size: cover;
   width: 50%;
   border-radius: 8px;
+}
+
+.trial {
+  background-image: url("../assets/home/mobile/image-speaker-zx7.jpg");
+  height: 32rem;
+  background-size: cover;
+}
+@media only screen and (min-width: 768px) {
+  .trial {
+    background-image: url("../assets/home/desktop/image-speaker-zx7.jpg");
+  }
+}
+.trial-2 {
+  background-image: url("../assets/home/mobile/image-earphones-yx1.jpg");
+  height: 20rem;
+  background-size: cover;
+}
+@media only screen and (min-width: 768px) {
+  .trial-2 {
+    background-image: url("../assets/home/desktop/image-earphones-yx1.jpg");
+    height: 32rem;
+  }
 }
 
 .input {

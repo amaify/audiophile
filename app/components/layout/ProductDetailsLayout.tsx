@@ -20,8 +20,8 @@ const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter }: Props) =
 
       <SubPageHeader />
 
-      <div className="px-[17.5rem]">
-        <div className="mt-[7.9rem] mb-[16rem]">{children}</div>
+      <div className="px-[2.4rem] md:px-[17.5rem]">
+        <div className="mt-[1.6rem] mb-[16rem] md:mt-[7.9rem]">{children}</div>
 
         {!removeSubFooter && (
           <div className="flex flex-col gap-[16rem]">

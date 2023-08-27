@@ -29,8 +29,8 @@ const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
         </div>
       </div>
 
-      <section className="flex flex-col gap-[16rem] px-[17.5rem]">
-        <div className="pt-[16rem] pb-[16.75rem]">{children}</div>
+      <section className="flex flex-col gap-[16rem] px-[2.4rem] md:px-[17.5rem]">
+        <div className="pt-[6.4rem] pb-0 md:pb-[16.75rem] md:pt-[16rem]">{children}</div>
         <ProductThumbnails />
         <SubFooter />
       </section>

@@ -14,46 +14,47 @@ const Home: NextPage = () => {
   return (
     <section>
       <Hero />
-      <div className="mb-[16.8rem] mt-48 px-[2.4rem] relative md:mt-[20rem] md:px-[17.5rem]">
+      <div className="mb-[12rem] mt-48 px-[2.4rem] relative md:mt-[20rem] md:px-[17.5rem] md:mb-[16.8rem]">
         <ProductThumbnails />
       </div>
 
-      <div className="px-[17.5rem] flex flex-col gap-[20rem] relative w-full">
+      <div className="px-[2.4rem] flex flex-col gap-[12rem] relative w-full md:px-[17.5rem] md:gap-[20rem]">
         <div className="flex flex-col gap-12">
-          <div className="bg-primary rounded-lg relative w-full h-[56rem] overflow-hidden">
-            <div className="absolute top-[15%] left-[11.8rem] w-[41.23rem] h-[49.3rem] z-10">
+          <div className="bg-primary rounded-lg relative w-full flex h-[60rem] pb-[5.5rem] overflow-hidden md:h-[56rem] md:pr-[9.5rem]">
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[17.2rem] h-[20.9rem] z-10 md:top-[15%] md:left-[11.8rem] md:h-[49.3rem] md:w-[41.23rem] md:-translate-x-0 md:-translate-y-0">
               <Image src={SpeakerZX9Image} alt="ZX9 Speaker" className="w-full" />
             </div>
-            <div className="absolute -top-[12%] -left-[11%]">
-              <Image src={CirclePattern} alt="Pattern of Circles" width={1000} height={1000} className="object-cover" />
+            <div className="absolute scale-[1.8] md:-top-[12%] md:-left-[11%] md:scale-105 z-0">
+              <Image src={CirclePattern} alt="Pattern of Circles" className="object-cover" />
             </div>
 
-            <div className="w-[34.9rem] absolute top-[13.3rem] right-[9.5rem]">
-              <h1 className="[ heading-1 ] text-white mb-6">
-                <span className="block">zx9</span>
-                <span>speaker</span>
-              </h1>
-              <p className="[ body-text ] text-white w-full mb-[40px] opacity-[0.75]">
-                Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.
-              </p>
-              <Button btnText="see product" btnType={4} to="/speakers/zx9-speaker" />
+            <div className="w-full flex items-end justify-center relative z-20 md:items-center md:justify-end">
+              <div className="w-[34.9rem] text-center px-[2.4rem] md:text-left md:px-0">
+                <h1 className="[ heading-1 ] text-white mb-6">
+                  <span className="block">zx9</span>
+                  <span>speaker</span>
+                </h1>
+                <p className="[ body-text ] text-white w-full mb-[40px] opacity-[0.75]">
+                  Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.
+                </p>
+                <div className="flex justify-center md:justify-start">
+                  <Button btnText="see product" btnType={4} to="/speakers/zx9-speaker" />
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="relative w-full">
-            <Image src={Speakerzx7Image} alt="ZX7 Speaker" className="rounded-lg w-full h-full" />
-            <div className="absolute top-1/2 left-40 -translate-x-0 -translate-y-1/2">
+          <div className="flex items-center w-full rounded-lg [ trial ]">
+            <div className="pl-[2.4rem] md:pl-[12.6rem]">
               <h4 className="[ heading-4 ] mb-[3.2rem]">zx7 speaker</h4>
               <Button btnText="see product" btnType={2} to="speakers" />
             </div>
           </div>
 
-          <div className="flex gap-[3rem] w-full">
-            <div className="w-1/2 h-[32rem] relative">
-              <Image src={EarphoneYX1Image} alt="YX1 Earphnes" className="rounded-lg w-full h-full object-cover" />
-            </div>
-            <div className="bg-darkGrey h-[32rem] w-1/2 rounded-lg relative">
-              <div className="absolute top-[10.1rem] left-[9.5rem]">
+          <div className="flex flex-col gap-[3rem] w-full md:flex-row">
+            <div className="rounded-lg w-full md:w-1/2 [ trial-2 ]" />
+            <div className="flex items-center pl-[2.4rem] bg-darkGrey h-[20rem] w-full rounded-lg md:w-1/2 md:pl-[9.5rem] md:h-[32rem]">
+              <div>
                 <h4 className="[ heading-4 ] mb-8">YX1 earphones</h4>
                 <Button btnText="see product" btnType={2} to="/earphones/yx1-wireless-earphones" />
               </div>

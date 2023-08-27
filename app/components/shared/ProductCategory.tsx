@@ -20,8 +20,8 @@ const ProductCategory = ({
   category
 }: Props) => {
   return (
-    <div className="flex gap-[12.5rem] even:flex-row-reverse">
-      <div className="w-[54rem] 2xl:w-1/2">
+    <div className="flex flex-col gap-[3.2rem] md:flex-row md:even:flex-row-reverse md:gap-[12.5rem]">
+      <div className="w-full md:w-[54rem] 2xl:w-1/2">
         <Image
           src={productImage}
           alt={productTitle}
@@ -31,11 +31,13 @@ const ProductCategory = ({
           className="rounded-lg object-contain w-full h-full"
         />
       </div>
-      <div className="w-[44.5rem] self-center 2xl:w-1/2">
+      <div className="w-full self-center text-center md:text-left md:w-[44.5rem] 2xl:w-1/2">
         {newProduct && <p className="[ overline-text ] text-primary mb-[16px]">new product</p>}
-        <h2 className="[ heading-2 ] mb-[32px]">{productTitle}</h2>
+        <h2 className="[ heading-2 ] mb-[2.4rem] md:mb-[3.2rem]">{productTitle}</h2>
         <p className="[ body-text ] opacity-50 mb-[40px]">{productDescription}</p>
-        <Button btnText="see product" btnType={1} to={`${category}/${productSlug}`} />
+        <div className="flex justify-center md:justify-start">
+          <Button btnText="see product" btnType={1} to={`${category}/${productSlug}`} />
+        </div>
       </div>
     </div>
   );

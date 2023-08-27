@@ -8,20 +8,20 @@ interface Props {
 
 const productFeature = ({ productDetail }: Props) => {
   return (
-    <div className="flex gap-[125px] mb-lg">
-      <div className="w-[50.5%]">
-        <h3 className="[ heading-3 ] mb-[32px]">features</h3>
+    <div className="flex flex-col gap-[8.8rem] mb-lg md:gap-[12.5rem] md:flex-row">
+      <div className="w-full md:w-1/2">
+        <h3 className="[ heading-3 ] mb-[2.4rem] md:mb-[3.2rem]">features</h3>
         <div className="[ body-text ] [ product-feature ] text-black opacity-50">
           <DocumentRenderer document={productDetail.features.document} />
         </div>
       </div>
 
       <div>
-        <h3 className="[ heading-3 ] mb-[32px]">in the box</h3>
+        <h3 className="[ heading-3 ] mb-[3.2rem]">in the box</h3>
         <ul>
           {productDetail.boxContent.map((boxContent) => (
-            <li className="[ body-text ] mb-[8px] text-black" key={boxContent.content}>
-              <span className="text-primary font-bold mr-[21px] opacity-100">{boxContent.quantity}</span>
+            <li className="[ body-text ] mb-[.8rem] text-black" key={boxContent.content}>
+              <span className="text-primary font-bold mr-[2.1rem] opacity-100">{boxContent.quantity}</span>
               <span className="opacity-50 capitalize">{boxContent.content}</span>
             </li>
           ))}

@@ -7,8 +7,8 @@ interface Props {
 
 function ProductDetailsGallery({ productDetail }: Props) {
   return (
-    <div className="flex gap-[30px] w-full">
-      <div className="flex flex-col gap-[32px] w-[35%] relative">
+    <div className="flex flex-col gap-[1.6rem] w-full md:gap-[3rem] md:flex-row">
+      <div className="flex flex-col gap-[1.6rem] w-full relative md:w-[35%] md:gap-[3.6rem]">
         <Image
           src={productDetail.galleryOne.publicUrl}
           alt="Image Gallery"
@@ -26,7 +26,7 @@ function ProductDetailsGallery({ productDetail }: Props) {
         />
       </div>
 
-      <div className="w-[65%] relative">
+      <div className="w-full h-[36.8rem] relative md:w-[65%] md:h-auto">
         <Image
           src={productDetail.galleryThree.publicUrl}
           alt="Image Gallery"
