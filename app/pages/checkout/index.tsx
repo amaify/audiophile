@@ -74,26 +74,26 @@ const Checkout = () => {
       {confirmation && <Confirmation isOpen={confirmation} setConfirmation={setConfirmation} />}
       <Meta pageTitle="Checkout" />
       <SubPageHeader />
-      <div className="bg-grey px-[17.5rem] pt-[7.9em] pb-[14.1em]">
+      <div className="bg-grey px-[2.4rem] pt-[1.6rem] pb-[14.1rem] md:px-[17.5rem] md:pt-[7.9rem]">
         <button
-          className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[56px] hover:opacity-100"
+          className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[2.4rem] hover:opacity-100 md:mb-[5.6rem]"
           onClick={() => router.back()}
         >
           go back
         </button>
 
-        <div className="flex gap-[30px]">
-          <form className="bg-white px-[4.8em] pt-[5.4em] pb-[4.8em] w-[70%] rounded-lg">
-            <h1 className="[ heading-3 ] mb-[41px]">Checkout</h1>
+        <div className="flex flex-col gap-[3rem] md:flex-row">
+          <form className="bg-white px-[2.4rem] pt-[2.4rem] pb-[4.8rem] w-full rounded-lg md:w-[70%] md:pt-[5.4rem] md:px-[4.8rem]">
+            <h1 className="[ heading-3 ] mb-[2.4rem] md:mb-[4.1px]">Checkout</h1>
             {cart.length === 0 && (
               <Alert message="To make an order, you should add an item to the cart!" type={AlertType.Warning} />
             )}
             {cart.length > 0 && (
               <>
-                <section className="flex flex-col mb-[53px]">
-                  <h2 className="[ sub-title ] mb-[16px]">Billing details</h2>
+                <section className="flex flex-col mb-[3.4rem] md:mb-[5.3rem]">
+                  <h2 className="[ sub-title ] mb-[1.6rem]">Billing details</h2>
 
-                  <div className="flex gap-[16px] mb-[24px]">
+                  <div className="flex flex-col gap-[2.4rem] mb-[2.4rem] md:flex-row md:gap-[1.6rem]">
                     <Input
                       control="text"
                       id="name"
@@ -102,7 +102,7 @@ const Checkout = () => {
                       placeholder="Alexei Ward"
                       type="text"
                       value={inputValue.name}
-                      addedStyle="w-[50%]"
+                      addedStyle="w-full md:w-1/2"
                       error={error}
                       onBlur={(e) => onInputBlur(e)}
                       onChange={onInputChange}
@@ -115,7 +115,7 @@ const Checkout = () => {
                       placeholder="alexei@mail.com"
                       type="email"
                       value={inputValue.emailAddress}
-                      addedStyle="w-[50%]"
+                      addedStyle="w-full md:w-1/2"
                       error={error}
                       onBlur={(e) => onInputBlur(e)}
                       onChange={onInputChange}
@@ -130,15 +130,15 @@ const Checkout = () => {
                     placeholder="+1202-555-0136"
                     type="tel"
                     value={inputValue.phoneNumber}
-                    addedStyle="w-[49%]"
+                    addedStyle="w-full md:w-1/2"
                     error={error}
                     onBlur={(e) => onInputBlur(e)}
                     onChange={onInputChange}
                   />
                 </section>
 
-                <section className="flex flex-col mb-[53px]">
-                  <h2 className="[ sub-title ] mb-[16px]">Shipping info</h2>
+                <section className="flex flex-col mb-[5.3rem]">
+                  <h2 className="[ sub-title ] mb-[1.6rem]">Shipping info</h2>
                   <Input
                     control="text"
                     id="address"
@@ -153,7 +153,7 @@ const Checkout = () => {
                     onChange={onInputChange}
                   />
 
-                  <div className="flex gap-[16px] my-[24px]">
+                  <div className="flex flex-col gap-[2.4rem] my-[2.4rem] md:gap-[1.6rem] md:flex-row">
                     <Input
                       control="text"
                       id="zip-code"
@@ -162,7 +162,7 @@ const Checkout = () => {
                       placeholder="10001"
                       type="text"
                       value={inputValue.zipCode}
-                      addedStyle="w-[50%]"
+                      addedStyle="w-full md:w-1/2"
                       error={error}
                       onBlur={(e) => onInputBlur(e)}
                       onChange={onInputChange}
@@ -176,7 +176,7 @@ const Checkout = () => {
                       placeholder="New York"
                       type="text"
                       value={inputValue.city}
-                      addedStyle="w-[50%]"
+                      addedStyle="w-full md:w-1/2"
                       error={error}
                       onBlur={(e) => onInputBlur(e)}
                       onChange={onInputChange}
@@ -190,7 +190,7 @@ const Checkout = () => {
                     placeholder="United States"
                     type="text"
                     value={inputValue.country}
-                    addedStyle="w-[49%]"
+                    addedStyle="w-full md:w-1/2"
                     error={error}
                     onBlur={(e) => onInputBlur(e)}
                     onChange={onInputChange}
@@ -198,11 +198,11 @@ const Checkout = () => {
                 </section>
 
                 <section className="flex flex-col mb-0">
-                  <h2 className="[ sub-title ] mb-[16px]">Payment Details</h2>
+                  <h2 className="[ sub-title ] mb-[1.6rem]">Payment Details</h2>
 
-                  <div className="flex gap-[16px]">
-                    <p className="text-[12px] text-black capitalize font-bold w-[50%]">Payment Method</p>
-                    <div className="flex flex-col gap-[16px] w-[50%] mb-[24px]">
+                  <div className="flex flex-col gap-[1.6rem] md:flex-row">
+                    <p className="text-[1.2rem] text-black capitalize font-bold w-1/2">Payment Method</p>
+                    <div className="flex flex-col gap-[1.6rem] w-full mb-[2.4rem] md:w-/12">
                       {methodOfPayment.map((m) => (
                         <Input
                           control="radio"
@@ -220,7 +220,7 @@ const Checkout = () => {
                     </div>
                   </div>
                   {paymentMethod === "online" ? (
-                    <div className="flex gap-[16px] ">
+                    <div className="flex flex-col gap-[1.6rem] md:flex-row">
                       <Input
                         control="text"
                         id="card-number"
@@ -229,7 +229,7 @@ const Checkout = () => {
                         placeholder="238521993"
                         type="tel"
                         value={inputValue.cardNumber}
-                        addedStyle="w-[50%]"
+                        addedStyle="w-full md:w-1/2"
                         error={error}
                         onBlur={(e) => onInputBlur(e)}
                         onChange={onInputChange}
@@ -243,7 +243,7 @@ const Checkout = () => {
                         placeholder="4422"
                         type="tel"
                         value={inputValue?.cardPin}
-                        addedStyle="w-[50%]"
+                        addedStyle="w-full md:w-1/2"
                         error={error}
                         onBlur={(e) => onInputBlur(e)}
                         onChange={onInputChange}
@@ -252,7 +252,7 @@ const Checkout = () => {
                   ) : (
                     <div className="flex">
                       <BanknotesIcon className="h-20 w-20 mr-10" fill="#d87d4a" />
-                      <p className="[ body-text ] text-black font-medium opacity-50 w-[70%]">
+                      <p className="[ body-text ] text-black/50 font-medium w-[70%]">
                         The &lsquo;Cash on Delivery&rsquo; option enables you to pay in cash when our delivery courier
                         arrives at your residence. Just make sure your address is correct so that your order will not be
                         cancelled.

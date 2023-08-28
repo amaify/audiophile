@@ -10,7 +10,7 @@ const Cart = () => {
 
   return (
     <Popover>
-      <Popover.Button className="outline-none border-none">
+      <Popover.Button className="relative outline-none border-none">
         <Image src={CartIcon} alt="Shopping Cart" className="hover:cursor-pointer" />
         {cart.length > 0 && (
           <p className="w-9 h-9 bg-primary text-white absolute -top-1/2 left-1/2 text-center rounded-full">

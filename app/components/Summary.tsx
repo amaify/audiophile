@@ -16,7 +16,7 @@ const CheckoutSummary = ({ isError, isDisabled, setConfirmation }: Props) => {
 
   const submitBtnDisabled = !isDisabled || isError || cart.length === 0;
   return (
-    <div className="bg-white self-start px-[3.3rem] py-[3.2rem] w-[30%] max-h-[61.2rem] overflow-auto rounded-lg">
+    <div className="bg-white self-start px-[2.4rem] py-[3.2rem] w-full max-h-[61.2rem] overflow-auto rounded-lg md:px-[3.3rem] md:w-[30%]">
       <h6 className="[ heading-6 ] font-bold mb-[31px]">summary</h6>
       <div className="mb-[32px] flex flex-col gap-[24px]">
         {cart.length > 0 ? (

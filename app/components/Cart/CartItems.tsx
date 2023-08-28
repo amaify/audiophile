@@ -15,7 +15,7 @@ const CartItems = () => {
   const checkoutDisabled = cart.length === 0;
 
   return (
-    <div className="bg-white flex flex-col py-[3.1rem] pr-[3.1rem] pl-[3.3rem] rounded-lg w-[32.7rem] max-h-[48.8rem] overflow-auto absolute top-[6rem] right-0 z-30 lg:w-[37.7rem] md:top-[10rem]">
+    <div className="bg-white flex flex-col py-[3.1rem] pr-[2.4rem] pl-[2.4rem] rounded-lg w-[32.7rem] max-h-[48.8rem] overflow-auto absolute top-[6rem] right-0 z-30 lg:w-[37.7rem] md:top-[10rem] md:pr-[3.1rem] md:pl-[3.3rem]">
       <div className="mb-[3.1rem] flex">
         <h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${cart.length})`}</h6>
         <button
@@ -40,7 +40,7 @@ const CartItems = () => {
                 />
                 <div>
                   <p className="text-[1.5rem] text-black font-bold uppercase">{item.title}</p>
-                  <p className="text-[1.4rem] text-black font-bold opacity-50">{formatPrice(item.price)}</p>
+                  <p className="text-[1.4rem] text-black/50 font-bold">{formatPrice(item.price)}</p>
                 </div>
               </div>
               <IncOrDecCartItems

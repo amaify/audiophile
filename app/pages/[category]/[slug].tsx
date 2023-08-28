@@ -122,15 +122,14 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
               <div className="flex flex-col w-full gap-[5.6rem] md:gap-[3rem] md:flex-row">
                 {shuffledArray.map((item) => (
                   <div className="flex flex-col items-center w-full md:w-1/3 md:min-w-[35rem]" key={item.title}>
-                    <div className="w-full h-[31.8rem]">
+                    <div className="w-full bg-darkGrey h-[12rem] md:h-[31.8rem] md:bg-transparent">
                       <Image
                         src={item.previewImage.publicUrl}
                         alt={item.title}
-                        sizes="100vw"
                         width={350}
                         height={318}
                         loading="lazy"
-                        className="rounded-lg object-cover w-full h-full"
+                        className="rounded-lg object-contain w-full h-full"
                       />
                     </div>
                     <h5 className="[ heading-5 ] mt-[3.2rem] mb-[3.2rem] md:mt-[4rem]">{item.suggestionTitle}</h5>

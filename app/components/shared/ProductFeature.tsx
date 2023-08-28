@@ -8,7 +8,7 @@ interface Props {
 
 const productFeature = ({ productDetail }: Props) => {
   return (
-    <div className="flex flex-col gap-[8.8rem] mb-lg md:gap-[12.5rem] md:flex-row">
+    <div className="flex flex-col gap-[8.8rem] mb-[8.8rem] md:mb-lg md:gap-[12.5rem] md:flex-row">
       <div className="w-full md:w-1/2">
         <h3 className="[ heading-3 ] mb-[2.4rem] md:mb-[3.2rem]">features</h3>
         <div className="[ body-text ] [ product-feature ] text-black opacity-50">
