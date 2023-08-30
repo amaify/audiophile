@@ -21,14 +21,14 @@ function Notification() {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-75"
             >
-              <div className="bg-white flex gap-2 p-5 w-[38.4rem] shadow-[2px_2px_12px_1px_rgba(0,0,0,0.3)] rounded-md relative">
+              <span className="bg-white flex gap-2 p-5 w-[38.4rem] shadow-[2px_2px_12px_1px_rgba(0,0,0,0.3)] rounded-md relative">
                 {icon}
-                <p className="text-[1.4rem] font-medium">{message}</p>
+                <span className="text-[1.4rem] font-medium">{message}</span>
                 <XMarkIcon
                   className="absolute right-2 top-3 w-8 h-8 hover:fill-primary hover:cursor-pointer"
                   onClick={() => toast.dismiss(t.id)}
                 />
-              </div>
+              </span>
             </Transition>
           )}
         </ToastBar>

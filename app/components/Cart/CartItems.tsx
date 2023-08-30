@@ -4,7 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import clsx from "clsx";
-import { removeAllItems, selectCart } from "@/store/reducers/cartReducer";
+import { TrashIcon } from "@heroicons/react/24/solid";
+import {
+  decrementCartCount,
+  incrementCartCount,
+  removeAllItems,
+  removeFromCart,
+  selectCart
+} from "@/store/reducers/cartReducer";
 import { formatPrice, itemPriceSum } from "@/components/util/utils";
 import IncOrDecCartItems from "./IncOrDecCartItems";
 
@@ -13,9 +20,31 @@ const CartItems = () => {
   const { cart } = useSelector(selectCart);
 
   const checkoutDisabled = cart.length === 0;
+  const incrementCount = (id: string) => dispatch(incrementCartCount(id));
+  const decrementCount = (id: string, itemCount: number) => (itemCount > 1 ? dispatch(decrementCartCount(id)) : null);
+  const removeFromCartAction = (id: string) => dispatch(removeFromCart(id));
+
+  const decrementCountBtnText = (itemQuantity: number, id: string) => {
+    let decrementCountText = <span>&#8722;</span>;
+
+    if (itemQuantity === 1)
+      decrementCountText = (
+        <span onClick={() => removeFromCartAction(id)}>
+          <TrashIcon className="w-7 h-7 text-black/25 hover:fill-primary" />
+        </span>
+      );
+
+    return decrementCountText;
+  };
 
   return (
-    <div className="bg-white flex flex-col py-[3.1rem] pr-[2.4rem] pl-[2.4rem] rounded-lg w-[32.7rem] max-h-[48.8rem] overflow-auto absolute top-[6rem] right-0 z-30 lg:w-[37.7rem] md:top-[10rem] md:pr-[3.1rem] md:pl-[3.3rem]">
+    <div
+      className={clsx(
+        "bg-white flex flex-col py-[3.1rem] pr-[2.4rem] pl-[2.4rem] rounded-lg w-[32.7rem] max-h-[48.8rem] overflow-auto",
+        " absolute top-[6rem] right-0 z-30",
+        "lg:w-[37.7rem] md:top-[10rem] md:pr-[3.1rem] md:pl-[3.3rem]"
+      )}
+    >
       <div className="mb-[3.1rem] flex">
         <h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${cart.length})`}</h6>
         <button
@@ -45,8 +74,9 @@ const CartItems = () => {
               </div>
               <IncOrDecCartItems
                 itemQuantity={item.itemCount}
-                itemId={item.id}
-                isCartVisible
+                incrementAction={() => incrementCount(item.id)}
+                decrementAction={() => decrementCount(item.id, item.itemCount)}
+                decrementCountBtnText={decrementCountBtnText(item.itemCount, item.id)}
                 addedStyle="w-[9.6rem] h-[3.2rem]"
               />
             </div>

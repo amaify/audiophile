@@ -8,7 +8,7 @@ import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/get-products";
 import { Product, ProductsQuery } from "@/Types/data-fetching";
 import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
 import { addToCart } from "../../store/reducers/cartReducer";
-import { resetCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
+import { decrementCount, incrementCount, resetCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
 import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
 
 import Button from "../../components/shared/Button";
@@ -68,11 +68,15 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
     setShuffledArray(shuffleArray());
   }, [slug]);
 
+  const incrementCountAction = () => dispatch(incrementCount());
+  const decrementCountAction = () => (itemCount > 1 ? dispatch(decrementCount()) : null);
+  const decrementCountText = <span>&#8722;</span>;
+
   return (
     <ProductDetailsLayout pageTitle={productDetail?.title ?? ""} removeSubFooter={false}>
       <div>
         <button
-          className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[2.4rem] md:mb-[5.6rem]"
+          className="[ body-text ] opacity-50 capitalize hover:text-primary mb-[2.4rem] md:mb-[5.6rem]"
           onClick={() => router.back()}
           title="go back"
         >
@@ -99,7 +103,14 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
                 <p className="[ body-text ] opacity-50 mb-[2.4rem] md:mb-[3.2rem]">{productDetail.description}</p>
                 <h6 className="[ heading-6 ] mb-[3.1rem] md:mb-[4.7rem]">{formatPrice(+productDetail.price ?? 0)}</h6>
                 <div className="flex gap-[1.6rem]">
-                  <AddToCart isCartVisible={false} itemQuantity={itemCount} addedStyle="w-[12rem] h-[4.8rem]" />
+                  <AddToCart
+                    itemQuantity={itemCount}
+                    addedStyle="w-[12rem] h-[4.8rem]"
+                    incrementAction={incrementCountAction}
+                    decrementAction={decrementCountAction}
+                    decrementCountBtnText={decrementCountText}
+                    isDecrementBtnDisabled={itemCount === 1}
+                  />
                   <button
                     className="[ phile-btn phile-btn-1 !h-[4.8rem] ]"
                     onClick={() => {
