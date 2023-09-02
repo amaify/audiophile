@@ -1,4 +1,10 @@
 @mixin responsive_layout($break-point) {
+  @if ($break-point == bp-sm) {
+    @media only screen and (min-width: 640px) {
+      @content;
+    }
+  }
+
   @if ($break-point == bp-md) {
     @media only screen and (min-width: 768px) {
       @content;
@@ -12,7 +18,7 @@
   }
 }
 
-@mixin extended_background($section, $color) {
+@mixin extended_background($section, $color, $border-b-radius) {
   content: "";
   position: absolute;
   width: 100vw;
@@ -20,6 +26,8 @@
   right: 0;
   margin: 0 calc(-50vw + 50%);
   z-index: -1;
+  border-bottom-left-radius: $border-b-radius;
+  border-bottom-right-radius: $border-b-radius;
 
   @if ($section == hero) {
     background: $color;

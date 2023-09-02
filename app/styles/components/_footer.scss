@@ -3,7 +3,7 @@
 
   @include responsive_layout(bp-xl) {
     &::before {
-      @include extended_background(footer, black);
+      @include extended_background(footer, black, 0);
     }
   }
 }

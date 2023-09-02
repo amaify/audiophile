@@ -15,9 +15,9 @@ const NavigationLinks = ({ isFooter }: Props) => {
   return (
     <nav
       className={clsx(
-        "flex flex-col items-center gap-[1.6rem] flex-wrap md:flex-row md:gap-[3.4rem]",
+        "flex flex-col items-center gap-[1.6rem] flex-wrap sm:flex-row lg:gap-[3.4rem]",
         !isFooter && "md:mr-auto",
-        isFooter && "mt-[4.8rem] md:mt-0"
+        isFooter && "mt-[4.8rem] sm:mt-[3.2rem] lg:mt-0"
       )}
     >
       {navLinks.map((link) => (

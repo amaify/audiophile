@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Popover, Transition } from "@headlessui/react";
+import clsx from "clsx";
 import HamburgerIcon from "@/assets/shared/tablet/icon-hamburger.svg";
 import ProductThumbnails from "./ProductThumbnails";
 import Brand from "./Brand";
@@ -8,10 +9,10 @@ import Cart from "../Cart/Cart";
 const MobileNav = () => {
   return (
     <Popover className="relative z-50 w-full lg:hidden" as="nav">
-      {({ close }) => (
+      {({ close, open }) => (
         <>
-          <section className="w-full flex items-center px-6 pt-8 pb-14 z-50 relative border-b border-b-white/20">
-            <Popover.Button className="w-8 h-8 mr-auto md:mr-[4.2rem]">
+          <section className="w-full flex items-center px-6 pt-8 pb-14 z-50 relative border-b border-b-white/20 sm:px-0">
+            <Popover.Button className="w-8 h-8 mr-auto sm:mr-[4.2rem]">
               <Image src={HamburgerIcon} alt="Hamburger menu" className="w-full h-full" />
             </Popover.Button>
             <Brand />
@@ -29,9 +30,11 @@ const MobileNav = () => {
               leaveFrom="translate-y-0"
               leaveTo="-translate-y-full"
             >
-              <Popover.Panel className="px-6 pb-12 pt-44 bg-white rounded-b-lg md:pt-40">
-                <ProductThumbnails onClick={close} />
-              </Popover.Panel>
+              <div className={clsx("rounded-b-lg", open && "[ mobile-nav-popup ]")}>
+                <Popover.Panel className="px-6 pb-12 pt-44 bg-white rounded-b-lg sm:px-0 md:pt-40">
+                  <ProductThumbnails onClick={close} />
+                </Popover.Panel>
+              </div>
             </Transition.Child>
           </div>
         </>

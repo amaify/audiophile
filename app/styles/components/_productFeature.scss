@@ -8,7 +8,7 @@
 .sub-page-header {
   @include responsive_layout(bp-xl) {
     &::before {
-      @include extended_background(product, black);
+      @include extended_background(product, black, 0);
     }
   }
 }
