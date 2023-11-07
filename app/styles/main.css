@@ -177,9 +177,9 @@ h6 {
   color: #ffffff;
 }
 .phile-btn-4:hover {
-  background: #4c4c4c;
-  border: 1px solid #4c4c4c;
-  color: #ffffff;
+  background: transparent;
+  border: 1px solid #000000;
+  color: #000000;
 }
 
 .phile-btn-3 span:first-child {

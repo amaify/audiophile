@@ -6,7 +6,7 @@ import type { Product, ProductParam, ProductsQuery } from "@/Types/data-fetching
 import { GET_PRODUCTS } from "@/queries/get-products";
 import client from "@/helpers/apolloClient";
 
-type Category = "headphones" | "earphones" | "speakers";
+type Category = ("headphones" | "earphones" | "speakers")[];
 interface Props {
   data: Product[];
   error?: any;
@@ -45,7 +45,7 @@ const ProductsPage = ({ data, error }: Props) => {
 export default ProductsPage;
 
 export async function getStaticPaths() {
-  const categories: Category[] = ["headphones", "speakers", "earphones"];
+  const categories: Category = ["headphones", "speakers", "earphones"];
   const paths = categories.map((category) => ({ params: { category } }));
   return {
     paths,

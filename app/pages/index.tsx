@@ -5,8 +5,6 @@ import Footer from "../components/shared/Footer";
 import ProductThumbnails from "../components/shared/ProductThumbnails";
 import SpeakerZX9Image from "../assets/home/desktop/image-speaker-zx9.png";
 import CirclePattern from "../assets/home/desktop/pattern-circles.svg";
-import Speakerzx7Image from "../assets/home/desktop/image-speaker-zx7.jpg";
-import EarphoneYX1Image from "../assets/home/desktop/image-earphones-yx1.jpg";
 import Button from "../components/shared/Button";
 import SubFooter from "../components/shared/SubFooter";
 

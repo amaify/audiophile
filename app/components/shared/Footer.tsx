@@ -11,7 +11,7 @@ const footerSocialLinks = [
   { title: "Facebook", imgSrc: FacebookIcon },
   { title: "Twitter", imgSrc: TwitterIcon },
   { title: "Instagram", imgSrc: InstagramIcon }
-];
+] as const;
 
 const Footer = () => {
   return (

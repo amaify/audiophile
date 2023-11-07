@@ -15,6 +15,7 @@ import Button from "../../components/shared/Button";
 import AddToCart from "../../components/Cart/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
 import { formatPrice } from "../../components/util/utils";
+import BackButton from "@/components/shared/BackButton";
 
 interface Params {
   params: {
@@ -75,13 +76,7 @@ const ProductDetails = ({ data: productDetail, allProducts }: Props) => {
   return (
     <ProductDetailsLayout pageTitle={productDetail?.title ?? ""} removeSubFooter={false}>
       <div>
-        <button
-          className="[ body-text ] opacity-50 capitalize hover:text-primary mb-[2.4rem] md:mb-[5.6rem]"
-          onClick={() => router.back()}
-          title="go back"
-        >
-          go back
-        </button>
+        <BackButton />
 
         {productDetail ? (
           <>

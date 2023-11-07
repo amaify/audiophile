@@ -1,5 +1,3 @@
-/* eslint-disable no-shadow */
-import { CartItem } from "../../store/Types/Cart";
 import { FormInput } from "../../Types/FormInput";
 
 interface NavigationLInks {
@@ -20,25 +18,23 @@ export const formatPrice = (productPrice: number) =>
     currency: "GBP"
   }).format(productPrice);
 
-export const itemPriceSum = (cartItems: CartItem[]) => cartItems.reduce((acc, curr) => acc + curr.totalPrice, 0);
-
 export const validatePayButton = (value: FormInput, paymentMethod: string) => {
   let isDisabled = false;
   if (paymentMethod === "online") {
-    isDisabled = Object.values(value).every((value) => value !== "");
+    isDisabled = Object.values(value).every((inputValue) => inputValue !== "");
     return isDisabled;
   }
 
   if (paymentMethod === "cash") {
     const filteredValue = Object.keys(value)
-      .filter((value) => value !== "cardNumber" && value !== "cardPin")
+      .filter((cardValue) => cardValue !== "cardNumber" && cardValue !== "cardPin")
       .reduce((obj, key) => {
         return Object.assign(obj, {
           [key]: value[key as keyof FormInput]
         });
       }, {});
 
-    isDisabled = Object.values(filteredValue).every((value) => value !== "");
+    isDisabled = Object.values(filteredValue).every((filtered) => filtered !== "");
     return isDisabled;
   }
 

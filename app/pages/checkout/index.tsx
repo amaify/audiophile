@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { BanknotesIcon } from "@heroicons/react/24/solid";
@@ -9,15 +8,16 @@ import { validateInputField } from "@/components/util/validateInputFields";
 import { Alert, AlertType } from "@/components/shared/Alert";
 import SubPageHeader from "@/components/shared/SubPageHeader";
 import type { FormInput } from "../../Types/FormInput";
+import CheckoutSectionTitle from "@/components/checkout/CheckoutSectionTitle";
+import BackButton from "@/components/shared/BackButton";
 
 const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
-const CheckoutSummary = dynamic(import("@/components/Summary"), { ssr: false });
+const CheckoutSummary = dynamic(import("@/components/checkout/CheckoutSummary"), { ssr: false });
 const Input = dynamic(import("@/components/shared/Input"), { ssr: false });
-const Confirmation = dynamic(import("@/components/PaymentConfirmation"), { ssr: false });
+const PaymentConfirmation = dynamic(import("@/components/checkout/PaymentConfirmation"), { ssr: false });
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
 const Checkout = () => {
-  const router = useRouter();
   const { cart } = useSelector(selectCart);
 
   // if (cart.length === 0) router.push("/");
@@ -71,28 +71,22 @@ const Checkout = () => {
 
   return (
     <section>
-      {confirmation && <Confirmation isOpen={confirmation} setConfirmation={setConfirmation} />}
+      {confirmation && <PaymentConfirmation isOpen={confirmation} setConfirmation={setConfirmation} />}
       <Meta pageTitle="Checkout" />
       <SubPageHeader />
       <div className="bg-grey px-[2.4rem] pt-[1.6rem] pb-[14.1rem] md:px-[17.5rem] md:pt-[7.9rem]">
-        <button
-          className="[ body-text ] opacity-50 capitalize  hover:text-primary mb-[2.4rem] hover:opacity-100 md:mb-[5.6rem]"
-          onClick={() => router.back()}
-        >
-          go back
-        </button>
+        <BackButton />
 
         <div className="flex flex-col gap-[3rem] md:flex-row">
           <form className="bg-white px-[2.4rem] pt-[2.4rem] pb-[4.8rem] w-full rounded-lg md:w-[70%] md:pt-[5.4rem] md:px-[4.8rem]">
-            <h1 className="[ heading-3 ] mb-[2.4rem] md:mb-[4.1px]">Checkout</h1>
+            <h1 className="[ heading-3 ] mb-[2.4rem] md:mb-[4.1rem]">Checkout</h1>
             {cart.length === 0 && (
               <Alert message="To make an order, you should add an item to the cart!" type={AlertType.Warning} />
             )}
             {cart.length > 0 && (
               <>
                 <section className="flex flex-col mb-[3.4rem] md:mb-[5.3rem]">
-                  <h2 className="[ sub-title ] mb-[1.6rem]">Billing details</h2>
-
+                  <CheckoutSectionTitle title="Billing details" />
                   <div className="flex flex-col gap-[2.4rem] mb-[2.4rem] md:flex-row md:gap-[1.6rem]">
                     <Input
                       control="text"
@@ -138,7 +132,7 @@ const Checkout = () => {
                 </section>
 
                 <section className="flex flex-col mb-[5.3rem]">
-                  <h2 className="[ sub-title ] mb-[1.6rem]">Shipping info</h2>
+                  <CheckoutSectionTitle title="Shipping info" />
                   <Input
                     control="text"
                     id="address"
@@ -198,8 +192,7 @@ const Checkout = () => {
                 </section>
 
                 <section className="flex flex-col mb-0">
-                  <h2 className="[ sub-title ] mb-[1.6rem]">Payment Details</h2>
-
+                  <CheckoutSectionTitle title="Payment details" />
                   <div className="flex flex-col gap-[1.6rem] md:flex-row">
                     <p className="text-[1.2rem] text-black capitalize font-bold w-1/2">Payment Method</p>
                     <div className="flex flex-col gap-[1.6rem] w-full mb-[2.4rem] md:w-/12">

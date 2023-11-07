@@ -10,7 +10,7 @@ interface Props {
 
 const Navigation = ({ removeHero }: Props) => {
   return (
-    <nav className={clsx("hidden lg:flex lg:flex-wrap lg:pt-8", !removeHero && "[ nav ]")}>
+    <nav className={clsx("hidden lg:flex lg:flex-wrap lg:py-[3.5rem]", !removeHero && "[ nav ]")}>
       <Brand />
       <NavigationLinks />
       <Cart />

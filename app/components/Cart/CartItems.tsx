@@ -8,12 +8,13 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import {
   decrementCartCount,
   incrementCartCount,
-  removeAllItems,
+  resetCart,
   removeFromCart,
   selectCart
 } from "@/store/reducers/cartReducer";
-import { formatPrice, itemPriceSum } from "@/components/util/utils";
+import { formatPrice } from "@/components/util/utils";
 import IncOrDecCartItems from "./IncOrDecCartItems";
+import { sumAllPrice } from "@/store/util/util";
 
 const CartItems = () => {
   const dispatch = useDispatch();
@@ -41,15 +42,15 @@ const CartItems = () => {
     <div
       className={clsx(
         "bg-white flex flex-col py-[3.1rem] pr-[2.4rem] pl-[2.4rem] rounded-lg w-[32.7rem] max-h-[48.8rem] overflow-auto",
-        " absolute top-[6rem] right-0 z-30",
-        "lg:w-[37.7rem] md:top-[10rem] md:pr-[3.1rem] md:pl-[3.3rem]"
+        "absolute top-[6rem] right-0 z-30",
+        "lg:w-[37.7rem] md:top-[7.7rem] md:pr-[3.1rem] md:pl-[3.3rem]"
       )}
     >
       <div className="mb-[3.1rem] flex">
         <h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${cart.length})`}</h6>
         <button
           className="[ body-text ] text-black opacity-50 capitalize border-none outline-none hover:cursor-pointer underline hover:text-primary hover:opacity-100"
-          onClick={() => cart.length > 0 && dispatch(removeAllItems())}
+          onClick={() => cart.length > 0 && dispatch(resetCart())}
         >
           remove all
         </button>
@@ -88,7 +89,7 @@ const CartItems = () => {
 
       <div className="flex mb-[2.4rem]">
         <p className="mr-auto [ body-text ] text-black opacity-50 uppercase">total</p>
-        <p className="[ body-text ] text-black">{formatPrice(itemPriceSum(cart))}</p>
+        <p className="[ body-text ] text-black">{formatPrice(sumAllPrice(cart))}</p>
       </div>
       <Link
         href="/checkout"

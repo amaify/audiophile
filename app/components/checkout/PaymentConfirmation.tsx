@@ -5,8 +5,8 @@ import Image from "next/image";
 import { Dialog } from "@headlessui/react";
 // eslint-disable-next-line import/extensions
 import { selectCart } from "@/store/reducers/cartReducer";
-import LinkButton from "./shared/Link";
-import { formatPrice } from "./util/utils";
+import LinkButton from "../shared/Link";
+import { formatPrice } from "../util/utils";
 
 interface Props {
   isOpen: boolean;
