@@ -1,17 +1,5 @@
 import { FormInput } from "../../Types/FormInput";
 
-interface NavigationLInks {
-  name: "home" | "headphones" | "speakers" | "earphones";
-  href: string;
-}
-
-export const navLinks: NavigationLInks[] = [
-  { name: "home", href: "/" },
-  { name: "headphones", href: "/headphones" },
-  { name: "speakers", href: "/speakers" },
-  { name: "earphones", href: "/earphones" }
-];
-
 export const formatPrice = (productPrice: number) =>
   new Intl.NumberFormat("en-GB", {
     style: "currency",

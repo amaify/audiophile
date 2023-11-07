@@ -2,7 +2,18 @@ import React from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { navLinks } from "../util/utils";
+
+interface NavigationLInks {
+  name: "home" | "headphones" | "speakers" | "earphones";
+  href: "/" | "/headphones" | "/speakers" | "/earphones";
+}
+
+export const navLinks: NavigationLInks[] = [
+  { name: "home", href: "/" },
+  { name: "headphones", href: "/headphones" },
+  { name: "speakers", href: "/speakers" },
+  { name: "earphones", href: "/earphones" }
+];
 
 interface Props {
   isFooter?: boolean;
