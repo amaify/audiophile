@@ -3,10 +3,10 @@ import { type ChangeEvent, type FocusEvent } from "react";
 import { BanknotesIcon } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
-import { Alert, AlertType } from "../shared/Alert";
-import CheckoutSectionTitle from "./CheckoutSectionTitle";
 import { selectCart } from "@/store/reducers/cartReducer";
 import { FormInput } from "@/Types/FormInput";
+import { Alert, AlertType } from "../shared/Alert";
+import CheckoutSectionTitle from "./CheckoutSectionTitle";
 
 const Input = dynamic(import("@/components/shared/Input"), { ssr: false });
 

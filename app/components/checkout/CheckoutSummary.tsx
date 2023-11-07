@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { clsx } from "clsx";
+import { calculateVAT, sumAllPrice } from "@/store/util/util";
 import { selectCart } from "../../store/reducers/cartReducer";
 import { formatPrice } from "../util/utils";
-import { calculateVAT, sumAllPrice } from "@/store/util/util";
 
 interface Props {
   isDisabled: boolean;

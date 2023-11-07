@@ -13,8 +13,8 @@ import {
   selectCart
 } from "@/store/reducers/cartReducer";
 import { formatPrice } from "@/components/util/utils";
-import IncOrDecCartItems from "./IncOrDecCartItems";
 import { sumAllPrice } from "@/store/util/util";
+import IncOrDecCartItems from "./IncOrDecCartItems";
 
 const CartItems = () => {
   const dispatch = useDispatch();

@@ -7,6 +7,7 @@ import client from "@/helpers/apolloClient";
 import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/get-products";
 import { Product, ProductsQuery } from "@/Types/data-fetching";
 import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
+import BackButton from "@/components/shared/BackButton";
 import { addToCart } from "../../store/reducers/cartReducer";
 import { decrementCount, incrementCount, resetCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
 import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
@@ -15,7 +16,6 @@ import Button from "../../components/shared/Button";
 import AddToCart from "../../components/Cart/IncOrDecCartItems";
 import ProductFeature from "../../components/shared/ProductFeature";
 import { formatPrice } from "../../components/util/utils";
-import BackButton from "@/components/shared/BackButton";
 
 interface Params {
   params: {

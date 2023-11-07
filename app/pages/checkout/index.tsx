@@ -3,9 +3,9 @@ import dynamic from "next/dynamic";
 import { validatePayButton } from "@/components/util/utils";
 import { validateInputField } from "@/components/util/validateInputFields";
 import SubPageHeader from "@/components/shared/SubPageHeader";
-import type { FormInput } from "../../Types/FormInput";
 import BackButton from "@/components/shared/BackButton";
 import CheckoutForm from "@/components/checkout/CheckoutForm";
+import type { FormInput } from "../../Types/FormInput";
 
 const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
 const CheckoutSummary = dynamic(import("@/components/checkout/CheckoutSummary"), { ssr: false });
