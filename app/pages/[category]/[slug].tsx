@@ -6,6 +6,8 @@ import client from "@/helpers/apolloClient";
 import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/get-products";
 import { Product, ProductsQuery } from "@/Types/data-fetching";
 import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
+import { Alert } from "@/components/shared/Alert";
+import ProductSuggestion from "@/components/layout/ProductSuggestion";
 import { addToCart } from "../../store/reducers/cartReducer";
 import { resetCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
 import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
@@ -13,8 +15,6 @@ import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
 import AddToCart from "../../components/Cart/CartItemCounter";
 import ProductFeature from "../../components/shared/ProductFeature";
 import { formatPrice } from "../../components/util/utils";
-import { Alert } from "@/components/shared/Alert";
-import ProductSuggestion from "@/components/layout/ProductSuggestion";
 
 interface Props {
   data: Product;

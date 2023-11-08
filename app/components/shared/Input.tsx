@@ -2,7 +2,7 @@ import React, { ComponentPropsWithoutRef } from "react";
 import { clsx } from "clsx";
 
 interface Props extends ComponentPropsWithoutRef<"input"> {
-  control: string;
+  control: "radio" | "text";
   label: string;
   name: string;
   value: string | number;
