@@ -4,6 +4,7 @@ import Footer from "../shared/Footer";
 import ProductThumbnails from "../shared/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
 import SubPageHeader from "../shared/SubPageHeader";
+import BackButton from "../shared/BackButton";
 
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
@@ -21,7 +22,11 @@ const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter }: Props) =
       <SubPageHeader />
 
       <div className="px-[2.4rem] md:px-[17.5rem]">
-        <div className="mt-[1.6rem] mb-[16rem] md:mt-[7.9rem]">{children}</div>
+        <div className="mt-[1.6rem] mb-[16rem] md:mt-[7.9rem]">
+          <BackButton />
+
+          {children}
+        </div>
 
         {!removeSubFooter && (
           <div className="flex flex-col gap-[16rem]">

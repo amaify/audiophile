@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { selectCart } from "@/store/reducers/cartReducer";
 import { FormInput } from "@/Types/FormInput";
-import { Alert, AlertType } from "../shared/Alert";
+import { Alert } from "../shared/Alert";
 import CheckoutSectionTitle from "./CheckoutSectionTitle";
 
 const Input = dynamic(import("@/components/shared/Input"), { ssr: false });
@@ -38,7 +38,7 @@ export default function CheckoutForm({
     <form className="bg-white px-[2.4rem] pt-[2.4rem] pb-[4.8rem] w-full rounded-lg md:w-[70%] md:pt-[5.4rem] md:px-[4.8rem]">
       <h1 className="[ heading-3 ] mb-[2.4rem] md:mb-[4.1rem]">Checkout</h1>
       {cart.length === 0 && (
-        <Alert message="To make an order, you should add an item to the cart!" type={AlertType.Warning} />
+        <Alert message="To make an order, you should add an item to the cart!" alertVariant="warning" />
       )}
       {cart.length > 0 && (
         <>

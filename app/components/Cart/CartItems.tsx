@@ -1,42 +1,18 @@
-/* eslint-disable import/extensions */
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import clsx from "clsx";
-import { TrashIcon } from "@heroicons/react/24/solid";
-import {
-  decrementCartCount,
-  incrementCartCount,
-  resetCart,
-  removeFromCart,
-  selectCart
-} from "@/store/reducers/cartReducer";
+import { resetCart, selectCart } from "@/store/reducers/cartReducer";
 import { formatPrice } from "@/components/util/utils";
 import { sumAllPrice } from "@/store/util/util";
-import IncOrDecCartItems from "./IncOrDecCartItems";
+import CartItemCounter from "./CartItemCounter";
 
 const CartItems = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector(selectCart);
 
   const checkoutDisabled = cart.length === 0;
-  const incrementCount = (id: string) => dispatch(incrementCartCount(id));
-  const decrementCount = (id: string, itemCount: number) => (itemCount > 1 ? dispatch(decrementCartCount(id)) : null);
-  const removeFromCartAction = (id: string) => dispatch(removeFromCart(id));
-
-  const decrementCountBtnText = (itemQuantity: number, id: string) => {
-    let decrementCountText = <span>&#8722;</span>;
-
-    if (itemQuantity === 1)
-      decrementCountText = (
-        <span onClick={() => removeFromCartAction(id)}>
-          <TrashIcon className="w-7 h-7 text-black/25 hover:fill-primary" />
-        </span>
-      );
-
-    return decrementCountText;
-  };
 
   return (
     <div
@@ -73,13 +49,7 @@ const CartItems = () => {
                   <p className="text-[1.4rem] text-black/50 font-bold">{formatPrice(item.price)}</p>
                 </div>
               </div>
-              <IncOrDecCartItems
-                itemQuantity={item.itemCount}
-                incrementAction={() => incrementCount(item.id)}
-                decrementAction={() => decrementCount(item.id, item.itemCount)}
-                decrementCountBtnText={decrementCountBtnText(item.itemCount, item.id)}
-                addedStyle="w-[9.6rem] h-[3.2rem]"
-              />
+              <CartItemCounter addedStyle="w-[9.6rem] h-[3.2rem]" cartItem={item} />
             </div>
           ))
         ) : (

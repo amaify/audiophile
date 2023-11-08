@@ -5,11 +5,12 @@ import ProductCategoryLayout from "@/components/layout/ProductCategoryLayout";
 import type { Product, ProductParam, ProductsQuery } from "@/Types/data-fetching";
 import { GET_PRODUCTS } from "@/queries/get-products";
 import client from "@/helpers/apolloClient";
+import { Alert } from "@/components/shared/Alert";
 
 type Category = ("headphones" | "earphones" | "speakers")[];
 interface Props {
   data: Product[];
-  error?: any;
+  error: string;
 }
 
 const ProductsPage = ({ data, error }: Props) => {
@@ -17,7 +18,12 @@ const ProductsPage = ({ data, error }: Props) => {
   const { query } = router;
   const pageTitle = query.category as string;
 
-  if (error) return <h1>{error}</h1>;
+  if (error)
+    return (
+      <ProductCategoryLayout layoutTitle={pageTitle}>
+        <Alert message={error} alertVariant="error" />
+      </ProductCategoryLayout>
+    );
 
   return (
     <ProductCategoryLayout layoutTitle={pageTitle}>
@@ -55,23 +61,25 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: ProductParam) {
   const { category } = context.params;
-  const { data, error } = await client.query<ProductsQuery>({
-    query: GET_PRODUCTS,
-    variables: { category }
-  });
+  try {
+    const { data } = await client.query<ProductsQuery>({
+      query: GET_PRODUCTS,
+      variables: { category }
+    });
 
-  if (!data) {
     return {
       props: {
-        error
+        data: data.products
+      },
+      revalidate: 60
+    };
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return {
+      props: {
+        error: `Fetch failed: Could not retrieve page data for ${category} due to server error, please try again!`
       }
     };
   }
-
-  return {
-    props: {
-      data: data.products
-    },
-    revalidate: 60
-  };
 }
