@@ -1,11 +1,11 @@
 import React from "react";
 import { useRouter } from "next/router";
-import ProductCategory from "@/components/shared/ProductCategory";
-import ProductCategoryLayout from "@/components/layout/ProductCategoryLayout";
 import type { Product, ProductParam, ProductsQuery } from "@/Types/data-fetching";
 import { GET_PRODUCTS } from "@/queries/get-products";
 import client from "@/helpers/apolloClient";
 import { Alert } from "@/components/shared/Alert";
+import ProductCategory from "@/components/shared/ProductCategory";
+import ProductCategoryLayout from "@/components/layout/ProductCategoryLayout";
 
 type Category = ("headphones" | "earphones" | "speakers")[];
 interface Props {

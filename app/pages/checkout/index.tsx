@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { validatePayButton } from "@/components/util/utils";
 import { validateInputField } from "@/components/util/validateInputFields";
-import SubPageHeader from "@/components/shared/SubPageHeader";
+import SubPageHeader from "@/components/layout/SubPageHeader";
 import BackButton from "@/components/shared/BackButton";
 import CheckoutForm from "@/components/checkout/CheckoutForm";
 import type { FormInput } from "../../Types/FormInput";

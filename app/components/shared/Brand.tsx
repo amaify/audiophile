@@ -10,7 +10,7 @@ interface Props {
 
 const Brand = ({ isFooter }: Props) => {
   return (
-    <Link href="/" className={clsx("mr-auto hover:cursor-pointer", isFooter && "mr-0 md:mr-auto")}>
+    <Link href="/" className={clsx("hover:cursor-pointer", isFooter ? "mr-0 md:mr-auto" : "mr-auto ")}>
       <Image src={BrandLogo} alt="Brand Logo of Audiophile" />
     </Link>
   );

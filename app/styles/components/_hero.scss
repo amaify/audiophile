@@ -13,9 +13,8 @@
     height: 72.9rem;
   }
 
-  @include responsive_layout(bp-md) {
+  @include responsive_layout(bp-lg) {
     background-image: url("../assets/home/desktop/image-hero.jpg");
-    background-repeat: no-repeat;
     background-position: 100% 50%;
     background-size: cover;
     width: 100%;

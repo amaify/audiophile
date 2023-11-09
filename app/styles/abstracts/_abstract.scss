@@ -14,7 +14,7 @@ h6 {
   line-height: 4rem;
   letter-spacing: 2px;
 
-  @media only screen and (min-width: "768px") {
+  @include responsive_layout(bp-lg) {
     font-size: 5.6rem;
     line-height: 58px;
   }
@@ -25,7 +25,7 @@ h6 {
   line-height: normal;
   letter-spacing: 1px;
 
-  @media only screen and (min-width: "768px") {
+  @include responsive_layout(bp-lg) {
     font-size: 4rem;
     line-height: 44px;
     letter-spacing: 1.5px;
@@ -37,7 +37,7 @@ h6 {
   line-height: 36px;
   letter-spacing: 0.857px;
 
-  @media only screen and (min-width: "768px") {
+  @include responsive_layout(bp-lg) {
     font-size: 3.2rem;
     letter-spacing: 1.15px;
   }
@@ -60,7 +60,7 @@ h6 {
   line-height: 24px;
   letter-spacing: 1.3px;
 
-  @include responsive_layout(bp-md) {
+  @include responsive_layout(bp-lg) {
     font-size: 1.8rem;
     line-height: 24px;
     letter-spacing: 1.3px;
