@@ -9,6 +9,7 @@
     "lint": "next lint",
     "check:lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "check:types": "tsc",
+    "check:all": "yarn check:lint && yarn check:types",
     "postinstall": "ts-gql build",
     "ts-gql:build": "ts-gql build",
     "ts-gql:watch": "ts-gql watch"

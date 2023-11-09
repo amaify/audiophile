@@ -29,13 +29,16 @@
 }
 
 .layout-padding {
-  padding: 0 2.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
 
   @include responsive_layout(bp-sm) {
-    padding: 0 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 
   @include responsive_layout(bp-lg) {
-    padding: 0 17.5rem;
+    padding-left: 17.5rem;
+    padding-right: 17.5rem;
   }
 }
