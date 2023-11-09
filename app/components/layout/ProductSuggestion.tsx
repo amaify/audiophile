@@ -34,10 +34,10 @@ export default function ProductSuggestion({ allProducts, data: productDetail }: 
   return (
     <div className="mt-[10rem] mb-[12rem] md:mt-lg md:mb-[25rem]">
       <h3 className="[ heading-3 ] text-center mb-[4rem] md:mb-[6.4rem]">you may also like</h3>
-      <div className="flex flex-col w-full gap-[5.6rem] md:gap-[3rem] md:flex-row">
+      <div className="flex flex-col w-full gap-[5.6rem] md:gap-[3rem] md:flex-row md:overflow-auto">
         {shuffledArray.map((item) => (
           <div className="flex flex-col items-center w-full md:w-1/3 md:min-w-[35rem]" key={item.title}>
-            <div className="w-full bg-darkGrey h-[12rem] md:h-[31.8rem] md:bg-transparent">
+            <div className="w-full bg-darkGrey h-[12rem] sm:h-[31.8rem]">
               <Image
                 src={item.previewImage.publicUrl}
                 alt={item.title}

@@ -53,6 +53,12 @@ h6 {
   font-size: 2.4rem;
   line-height: 33px;
   letter-spacing: 1.7px;
+
+  @include responsive_layout(bp-lg) {
+    font-size: 2.4rem;
+    line-height: 33px;
+    letter-spacing: 1.7px;
+  }
 }
 
 .heading-6 {

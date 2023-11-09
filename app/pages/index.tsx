@@ -19,16 +19,16 @@ const Home: NextPage = () => {
 
         <div className="flex flex-col gap-[12rem] relative w-full md:gap-[20rem]">
           <div className="flex flex-col gap-12">
-            <div className="bg-primary rounded-lg relative w-full flex h-[60rem] pb-[5.5rem] overflow-hidden md:h-[56rem] md:pr-[9.5rem]">
-              <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[17.2rem] h-[20.9rem] z-10 md:top-[15%] md:left-[11.8rem] md:h-[49.3rem] md:w-[41.23rem] md:-translate-x-0 md:-translate-y-0">
+            <div className="bg-primary rounded-lg relative w-full flex h-[60rem] pb-[5.5rem] overflow-hidden lg:h-[56rem] lg:pr-[9.5rem]">
+              <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[17.2rem] h-[20.9rem] z-10 lg:top-[15%] lg:left-[11.8rem] lg:h-[49.3rem] lg:w-[41.23rem] lg:-translate-x-0 lg:-translate-y-0">
                 <Image src={SpeakerZX9Image} alt="ZX9 Speaker" className="w-full" />
               </div>
-              <div className="absolute scale-[1.8] md:-top-[12%] md:-left-[11%] md:scale-105 z-0">
+              <div className="absolute scale-[1.8] lg:-top-[12%] lg:-left-[11%] lg:scale-105 z-0">
                 <Image src={CirclePattern} alt="Pattern of Circles" className="object-cover" />
               </div>
 
-              <div className="w-full flex items-end justify-center relative z-20 md:items-center md:justify-end">
-                <div className="w-[34.9rem] text-center px-[2.4rem] md:text-left md:px-0">
+              <div className="w-full flex items-end justify-center relative z-20 lg:items-center lg:justify-end">
+                <div className="w-[34.9rem] text-center px-[2.4rem] lg:text-left lg:px-0">
                   <h1 className="[ heading-1 ] text-white mb-6">
                     <span className="block">zx9</span>
                     <span>speaker</span>
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
                   <p className="[ body-text ] text-white w-full mb-[40px] opacity-[0.75]">
                     Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.
                   </p>
-                  <div className="flex justify-center md:justify-start">
+                  <div className="flex justify-center lg:justify-start">
                     <Button btnText="see product" btnType={4} to="/speakers/zx9-speaker" />
                   </div>
                 </div>
