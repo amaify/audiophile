@@ -16,7 +16,7 @@
   width: 16rem;
   height: 4.8rem;
 
-  @include responsive_layout(bp-md) {
+  @include responsive_layout(bp-lg) {
     width: 16.8rem;
     height: 4rem;
   }

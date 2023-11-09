@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Footer from "../shared/Footer";
 import ProductThumbnails from "../shared/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
-import SubPageHeader from "../shared/SubPageHeader";
+import SubPageHeader from "./SubPageHeader";
 import BackButton from "../shared/BackButton";
 
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
@@ -18,13 +18,11 @@ const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter }: Props) =
   return (
     <>
       <Meta pageTitle={pageTitle} />
-
       <SubPageHeader />
 
-      <div className="px-[2.4rem] md:px-[17.5rem]">
-        <div className="mt-[1.6rem] mb-[16rem] md:mt-[7.9rem]">
+      <div className="[ layout-padding ]">
+        <div className="mt-[1.6rem] mb-[16rem] lg:mt-[7.9rem]">
           <BackButton />
-
           {children}
         </div>
 

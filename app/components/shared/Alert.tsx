@@ -13,7 +13,7 @@ export const Alert = ({ message, alertVariant }: Props) => {
     error: <XCircleIcon className="w-8 h-8 " aria-hidden="true" />
   };
   return (
-    <div className={`relative bg-white shadow rounded-md overflow-hidden border border-${alertVariant} mb-[20px] p-6`}>
+    <div className={`relative bg-white shadow rounded-md overflow-hidden border border-${alertVariant} p-6`}>
       <div
         className={`absolute top-0 -left-[-40%] w-[100%] h-[250%] -translate-x-24 bg-gradient-to-r from-${alertVariant} to-transparent mix-blend-multiply opacity-20 rotate-12 blur-3xl`}
       />

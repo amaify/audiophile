@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import clsx from "clsx";
 import NavigationLinks from "./NavLink";
 import FacebookIcon from "../../assets/shared/desktop/icon-facebook.svg";
 import TwitterIcon from "../../assets/shared/desktop/icon-twitter.svg";
@@ -15,7 +16,14 @@ const footerSocialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="relative after:content-[' '] after:w-[10.1rem] after:h-[.4rem] after:bg-primary after:block after:absolute after:top-0 after:left-1/2 after:-translate-x-1/2 md:after:-translate-x-0 md:after:left-[17.5rem] [ footer ]">
+    <footer
+      className={clsx(
+        "relative after:content-[' '] after:w-[10.1rem] after:h-[.4rem] after:bg-primary after:block",
+        "after:absolute after:top-0 after:left-1/2 after:-translate-x-1/2",
+        "md:after:-translate-x-0 sm:after:left-[8.8rem]",
+        "md:after:left-[17.5rem] [ footer ]"
+      )}
+    >
       <div className="bg-black pt-[5.2rem] pb-[4.8rem] px-[2.4rem] w-full sm:px-[4rem] lg:px-[5rem] xl:px-[17.5rem] xl:pt-[7.5rem]">
         <nav className="flex flex-col items-center mb-[4.8rem] flex-wrap sm:items-start lg:flex-row lg:mb-[3.6rem]">
           <Brand isFooter />

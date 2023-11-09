@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { validatePayButton } from "@/components/util/utils";
 import { validateInputField } from "@/components/util/validateInputFields";
-import SubPageHeader from "@/components/shared/SubPageHeader";
+import SubPageHeader from "@/components/layout/SubPageHeader";
 import BackButton from "@/components/shared/BackButton";
 import CheckoutForm from "@/components/checkout/CheckoutForm";
 import type { FormInput } from "../../Types/FormInput";
@@ -26,7 +26,7 @@ const Checkout = () => {
     phoneNumber: "",
     zipCode: ""
   });
-  const [confirmation, setConfirmation] = useState<boolean>(false);
+  const [confirmation, setConfirmation] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"online" | "cash">("online");
   const [error, setError] = useState<Record<string, string>>({});
 
@@ -63,7 +63,7 @@ const Checkout = () => {
       {confirmation && <PaymentConfirmation isOpen={confirmation} setConfirmation={setConfirmation} />}
       <Meta pageTitle="Checkout" />
       <SubPageHeader />
-      <div className="bg-grey px-[2.4rem] pt-[1.6rem] pb-[14.1rem] md:px-[17.5rem] md:pt-[7.9rem]">
+      <div className="bg-grey pt-[1.6rem] pb-[14.1rem] md:pt-[7.9rem] [ layout-padding ]">
         <BackButton />
 
         <div className="flex flex-col gap-[3rem] md:flex-row">

@@ -27,3 +27,18 @@
     overflow-x: hidden;
   }
 }
+
+.layout-padding {
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+
+  @include responsive_layout(bp-sm) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @include responsive_layout(bp-lg) {
+    padding-left: 17.5rem;
+    padding-right: 17.5rem;
+  }
+}

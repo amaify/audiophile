@@ -15,7 +15,7 @@ h6 {
   line-height: 4rem;
   letter-spacing: 2px;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1020px) {
   .heading-1 {
     font-size: 5.6rem;
     line-height: 58px;
@@ -27,7 +27,7 @@ h6 {
   line-height: normal;
   letter-spacing: 1px;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1020px) {
   .heading-2 {
     font-size: 4rem;
     line-height: 44px;
@@ -40,7 +40,7 @@ h6 {
   line-height: 36px;
   letter-spacing: 0.857px;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1020px) {
   .heading-3 {
     font-size: 3.2rem;
     letter-spacing: 1.15px;
@@ -64,7 +64,7 @@ h6 {
   line-height: 24px;
   letter-spacing: 1.3px;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1020px) {
   .heading-6 {
     font-size: 1.8rem;
     line-height: 24px;
@@ -125,6 +125,23 @@ h6 {
     overflow-x: hidden;
   }
 }
+.layout-padding {
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+}
+@media only screen and (min-width: 640px) {
+  .layout-padding {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+@media only screen and (min-width: 1020px) {
+  .layout-padding {
+    padding-left: 17.5rem;
+    padding-right: 17.5rem;
+  }
+}
+
 .phile-btn {
   font-size: 1.3em;
   line-height: 1.8em;
@@ -143,7 +160,7 @@ h6 {
   width: 16rem;
   height: 4.8rem;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1020px) {
   .phile-btn-1,
   .phile-btn-2,
   .phile-btn-4 {
@@ -232,10 +249,9 @@ h6 {
     height: 72.9rem;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1020px) {
   .hero {
     background-image: url("../assets/home/desktop/image-hero.jpg");
-    background-repeat: no-repeat;
     background-position: 100% 50%;
     background-size: cover;
     width: 100%;

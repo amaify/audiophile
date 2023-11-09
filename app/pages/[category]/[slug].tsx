@@ -7,10 +7,10 @@ import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/get-products";
 import { Product, ProductsQuery } from "@/Types/data-fetching";
 import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
 import { Alert } from "@/components/shared/Alert";
+import ProductDetailsLayout from "@/components/layout/ProductDetailsLayout";
 import ProductSuggestion from "@/components/layout/ProductSuggestion";
 import { addToCart } from "../../store/reducers/cartReducer";
 import { resetCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
-import ProductDetailsLayout from "../../components/layout/ProductDetailsLayout";
 
 import AddToCart from "../../components/Cart/CartItemCounter";
 import ProductFeature from "../../components/shared/ProductFeature";
@@ -58,8 +58,8 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
     <ProductDetailsLayout pageTitle={productDetail?.title ?? ""} removeSubFooter={false}>
       {productDetail ? (
         <>
-          <div className="flex flex-col gap-[3.2rem] mb-[8.8rem] md:mb-lg md:gap-[12.5rem] md:flex-row">
-            <div className="w-full md:w-1/2">
+          <div className="flex flex-col gap-[3.2rem] mb-[8.8rem] sm:flex-row sm:gap-[6.95rem] md:mb-lg md:gap-[12.5rem]">
+            <div className="w-full bg-darkGrey rounded-lg h-[32.7rem] sm:w-[28.1rem] sm:h-[48rem] lg:w-1/2 lg:h-auto">
               <Image
                 src={productDetail.previewImage.publicUrl}
                 alt={`${productDetail.title} Image`}
@@ -70,7 +70,7 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
               />
             </div>
 
-            <div className="w-full self-center md:w-[35%]">
+            <div className="w-full self-center sm:w-[33.9rem] md:w-1/2">
               {productDetail.newProduct && <p className="[ overline-text ] text-primary mb-[1.6rem]">new product</p>}
               <h2 className="[ heading-2 ] mb-[2.4rem] md:mb-[3.2rem]">{productDetail.title}</h2>
               <p className="[ body-text ] opacity-50 mb-[2.4rem] md:mb-[3.2rem]">{productDetail.description}</p>
