@@ -20,8 +20,9 @@ const Footer = () => {
       className={clsx(
         "relative after:content-[' '] after:w-[10.1rem] after:h-[.4rem] after:bg-primary after:block",
         "after:absolute after:top-0 after:left-1/2 after:-translate-x-1/2",
-        "md:after:-translate-x-0 sm:after:left-[8.8rem]",
-        "md:after:left-[17.5rem] [ footer ]"
+        "sm:after:left-[8.8rem]",
+        "lg:after:left-[9.8rem]",
+        "xl:after:left-[17.5rem] xl:after:-translate-x-0 [ footer ]"
       )}
     >
       <div className="bg-black pt-[5.2rem] pb-[4.8rem] px-[2.4rem] w-full sm:px-[4rem] lg:px-[5rem] xl:px-[17.5rem] xl:pt-[7.5rem]">
@@ -45,7 +46,7 @@ const Footer = () => {
             ))}
           </div>
           <p className="[ body-text ] font-bold text-white/50 text-center sm:mr-auto lg:text-left lg:mt-[5.6rem] lg:mr-0">
-            Copyright 2021. All Rights Reserved
+            {`Copyright ${new Date().getFullYear()}. All Rights Reserved`}
           </p>
         </div>
       </div>

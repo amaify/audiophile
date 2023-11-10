@@ -7,10 +7,16 @@
   border-radius: 8px;
 }
 
-.trial {
+.home-products {
   background-image: url("../assets/home/mobile/image-speaker-zx7.jpg");
   height: 32rem;
+  width: 100%;
   background-size: cover;
+  background-position: center;
+
+  @include responsive_layout(bp-sm) {
+    background-image: url("../assets/home/tablet/image-speaker-zx7.jpg");
+  }
 
   @include responsive_layout(bp-md) {
     background-image: url("../assets/home/desktop/image-speaker-zx7.jpg");
@@ -20,10 +26,40 @@
     background-image: url("../assets/home/mobile/image-earphones-yx1.jpg");
     height: 20rem;
     background-size: cover;
+    background-position: center;
 
-    @include responsive_layout(bp-md) {
+    @include responsive_layout(bp-sm) {
+      background-image: url("../assets/home/tablet/image-earphones-yx1.jpg");
+      height: 32rem;
+      background-position: center;
+    }
+
+    @include responsive_layout(bp-xl) {
       background-image: url("../assets/home/desktop/image-earphones-yx1.jpg");
       height: 32rem;
     }
+  }
+}
+
+.best-gear {
+  background-image: url("../assets/shared/mobile/image-best-gear.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 30rem;
+
+  @include responsive_layout(bp-sm) {
+    background-image: url("../assets/shared/tablet/image-best-gear.jpg");
+    background-position: center;
+  }
+
+  @include responsive_layout(bp-lg) {
+    background-image: url("../assets/shared/desktop/image-best-gear.jpg");
+    width: 54rem;
+    height: 58.8rem;
+  }
+
+  @include responsive_layout(bp-xl) {
+    height: 58.8rem;
+    background-position: center;
   }
 }

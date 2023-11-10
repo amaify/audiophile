@@ -38,6 +38,16 @@
   }
 
   @include responsive_layout(bp-lg) {
+    padding-left: 7.5rem;
+    padding-right: 7.5rem;
+  }
+
+  // @include responsive_layout(bp-xl) {
+  //   padding-left: 10.5rem;
+  //   padding-right: 10.5rem;
+  // }
+
+  @include responsive_layout(bp-xl) {
     padding-left: 17.5rem;
     padding-right: 17.5rem;
   }

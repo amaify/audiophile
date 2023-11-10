@@ -49,9 +49,9 @@
   color: $color-white;
 
   &:hover {
-    background: transparent;
-    border: 1px solid $color-black;
-    color: $color-black;
+    background: $grey-100;
+    border: 1px solid $grey-100;
+    color: $color-white;
   }
 }
 

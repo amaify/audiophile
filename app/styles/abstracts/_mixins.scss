@@ -12,13 +12,19 @@
   }
 
   @if ($break-point == bp-lg) {
-    @media only screen and (min-width: 1020px) {
+    @media only screen and (min-width: 1024px) {
       @content;
     }
   }
 
   @if ($break-point == bp-xl) {
-    @media only screen and (min-width: 1550px) {
+    @media only screen and (min-width: 1380px) {
+      @content;
+    }
+  }
+
+  @if ($break-point == bp-2xl) {
+    @media only screen and (min-width: 1536px) {
       @content;
     }
   }
@@ -37,7 +43,11 @@
 
   @if ($section == hero) {
     background: $color;
-    height: 100vh;
+    height: 100%;
+
+    @include responsive_layout(bp-xl) {
+      height: 100vh;
+    }
   } @else {
     background: $color;
     height: 100%;

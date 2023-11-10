@@ -17,8 +17,9 @@ const Hero = () => {
       </section>
       <section
         className={clsx(
-          "w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center",
-          "sm:w-[37.9rem] lg:w-[39.8rem] lg:top-[30%] lg:left-[17.5rem] lg:-translate-x-0 lg:-translate-y-0 lg:text-left"
+          "w-[32.8rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center",
+          "sm:w-[37.9rem] lg:w-[39.8rem] lg:top-[30%] lg:left-[10.5rem] lg:-translate-x-0 lg:-translate-y-0 lg:text-left",
+          "lg:w-[39.8rem] xl:left-[17.5rem]"
         )}
       >
         <p className="[ overline-text ] text-white opacity-50 mb-6">new product</p>
