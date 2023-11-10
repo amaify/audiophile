@@ -16,8 +16,8 @@ const productFeature = ({ productDetail }: Props) => {
         </div>
       </div>
 
-      <div>
-        <h3 className="[ heading-3 ] mb-[3.2rem]">in the box</h3>
+      <div className="flex flex-col sm:flex-row sm:gap-[1.1rem] md:flex-col md:gap-0">
+        <h3 className="[ heading-3 ] mb-[3.2rem] w-full sm:w-[33.9rem] md:w-full">in the box</h3>
         <ul>
           {productDetail.boxContent.map((boxContent) => (
             <li className="[ body-text ] mb-[.8rem] text-black" key={boxContent.content}>

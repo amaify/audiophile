@@ -21,7 +21,7 @@ const ProductCategory = ({
 }: Props) => {
   return (
     <div className="flex flex-col gap-[3.2rem] md:flex-row md:even:flex-row-reverse md:gap-[12.5rem]">
-      <div className="w-full md:w-[54rem] 2xl:w-1/2">
+      <div className="w-full bg-darkGrey h-[35.2rem] md:h-[40.2rem] md:w-[54rem] xl:h-full xl:bg-transparent 2xl:w-1/2">
         <Image
           src={productImage}
           alt={productTitle}
