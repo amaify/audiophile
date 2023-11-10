@@ -23,6 +23,7 @@
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.12",
     "@keystone-6/document-renderer": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@reduxjs/toolkit": "^1.8.6",
     "@ts-gql/babel-plugin": "^0.1.0",
     "@ts-gql/compiler": "^0.16.3",

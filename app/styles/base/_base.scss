@@ -19,11 +19,11 @@
     margin: 0 auto;
     min-width: 325px;
     scroll-behavior: smooth;
+    overflow: visible !important;
     height: 100%;
   }
 
   body {
-    height: 100%;
     overflow-x: hidden;
   }
 }
@@ -41,11 +41,6 @@
     padding-left: 7.5rem;
     padding-right: 7.5rem;
   }
-
-  // @include responsive_layout(bp-xl) {
-  //   padding-left: 10.5rem;
-  //   padding-right: 10.5rem;
-  // }
 
   @include responsive_layout(bp-xl) {
     padding-left: 17.5rem;

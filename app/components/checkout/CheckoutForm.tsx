@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
 import { type ChangeEvent, type FocusEvent } from "react";
-import { BanknotesIcon } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { selectCart } from "@/store/reducers/cartReducer";
 import { FormInput } from "@/Types/FormInput";
+import CashIcon from "@/assets/shared/desktop/cash-payment.svg";
 import { Alert } from "../shared/Alert";
 import CheckoutSectionTitle from "./CheckoutSectionTitle";
 
@@ -35,7 +35,7 @@ export default function CheckoutForm({
   ] as const;
 
   return (
-    <form className="bg-white px-[2.4rem] pt-[2.4rem] pb-[4.8rem] w-full rounded-lg md:w-[70%] md:pt-[5.4rem] md:px-[4.8rem]">
+    <form className="bg-white px-[2.4rem] pt-[2.4rem] pb-[4.8rem] w-full rounded-lg lg:pt-[5.4rem] lg:px-[4.8rem] xl:w-[70%]">
       <h1 className="[ heading-3 ] mb-[2.4rem] md:mb-[4.1rem]">Checkout</h1>
       {cart.length === 0 && (
         <Alert message="To make an order, you should add an item to the cart!" alertVariant="warning" />
@@ -201,8 +201,10 @@ export default function CheckoutForm({
               </div>
             ) : (
               <div className="flex">
-                <BanknotesIcon className="h-20 w-20 mr-10" fill="#d87d4a" />
-                <p className="[ body-text ] text-black/50 font-medium w-[70%]">
+                <div className="w-20 h-20 mr-8 self-center">
+                  <Image src={CashIcon} alt="Bank note icon" className="w-full h-full" />
+                </div>
+                <p className="[ body-text ] text-black/50 font-medium w-[80%]">
                   The &lsquo;Cash on Delivery&rsquo; option enables you to pay in cash when our delivery courier arrives
                   at your residence. Just make sure your address is correct so that your order will not be cancelled.
                 </p>

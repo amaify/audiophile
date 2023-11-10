@@ -60,13 +60,12 @@ const Checkout = () => {
 
   return (
     <section>
-      {confirmation && <PaymentConfirmation isOpen={confirmation} setConfirmation={setConfirmation} />}
       <Meta pageTitle="Checkout" />
       <SubPageHeader />
       <div className="bg-grey pt-[1.6rem] pb-[14.1rem] md:pt-[7.9rem] [ layout-padding ]">
         <BackButton />
 
-        <div className="flex flex-col gap-[3rem] md:flex-row">
+        <div className="relative flex flex-col gap-[3rem] xl:flex-row">
           <CheckoutForm
             error={error}
             inputValue={inputValue}
@@ -76,6 +75,7 @@ const Checkout = () => {
             setPaymentMethod={setPaymentMethod}
           />
           <CheckoutSummary isError={isError} isDisabled={isDisabled} setConfirmation={setConfirmation} />
+          {confirmation && <PaymentConfirmation isOpen={confirmation} setConfirmation={setConfirmation} />}
         </div>
       </div>
       <Footer />

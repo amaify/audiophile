@@ -8,7 +8,6 @@ import { formatPrice } from "../util/utils";
 interface Props {
   isDisabled: boolean;
   isError: boolean;
-  // eslint-disable-next-line no-unused-vars
   setConfirmation: (value: boolean) => void;
 }
 
@@ -18,7 +17,7 @@ const CheckoutSummary = ({ isError, isDisabled, setConfirmation }: Props) => {
 
   const submitBtnDisabled = !isDisabled || isError || cart.length === 0;
   return (
-    <div className="bg-white self-start px-[2.4rem] py-[3.2rem] w-full max-h-[61.2rem] overflow-auto rounded-lg md:px-[3.3rem] md:w-[30%]">
+    <div className="bg-white self-start px-[2.4rem] py-[3.2rem] w-full max-h-[61.2rem] overflow-auto rounded-lg lg:px-[3.3rem] lg:w-[50%] xl:w-[30%]">
       <h6 className="[ heading-6 ] font-bold mb-[31px]">summary</h6>
       <div className="mb-[32px] flex flex-col gap-[24px]">
         {cart.length > 0 ? (

@@ -125,10 +125,10 @@ h6 {
     margin: 0 auto;
     min-width: 325px;
     scroll-behavior: smooth;
+    overflow: visible !important;
     height: 100%;
   }
   body {
-    height: 100%;
     overflow-x: hidden;
   }
 }
@@ -248,6 +248,7 @@ h6 {
 
 .hero {
   background-image: url("../assets/home/mobile/image-header.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 70%;
   width: 100%;
@@ -256,7 +257,6 @@ h6 {
 @media only screen and (min-width: 640px) {
   .hero {
     background-image: url("../assets/home/tablet/image-header.jpg");
-    background-size: cover;
     background-position: 50% 50%;
     height: 72.9rem;
   }

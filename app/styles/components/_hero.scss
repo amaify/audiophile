@@ -1,5 +1,6 @@
 .hero {
   background-image: url("../assets/home/mobile/image-header.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 70%;
   width: 100%;
@@ -7,7 +8,6 @@
 
   @include responsive_layout(bp-sm) {
     background-image: url("../assets/home/tablet/image-header.jpg");
-    background-size: cover;
     background-position: 50% 50%;
     height: 72.9rem;
   }
