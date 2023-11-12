@@ -268,7 +268,21 @@ var keystone_default = withAuth(
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {
       // For our starter, we check that someone has session data before letting them see the Admin UI.
-      isAccessAllowed: (context) => !!context.session?.data
+      isAccessAllowed: (context) => !!context.session?.data,
+      publicPages: ["/signin"],
+      getAdditionalFiles: [
+        async () => [
+          {
+            mode: "write",
+            src: `
+            import SigninPage from '../../../admin/pages/signin'; 
+
+            export default SigninPage
+            `,
+            outputPath: "pages/signin.js"
+          }
+        ]
+      ]
     },
     server: {
       cors: {
@@ -295,3 +309,4 @@ var keystone_default = withAuth(
     }
   })
 );
+//# sourceMappingURL=config.js.map
