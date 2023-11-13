@@ -11,10 +11,10 @@ import {
   useRawKeystone,
   useReinitContext,
 } from "@keystone-6/core/admin-ui/context";
+import { z } from "zod";
 import { useRouter } from "@keystone-6/core/admin-ui/router";
 import { Head } from "@keystone-6/core/admin-ui/router";
 import styled from "styled-components";
-import Favicon from "../public/favicon-32x32.png";
 
 const LoginLayout = styled.div`
   display: flex;
@@ -78,7 +78,6 @@ const LoginLayoutTitle = styled.div`
 
 const LoginForm = styled.form`
   width: 90%;
-  // min-width: 325px;
   background: #f1f1f1;
   border-radius: 8px;
   padding: 1rem;
@@ -104,6 +103,28 @@ const FormTextField = styled.input`
   font-weight: 500;
   padding: 1rem 0.8rem;
   border-radius: 4px;
+  outline: ${(props) => props.$error && "1px solid red"};
+
+  &:focus {
+    outline: ${(props) =>
+      props.$error ? "1px solid red" : "1px solid #d87d4a"};
+  }
+`;
+
+const FormGroup = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  & p {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: red;
+    right: 0;
+    top: -1.3rem;
+  }
 `;
 
 const FormButton = styled.button`
@@ -119,6 +140,20 @@ const FormButton = styled.button`
     background: #fbaf85;
   }
 `;
+
+function validateInputField({ inputValue, inputType }) {
+  if (inputValue !== "" && inputType === "email") {
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!mailFormat.test(inputValue)) return "Email not valid";
+  }
+
+  if (inputValue !== "" && inputType === "password" && inputValue.length < 6) {
+    return "Enter at least 6 characters";
+  }
+
+  return "";
+}
 
 export default function SigninPage() {
   const signinPageSchemat = {
@@ -152,7 +187,8 @@ export default function SigninPage() {
     `;
 
   const [mode, setMode] = useState("signin");
-  const [state, setState] = useState({ identity: "", secret: "" });
+  const [state, setState] = useState({ email: "", secret: "" });
+  const [formError, setFormError] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   const identityFieldRef = useRef(null);
@@ -186,15 +222,35 @@ export default function SigninPage() {
     router.push("/");
   }, [rawKeystone.adminMeta, router, submitted]);
 
+  const validateForm = (e) => {
+    const { value, name, type } = e.target;
+    const validatedResult = validateInputField({
+      inputType: type,
+      inputValue: value,
+    });
+    setFormError((prevState) => ({ ...prevState, [name]: validatedResult }));
+  };
+  const onInputChange = (e) => {
+    const { value, name } = e.target;
+
+    if (!!formError[name]) validateForm(e);
+    setState((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const onInputBlur = (e) => {
+    validateForm(e);
+  };
+
+  console.log(formError);
+
   const onSubmit = async (event) => {
     event.preventDefault();
-
     if (mode !== "signin") return;
 
     try {
       const { data } = await mutate({
         variables: {
-          identity: state.identity,
+          identity: state.email,
           secret: state.secret,
         },
       });
@@ -218,43 +274,60 @@ export default function SigninPage() {
         <H2>the admin console</H2>
       </LoginLayoutTitle>
       <LoginForm onSubmit={onSubmit}>
-        <H1>Sign In</H1>
+        <H1 css={{ marginBottom: "1.8rem" }}>Sign In</H1>
         {error && (
-          <Notice title="Error" tone="negative">
+          <Notice
+            title="Error"
+            tone="negative"
+            css={{ marginBottom: "1.8rem" }}
+          >
             {error.message}
           </Notice>
         )}
         {data?.authenticate?.__typename === failureTypename && (
-          <Notice title="Error" tone="negative">
+          <Notice
+            title="Error"
+            tone="negative"
+            css={{ marginBottom: "1.8rem" }}
+          >
             {data?.authenticate.message}
           </Notice>
         )}
-        <Stack gap="large">
-          <VisuallyHidden as="label" htmlFor="identity">
-            {identityField}
-          </VisuallyHidden>
-          <FormTextField
-            id="identity"
-            name="identity"
-            value={state.identity}
-            onChange={(e) => setState({ ...state, identity: e.target.value })}
-            placeholder={identityField}
-            ref={identityFieldRef}
-          />
+        <Stack gap="xxlarge">
+          <FormGroup>
+            <VisuallyHidden as="label" htmlFor="email">
+              email
+            </VisuallyHidden>
+            <FormTextField
+              id="email"
+              name="email"
+              value={state.email}
+              onChange={onInputChange}
+              onBlur={onInputBlur}
+              placeholder="Email"
+              type="email"
+              $error={!!formError?.email}
+              ref={identityFieldRef}
+            />
+            {formError.email && <p>{formError?.email}</p>}
+          </FormGroup>
           {mode === "signin" && (
-            <Fragment>
-              <VisuallyHidden as="label" htmlFor="password">
+            <FormGroup>
+              <VisuallyHidden as="label" htmlFor="secret">
                 {secretField}
               </VisuallyHidden>
               <FormTextField
-                id="password"
-                name="password"
+                id="secret"
+                name="secret"
                 value={state.secret}
-                onChange={(e) => setState({ ...state, secret: e.target.value })}
+                onChange={onInputChange}
+                onBlur={onInputBlur}
                 placeholder={secretField}
+                $error={!!formError?.secret}
                 type="password"
               />
-            </Fragment>
+              {formError.secret && <p>{formError?.secret}</p>}
+            </FormGroup>
           )}
         </Stack>
 

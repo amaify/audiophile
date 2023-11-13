@@ -43,9 +43,9 @@ export default withAuth(
           {
             mode: "write",
             src: `
-            import SigninPage from '../../../admin/pages/signin'; 
+            import SigninPage from '../../../admin/pages/signin';  
 
-            export default SigninPage
+            export default SigninPage 
             `,
             outputPath: "pages/signin.js",
           },
