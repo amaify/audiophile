@@ -1,38 +1,42 @@
 .input {
-	width: 100%;
-	border-radius: 8px;
-	padding: 18px 24px;
-	outline: none;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 19px;
-	color: $color-black;
-	letter-spacing: -0.25px;
-	caret-color: $color-primary;
-	border: 1px solid #cfcfcf;
+  width: 100%;
+  border-radius: 8px;
+  padding: 18px 24px;
+  outline: none;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 19px;
+  color: $color-black;
+  letter-spacing: -0.25px;
+  caret-color: $color-primary;
+  border: 1px solid #cfcfcf;
 
-	&:focus {
-		border: 1px solid $color-primary;
-	}
+  &:focus {
+    outline: 1px solid $color-primary;
+  }
 
-	&-error {
-		border: 2px solid #cd2c2c;
+  &-error {
+    outline: 2px solid #cd2c2c;
 
-		&:focus {
-			border: 2px solid #cd2c2c;
-		}
-	}
+    &:focus {
+      outline: 2px solid #cd2c2c;
+    }
+  }
 
-	&::placeholder {
-		color: $color-black;
-		font-size: 14px;
-		font-weight: bold;
-		opacity: 0.4;
-		line-height: 19px;
-	}
+  &-label-error {
+    color: #cd2c2c;
+  }
+
+  &::placeholder {
+    color: $color-black;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0.4;
+    line-height: 19px;
+  }
 }
 
 .payment-method {
-	padding: 18px 24px;
-	border-radius: 8px;
+  padding: 18px 24px;
+  border-radius: 8px;
 }

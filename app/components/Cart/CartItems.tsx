@@ -19,7 +19,7 @@ const CartItems = () => {
       className={clsx(
         "bg-white flex flex-col py-[3.1rem] pr-[2.4rem] pl-[2.4rem] rounded-lg w-[32.7rem] max-h-[49.8rem] overflow-auto",
         "absolute top-[6rem] right-0 z-30",
-        "lg:w-[37.7rem] md:top-[7.7rem] md:pr-[3.1rem] md:pl-[3.3rem]"
+        "lg:w-[37.7rem] md:top-[6.7rem] md:pr-[3.1rem] md:pl-[3.3rem]"
       )}
     >
       <div className="mb-[3.1rem] flex">

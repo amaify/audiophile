@@ -1,56 +1,46 @@
 import React, { ComponentPropsWithoutRef } from "react";
 import { clsx } from "clsx";
+import type { UseFormRegister, Path, FieldErrors } from "react-hook-form";
+import type { FormInputSchema } from "../util/validateInputFields";
 
 interface Props extends ComponentPropsWithoutRef<"input"> {
   control: "radio" | "text";
   label: string;
-  name: string;
-  value: string | number;
+  register: UseFormRegister<FormInputSchema>;
+  name: Path<FormInputSchema>;
   addedStyle?: string;
-  error?: Record<string, string>;
+  error?: FieldErrors<FormInputSchema>;
 }
 
-const Input = ({
-  control,
-  label,
-  type,
-  name,
-  id,
-  value,
-  placeholder,
-  addedStyle,
-  checked,
-  error,
-  onBlur,
-  onChange
-}: Props) => {
+const Input = ({ control, label, addedStyle, error, name, register, ...props }: Props) => {
+  const inputError = {
+    inputFieldError: error && error[`${name}`] ? "[ input-error ]" : null,
+    inputLabelError: error && error[`${name}`] ? "[ input-label-error ]" : null
+  };
   return (
     <>
       {control === "text" && (
         <div className={clsx("flex flex-col gap-[9px] relative", addedStyle && addedStyle)}>
           <label
-            className={clsx(
-              "text-[12px] text-black font-bold leading-4 capitalize",
-              error && error[`${name}`] ? "text-red-600" : null
-            )}
-            htmlFor={id}
+            className={clsx("text-[12px] text-black font-bold leading-4 capitalize", inputError.inputLabelError)}
+            htmlFor={props.id}
           >
             {label}
           </label>
           <input
-            type={type}
-            id={id}
-            name={name}
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            placeholder={placeholder}
             autoComplete="off"
-            className={clsx("[ input ]", error && error[`${name}`] ? "[ input-error ]" : null)}
+            className={clsx("[ input ]", inputError.inputFieldError)}
+            {...props}
+            {...register(name)}
           />
           {error && error[`${name}`] ? (
-            <p className="text-red-600 font-medium text-base capitalize leading-4 absolute top-0 right-0">
-              {error[`${name}`]}
+            <p
+              className={clsx(
+                "font-medium capitalize leading-4 absolute top-0 right-0",
+                inputError.inputLabelError ? [inputError.inputLabelError, "font-bold"] : null
+              )}
+            >
+              {error[`${name}`]?.message}
             </p>
           ) : null}
         </div>
@@ -61,19 +51,11 @@ const Input = ({
           className={clsx(
             addedStyle && addedStyle,
             "[ payment-method ] border hover:cursor-pointer hover:border-primary",
-            checked && "border-primary"
+            props.checked && "border-primary"
           )}
-          htmlFor={id}
+          htmlFor={props.id}
         >
-          <input
-            type={type}
-            id={id}
-            name={name}
-            value={value}
-            onChange={onChange}
-            checked={checked}
-            className="accent-primary"
-          />
+          <input className="accent-primary" {...props} {...register(name)} />
           <span className="ml-[16px] text-[12px] text-black font-bold leading-4 capitalize">{label}</span>
         </label>
       )}

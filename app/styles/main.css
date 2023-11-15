@@ -377,13 +377,16 @@ h6 {
   border: 1px solid #cfcfcf;
 }
 .input:focus {
-  border: 1px solid #d87d4a;
+  outline: 1px solid #d87d4a;
 }
 .input-error {
-  border: 2px solid #cd2c2c;
+  outline: 2px solid #cd2c2c;
 }
 .input-error:focus {
-  border: 2px solid #cd2c2c;
+  outline: 2px solid #cd2c2c;
+}
+.input-label-error {
+  color: #cd2c2c;
 }
 .input::-moz-placeholder {
   color: #000000;

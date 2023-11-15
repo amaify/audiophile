@@ -1,33 +1,17 @@
-import { type ChangeEvent, type FocusEvent } from "react";
 import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { selectCart } from "@/store/reducers/cartReducer";
-import { FormInput } from "@/Types/FormInput";
 import CashIcon from "@/assets/shared/desktop/cash-payment.svg";
 import { Alert } from "../shared/Alert";
 import CheckoutSectionTitle from "./CheckoutSectionTitle";
+import { useCheckoutForm } from "@/pages/checkout";
 
 const Input = dynamic(import("@/components/shared/Input"), { ssr: false });
 
-interface Props {
-  inputValue: FormInput;
-  paymentMethod: "online" | "cash";
-  error: Record<string, string>;
-  setPaymentMethod: (value: "online" | "cash") => void;
-  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onInputBlur: (e: FocusEvent<HTMLInputElement>) => void;
-}
-
-export default function CheckoutForm({
-  inputValue,
-  paymentMethod,
-  error,
-  setPaymentMethod,
-  onInputChange,
-  onInputBlur
-}: Props) {
+export default function CheckoutForm() {
   const { cart } = useSelector(selectCart);
+  const { error, paymentMethod, register } = useCheckoutForm();
 
   const methodOfPayment = [
     { label: "e-Money", method: "online" },
@@ -35,7 +19,7 @@ export default function CheckoutForm({
   ] as const;
 
   return (
-    <form className="bg-white px-[2.4rem] pt-[2.4rem] pb-[4.8rem] w-full rounded-lg lg:pt-[5.4rem] lg:px-[4.8rem] xl:w-[70%]">
+    <div className="bg-white px-[2.4rem] pt-[2.4rem] pb-[4.8rem] w-full rounded-lg lg:pt-[5.4rem] lg:px-[4.8rem] xl:w-[70%]">
       <h1 className="[ heading-3 ] mb-[2.4rem] md:mb-[4.1rem]">Checkout</h1>
       {cart.length === 0 && (
         <Alert message="To make an order, you should add an item to the cart!" alertVariant="warning" />
@@ -51,40 +35,31 @@ export default function CheckoutForm({
                 label="Name"
                 name="name"
                 placeholder="Alexei Ward"
-                type="text"
-                value={inputValue.name}
                 addedStyle="w-full md:w-1/2"
+                register={register}
                 error={error}
-                onBlur={(e) => onInputBlur(e)}
-                onChange={onInputChange}
               />
               <Input
                 control="text"
-                id="email"
                 label="Email Address"
                 name="emailAddress"
                 placeholder="alexei@mail.com"
                 type="email"
-                value={inputValue.emailAddress}
                 addedStyle="w-full md:w-1/2"
                 error={error}
-                onBlur={(e) => onInputBlur(e)}
-                onChange={onInputChange}
+                register={register}
               />
             </div>
 
             <Input
               control="text"
-              id="telephone"
               label="Phone Number"
               name="phoneNumber"
               placeholder="+1202-555-0136"
               type="tel"
-              value={inputValue.phoneNumber}
               addedStyle="w-full md:w-1/2"
               error={error}
-              onBlur={(e) => onInputBlur(e)}
-              onChange={onInputChange}
+              register={register}
             />
           </section>
 
@@ -92,59 +67,47 @@ export default function CheckoutForm({
             <CheckoutSectionTitle title="Shipping info" />
             <Input
               control="text"
-              id="address"
               label="Address"
               name="address"
               placeholder="1137 Williams Avenue"
               type="text"
-              value={inputValue.address}
               addedStyle="w-full"
+              register={register}
               error={error}
-              onBlur={(e) => onInputBlur(e)}
-              onChange={onInputChange}
             />
 
             <div className="flex flex-col gap-[2.4rem] my-[2.4rem] md:gap-[1.6rem] md:flex-row">
               <Input
                 control="text"
-                id="zip-code"
                 label="ZIP Code"
                 name="zipCode"
                 placeholder="10001"
                 type="text"
-                value={inputValue.zipCode}
+                register={register}
                 addedStyle="w-full md:w-1/2"
                 error={error}
-                onBlur={(e) => onInputBlur(e)}
-                onChange={onInputChange}
               />
 
               <Input
                 control="text"
-                id="city"
                 label="City"
                 name="city"
                 placeholder="New York"
                 type="text"
-                value={inputValue.city}
+                register={register}
                 addedStyle="w-full md:w-1/2"
                 error={error}
-                onBlur={(e) => onInputBlur(e)}
-                onChange={onInputChange}
               />
             </div>
             <Input
               control="text"
-              id="country"
               label="Country"
               name="country"
               placeholder="United States"
               type="text"
-              value={inputValue.country}
+              register={register}
               addedStyle="w-full md:w-1/2"
               error={error}
-              onBlur={(e) => onInputBlur(e)}
-              onChange={onInputChange}
             />
           </section>
 
@@ -159,10 +122,10 @@ export default function CheckoutForm({
                     type="radio"
                     id={m.method}
                     name="paymentMethod"
+                    register={register}
                     value={m.method}
                     label={m.label}
                     addedStyle="w-full"
-                    onChange={() => setPaymentMethod(m.method)}
                     checked={paymentMethod === m.method}
                     key={m.method}
                   />
@@ -173,30 +136,25 @@ export default function CheckoutForm({
               <div className="flex flex-col gap-[1.6rem] md:flex-row">
                 <Input
                   control="text"
-                  id="card-number"
                   label="e-Money Number"
                   name="cardNumber"
                   placeholder="238521993"
                   type="tel"
-                  value={inputValue.cardNumber}
+                  register={register}
                   addedStyle="w-full md:w-1/2"
                   error={error}
-                  onBlur={(e) => onInputBlur(e)}
-                  onChange={onInputChange}
                 />
 
                 <Input
                   control="text"
-                  id="card-pin"
+                  // id="card-pin"
                   label="e-Money Pin"
                   name="cardPin"
+                  register={register}
                   placeholder="4422"
                   type="tel"
-                  value={inputValue?.cardPin}
                   addedStyle="w-full md:w-1/2"
                   error={error}
-                  onBlur={(e) => onInputBlur(e)}
-                  onChange={onInputChange}
                 />
               </div>
             ) : (
@@ -213,6 +171,6 @@ export default function CheckoutForm({
           </section>
         </>
       )}
-    </form>
+    </div>
   );
 }

@@ -7,14 +7,11 @@ import { selectCart } from "@/store/reducers/cartReducer";
 import LinkButton from "../shared/Link";
 import { formatPrice } from "../util/utils";
 import PaymentConfirmationItems from "./PaymentConfirmationItems";
+import { useCheckoutForm } from "@/pages/checkout";
 
-interface Props {
-  isOpen: boolean;
-  setConfirmation: (value: boolean) => void;
-}
-
-const Confirmation = ({ isOpen, setConfirmation }: Props) => {
+const Confirmation = () => {
   const { cart, grandTotal } = useSelector(selectCart);
+  const { isOpen, setConfirmation } = useCheckoutForm();
   const [toggleItems, setToggleItems] = useState(false);
   const firstCartItem = cart[0];
   const cartItemPrice = firstCartItem.price * firstCartItem.itemCount;
