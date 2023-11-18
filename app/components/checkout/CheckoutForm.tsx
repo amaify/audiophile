@@ -1,22 +1,48 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { CardCvcElement, CardExpiryElement, CardNumberElement } from "@stripe/react-stripe-js";
+import type { StripeCardNumberElementOptions } from "@stripe/stripe-js";
+import clsx from "clsx";
 import { selectCart } from "@/store/reducers/cartReducer";
 import CashIcon from "@/assets/shared/desktop/cash-payment.svg";
 import { Alert } from "../shared/Alert";
 import CheckoutSectionTitle from "./CheckoutSectionTitle";
-import { useCheckoutForm } from "@/pages/checkout";
+import { useCheckoutForm } from ".";
 
 const Input = dynamic(import("@/components/shared/Input"), { ssr: false });
 
 export default function CheckoutForm() {
   const { cart } = useSelector(selectCart);
-  const { error, paymentMethod, register } = useCheckoutForm();
+  const { error, paymentMethod, errorMessage, register } = useCheckoutForm();
 
   const methodOfPayment = [
     { label: "e-Money", method: "online" },
     { label: "Cash on Delivery", method: "cash" }
   ] as const;
+
+  const cardOptions: StripeCardNumberElementOptions = {
+    iconStyle: "solid",
+    style: {
+      base: {
+        iconColor: "#c4f0ff",
+        color: "black",
+        fontWeight: 700,
+        fontFamily: "Manrope, sans-serif",
+        fontSize: "14px",
+        fontSmoothing: "antialiased",
+        "::placeholder": {
+          color: "#989898",
+          fontWeight: 700
+        }
+      }
+    }
+  };
+
+  const cvcOptions: StripeCardNumberElementOptions = {
+    style: { ...cardOptions.style }
+  };
 
   return (
     <div className="bg-white px-[2.4rem] pt-[2.4rem] pb-[4.8rem] w-full rounded-lg lg:pt-[5.4rem] lg:px-[4.8rem] xl:w-[70%]">
@@ -134,28 +160,35 @@ export default function CheckoutForm() {
             </div>
             {paymentMethod === "online" ? (
               <div className="flex flex-col gap-[1.6rem] md:flex-row">
-                <Input
-                  control="text"
-                  label="e-Money Number"
-                  name="cardNumber"
-                  placeholder="238521993"
-                  type="tel"
-                  register={register}
-                  addedStyle="w-full md:w-1/2"
-                  error={error}
-                />
+                <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
+                  <label
+                    className={clsx("text-[12px] text-black font-bold leading-4", errorMessage && "text-error")}
+                    htmlFor="cardNumber"
+                  >
+                    e-Money number
+                  </label>
+                  <CardNumberElement
+                    options={cardOptions}
+                    className={clsx(
+                      "[ stripe-input StripeElement--focus ]",
+                      errorMessage && "[ StripeElement--focus-error ]"
+                    )}
+                  />
+                </div>
 
-                <Input
-                  control="text"
-                  // id="card-pin"
-                  label="e-Money Pin"
-                  name="cardPin"
-                  register={register}
-                  placeholder="4422"
-                  type="tel"
-                  addedStyle="w-full md:w-1/2"
-                  error={error}
-                />
+                <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
+                  <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardCVV">
+                    e-Money CVV
+                  </label>
+                  <CardCvcElement options={cvcOptions} className="[ stripe-input StripeElement--focus ]" />
+                </div>
+
+                <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
+                  <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardCVV">
+                    e-Money exp. Month
+                  </label>
+                  <CardExpiryElement options={cvcOptions} className="[ stripe-input StripeElement--focus ]" />
+                </div>
               </div>
             ) : (
               <div className="flex">

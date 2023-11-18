@@ -5,7 +5,7 @@ import { formatPrice } from "../util/utils";
 
 export default function CheckoutSummaryPriceInfo() {
   const { cart } = useSelector(selectCart);
-  const totalProductPrice = sumAllPrice(cart);
+  const totalProductPrice = sumAllPrice(cart) + 35;
   return (
     cart.length > 0 && (
       <>
@@ -26,7 +26,7 @@ export default function CheckoutSummaryPriceInfo() {
 
         <p className="[ body-text ] flex mb-[32px]">
           <span className="text-black/50 font-medium leading-[25px] uppercase mr-auto">Grand Total</span>
-          <span className="text-primary font-bold">{formatPrice(totalProductPrice + 35)}</span>
+          <span className="text-primary font-bold">{formatPrice(totalProductPrice)}</span>
         </p>
       </>
     )

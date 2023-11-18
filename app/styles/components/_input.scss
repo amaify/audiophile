@@ -2,14 +2,14 @@
   width: 100%;
   border-radius: 8px;
   padding: 18px 24px;
-  outline: none;
   font-size: 14px;
   font-weight: bold;
   line-height: 19px;
   color: $color-black;
   letter-spacing: -0.25px;
   caret-color: $color-primary;
-  border: 1px solid #cfcfcf;
+  outline: 1px solid #cfcfcf;
+  border: none;
 
   &:focus {
     outline: 1px solid $color-primary;
@@ -33,6 +33,27 @@
     font-weight: bold;
     opacity: 0.4;
     line-height: 19px;
+  }
+}
+
+.stripe-input {
+  border-radius: 8px;
+  padding: 18px 24px;
+  height: 56px;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 19px;
+  color: $color-black;
+  letter-spacing: -0.25px;
+  outline: 1px solid #cfcfcf;
+}
+
+.StripeElement--focus {
+  outline: 1px solid $color-primary !important;
+
+  &-error {
+    outline: 2px solid #cd2c2c !important;
   }
 }
 

@@ -27,6 +27,8 @@
     "@keystone-6/document-renderer": "^1.1.2",
     "@radix-ui/react-dialog": "^1.0.5",
     "@reduxjs/toolkit": "^1.8.6",
+    "@stripe/react-stripe-js": "^2.3.2",
+    "@stripe/stripe-js": "^2.1.11",
     "@ts-gql/babel-plugin": "^0.1.0",
     "@ts-gql/compiler": "^0.16.3",
     "@ts-gql/eslint-plugin": "^0.8.5",
@@ -45,6 +47,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
+    "stripe": "^14.5.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

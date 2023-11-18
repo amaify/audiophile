@@ -3,7 +3,7 @@ import { clsx } from "clsx";
 import { selectCart } from "../../store/reducers/cartReducer";
 import CheckoutSummaryPriceInfo from "./CheckoutSummaryPriceInfo";
 import CheckoutSummaryItems from "./CheckoutSummaryItems";
-import { useCheckoutForm } from "@/pages/checkout";
+import { useCheckoutForm } from ".";
 
 const CheckoutSummary = () => {
   const { cart } = useSelector(selectCart);
