@@ -45,7 +45,7 @@ export const addToCartSlice = createSlice({
       state.grandTotal = sum + 35;
     },
 
-    removeFromCart: (state, action: PayloadAction<string>) => {
+    removeItemFromCart: (state, action: PayloadAction<string>) => {
       const index = state.cart.findIndex((item) => item.id === action.payload);
       if (index !== -1) state.cart.splice(index, 1);
       const sum = sumAllPrice(state.cart);
@@ -54,30 +54,34 @@ export const addToCartSlice = createSlice({
 
     resetCart: () => initialState,
 
-    incrementCartCount: (state, action: PayloadAction<string>) => {
+    incrementCartItemCount: (state, action: PayloadAction<string>) => {
       const item = state.cart.find((cartItem) => cartItem.id === action.payload);
+
       if (item) {
         item.itemCount += 1;
         item.totalPrice = item.itemCount * item.price;
+        state.total = sumAllPrice(state.cart);
+        state.grandTotal = sumAllPrice(state.cart) + 35;
       }
     },
 
-    decrementCartCount: (state, action: PayloadAction<string>) => {
+    decrementCartItemCount: (state, action: PayloadAction<string>) => {
       const item = state.cart.find((cartItem) => cartItem.id === action.payload);
-      if (item && item.itemCount === 1) {
-        item.itemCount = 1;
-        return;
-      }
+
+      if (item && item.itemCount === 1) return;
 
       if (item && item.itemCount > 1) {
         item.itemCount -= 1;
         item.totalPrice = item.itemCount * item.price;
+        state.total = sumAllPrice(state.cart);
+        state.grandTotal = sumAllPrice(state.cart) + 35;
       }
     }
   }
 });
 
-export const { addToCart, removeFromCart, resetCart, incrementCartCount, decrementCartCount } = addToCartSlice.actions;
+export const { addToCart, removeItemFromCart, resetCart, incrementCartItemCount, decrementCartItemCount } =
+  addToCartSlice.actions;
 export const selectCart = (state: RootState) => state.cart;
 
 export default addToCartSlice.reducer;

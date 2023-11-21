@@ -9,12 +9,11 @@ import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
 import { Alert } from "@/components/shared/Alert";
 import ProductDetailsLayout from "@/components/layout/ProductDetailsLayout";
 import ProductSuggestion from "@/components/layout/ProductSuggestion";
-import { addToCart } from "../../store/reducers/cartReducer";
-import { resetCount, selectItemCount } from "../../store/reducers/IncOrDecrementCount";
-
-import AddToCart from "../../components/Cart/CartItemCounter";
-import ProductFeature from "../../components/shared/ProductFeature";
-import { formatPrice } from "../../components/util/utils";
+import { decrementCount, incrementCount, resetCount, selectItemCount } from "@/store/cart/product-couter.reducer";
+import ProductCounter from "@/components/shared/ProductCounter";
+import { formatPrice } from "@/components/util/utils";
+import ProductFeature from "@/components/shared/ProductFeature";
+import { addToCart } from "@/store/cart/cart.reducer";
 
 interface Props {
   data: Product;
@@ -75,8 +74,16 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
               {productDetail.newProduct && <p className="[ overline-text ] text-primary mb-[1.6rem]">new product</p>}
               <h2 className="[ heading-2 ] mb-[2.4rem] md:mb-[3.2rem]">{productDetail.title}</h2>
               <p className="[ body-text ] opacity-50 mb-[2.4rem] md:mb-[3.2rem]">{productDetail.description}</p>
-              <h6 className="[ heading-6 ] mb-[3.1rem] md:mb-[4.7rem]">{formatPrice(+productDetail.price ?? 0)}</h6>
-              <AddToCart addedStyle="w-[12rem] h-[4.8rem]" handleButtonClick={handleAddtoCart} showAddToCartBtn />
+              <h6 className="[ heading-6 ] mb-[3.1rem] md:mb-[4.7rem]">{formatPrice(+productDetail.price)}</h6>
+              <ProductCounter
+                addedStyle="w-[12rem] h-[4.8rem]"
+                decrementCountBtn="&#8722;"
+                variant="product"
+                onAddToCart={handleAddtoCart}
+                decrementCount={() => dispatch(decrementCount())}
+                incrementCount={() => dispatch(incrementCount())}
+                itemCount={itemCount}
+              />
             </div>
           </div>
 

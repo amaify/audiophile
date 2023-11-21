@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createTransport } from "nodemailer";
 import { MailOptions } from "nodemailer/lib/sendmail-transport";
-import type { Cart } from "@/store/reducers/cartReducer";
+import { Cart } from "@/store/cart/cart.reducer";
 import { emailBody } from "./email-service.util";
 
 export interface BodyRequest extends Cart {

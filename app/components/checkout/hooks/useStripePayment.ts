@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import type { StripeCardNumberElement } from "@stripe/stripe-js";
 import toast from "react-hot-toast";
-import { selectCart } from "@/store/reducers/cartReducer";
 import { sumAllPrice } from "@/store/util/util";
+import { selectCart } from "@/store/cart/cart.reducer";
 import { FormInputSchema } from "../../util/validateInputFields";
 
 export default function useStripePayment({ data }: { data: FormInputSchema }) {

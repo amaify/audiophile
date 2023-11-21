@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import type { RootState } from "../store";
 
 const initialState: { value: number } = {
   value: 1
 };
 
-export const ProdQuantity = createSlice({
-  name: "itemCount",
+export const productCounter = createSlice({
+  name: "productCounterReducer",
   initialState,
   reducers: {
     incrementCount: (state) => {
@@ -14,21 +14,15 @@ export const ProdQuantity = createSlice({
     },
 
     decrementCount: (state) => {
-      if (state.value === 1) {
-        state.value = 1;
-      } else {
-        state.value -= 1;
-      }
+      if (state.value === 1) return;
+      state.value -= 1;
     },
 
-    resetCount: (state) => {
-      state.value = 1;
-    }
+    resetCount: () => initialState
   }
 });
 
-export const { incrementCount, decrementCount, resetCount } = ProdQuantity.actions;
+export const { incrementCount, decrementCount, resetCount } = productCounter.actions;
+export default productCounter.reducer;
 
-export const selectItemCount = (state: RootState) => state.itemCount.value;
-
-export default ProdQuantity.reducer;
+export const selectItemCount = (state: RootState) => state.productCounter.value;
