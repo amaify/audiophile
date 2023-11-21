@@ -42,7 +42,7 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
     );
 
     dispatch(resetCount());
-    toast.success("Product successfully added to cart", { duration: 10000 });
+    toast.success("Product successfully added to cart", { duration: 4000 });
   };
 
   useEffect(() => {

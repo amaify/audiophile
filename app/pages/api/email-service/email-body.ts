@@ -89,7 +89,7 @@ export const emailBody = ({ cart, total, grandTotal, clientName }: Omit<BodyRequ
                       <p
                         style="color: black; font-size: 20px; font-weight: 400;"
                       >
-                        Hi ${clientName.split(" ")[0]},
+                        Hi ${clientName},
                       </p>
                     </td>
                   </tr>

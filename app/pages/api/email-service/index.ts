@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { createTransport } from "nodemailer";
 import { MailOptions } from "nodemailer/lib/sendmail-transport";
 import { Cart } from "@/store/cart/cart.reducer";
-import { emailBody } from "./email-service.util";
+import { emailBody } from "./email-body";
 
 export interface BodyRequest extends Cart {
   email: string;
@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 
   const mailOptions: MailOptions = {
-    from: user,
+    from: `Audiophile <${user}>`,
     to: bodyRequest.email,
     subject: "Receipt for your purchase on Audiophile",
     html: emailBody({
