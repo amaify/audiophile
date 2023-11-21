@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { sumAllPrice } from "../util/util";
 import type { RootState } from "../store";
+import { sumAllPrice } from "./cart.util";
 
 export type CartItem = {
   id: string;

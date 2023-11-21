@@ -1,4 +1,4 @@
-import { CartItem } from "../cart/cart.reducer";
+import { CartItem } from "./cart.reducer";
 
 export const sumAllPrice = (cart: CartItem[]) => cart.reduce((acc, curr) => acc + curr.totalPrice, 0);
 

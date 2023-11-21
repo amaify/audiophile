@@ -1,5 +1,5 @@
 import { formatPrice } from "@/components/util/utils";
-import { calculateVAT } from "@/store/util/util";
+import { calculateVAT } from "@/store/cart/cart.util";
 import type { BodyRequest } from ".";
 
 export const emailBody = ({ cart, total, grandTotal, clientName }: Omit<BodyRequest, "email">) => `<!DOCTYPE html>

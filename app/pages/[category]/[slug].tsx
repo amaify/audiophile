@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 import client from "@/helpers/apolloClient";
 import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/get-products";
 import { Product, ProductsQuery } from "@/Types/data-fetching";
@@ -41,6 +42,7 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
     );
 
     dispatch(resetCount());
+    toast.success("Product successfully added to cart", { duration: 10000 });
   };
 
   useEffect(() => {
