@@ -2,18 +2,18 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
-import itemCountReducer from "./reducers/IncOrDecrementCount";
-import cartReducer from "./reducers/cartReducer";
+import cartReducer from "./cart/cart.reducer";
+import productCouterReducer from "./cart/product-couter.reducer";
 
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["itemCount"]
+  blacklist: ["productCounter"]
 };
 
 const rootReducers = combineReducers({
   cart: cartReducer,
-  itemCount: itemCountReducer
+  productCounter: productCouterReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

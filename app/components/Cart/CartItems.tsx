@@ -1,17 +1,37 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
+import { TrashIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
-import { resetCart, selectCart } from "@/store/reducers/cartReducer";
 import { formatPrice } from "@/components/util/utils";
-import CartItemCounter from "./CartItemCounter";
+import {
+  CartItem,
+  decrementCartItemCount,
+  incrementCartItemCount,
+  removeItemFromCart,
+  resetCart,
+  selectCart
+} from "@/store/cart/cart.reducer";
+import ProductCounter from "../shared/ProductCounter";
 
 const CartItems = () => {
   const dispatch = useDispatch();
   const { cart, total } = useSelector(selectCart);
 
   const checkoutDisabled = cart.length === 0;
+
+  const decrementCountBtn = (item: CartItem) => {
+    let decrementCountText = <span>&#8722;</span>;
+
+    if (item.itemCount === 1)
+      decrementCountText = (
+        <span onClick={() => dispatch(removeItemFromCart(item.id))}>
+          <TrashIcon className="w-7 h-7 text-black/25 hover:fill-primary" />
+        </span>
+      );
+
+    return decrementCountText;
+  };
 
   return (
     <div
@@ -48,7 +68,13 @@ const CartItems = () => {
                   <p className="text-[1.4rem] text-black/50 font-bold">{formatPrice(item.price)}</p>
                 </div>
               </div>
-              <CartItemCounter addedStyle="w-[9.6rem] h-[3.2rem]" cartItem={item} />
+              <ProductCounter
+                addedStyle="w-[9.6rem] h-[3.2rem]"
+                incrementCount={() => dispatch(incrementCartItemCount(item.id))}
+                decrementCount={() => dispatch(decrementCartItemCount(item.id))}
+                itemCount={item.itemCount}
+                decrementCountBtn={decrementCountBtn(item)}
+              />
             </div>
           ))
         ) : (

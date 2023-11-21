@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import * as RadixDialog from "@radix-ui/react-dialog";
-import { resetCart, selectCart } from "@/store/reducers/cartReducer";
+import { resetCart, selectCart } from "@/store/cart/cart.reducer";
 import LinkButton from "../shared/Link";
 import { formatPrice } from "../util/utils";
 import PaymentConfirmationItems from "./PaymentConfirmationItems";

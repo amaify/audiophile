@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import { selectCart } from "@/store/reducers/cartReducer";
+import { selectCart } from "@/store/cart/cart.reducer";
 
 export default function useSendClientInvoice({ email, clientName }: { email: string; clientName: string }) {
   const { cart, total, grandTotal } = useSelector(selectCart);
