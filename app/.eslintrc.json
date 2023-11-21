@@ -19,7 +19,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "@ts-gql"],
+  "plugins": ["react", "@typescript-eslint"],
   "ignorePatterns": ["node_modules", "dist", "lib", "coverage", "**/*.d.ts"],
   "rules": {
     "@typescript-eslint/no-use-before-define": ["error"],
@@ -42,7 +42,6 @@
     "react/jsx-no-bind": 0,
     "react/jsx-no-constructed-context-values": 0,
     "react/jsx-props-no-spreading": 0,
-    "@ts-gql/ts-gql": "error",
     "react/require-default-props": 0,
     "import/extensions": 0,
     "prettier/prettier": [

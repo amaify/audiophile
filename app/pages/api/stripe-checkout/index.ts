@@ -12,8 +12,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const request: BodyRequest = JSON.parse(req.body);
   const { amount } = request;
 
-  console.log(request);
-
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Number(amount) * 100,

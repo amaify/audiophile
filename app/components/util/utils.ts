@@ -1,4 +1,4 @@
-export const formatPrice = (productPrice: number) =>
+export const formatPrice = (productPrice: number): string =>
   new Intl.NumberFormat("en-GB", {
     style: "currency",
     currency: "GBP"

@@ -32,7 +32,8 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
     dispatch(
       addToCart({
         id: productDetail.id,
-        title: productDetail.cartTitle,
+        cartTitle: productDetail.cartTitle,
+        productTitle: productDetail.title,
         price: productDetail.price,
         itemCount,
         cartImage: productDetail.cartImage.publicUrl,

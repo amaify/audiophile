@@ -1,23 +1,29 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import * as RadixDialog from "@radix-ui/react-dialog";
-import { selectCart } from "@/store/reducers/cartReducer";
+import { resetCart, selectCart } from "@/store/reducers/cartReducer";
 import LinkButton from "../shared/Link";
 import { formatPrice } from "../util/utils";
 import PaymentConfirmationItems from "./PaymentConfirmationItems";
-import { useCheckoutForm } from ".";
+import useCheckoutForm from "./hooks/useCheckoutForm";
 
 const Confirmation = () => {
+  const dispatch = useDispatch();
   const { cart, grandTotal } = useSelector(selectCart);
   const { isOpen, setConfirmation } = useCheckoutForm();
   const [toggleItems, setToggleItems] = useState(false);
   const firstCartItem = cart[0];
   const cartItemPrice = firstCartItem.price * firstCartItem.itemCount;
 
+  const handleClose = () => {
+    setConfirmation(false);
+    dispatch(resetCart());
+  };
+
   return (
-    <RadixDialog.Root open={isOpen} onOpenChange={() => setConfirmation(false)}>
+    <RadixDialog.Root open={isOpen} onOpenChange={handleClose}>
       <RadixDialog.Portal>
         <RadixDialog.Overlay className="fixed inset-0 z-50 bg-black/40" />
         <RadixDialog.Content
@@ -44,7 +50,7 @@ const Confirmation = () => {
             <div className="bg-darkGrey p-[1.2rem] w-[65%] rounded-tl-lg rounded-bl-lg md:p-[2.4rem]">
               {!toggleItems ? (
                 <PaymentConfirmationItems
-                  itemTitle={firstCartItem.title}
+                  itemTitle={firstCartItem.cartTitle}
                   itemImage={firstCartItem.cartImage}
                   itemCount={firstCartItem.itemCount}
                   itemPrice={cartItemPrice}
@@ -53,7 +59,7 @@ const Confirmation = () => {
                 cart.map((cartItem) => (
                   <PaymentConfirmationItems
                     key={cartItem.id}
-                    itemTitle={cartItem.title}
+                    itemTitle={cartItem.cartTitle}
                     itemImage={cartItem.cartImage}
                     itemCount={cartItem.itemCount}
                     itemPrice={cartItemPrice}
@@ -77,7 +83,7 @@ const Confirmation = () => {
               <p className="text-[1.5rem] text-white font-bold sm:text-[1.8rem]">{formatPrice(grandTotal)}</p>
             </div>
           </div>
-          <LinkButton btnText="Back to Home" btnLink="/" />
+          <LinkButton btnText="Back to Home" btnLink="/" onClick={handleClose} />
         </RadixDialog.Content>
       </RadixDialog.Portal>
     </RadixDialog.Root>

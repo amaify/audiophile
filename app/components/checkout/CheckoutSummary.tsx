@@ -3,13 +3,15 @@ import { clsx } from "clsx";
 import { selectCart } from "../../store/reducers/cartReducer";
 import CheckoutSummaryPriceInfo from "./CheckoutSummaryPriceInfo";
 import CheckoutSummaryItems from "./CheckoutSummaryItems";
-import { useCheckoutForm } from ".";
+import useCheckoutForm from "./hooks/useCheckoutForm";
 
 const CheckoutSummary = () => {
   const { cart } = useSelector(selectCart);
-  const { isValid } = useCheckoutForm();
+  const { isValid, formState } = useCheckoutForm();
+  const { isSubmitting } = formState;
 
-  const submitBtnDisabled = !isValid || cart.length === 0;
+  const submitBtnDisabled = !isValid || cart.length === 0 || isSubmitting;
+  const btnText = !isSubmitting ? "Continue & Pay" : "Processing...";
   return (
     <div className="bg-white self-start px-[2.4rem] py-[3.2rem] w-full max-h-[61.2rem] overflow-auto rounded-lg lg:px-[3.3rem] lg:w-[50%] xl:w-[30%]">
       <h6 className="[ heading-6 ] font-bold mb-[31px]">summary</h6>
@@ -23,7 +25,7 @@ const CheckoutSummary = () => {
         type="submit"
         disabled={submitBtnDisabled}
       >
-        Continue and Pay
+        {btnText}
       </button>
     </div>
   );

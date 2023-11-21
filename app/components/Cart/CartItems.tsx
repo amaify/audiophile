@@ -5,12 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import clsx from "clsx";
 import { resetCart, selectCart } from "@/store/reducers/cartReducer";
 import { formatPrice } from "@/components/util/utils";
-import { sumAllPrice } from "@/store/util/util";
 import CartItemCounter from "./CartItemCounter";
 
 const CartItems = () => {
   const dispatch = useDispatch();
-  const { cart } = useSelector(selectCart);
+  const { cart, total } = useSelector(selectCart);
 
   const checkoutDisabled = cart.length === 0;
 
@@ -39,13 +38,13 @@ const CartItems = () => {
               <div className="flex items-center gap-[16px] mr-auto">
                 <Image
                   src={item.cartImage}
-                  alt={item.title}
+                  alt={item.cartTitle}
                   width={64}
                   height={64}
                   className="rounded-lg w-auto h-auto"
                 />
                 <div>
-                  <p className="text-[1.5rem] text-black font-bold uppercase">{item.title}</p>
+                  <p className="text-[1.5rem] text-black font-bold uppercase">{item.cartTitle}</p>
                   <p className="text-[1.4rem] text-black/50 font-bold">{formatPrice(item.price)}</p>
                 </div>
               </div>
@@ -59,7 +58,7 @@ const CartItems = () => {
 
       <div className="flex mb-[2.4rem]">
         <p className="mr-auto [ body-text ] text-black opacity-50 uppercase">total</p>
-        <p className="[ body-text ] text-black">{formatPrice(sumAllPrice(cart))}</p>
+        <p className="[ body-text ] text-black">{formatPrice(total)}</p>
       </div>
       <Link
         href="/checkout"

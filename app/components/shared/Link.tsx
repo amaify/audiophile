@@ -4,14 +4,17 @@ import React from "react";
 interface Props {
   btnText: string;
   btnLink: string;
+  onClick?: () => void;
 }
 
-const LinkButton = ({ btnLink, btnText }: Props) => {
+const LinkButton = ({ btnLink, btnText, onClick }: Props) => {
   return (
-    <Link href={btnLink}>
-      <span className="bg-primary block hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]">
-        {btnText}
-      </span>
+    <Link
+      href={btnLink}
+      className="bg-primary block hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]"
+      onClick={onClick}
+    >
+      {btnText}
     </Link>
   );
 };

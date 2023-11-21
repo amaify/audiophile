@@ -4,18 +4,20 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { CardCvcElement, CardExpiryElement, CardNumberElement } from "@stripe/react-stripe-js";
 import type { StripeCardNumberElementOptions } from "@stripe/stripe-js";
-import clsx from "clsx";
 import { selectCart } from "@/store/reducers/cartReducer";
 import CashIcon from "@/assets/shared/desktop/cash-payment.svg";
 import { Alert } from "../shared/Alert";
-import CheckoutSectionTitle from "./CheckoutSectionTitle";
-import { useCheckoutForm } from ".";
+import useCheckoutForm from "./hooks/useCheckoutForm";
 
 const Input = dynamic(import("@/components/shared/Input"), { ssr: false });
 
+function CheckoutSectionTitle({ title }: { title: string }) {
+  return <h2 className="[ sub-title ] mb-[1.6rem]">{title}</h2>;
+}
+
 export default function CheckoutForm() {
   const { cart } = useSelector(selectCart);
-  const { error, paymentMethod, errorMessage, register } = useCheckoutForm();
+  const { error, paymentMethod, register } = useCheckoutForm();
 
   const methodOfPayment = [
     { label: "e-Money", method: "online" },
@@ -161,19 +163,10 @@ export default function CheckoutForm() {
             {paymentMethod === "online" ? (
               <div className="flex flex-col gap-[1.6rem] md:flex-row">
                 <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
-                  <label
-                    className={clsx("text-[12px] text-black font-bold leading-4", errorMessage && "text-error")}
-                    htmlFor="cardNumber"
-                  >
+                  <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardNumber">
                     e-Money number
                   </label>
-                  <CardNumberElement
-                    options={cardOptions}
-                    className={clsx(
-                      "[ stripe-input StripeElement--focus ]",
-                      errorMessage && "[ StripeElement--focus-error ]"
-                    )}
-                  />
+                  <CardNumberElement options={cardOptions} className="[ stripe-input StripeElement--focus ]" />
                 </div>
 
                 <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
