@@ -1,8 +1,20 @@
 import { formatPrice } from "@/components/util/utils";
 import { calculateVAT } from "@/store/cart/cart.util";
-import type { BodyRequest } from ".";
+import { BodyRequest } from ".";
 
-export const emailBody = ({ cart, total, grandTotal, clientName }: Omit<BodyRequest, "email">) => `<!DOCTYPE html>
+const date = new Date(Date.now());
+const formattedDate = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric"
+}).format(date);
+
+export const onlinePaymentReceiptEmail = ({
+  cart,
+  total,
+  grandTotal,
+  clientName
+}: Omit<BodyRequest, "email" | "paymentMethod">) => `<!DOCTYPE html>
 <html
   lang="en"
   xmlns="http://www.w3.org/1999/xhtml"
@@ -193,7 +205,7 @@ export const emailBody = ({ cart, total, grandTotal, clientName }: Omit<BodyRequ
                         </tr>
                         <td style="padding-top: 20px;">
                           <h1 style="font-size: 28px; margin: 0; padding: 0;">
-                            Price Summary
+                            Summary
                           </h1>
                           <table
                             role="presentation"
@@ -287,6 +299,28 @@ export const emailBody = ({ cart, total, grandTotal, clientName }: Omit<BodyRequ
                                 "
                               >
                                 ${formatPrice(grandTotal)}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td
+                                style="
+                                  text-transform: uppercase;
+                                  color: black;
+                                  opacity: 0.6;
+                                  font-weight: 400;
+                                  width: 300px;
+                                "
+                              >
+                                date
+                              </td>
+                              <td
+                                style="
+                                  text-transform: uppercase;
+                                  color: black;
+                                  font-weight: 500;
+                                "
+                              >
+                                ${formattedDate}
                               </td>
                             </tr>
                           </table>

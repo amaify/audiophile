@@ -69,6 +69,7 @@ export default function CheckoutForm() {
               />
               <Input
                 control="text"
+                id="emailAddress"
                 label="Email Address"
                 name="emailAddress"
                 placeholder="alexei@mail.com"
@@ -81,6 +82,7 @@ export default function CheckoutForm() {
 
             <Input
               control="text"
+              id="phoneNumber"
               label="Phone Number"
               name="phoneNumber"
               placeholder="+1202-555-0136"
@@ -95,6 +97,7 @@ export default function CheckoutForm() {
             <CheckoutSectionTitle title="Shipping info" />
             <Input
               control="text"
+              id="address"
               label="Address"
               name="address"
               placeholder="1137 Williams Avenue"
@@ -107,6 +110,7 @@ export default function CheckoutForm() {
             <div className="flex flex-col gap-[2.4rem] my-[2.4rem] md:gap-[1.6rem] md:flex-row">
               <Input
                 control="text"
+                id="zipCode"
                 label="ZIP Code"
                 name="zipCode"
                 placeholder="10001"
@@ -118,6 +122,7 @@ export default function CheckoutForm() {
 
               <Input
                 control="text"
+                id="city"
                 label="City"
                 name="city"
                 placeholder="New York"
@@ -129,6 +134,7 @@ export default function CheckoutForm() {
             </div>
             <Input
               control="text"
+              id="country"
               label="Country"
               name="country"
               placeholder="United States"
@@ -166,21 +172,29 @@ export default function CheckoutForm() {
                   <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardNumber">
                     e-Money number
                   </label>
-                  <CardNumberElement options={cardOptions} className="[ stripe-input StripeElement--focus ]" />
+                  <CardNumberElement
+                    options={cardOptions}
+                    className="[ stripe-input StripeElement--focus ]"
+                    id="cardNumber"
+                  />
                 </div>
 
                 <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
                   <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardCVV">
                     e-Money CVV
                   </label>
-                  <CardCvcElement options={cvcOptions} className="[ stripe-input StripeElement--focus ]" />
+                  <CardCvcElement options={cvcOptions} className="[ stripe-input StripeElement--focus ]" id="cardCVV" />
                 </div>
 
                 <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
                   <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardCVV">
                     e-Money exp. Month
                   </label>
-                  <CardExpiryElement options={cvcOptions} className="[ stripe-input StripeElement--focus ]" />
+                  <CardExpiryElement
+                    options={cvcOptions}
+                    className="[ stripe-input StripeElement--focus ]"
+                    id="cardExpiryDate"
+                  />
                 </div>
               </div>
             ) : (

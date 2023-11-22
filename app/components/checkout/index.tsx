@@ -43,7 +43,7 @@ export default function Checkout() {
   const paymentMethod = watch("paymentMethod");
 
   const { submitPayment } = useStripePayment({ data: getValues() });
-  const { sendPaymentReceipt } = useSendClientInvoice({ email, clientName });
+  const { sendPaymentReceipt } = useSendClientInvoice({ email, clientName, paymentMethod });
 
   const [confirmation, setConfirmation] = useState(false);
 
