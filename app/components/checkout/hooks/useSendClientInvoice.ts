@@ -11,7 +11,6 @@ interface Props {
   clientName: string;
   paymentMethod: "cash" | "online";
   reset: UseFormReset<FormInputSchema>;
-  setConfirmation: (value: boolean) => void;
 }
 
 interface EmailBody {
@@ -33,17 +32,14 @@ async function sendInvoice({ email, clientName, cart, total, grandTotal, payment
   return response;
 }
 
-export default function useSendClientInvoice({ email, clientName, paymentMethod, reset, setConfirmation }: Props) {
+export default function useSendClientInvoice({ email, clientName, paymentMethod, reset }: Props) {
   const { cart, total, grandTotal } = useSelector(selectCart);
 
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: () => sendInvoice({ email, clientName, cart, total, grandTotal, paymentMethod }),
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     onSuccess: (data) => {
-      if (data.status === "success") {
-        setConfirmation(true);
-        reset();
-      }
+      if (data.status === "success") reset();
     },
     onError: (error) => toast.error(`Unable to send receipt due to ${error.message}`)
   });
@@ -52,6 +48,7 @@ export default function useSendClientInvoice({ email, clientName, paymentMethod,
 
   return {
     initializeClientInvoice,
-    isPending
+    isPending,
+    isSuccess
   };
 }

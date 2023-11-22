@@ -23,14 +23,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 
   const isOnline = paymentMethod === "online";
+  const payerName = clientName.split(" ")[0];
 
   const mailOptions: MailOptions = {
     from: `Audiophile <${user}>`,
     to: bodyRequest.email,
     subject: isOnline ? "Receipt for your purchase on Audiophile" : "Order confirmation for cash payment",
     html: isOnline
-      ? onlinePaymentReceiptEmail({ cart, total, grandTotal, clientName })
-      : cashPaymentConfirmationEmail({ cart, clientName })
+      ? onlinePaymentReceiptEmail({ cart, total, grandTotal, clientName: payerName })
+      : cashPaymentConfirmationEmail({ cart, clientName: payerName })
   };
 
   transporter.sendMail(mailOptions, (error, _) => {

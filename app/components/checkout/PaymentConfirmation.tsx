@@ -12,15 +12,17 @@ import useCheckoutForm from "./hooks/useCheckoutForm";
 const Confirmation = () => {
   const dispatch = useDispatch();
   const { cart, grandTotal } = useSelector(selectCart);
-  const { isOpen, setConfirmation } = useCheckoutForm();
+  const { isOpen } = useCheckoutForm();
   const [toggleItems, setToggleItems] = useState(false);
-  const firstCartItem = cart[0];
-  const cartItemPrice = firstCartItem.price * firstCartItem.itemCount;
 
   const handleClose = () => {
-    setConfirmation(false);
     dispatch(resetCart());
   };
+
+  if (cart.length === 0) return null;
+
+  const firstCartItem = cart[0];
+  const cartItemPrice = firstCartItem.price * firstCartItem.itemCount;
 
   return (
     <RadixDialog.Root open={isOpen} onOpenChange={handleClose}>

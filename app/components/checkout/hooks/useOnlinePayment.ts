@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { useSelector } from "react-redux";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import type { StripeCardNumberElement } from "@stripe/stripe-js";
@@ -12,7 +13,6 @@ import useSendClientInvoice from "./useSendClientInvoice";
 interface Props {
   formData: FormInputSchema;
   reset: UseFormReset<FormInputSchema>;
-  setConfirmation: (value: boolean) => void;
 }
 
 async function getClientSecret(amount: string) {
@@ -24,7 +24,7 @@ async function getClientSecret(amount: string) {
   return response;
 }
 
-export default function useOnlinePayment({ formData, reset, setConfirmation }: Props) {
+export default function useOnlinePayment({ formData, reset }: Props) {
   const stripe = useStripe();
   const elements = useElements();
   const { cart } = useSelector(selectCart);
@@ -32,17 +32,15 @@ export default function useOnlinePayment({ formData, reset, setConfirmation }: P
   const toastDuration = 15000;
   const { emailAddress: email, name: clientName, paymentMethod } = formData;
 
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending: isPaymentPending } = useMutation({
     mutationFn: () => getClientSecret(`${totalProductPrice}`),
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     onSuccess: (clientSecret) => submitPayment(clientSecret.data)
   });
-  const { initializeClientInvoice, isPending: isEmailPending } = useSendClientInvoice({
+  const { initializeClientInvoice, isPending, isSuccess } = useSendClientInvoice({
     email,
     clientName,
     paymentMethod,
-    reset,
-    setConfirmation
+    reset
   });
   const initializePayment = () => mutate();
 
@@ -71,10 +69,12 @@ export default function useOnlinePayment({ formData, reset, setConfirmation }: P
     }
   }
 
-  const isAmountPending = isEmailPending || isPending;
+  const isAmountPending = isPaymentPending || isPending;
 
   return {
     initializePayment,
-    isPending: isAmountPending
+    initializeClientInvoice,
+    isPending: isAmountPending,
+    isSuccess
   };
 }
