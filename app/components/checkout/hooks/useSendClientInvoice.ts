@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import { UseFormReset } from "react-hook-form";
-import { selectCart } from "@/store/cart/cart.reducer";
+import { CartItem, selectCart } from "@/store/cart/cart.reducer";
 import { FormInputSchema } from "@/components/util/validateInputFields";
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 interface EmailBody {
   email: string;
   clientName: string;
-  cart: any[];
+  cart: CartItem[];
   total: number;
   grandTotal: number;
   paymentMethod: "cash" | "online";
