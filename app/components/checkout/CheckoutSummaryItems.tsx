@@ -11,7 +11,13 @@ export default function CheckoutSummaryItems() {
         cart.map((item) => (
           <div className="flex items-center" key={item.id}>
             <div className="flex items-center gap-[16px] mr-auto">
-              <Image src={item.cartImage} alt={item.cartTitle} width={64} height={64} className="rounded-[8px]" />
+              <Image
+                src={item.cartImage}
+                alt={item.cartTitle}
+                width={64}
+                height={64}
+                className="rounded-[0.8rem] w-full h-full"
+              />
               <div>
                 <p className="text-[1.5rem] text-black font-bold uppercase">{item.cartTitle.substring(0, 5)}</p>
                 <p className="text-[1.4rem] text-black/50 font-bold">{formatPrice(item.price)}</p>

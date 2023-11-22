@@ -81,10 +81,11 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
                 addedStyle="w-[12rem] h-[4.8rem]"
                 decrementCountBtn="&#8722;"
                 variant="product"
+                itemCount={itemCount}
+                isDisabled={itemCount === 1}
                 onAddToCart={handleAddtoCart}
                 decrementCount={() => dispatch(decrementCount())}
                 incrementCount={() => dispatch(incrementCount())}
-                itemCount={itemCount}
               />
             </div>
           </div>

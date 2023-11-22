@@ -1,12 +1,12 @@
 import React, { createContext, useState } from "react";
 import dynamic from "next/dynamic";
-import { type SubmitHandler, useForm, UseFormRegister, FieldErrors, FormState } from "react-hook-form";
+import { type SubmitHandler, useForm, UseFormRegister, FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { FormInputSchema, inputFieldSchema } from "@/components/util/validateInputFields";
 import CheckoutForm from "@/components/checkout/CheckoutForm";
-import useStripePayment from "./hooks/useStripePayment";
 import useSendClientInvoice from "./hooks/useSendClientInvoice";
+import useOnlinePayment from "./hooks/useOnlinePayment";
 
 const CheckoutSummary = dynamic(import("@/components/checkout/CheckoutSummary"), { ssr: false });
 const PaymentConfirmation = dynamic(import("@/components/checkout/PaymentConfirmation"), { ssr: false });
@@ -16,7 +16,7 @@ interface CheckoutFormContextValues {
   isValid: boolean;
   error: FieldErrors<FormInputSchema>;
   paymentMethod: FormInputSchema["paymentMethod"];
-  formState: FormState<FormInputSchema>;
+  isPending: boolean;
   register: UseFormRegister<FormInputSchema>;
   setConfirmation: (value: boolean) => void;
 }
@@ -41,20 +41,16 @@ export default function Checkout() {
   const { errors, isValid } = formState;
   const { emailAddress: email, name: clientName } = getValues();
   const paymentMethod = watch("paymentMethod");
-
-  const { submitPayment } = useStripePayment({ data: getValues() });
-  const { sendPaymentReceipt } = useSendClientInvoice({ email, clientName, paymentMethod });
-
   const [confirmation, setConfirmation] = useState(false);
 
-  const sendPaymentInvoice = async () => {
-    const paymentReceipt = await sendPaymentReceipt();
-
-    if (paymentReceipt?.status === "success") {
-      setConfirmation(true);
-      reset();
-    }
-  };
+  const { isPending: emailIsPending, initializeClientInvoice } = useSendClientInvoice({
+    email,
+    clientName,
+    paymentMethod,
+    reset,
+    setConfirmation
+  });
+  const { initializePayment, isPending } = useOnlinePayment({ formData: getValues(), reset, setConfirmation });
 
   const onSubmit: SubmitHandler<FormInputSchema> = async () => {
     if (!isValid) {
@@ -62,20 +58,19 @@ export default function Checkout() {
       return;
     }
 
-    if (paymentMethod === "online") {
-      const paymentIntent = await submitPayment();
-      if (paymentIntent?.status === "succeeded") sendPaymentInvoice();
-    }
+    if (paymentMethod === "online") initializePayment();
 
-    if (paymentMethod === "cash") sendPaymentInvoice();
+    if (paymentMethod === "cash") initializeClientInvoice();
   };
+
+  const pendingState = isPending || emailIsPending;
 
   const contextValue = {
     isOpen: confirmation,
     isValid,
+    isPending: pendingState,
     error: errors,
     paymentMethod,
-    formState,
     register,
     setConfirmation
   };

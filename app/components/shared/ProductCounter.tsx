@@ -5,6 +5,7 @@ interface Props {
   decrementCountBtn: ReactNode;
   addedStyle: string;
   itemCount: number;
+  isDisabled?: boolean;
   variant?: "product" | "cart";
   incrementCount: () => void;
   decrementCount: () => void;
@@ -16,6 +17,7 @@ export default function CartItemCounter({
   decrementCountBtn,
   variant,
   itemCount,
+  isDisabled,
   incrementCount,
   decrementCount,
   onAddToCart
@@ -25,7 +27,7 @@ export default function CartItemCounter({
       <div className={clsx("bg-darkGrey flex items-center justify-center px-[1.5rem]", addedStyle)}>
         <button
           className="font-bold text-black/25 text-[2rem] leading-[1.8rem] mr-auto hover:text-primary/100 hover:cursor-pointer disabled:hover:text-black/25 disabled:hover:cursor-not-allowed"
-          disabled={false}
+          disabled={isDisabled}
           onClick={decrementCount}
         >
           {decrementCountBtn}
