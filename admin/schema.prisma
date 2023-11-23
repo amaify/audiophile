@@ -50,3 +50,7 @@ model Product {
   galleryTwo      Json?
   galleryThree    Json?
 }
+
+model Hero {
+  id String @id @default(cuid())
+}

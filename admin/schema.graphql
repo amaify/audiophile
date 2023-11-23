@@ -384,6 +384,25 @@ input ProductCreateInput {
   galleryThree: Upload
 }
 
+type Hero {
+  id: ID!
+}
+
+input HeroWhereUniqueInput {
+  id: ID
+}
+
+input HeroWhereInput {
+  AND: [HeroWhereInput!]
+  OR: [HeroWhereInput!]
+  NOT: [HeroWhereInput!]
+  id: IDFilter
+}
+
+input HeroOrderByInput {
+  id: OrderDirection
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -408,6 +427,8 @@ type Mutation {
   updateProducts(data: [ProductUpdateArgs!]!): [Product]
   deleteProduct(where: ProductWhereUniqueInput!): Product
   deleteProducts(where: [ProductWhereUniqueInput!]!): [Product]
+  deleteHero(where: HeroWhereUniqueInput!): Hero
+  deleteHeroes(where: [HeroWhereUniqueInput!]!): [Hero]
   endSession: Boolean!
   authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult
   createInitialUser(data: CreateInitialUserInput!): UserAuthenticationWithPasswordSuccess!
@@ -440,6 +461,9 @@ type Query {
   products(where: ProductWhereInput! = {}, orderBy: [ProductOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProductWhereUniqueInput): [Product!]
   product(where: ProductWhereUniqueInput!): Product
   productsCount(where: ProductWhereInput! = {}): Int
+  heroes(where: HeroWhereInput! = {}, orderBy: [HeroOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: HeroWhereUniqueInput): [Hero!]
+  hero(where: HeroWhereUniqueInput!): Hero
+  heroesCount(where: HeroWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
 }

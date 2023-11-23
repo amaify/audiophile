@@ -33,7 +33,7 @@ __export(keystone_exports, {
   default: () => keystone_default
 });
 module.exports = __toCommonJS(keystone_exports);
-var import_core4 = require("@keystone-6/core");
+var import_core5 = require("@keystone-6/core");
 
 // schemas/Posts.ts
 var import_core = require("@keystone-6/core");
@@ -205,11 +205,20 @@ var Product = (0, import_core3.list)({
   }
 });
 
+// schemas/Hero.ts
+var import_core4 = require("@keystone-6/core");
+var import_access4 = require("@keystone-6/core/access");
+var Hero = (0, import_core4.list)({
+  access: import_access4.allowAll,
+  fields: {}
+});
+
 // schemas/index.ts
 var lists = {
   Post,
   User,
-  Product
+  Product,
+  Hero
 };
 
 // keystone.ts
@@ -259,7 +268,7 @@ var {
 } = process.env;
 var keystone_default = withAuth(
   // Using the config function helps typescript guide you to the available options.
-  (0, import_core4.config)({
+  (0, import_core5.config)({
     // the db sets the database provider - we're using sqlite for the fastest startup experience
     db: {
       provider: "postgresql",
