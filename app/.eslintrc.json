@@ -37,7 +37,7 @@
     "no-use-before-define": 0,
     "react/function-component-definition": 0,
     "react/jsx-filename-extension": 0,
-    "no-console": "error",
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
     "react-hooks/exhaustive-deps": 0,
     "react/jsx-no-bind": 0,
     "react/jsx-no-constructed-context-values": 0,

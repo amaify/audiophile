@@ -25,7 +25,7 @@ const Confirmation = () => {
   const cartItemPrice = firstCartItem.price * firstCartItem.itemCount;
 
   return (
-    <RadixDialog.Root open={isOpen} onOpenChange={handleClose}>
+    <RadixDialog.Root open={isOpen}>
       <RadixDialog.Portal>
         <RadixDialog.Overlay className="fixed inset-0 z-50 bg-black/40" />
         <RadixDialog.Content

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Stripe from "stripe";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -12,6 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const request: BodyRequest = JSON.parse(req.body);
   const { amount } = request;
 
+  if (!amount) return res.status(400).json({ data: "Did not receive the total amount" });
+
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Number(amount) * 100,
@@ -19,8 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
     return res.status(200).json({ data: paymentIntent.client_secret });
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.info(JSON.stringify(err, undefined, 4));
-    return res.status(400).json({ error: "Unable to create payment intent" });
+    return res.status(400).json({ data: "Unable to create payment intent" });
   }
 }

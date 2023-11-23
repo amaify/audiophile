@@ -34,7 +34,8 @@ export default function useOnlinePayment({ formData, reset }: Props) {
 
   const { mutate, isPending: isPaymentPending } = useMutation({
     mutationFn: () => getClientSecret(`${totalProductPrice}`),
-    onSuccess: (clientSecret) => submitPayment(clientSecret.data)
+    onSuccess: (clientSecret) => submitPayment(clientSecret.data),
+    onError: (error) => toast.error(error.message, { duration: toastDuration })
   });
   const { initializeClientInvoice, isPending, isSuccess } = useSendClientInvoice({
     email,

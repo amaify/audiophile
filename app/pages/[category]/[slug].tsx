@@ -40,7 +40,6 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
         totalPrice: productDetail.price * itemCount
       })
     );
-
     dispatch(resetCount());
     toast.success("Product successfully added to cart", { duration: 4000 });
   };

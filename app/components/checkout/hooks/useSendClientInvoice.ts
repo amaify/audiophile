@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
@@ -28,8 +27,11 @@ async function sendInvoice({ email, clientName, cart, total, grandTotal, payment
     method: "POST",
     body: JSON.stringify(emailBody)
   });
-  const response: { status: "success" | "failed" } = await request.json();
-  return response;
+
+  const response: { status: "success" | "failed"; errMessage: string } = await request.json();
+  if (request.ok) return response;
+
+  throw new Error(response.errMessage);
 }
 
 export default function useSendClientInvoice({ email, clientName, paymentMethod, reset }: Props) {
@@ -37,11 +39,8 @@ export default function useSendClientInvoice({ email, clientName, paymentMethod,
 
   const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: () => sendInvoice({ email, clientName, cart, total, grandTotal, paymentMethod }),
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    onSuccess: (data) => {
-      if (data.status === "success") reset();
-    },
-    onError: (error) => toast.error(`Unable to send receipt due to ${error.message}`)
+    onSuccess: (response) => response.status === "success" && reset(),
+    onError: (error) => toast.error(`Unable to send receipt due to ${error.message}`, { duration: 7500 })
   });
 
   const initializeClientInvoice = () => mutate();
