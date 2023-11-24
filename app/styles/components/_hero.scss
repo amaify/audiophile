@@ -1,5 +1,5 @@
 .hero {
-  background-image: url("../assets/home/mobile/image-header.jpg");
+  background-image: url("https://res.cloudinary.com/dwdqg2k8e/image/upload/v1700824503/audiophile_hero/hero_image_mobile.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 70%;
@@ -7,13 +7,13 @@
   height: 60rem;
 
   @include responsive_layout(bp-sm) {
-    background-image: url("../assets/home/tablet/image-header.jpg");
+    background-image: url("https://res.cloudinary.com/dwdqg2k8e/image/upload/v1700824503/audiophile_hero/hero_image_tablet.jpg");
     background-position: 50% 50%;
     height: 72.9rem;
   }
 
   @include responsive_layout(bp-lg) {
-    background-image: url("../assets/home/desktop/image-hero.jpg");
+    background-image: url("https://res.cloudinary.com/dwdqg2k8e/image/upload/v1700824503/audiophile_hero/hero_image_desktop.jpg");
     background-position: 70% 50%;
     height: 100vh;
   }
@@ -23,6 +23,19 @@
     background-size: 280rem;
     &::before {
       @include extended_background(hero, #191919, 0);
+      height: 100vh;
+    }
+  }
+
+  &-error {
+    width: 100%;
+    height: 60rem;
+    background: #191919;
+
+    @include responsive_layout(bp-2xl) {
+      &::before {
+        @include extended_background(hero, #191919, 0);
+      }
     }
   }
 }

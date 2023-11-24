@@ -1,6 +1,6 @@
 import React from "react";
 import { DocumentRenderer } from "@keystone-6/document-renderer";
-import type { Product } from "@/Types/data-fetching";
+import type { Product } from "@/Types/shared-types";
 
 interface Props {
   productDetail: Product;

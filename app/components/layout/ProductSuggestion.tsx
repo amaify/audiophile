@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Product } from "@/Types/data-fetching";
+import { Product } from "@/Types/shared-types";
 import Button from "../shared/Button";
 
 interface Props {
@@ -14,7 +14,7 @@ export default function ProductSuggestion({ allProducts, data: productDetail }: 
   const { slug } = router.query;
   const [shuffledArray, setShuffledArray] = useState<Product[]>([]);
 
-  const shuffleArray = () => {
+  const handleShuffleArray = () => {
     const newArray = allProducts.filter((data) => data.title !== productDetail.title);
 
     // eslint-disable-next-line no-plusplus
@@ -28,8 +28,10 @@ export default function ProductSuggestion({ allProducts, data: productDetail }: 
   };
 
   useEffect(() => {
-    setShuffledArray(shuffleArray());
+    setShuffledArray(handleShuffleArray());
   }, [slug]);
+
+  if (shuffledArray.length === 0) return null;
 
   return (
     <div className="mt-[10rem] mb-[12rem] sm:mt-[12rem] lg:mt-lg lg:mb-[25rem]">

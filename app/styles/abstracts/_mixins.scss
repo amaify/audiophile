@@ -44,10 +44,6 @@
   @if ($section == hero) {
     background: $color;
     height: 100%;
-
-    @include responsive_layout(bp-xl) {
-      height: 100vh;
-    }
   } @else {
     background: $color;
     height: 100%;

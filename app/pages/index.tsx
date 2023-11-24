@@ -1,6 +1,8 @@
-import type { NextPage } from "next";
 import Image from "next/image";
 import clsx from "clsx";
+import client from "@/helpers/apolloClient";
+import { HOME_PAGE } from "@/queries/all-queries";
+import { HomePageContent } from "@/Types/shared-types";
 import Hero from "../components/Hero";
 import Footer from "../components/shared/Footer";
 import ProductThumbnails from "../components/shared/ProductThumbnails";
@@ -9,10 +11,18 @@ import CirclePattern from "../assets/home/desktop/pattern-circles.svg";
 import Button from "../components/shared/Button";
 import SubFooter from "../components/shared/SubFooter";
 
-const Home: NextPage = () => {
+interface Props {
+  data: HomePageContent;
+  error: string;
+}
+
+export default function Home({ data, error }: Props) {
   return (
     <section>
-      <Hero />
+      <Hero
+        heroItem={!error ? data.homePageHeroes : [{ heroCategory: "", heroDescription: "", heroTitle: "" }]}
+        error={error}
+      />
       <div className="[ layout-padding ]">
         <div className="mb-[12rem] mt-48 relative lg:mt-[20rem] lg:mb-[16.8rem]">
           <ProductThumbnails />
@@ -74,6 +84,23 @@ const Home: NextPage = () => {
       <Footer />
     </section>
   );
-};
+}
 
-export default Home;
+export async function getServerSideProps() {
+  try {
+    const { data } = await client.query<HomePageContent>({
+      query: HOME_PAGE
+    });
+
+    return {
+      props: { data }
+    };
+  } catch (error: any) {
+    console.error(JSON.stringify(error, undefined, 4));
+    return {
+      props: {
+        error: `Fetch failed: Could not retrieve hero data due to ${error.message}`
+      }
+    };
+  }
+}

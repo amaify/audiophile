@@ -61,3 +61,13 @@ export const GET_PRODUCT = gql`
     }
   }
 `;
+
+export const HOME_PAGE = gql`
+  query heroSection {
+    homePageHeroes {
+      heroCategory
+      heroDescription
+      heroTitle
+    }
+  }
+`;

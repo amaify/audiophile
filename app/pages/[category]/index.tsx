@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import type { Product, ProductParam, ProductsQuery } from "@/Types/data-fetching";
-import { GET_PRODUCTS } from "@/queries/get-products";
+import type { Product, ProductParam, ProductsQuery } from "@/Types/shared-types";
+import { GET_PRODUCTS } from "@/queries/all-queries";
 import client from "@/helpers/apolloClient";
 import { Alert } from "@/components/shared/Alert";
 import ProductCategory from "@/components/shared/ProductCategory";
@@ -74,7 +74,6 @@ export async function getStaticProps(context: ProductParam) {
       revalidate: 60
     };
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error);
     return {
       props: {

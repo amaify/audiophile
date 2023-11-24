@@ -4,6 +4,8 @@ export type ProductParam = {
   };
 };
 
+type ImageUrl = { publicUrl: string };
+
 type BoxContent = {
   content: string;
   quantity: string;
@@ -18,11 +20,11 @@ export interface Product {
   suggestionTitle: string;
   boxContent: BoxContent[];
   features: { document: any[] };
-  previewImage: { publicUrl: string };
-  galleryOne: { publicUrl: string };
-  galleryTwo: { publicUrl: string };
-  galleryThree: { publicUrl: string };
-  cartImage: { publicUrl: string };
+  previewImage: ImageUrl;
+  galleryOne: ImageUrl;
+  galleryTwo: ImageUrl;
+  galleryThree: ImageUrl;
+  cartImage: ImageUrl;
   title: string;
   newProduct: boolean;
 }
@@ -34,3 +36,13 @@ export interface ProductsQuery {
 export interface ProductQuery {
   product: Product;
 }
+
+type HomePageHeroes = {
+  heroCategory: ProductParam["params"]["category"] | (string & {});
+  heroDescription: string;
+  heroTitle: string;
+};
+
+export type HomePageContent = {
+  homePageHeroes: HomePageHeroes[];
+};

@@ -33,70 +33,24 @@ __export(keystone_exports, {
   default: () => keystone_default
 });
 module.exports = __toCommonJS(keystone_exports);
-var import_core5 = require("@keystone-6/core");
-
-// schemas/Posts.ts
-var import_core = require("@keystone-6/core");
-var import_fields = require("@keystone-6/core/fields");
-var import_fields_document = require("@keystone-6/fields-document");
-var import_access = require("@keystone-6/core/access");
-var Post = (0, import_core.list)({
-  access: import_access.allowAll,
-  fields: {
-    title: (0, import_fields.text)(),
-    status: (0, import_fields.select)({
-      options: [
-        { label: "Published", value: "published" },
-        { label: "Draft", value: "draft" }
-      ],
-      defaultValue: "draft",
-      ui: {
-        displayMode: "segmented-control"
-      }
-    }),
-    content: (0, import_fields_document.document)({
-      formatting: true,
-      layouts: [
-        [1, 1],
-        [1, 1, 1],
-        [2, 1],
-        [1, 2],
-        [1, 2, 1]
-      ],
-      links: true,
-      dividers: true
-    }),
-    publishDate: (0, import_fields.timestamp)(),
-    author: (0, import_fields.relationship)({
-      ref: "User.posts",
-      ui: {
-        displayMode: "cards",
-        cardFields: ["name", "email"],
-        inlineEdit: { fields: ["name", "email"] },
-        linkToItem: true,
-        inlineConnect: true
-      }
-    })
-  }
-});
+var import_core4 = require("@keystone-6/core");
 
 // schemas/User.ts
-var import_core2 = require("@keystone-6/core");
-var import_fields2 = require("@keystone-6/core/fields");
-var import_access2 = require("@keystone-6/core/access");
-var User = (0, import_core2.list)({
-  access: import_access2.allowAll,
+var import_core = require("@keystone-6/core");
+var import_fields = require("@keystone-6/core/fields");
+var import_access = require("@keystone-6/core/access");
+var User = (0, import_core.list)({
+  access: import_access.allowAll,
   fields: {
-    name: (0, import_fields2.text)({ validation: { isRequired: true } }),
-    email: (0, import_fields2.text)({
+    name: (0, import_fields.text)({ validation: { isRequired: true } }),
+    email: (0, import_fields.text)({
       validation: { isRequired: true },
       isIndexed: "unique",
       isFilterable: true
     }),
     // The password field takes care of hiding details and hashing values
-    password: (0, import_fields2.password)({ validation: { isRequired: true } }),
-    posts: (0, import_fields2.relationship)({ ref: "Post.author", many: true }),
-    createdAt: (0, import_fields2.timestamp)({
+    password: (0, import_fields.password)({ validation: { isRequired: true } }),
+    createdAt: (0, import_fields.timestamp)({
       defaultValue: { kind: "now" }
     })
   },
@@ -108,27 +62,27 @@ var User = (0, import_core2.list)({
 });
 
 // schemas/Product.ts
-var import_core3 = require("@keystone-6/core");
-var import_fields3 = require("@keystone-6/core/fields");
-var import_fields_document2 = require("@keystone-6/fields-document");
-var import_access3 = require("@keystone-6/core/access");
+var import_core2 = require("@keystone-6/core");
+var import_fields2 = require("@keystone-6/core/fields");
+var import_fields_document = require("@keystone-6/fields-document");
+var import_access2 = require("@keystone-6/core/access");
 var import_cloudinary = require("@keystone-6/cloudinary");
 var import_dotenv = __toESM(require("dotenv"));
 import_dotenv.default.config();
-var Product = (0, import_core3.list)({
-  access: import_access3.allowAll,
+var Product = (0, import_core2.list)({
+  access: import_access2.allowAll,
   fields: {
-    title: (0, import_fields3.text)({ validation: { isRequired: true } }),
-    newProduct: (0, import_fields3.checkbox)(),
-    cartTitle: (0, import_fields3.text)({
+    title: (0, import_fields2.text)({ validation: { isRequired: true } }),
+    newProduct: (0, import_fields2.checkbox)(),
+    cartTitle: (0, import_fields2.text)({
       validation: { isRequired: true },
       ui: { description: "Enter a short title of not more than 10 characters" }
     }),
-    suggestionTitle: (0, import_fields3.text)({
+    suggestionTitle: (0, import_fields2.text)({
       validation: { isRequired: true },
       ui: { description: "Enter a short suggestion title" }
     }),
-    slug: (0, import_fields3.text)({
+    slug: (0, import_fields2.text)({
       validation: { isRequired: true }
     }),
     previewImage: (0, import_cloudinary.cloudinaryImage)({
@@ -147,7 +101,7 @@ var Product = (0, import_core3.list)({
         folder: process.env.CLOUDINARY_API_FOLDER
       }
     }),
-    category: (0, import_fields3.select)({
+    category: (0, import_fields2.select)({
       options: [
         { label: "Headphones", value: "headphones" },
         { label: "Speakers", value: "speakers" },
@@ -155,12 +109,12 @@ var Product = (0, import_core3.list)({
       ],
       validation: { isRequired: true }
     }),
-    description: (0, import_fields3.text)({
+    description: (0, import_fields2.text)({
       validation: { isRequired: true },
       ui: { displayMode: "textarea" }
     }),
-    price: (0, import_fields3.float)({ defaultValue: 0, validation: { isRequired: true } }),
-    features: (0, import_fields_document2.document)({
+    price: (0, import_fields2.float)({ defaultValue: 0, validation: { isRequired: true } }),
+    features: (0, import_fields_document.document)({
       formatting: true,
       layouts: [
         [1, 1],
@@ -172,7 +126,7 @@ var Product = (0, import_core3.list)({
       links: true,
       dividers: true
     }),
-    boxContent: (0, import_fields3.json)(),
+    boxContent: (0, import_fields2.json)(),
     galleryOne: (0, import_cloudinary.cloudinaryImage)({
       cloudinary: {
         apiKey: process.env.CLOUDINARY_API_KEY ?? "",
@@ -205,20 +159,59 @@ var Product = (0, import_core3.list)({
   }
 });
 
-// schemas/Hero.ts
-var import_core4 = require("@keystone-6/core");
-var import_access4 = require("@keystone-6/core/access");
-var Hero = (0, import_core4.list)({
-  access: import_access4.allowAll,
-  fields: {}
+// schemas/HomePageHero.ts
+var import_core3 = require("@keystone-6/core");
+var import_access3 = require("@keystone-6/core/access");
+var import_fields3 = require("@keystone-6/core/fields");
+var import_cloudinary2 = require("@keystone-6/cloudinary");
+var productCategoryOptions = [
+  { label: "Headphones", value: "headphones" },
+  { label: "Speakers", value: "speakers" },
+  { label: "Earphones", value: "earphones" }
+];
+var HomePageHero = (0, import_core3.list)({
+  access: import_access3.allowAll,
+  fields: {
+    heroTitle: (0, import_fields3.text)({ validation: { isRequired: true } }),
+    heroCategory: (0, import_fields3.select)({
+      options: productCategoryOptions,
+      validation: { isRequired: true }
+    }),
+    heroDescription: (0, import_fields3.text)({
+      validation: { isRequired: true }
+    }),
+    heroModbileImage: (0, import_cloudinary2.cloudinaryImage)({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER_HERO
+      }
+    }),
+    heroTabletImage: (0, import_cloudinary2.cloudinaryImage)({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER_HERO
+      }
+    }),
+    heroDesktopImage: (0, import_cloudinary2.cloudinaryImage)({
+      cloudinary: {
+        apiKey: process.env.CLOUDINARY_API_KEY ?? "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET ?? "",
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? "",
+        folder: process.env.CLOUDINARY_API_FOLDER_HERO
+      }
+    })
+  }
 });
 
 // schemas/index.ts
 var lists = {
-  Post,
   User,
   Product,
-  Hero
+  HomePageHero
 };
 
 // keystone.ts
@@ -268,7 +261,7 @@ var {
 } = process.env;
 var keystone_default = withAuth(
   // Using the config function helps typescript guide you to the available options.
-  (0, import_core5.config)({
+  (0, import_core4.config)({
     // the db sets the database provider - we're using sqlite for the fastest startup experience
     db: {
       provider: "postgresql",
@@ -284,6 +277,9 @@ var keystone_default = withAuth(
           {
             mode: "write",
             src: `
+            /** @jsxRuntime classic */ 
+            /** @jsx jsx */
+            
             import SigninPage from '../../../admin/pages/signin';  
 
             export default SigninPage 

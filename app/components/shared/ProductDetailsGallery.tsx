@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { Product } from "@/Types/data-fetching";
+import type { Product } from "@/Types/shared-types";
 
 interface Props {
   productDetail: Product;

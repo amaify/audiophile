@@ -43,6 +43,9 @@ export default withAuth(
           {
             mode: "write",
             src: `
+            /** @jsxRuntime classic */ 
+            /** @jsx jsx */
+            
             import SigninPage from '../../../admin/pages/signin';  
 
             export default SigninPage 
