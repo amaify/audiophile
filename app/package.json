@@ -9,7 +9,10 @@
     "lint": "next lint",
     "check:lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "check:types": "tsc",
-    "check:all": "yarn check:lint && yarn check:types"
+    "check:all": "yarn check:lint && yarn check:types",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build"
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",
@@ -41,6 +44,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^14.0.3",
     "@tanstack/eslint-plugin-query": "^5.8.4",
     "@types/node": "20.9.3",
     "@types/nodemailer": "^6.4.14",
@@ -48,6 +52,7 @@
     "@types/react-dom": "18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "autoprefixer": "^10.4.12",
+    "cross-env": "^7.0.3",
     "eslint": "8.54.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "14.0.1",
