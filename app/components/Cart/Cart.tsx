@@ -2,7 +2,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import { selectCart } from "@/store/cart/cart.reducer";
-import CartIcon from "../../assets/shared/desktop/icon-cart.svg";
+import CartIcon from "@/public/shared/desktop/icon-cart.svg";
 import CartItems from "./CartItems";
 
 const Cart = () => {

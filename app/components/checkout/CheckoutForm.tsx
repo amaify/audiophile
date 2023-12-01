@@ -4,8 +4,8 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { CardCvcElement, CardExpiryElement, CardNumberElement } from "@stripe/react-stripe-js";
 import type { StripeCardNumberElementOptions } from "@stripe/stripe-js";
-import CashIcon from "@/assets/shared/desktop/cash-payment.svg";
 import { selectCart } from "@/store/cart/cart.reducer";
+import CashIcon from "@/assets/shared/desktop/cash-payment.svg";
 import { Alert } from "../shared/Alert";
 import useCheckoutForm from "./hooks/useCheckoutForm";
 

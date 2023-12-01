@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
-import HamburgerIcon from "@/assets/shared/tablet/icon-hamburger.svg";
+import HamburgerIcon from "@/public/shared/tablet/icon-hamburger.svg";
 import ProductThumbnails from "./ProductThumbnails";
 import Brand from "./Brand";
 import Cart from "../Cart/Cart";

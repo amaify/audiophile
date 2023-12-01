@@ -1,8 +1,7 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
-import BrandLogo from "../../assets/shared/desktop/logo.svg";
+import BrandLogo from "@/public/shared/desktop/logo.svg";
 
 interface Props {
   isFooter?: boolean;

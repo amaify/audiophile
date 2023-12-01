@@ -1,8 +1,7 @@
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { clsx } from "clsx";
-import ArrowRightIcon from "../../assets/shared/desktop/icon-arrow-right.svg";
+import ArrowRightIcon from "@/public/shared/desktop/icon-arrow-right.svg";
 
 interface Props {
   btnType: number;
