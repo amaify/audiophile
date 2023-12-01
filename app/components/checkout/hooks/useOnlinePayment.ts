@@ -5,8 +5,7 @@ import type { StripeCardNumberElement } from "@stripe/stripe-js";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import type { UseFormReset } from "react-hook-form";
-import { selectCart } from "@/store/cart/cart.reducer";
-import { sumAllPrice } from "@/store/cart/cart.util";
+import { selectCart, sumAllPrice } from "@/store/cart/cart.reducer";
 import { FormInputSchema } from "../../util/validateInputFields";
 import useSendClientInvoice from "./useSendClientInvoice";
 

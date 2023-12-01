@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { sumAllPrice } from "./cart.util";
 
 export type CartItem = {
   id: string;
@@ -18,6 +17,9 @@ export type Cart = {
   total: number;
   grandTotal: number;
 };
+
+export const sumAllPrice = (cart: CartItem[]) => cart.reduce((acc, curr) => acc + curr.totalPrice, 0);
+export const calculateVAT = (productPrice: number) => productPrice * 0.2;
 
 const initialState: Cart = {
   cart: [],

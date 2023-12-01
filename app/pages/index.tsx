@@ -3,13 +3,13 @@ import clsx from "clsx";
 import client from "@/helpers/apolloClient";
 import { HOME_PAGE } from "@/queries/all-queries";
 import { HomePageContent } from "@/Types/shared-types";
-import Hero from "../components/Hero";
-import Footer from "../components/shared/Footer";
-import ProductThumbnails from "../components/shared/ProductThumbnails";
-import SpeakerZX9Image from "../assets/home/desktop/image-speaker-zx9.png";
-import CirclePattern from "../assets/home/desktop/pattern-circles.svg";
-import Button from "../components/shared/Button";
-import SubFooter from "../components/shared/SubFooter";
+import Hero from "@/components/layout/Hero";
+import Footer from "@/components/shared/Footer";
+import ProductThumbnails from "@/components/shared/ProductThumbnails";
+import SpeakerZX9Image from "@/public/home/desktop/image-speaker-zx9.png";
+import Button from "@/components/shared/Button";
+import SubFooter from "@/components/shared/SubFooter";
+import CirclePattern from "@/public/home/desktop/pattern-circles.svg";
 
 interface Props {
   data: HomePageContent;

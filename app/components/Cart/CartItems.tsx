@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
-import { formatPrice } from "@/components/util/utils";
+import { formatPrice } from "@/helpers/utils";
 import {
   CartItem,
   decrementCartItemCount,

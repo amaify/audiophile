@@ -12,7 +12,7 @@ import ProductDetailsLayout from "@/components/layout/ProductDetailsLayout";
 import ProductSuggestion from "@/components/layout/ProductSuggestion";
 import { decrementCount, incrementCount, resetCount, selectItemCount } from "@/store/cart/product-couter.reducer";
 import ProductCounter from "@/components/shared/ProductCounter";
-import { formatPrice } from "@/components/util/utils";
+import { formatPrice } from "@/helpers/utils";
 import ProductFeature from "@/components/shared/ProductFeature";
 import { addToCart } from "@/store/cart/cart.reducer";
 

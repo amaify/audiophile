@@ -5,7 +5,7 @@ import clsx from "clsx";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { resetCart, selectCart } from "@/store/cart/cart.reducer";
 import LinkButton from "../shared/Link";
-import { formatPrice } from "../util/utils";
+import { formatPrice } from "../../helpers/utils";
 import PaymentConfirmationItems from "./PaymentConfirmationItems";
 import useCheckoutForm from "./hooks/useCheckoutForm";
 

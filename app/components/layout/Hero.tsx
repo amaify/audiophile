@@ -2,10 +2,10 @@ import React from "react";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
 import { HomePageContent } from "@/Types/shared-types";
-import Navigation from "./shared/Navigation";
-import Button from "./shared/Button";
-import MobileNav from "./shared/MobileNav";
-import { Alert } from "./shared/Alert";
+import Navigation from "../shared/Navigation";
+import Button from "../shared/Button";
+import MobileNav from "../shared/MobileNav";
+import { Alert } from "../shared/Alert";
 
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
