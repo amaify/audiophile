@@ -1,4 +1,3 @@
-import React from "react";
 import Image, { type StaticImageData } from "next/image";
 import Button from "./Button";
 

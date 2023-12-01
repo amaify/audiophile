@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
+import dynamic from "next/dynamic";
 import FacebookIcon from "@/public/shared/desktop/icon-facebook.svg";
 import TwitterIcon from "@/public/shared/desktop/icon-twitter.svg";
 import InstagramIcon from "@/public/shared/desktop/icon-instagram.svg";
-import NavigationLinks from "./NavLink";
 import Brand from "./Brand";
 
 const footerSocialLinks = [
@@ -12,6 +12,8 @@ const footerSocialLinks = [
   { title: "Twitter", imgSrc: TwitterIcon },
   { title: "Instagram", imgSrc: InstagramIcon }
 ] as const;
+
+const NavigationLinks = dynamic(import("./NavLink"), { ssr: false });
 
 const Footer = () => {
   return (

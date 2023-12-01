@@ -1,20 +1,21 @@
 import React, { type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import Footer from "../shared/Footer";
-import ProductThumbnails from "../shared/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
-import SubPageHeader from "./SubPageHeader";
 import BackButton from "../shared/BackButton";
 
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
+const ProductThumbnails = dynamic(import("@/components//shared/ProductThumbnails"), { ssr: false });
+const SubPageHeader = dynamic(import("@/components/layout/SubPageHeader"), { ssr: false });
 
 interface Props {
   children: ReactNode;
   pageTitle: string;
   removeSubFooter: boolean;
+  onClick: () => void;
 }
 
-const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter }: Props) => {
+const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter, onClick }: Props) => {
   return (
     <>
       <Meta pageTitle={pageTitle} />
@@ -22,7 +23,7 @@ const ProductDetailsLayout = ({ children, pageTitle, removeSubFooter }: Props) =
 
       <div className="[ layout-padding ]">
         <div className="mt-[1.6rem] mb-[16rem] lg:mt-[7.9rem]">
-          <BackButton />
+          <BackButton onClick={onClick} />
           {children}
         </div>
 

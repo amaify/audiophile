@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,6 +28,16 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
   const itemCount = useSelector(selectItemCount);
   const dispatch = useDispatch();
 
+  const [productSuggestions, setProductSuggestions] = useState<Product[]>([]);
+
+  const randomizeProductSuggestion = () => {
+    const sortedArray = allProducts
+      .filter((data) => data.title !== productDetail.title)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3);
+    return sortedArray;
+  };
+
   const handleAddtoCart = () => {
     dispatch(
       addToCart({
@@ -46,17 +56,22 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
 
   useEffect(() => {
     dispatch(resetCount());
+    setProductSuggestions(randomizeProductSuggestion());
   }, [slug]);
 
   if (error)
     return (
-      <ProductDetailsLayout pageTitle={productDetail?.title ?? ""} removeSubFooter={false}>
+      <ProductDetailsLayout
+        pageTitle={productDetail?.title ?? ""}
+        removeSubFooter={false}
+        onClick={() => router.back()}
+      >
         <Alert message={error} alertVariant="error" />
       </ProductDetailsLayout>
     );
 
   return (
-    <ProductDetailsLayout pageTitle={productDetail?.title ?? ""} removeSubFooter={false}>
+    <ProductDetailsLayout pageTitle={productDetail?.title ?? ""} removeSubFooter={false} onClick={() => router.back()}>
       {productDetail ? (
         <>
           <div className="flex flex-col gap-[3.2rem] mb-[8.8rem] sm:flex-row sm:gap-[6.95rem] md:mb-lg md:gap-[12.5rem]">
@@ -91,7 +106,7 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
 
           <ProductFeature productDetail={productDetail} />
           <ProductDetailsGallery productDetail={productDetail} />
-          <ProductSuggestion allProducts={allProducts} data={productDetail} />
+          <ProductSuggestion productSuggestions={productSuggestions} />
         </>
       ) : (
         <h1>Nothing to see here</h1>

@@ -4,9 +4,9 @@ import { type SubmitHandler, useForm, UseFormRegister, FieldErrors } from "react
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { FormInputSchema, inputFieldSchema } from "@/components/util/validateInputFields";
-import CheckoutForm from "@/components/checkout/CheckoutForm";
 import useOnlinePayment from "./hooks/useOnlinePayment";
 
+const CheckoutForm = dynamic(import("@/components/checkout/CheckoutForm"), { ssr: false });
 const CheckoutSummary = dynamic(import("@/components/checkout/CheckoutSummary"), { ssr: false });
 const PaymentConfirmation = dynamic(import("@/components/checkout/PaymentConfirmation"), { ssr: false });
 
@@ -21,7 +21,7 @@ interface CheckoutFormContextValues {
 
 export const CheckoutFormContext = createContext<CheckoutFormContextValues | null>(null);
 
-export default function Checkout() {
+export default function CheckoutFormLayout() {
   const { register, watch, handleSubmit, getValues, reset, formState } = useForm<FormInputSchema>({
     defaultValues: {
       name: "",
@@ -51,7 +51,6 @@ export default function Checkout() {
     }
 
     if (paymentMethod === "online") initializePayment();
-
     if (paymentMethod === "cash") initializeClientInvoice();
   };
 

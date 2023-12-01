@@ -1,4 +1,3 @@
-import React from "react";
 import { useRouter } from "next/router";
 import type { Product, ProductParam, ProductsQuery } from "@/Types/shared-types";
 import { GET_PRODUCTS } from "@/queries/all-queries";
@@ -18,31 +17,36 @@ const ProductsPage = ({ data, error }: Props) => {
   const { query } = router;
   const pageTitle = query.category as string;
 
-  if (error)
+  if (error) {
     return (
       <ProductCategoryLayout layoutTitle={pageTitle}>
         <Alert message={error} alertVariant="error" />
       </ProductCategoryLayout>
     );
+  }
+
+  if (data.length === 0) {
+    return (
+      <ProductCategoryLayout layoutTitle={pageTitle}>
+        <h1>No Product</h1>
+      </ProductCategoryLayout>
+    );
+  }
 
   return (
     <ProductCategoryLayout layoutTitle={pageTitle}>
       <section className="w-full flex flex-col gap-[12rem] md:gap-[16rem]">
-        {data.length > 0 ? (
-          data.map((prodData) => (
-            <ProductCategory
-              key={prodData.id}
-              productSlug={prodData.slug}
-              productDescription={prodData.description}
-              productImage={prodData.previewImage.publicUrl}
-              productTitle={prodData.title}
-              newProduct={prodData.newProduct}
-              category={pageTitle}
-            />
-          ))
-        ) : (
-          <h1>No Product</h1>
-        )}
+        {data.map((prodData) => (
+          <ProductCategory
+            key={prodData.id}
+            productSlug={prodData.slug}
+            productDescription={prodData.description}
+            productImage={prodData.previewImage.publicUrl}
+            productTitle={prodData.title}
+            newProduct={prodData.newProduct}
+            category={pageTitle}
+          />
+        ))}
       </section>
     </ProductCategoryLayout>
   );

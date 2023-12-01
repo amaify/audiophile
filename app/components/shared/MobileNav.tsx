@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
+import dynamic from "next/dynamic";
 import HamburgerIcon from "@/public/shared/tablet/icon-hamburger.svg";
-import ProductThumbnails from "./ProductThumbnails";
 import Brand from "./Brand";
-import Cart from "../Cart/Cart";
+
+const Cart = dynamic(import("@/components/Cart/Cart"), { ssr: false });
+const ProductThumbnails = dynamic(import("@/components//shared/ProductThumbnails"), { ssr: false });
 
 const MobileNav = () => {
   return (

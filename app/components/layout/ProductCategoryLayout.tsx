@@ -1,13 +1,12 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import Navigation from "../shared/Navigation";
-import Footer from "../shared/Footer";
-import ProductThumbnails from "../shared/ProductThumbnails";
-import SubFooter from "../shared/SubFooter";
-import MobileNav from "../shared/MobileNav";
+import Footer from "@/components/shared/Footer";
+import SubFooter from "@/components/shared/SubFooter";
 
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
+const NavigationLayout = dynamic(import("./NavigationLayout"), { ssr: false });
+const ProductThumbnails = dynamic(import("@/components//shared/ProductThumbnails"), { ssr: false });
 
 interface Props {
   children: React.ReactNode;
@@ -22,8 +21,7 @@ const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
     <>
       <Meta pageTitle={pageTitle} />
       <div className="bg-black h-[25rem] relative [ product-category-header layout-padding ] md:h-[33.6rem]">
-        <Navigation removeHero={false} />
-        <MobileNav />
+        <NavigationLayout />
         <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
           <h2 className="[ heading-2 ] text-white">{layoutTitle}</h2>
         </div>

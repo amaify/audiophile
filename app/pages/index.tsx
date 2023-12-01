@@ -1,15 +1,17 @@
 import Image from "next/image";
 import clsx from "clsx";
+import dynamic from "next/dynamic";
 import client from "@/helpers/apolloClient";
 import { HOME_PAGE } from "@/queries/all-queries";
 import { HomePageContent } from "@/Types/shared-types";
 import Hero from "@/components/layout/Hero";
-import Footer from "@/components/shared/Footer";
-import ProductThumbnails from "@/components/shared/ProductThumbnails";
-import SpeakerZX9Image from "@/public/home/desktop/image-speaker-zx9.png";
 import Button from "@/components/shared/Button";
-import SubFooter from "@/components/shared/SubFooter";
+import SpeakerZX9Image from "@/public/home/desktop/image-speaker-zx9.png";
 import CirclePattern from "@/public/home/desktop/pattern-circles.svg";
+
+const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
+const SubFooter = dynamic(import("@/components/shared/SubFooter"), { ssr: false });
+const ProductThumbnails = dynamic(import("@/components/shared/ProductThumbnails"), { ssr: false });
 
 interface Props {
   data: HomePageContent;

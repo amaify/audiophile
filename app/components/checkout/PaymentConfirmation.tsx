@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CheckIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 import clsx from "clsx";
+import { CheckIcon } from "@heroicons/react/20/solid";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { resetCart, selectCart } from "@/store/cart/cart.reducer";
-import LinkButton from "../shared/Link";
 import { formatPrice } from "../../helpers/utils";
 import PaymentConfirmationItems from "./PaymentConfirmationItems";
 import useCheckoutForm from "./hooks/useCheckoutForm";
@@ -85,7 +85,13 @@ const Confirmation = () => {
               <p className="text-[1.5rem] text-white font-bold sm:text-[1.8rem]">{formatPrice(grandTotal)}</p>
             </div>
           </div>
-          <LinkButton btnText="Back to Home" btnLink="/" onClick={handleClose} />
+          <Link
+            href="/"
+            className="bg-primary block hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]"
+            onClick={handleClose}
+          >
+            Back to Home
+          </Link>
         </RadixDialog.Content>
       </RadixDialog.Portal>
     </RadixDialog.Root>

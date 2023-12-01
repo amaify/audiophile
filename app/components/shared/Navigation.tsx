@@ -1,14 +1,12 @@
 import React from "react";
 import { clsx } from "clsx";
-import NavigationLinks from "./NavLink";
+import dynamic from "next/dynamic";
 import Brand from "./Brand";
-import Cart from "../Cart/Cart";
 
-interface Props {
-  removeHero: boolean;
-}
+const Cart = dynamic(import("@/components/Cart/Cart"), { ssr: false });
+const NavigationLinks = dynamic(import("./NavLink"), { ssr: false });
 
-const Navigation = ({ removeHero }: Props) => {
+const Navigation = ({ removeHero }: { removeHero: boolean }) => {
   return (
     <nav className={clsx("hidden lg:flex lg:flex-wrap lg:py-[3.5rem]", !removeHero && "[ nav ]")}>
       <Brand />

@@ -6,7 +6,7 @@ import { CardCvcElement, CardExpiryElement, CardNumberElement } from "@stripe/re
 import type { StripeCardNumberElementOptions } from "@stripe/stripe-js";
 import { selectCart } from "@/store/cart/cart.reducer";
 import CashIcon from "@/public/shared/desktop/cash-payment.svg";
-import { Alert } from "../shared/Alert";
+import { Alert } from "@/components/shared/Alert";
 import useCheckoutForm from "./hooks/useCheckoutForm";
 
 const Input = dynamic(import("@/components/shared/Input"), { ssr: false });

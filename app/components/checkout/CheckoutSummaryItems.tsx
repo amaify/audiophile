@@ -5,6 +5,7 @@ import { formatPrice } from "../../helpers/utils";
 
 export default function CheckoutSummaryItems() {
   const { cart } = useSelector(selectCart);
+
   return (
     <div className="mb-[32px] flex flex-col gap-[24px]">
       {cart.length > 0 ? (

@@ -1,4 +1,3 @@
-import React from "react";
 import { DocumentRenderer } from "@keystone-6/document-renderer";
 import type { Product } from "@/Types/shared-types";
 

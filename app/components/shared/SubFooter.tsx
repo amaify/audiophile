@@ -1,5 +1,3 @@
-import React from "react";
-
 const SubFooter = () => {
   return (
     <section className="flex flex-col-reverse w-full gap-[4rem] mb-[12rem] relative -z-10 sm:mb-[9.6rem] lg:mb-[16rem] lg:flex-row lg:gap-[12.5rem]">
