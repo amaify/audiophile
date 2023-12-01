@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
-import NavigationLinks from "./NavLink";
 import FacebookIcon from "@/public/shared/desktop/icon-facebook.svg";
 import TwitterIcon from "@/public/shared/desktop/icon-twitter.svg";
 import InstagramIcon from "@/public/shared/desktop/icon-instagram.svg";
+import NavigationLinks from "./NavLink";
 import Brand from "./Brand";
 
 const footerSocialLinks = [
