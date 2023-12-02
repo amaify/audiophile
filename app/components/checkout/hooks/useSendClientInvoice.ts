@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import { UseFormReset } from "react-hook-form";
 import { CartItem, selectCart } from "@/store/cart/CartReducer";
-import { FormInputSchema } from "@/components/util/validateInputFields";
+import { FormInputSchema } from "..";
 
 interface Props {
   email: string;

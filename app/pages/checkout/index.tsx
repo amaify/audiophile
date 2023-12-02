@@ -8,7 +8,7 @@ import { selectCart } from "@/store/cart/CartReducer";
 
 const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
-const CheckoutFormLayout = dynamic(import("@/components/checkout"), { ssr: false });
+const CheckoutFormLayout = dynamic(import("@/components/checkout"), { ssr: true });
 const BackButton = dynamic(import("@/components/shared/BackButton"), { ssr: false });
 const SubPageHeader = dynamic(import("@/components/layout/SubPageHeader"), { ssr: false });
 
