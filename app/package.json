@@ -15,7 +15,6 @@
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.7",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.12",
     "@hookform/devtools": "^4.3.1",
@@ -28,7 +27,6 @@
     "@tanstack/react-query": "^5.8.4",
     "@tanstack/react-query-devtools": "^5.8.4",
     "clsx": "^2.0.0",
-    "graphql": "^16.8.1",
     "next": "^13.4.19",
     "nodemailer": "^6.9.7",
     "react": "18.2.0",

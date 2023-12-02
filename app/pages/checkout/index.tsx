@@ -4,7 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import getStripe from "@/helpers/getStripe";
-import { selectCart } from "@/store/cart/cart.reducer";
+import { selectCart } from "@/store/cart/CartReducer";
 
 const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });

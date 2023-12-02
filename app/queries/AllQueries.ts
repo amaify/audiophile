@@ -1,6 +1,4 @@
-import { gql } from "@apollo/client";
-
-const PRODUCT_FRAGMENT = gql`
+const PRODUCT_FRAGMENT = `
   fragment product_fragment on Product {
     id
     newProduct
@@ -25,26 +23,25 @@ const PRODUCT_FRAGMENT = gql`
   }
 `;
 
-export const GET_PRODUCTS = gql`
-  ${PRODUCT_FRAGMENT}
+export const GET_PRODUCTS = `
   query GET_PRODUCTS($category: String!) {
     products(where: { category: { equals: $category } }) {
       ...product_fragment
     }
   }
+  ${PRODUCT_FRAGMENT}
 `;
 
-export const GET_ALL_PRODUCTS = gql`
-  ${PRODUCT_FRAGMENT}
+export const GET_ALL_PRODUCTS = `
   query GET_ALL_PRODUCTS {
     products {
       ...product_fragment
     }
   }
+  ${PRODUCT_FRAGMENT}
 `;
 
-export const GET_PRODUCT = gql`
-  ${PRODUCT_FRAGMENT}
+export const GET_PRODUCT = `
   query GET_PRODUCTS($slug: String!) {
     products(where: { slug: { equals: $slug } }) {
       ...product_fragment
@@ -60,9 +57,10 @@ export const GET_PRODUCT = gql`
       }
     }
   }
+  ${PRODUCT_FRAGMENT}
 `;
 
-export const HOME_PAGE = gql`
+export const HOME_PAGE_HERO_SECTION = `
   query heroSection {
     homePageHeroes {
       heroCategory

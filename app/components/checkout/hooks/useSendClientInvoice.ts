@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import { UseFormReset } from "react-hook-form";
-import { CartItem, selectCart } from "@/store/cart/cart.reducer";
+import { CartItem, selectCart } from "@/store/cart/CartReducer";
 import { FormInputSchema } from "@/components/util/validateInputFields";
 
 interface Props {

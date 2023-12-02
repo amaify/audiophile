@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useSelector } from "react-redux";
-import { selectCart } from "@/store/cart/cart.reducer";
+import { selectCart } from "@/store/cart/CartReducer";
 import { formatPrice } from "../../helpers/utils";
 
 export default function CheckoutSummaryItems() {

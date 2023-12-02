@@ -6,7 +6,7 @@ import SubFooter from "@/components/shared/SubFooter";
 
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 const NavigationLayout = dynamic(import("./NavigationLayout"), { ssr: false });
-const ProductThumbnails = dynamic(import("@/components//shared/ProductThumbnails"), { ssr: false });
+const ProductThumbnails = dynamic(import("@/components/shared/ProductThumbnails"), { ssr: false });
 
 interface Props {
   children: React.ReactNode;
@@ -28,7 +28,7 @@ const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
       </div>
 
       <section className="flex flex-col gap-[16rem] [ layout-padding ]">
-        <div className="pt-[6.4rem] pb-0 md:pt-[16rem]">{children}</div>
+        <div className="pt-[6.4rem] pb-0 md:pt-[16rem] lg:pb-[7rem]">{children}</div>
         <ProductThumbnails />
         <SubFooter />
       </section>

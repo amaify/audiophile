@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { clsx } from "clsx";
-import { selectCart } from "@/store/cart/cart.reducer";
+import { selectCart } from "@/store/cart/CartReducer";
 import CheckoutSummaryPriceInfo from "./CheckoutSummaryPriceInfo";
 import CheckoutSummaryItems from "./CheckoutSummaryItems";
 import useCheckoutForm from "./hooks/useCheckoutForm";

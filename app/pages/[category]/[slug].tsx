@@ -3,18 +3,18 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import client from "@/helpers/apolloClient";
-import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/all-queries";
+import { fetchDataFromAdmin } from "@/helpers/ServiceClient";
+import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/AllQueries";
 import { Product, ProductsQuery } from "@/Types/shared-types";
 import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
 import { Alert } from "@/components/shared/Alert";
 import ProductDetailsLayout from "@/components/layout/ProductDetailsLayout";
 import ProductSuggestion from "@/components/layout/ProductSuggestion";
-import { decrementCount, incrementCount, resetCount, selectItemCount } from "@/store/cart/product-couter.reducer";
+import { decrementCount, incrementCount, resetCount, selectItemCount } from "@/store/cart/ProductCounterReducer";
 import ProductCounter from "@/components/shared/ProductCounter";
 import { formatPrice } from "@/helpers/utils";
 import ProductFeature from "@/components/shared/ProductFeature";
-import { addToCart } from "@/store/cart/cart.reducer";
+import { addToCart } from "@/store/cart/CartReducer";
 
 interface Props {
   data: Product;
@@ -119,7 +119,7 @@ export default ProductDetails;
 
 export const getStaticPaths = async () => {
   try {
-    const { data } = await client.query<ProductsQuery>({
+    const { data } = await fetchDataFromAdmin<ProductsQuery>({
       query: GET_ALL_PRODUCTS
     });
 
@@ -140,11 +140,11 @@ export const getStaticProps = async (context: { params: { slug: string } }) => {
 
   try {
     const [{ data: pageProduct }, { data: allProducts }] = await Promise.all([
-      await client.query<ProductsQuery>({
+      await fetchDataFromAdmin<ProductsQuery, typeof slug>({
         query: GET_PRODUCT,
         variables: { slug }
       }),
-      await client.query<ProductsQuery>({
+      await fetchDataFromAdmin<ProductsQuery>({
         query: GET_ALL_PRODUCTS
       })
     ]);
@@ -162,8 +162,7 @@ export const getStaticProps = async (context: { params: { slug: string } }) => {
       }
     };
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
+    console.error(JSON.stringify(error, undefined, 4));
     return {
       props: {
         error: `Fetch failed: Could not retrieve page data for ${slug} due to server error, please try again!`

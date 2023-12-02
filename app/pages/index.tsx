@@ -1,8 +1,8 @@
 import Image from "next/image";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
-import client from "@/helpers/apolloClient";
-import { HOME_PAGE } from "@/queries/all-queries";
+import { fetchDataFromAdmin } from "@/helpers/ServiceClient";
+import { HOME_PAGE_HERO_SECTION } from "@/queries/AllQueries";
 import { HomePageContent } from "@/Types/shared-types";
 import Hero from "@/components/layout/Hero";
 import Button from "@/components/shared/Button";
@@ -90,8 +90,8 @@ export default function Home({ data, error }: Props) {
 
 export async function getServerSideProps() {
   try {
-    const { data } = await client.query<HomePageContent>({
-      query: HOME_PAGE
+    const { data } = await fetchDataFromAdmin<HomePageContent>({
+      query: HOME_PAGE_HERO_SECTION
     });
 
     return {

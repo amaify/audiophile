@@ -11,7 +11,7 @@ import {
   removeItemFromCart,
   resetCart,
   selectCart
-} from "@/store/cart/cart.reducer";
+} from "@/store/cart/CartReducer";
 import ProductCounter from "../shared/ProductCounter";
 
 const CartItems = () => {

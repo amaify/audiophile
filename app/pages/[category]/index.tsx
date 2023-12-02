@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import type { Product, ProductParam, ProductsQuery } from "@/Types/shared-types";
-import { GET_PRODUCTS } from "@/queries/all-queries";
-import client from "@/helpers/apolloClient";
+import { GET_PRODUCTS } from "@/queries/AllQueries";
+import { fetchDataFromAdmin } from "@/helpers/ServiceClient";
 import { Alert } from "@/components/shared/Alert";
 import ProductCategory from "@/components/shared/ProductCategory";
 import ProductCategoryLayout from "@/components/layout/ProductCategoryLayout";
@@ -66,7 +66,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: ProductParam) {
   const { category } = context.params;
   try {
-    const { data } = await client.query<ProductsQuery>({
+    const { data } = await fetchDataFromAdmin<ProductsQuery, typeof category>({
       query: GET_PRODUCTS,
       variables: { category }
     });

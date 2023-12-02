@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createTransport } from "nodemailer";
 import { MailOptions } from "nodemailer/lib/sendmail-transport";
-import { Cart } from "@/store/cart/cart.reducer";
+import { Cart } from "@/store/cart/CartReducer";
 import { onlinePaymentReceiptEmail } from "./online-payment-receipt";
 import { cashPaymentConfirmationEmail } from "./cash-payment-confirmation";
 

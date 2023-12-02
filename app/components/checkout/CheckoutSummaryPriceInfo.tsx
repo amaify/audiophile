@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { calculateVAT, selectCart } from "@/store/cart/cart.reducer";
+import { calculateVAT, selectCart } from "@/store/cart/CartReducer";
 import { formatPrice } from "../../helpers/utils";
 
 export default function CheckoutSummaryPriceInfo() {

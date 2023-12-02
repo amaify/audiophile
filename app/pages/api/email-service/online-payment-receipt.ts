@@ -1,5 +1,5 @@
 import { formatPrice } from "@/helpers/utils";
-import { calculateVAT } from "@/store/cart/cart.reducer";
+import { calculateVAT } from "@/store/cart/CartReducer";
 import { BodyRequest } from ".";
 
 const date = new Date(Date.now());

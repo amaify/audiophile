@@ -4,7 +4,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import * as RadixDialog from "@radix-ui/react-dialog";
-import { resetCart, selectCart } from "@/store/cart/cart.reducer";
+import { resetCart, selectCart } from "@/store/cart/CartReducer";
 import { formatPrice } from "../../helpers/utils";
 import PaymentConfirmationItems from "./PaymentConfirmationItems";
 import useCheckoutForm from "./hooks/useCheckoutForm";
