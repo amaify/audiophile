@@ -6,8 +6,8 @@ import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import type { UseFormReset } from "react-hook-form";
 import { selectCart, sumAllPrice } from "@/store/cart/CartReducer";
-import { FormInputSchema } from "../../util/validateInputFields";
 import useSendClientInvoice from "./useSendClientInvoice";
+import { FormInputSchema } from "..";
 
 interface Props {
   formData: FormInputSchema;
