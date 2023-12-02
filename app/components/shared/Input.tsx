@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import { clsx } from "clsx";
 import type { UseFormRegister, Path, FieldErrors } from "react-hook-form";
 import type { FormInputSchema } from "../util/validateInputFields";
