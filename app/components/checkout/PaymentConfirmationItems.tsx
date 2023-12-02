@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { formatPrice } from "../../helpers/utils";
+import { formatPrice } from "../../helpers/FormatPrice";
 
 interface Props {
   itemTitle: string;

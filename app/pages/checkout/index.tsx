@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { Elements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import getStripe from "@/helpers/getStripe";
+import getStripe from "@/helpers/GetStripe";
 import { selectCart } from "@/store/cart/CartReducer";
 
 const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });

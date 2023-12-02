@@ -1,4 +1,4 @@
-import { formatPrice } from "@/helpers/utils";
+import { formatPrice } from "@/helpers/FormatPrice";
 import type { BodyRequest } from ".";
 
 export const cashPaymentConfirmationEmail = ({
