@@ -1,10 +1,12 @@
-import { useLayoutEffect } from "react";
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import { ReactNode, useLayoutEffect } from "react";
 import dynamic from "next/dynamic";
 import { Elements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import getStripe from "@/helpers/GetStripe";
 import { selectCart } from "@/store/cart/CartReducer";
+import { Alert } from "@/components/shared/Alert";
 
 const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
 const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
@@ -20,17 +22,33 @@ export default function CheckoutPage() {
     if (cart.length === 0) router.push("/");
   }, []);
 
-  if (cart.length === 0) return null;
+  if (cart.length === 0)
+    return (
+      <CheckoutPageLayout>
+        <Alert alertVariant="warning" message="Your cart is empty" />
+      </CheckoutPageLayout>
+    );
 
   return (
     <Elements stripe={getStripe()}>
+      <CheckoutPageLayout>
+        <CheckoutFormLayout />
+      </CheckoutPageLayout>
+    </Elements>
+  );
+}
+
+function CheckoutPageLayout({ children }: { children: ReactNode }) {
+  const router = useRouter();
+  return (
+    <>
       <Meta pageTitle="Checkout" />
       <SubPageHeader />
       <div className="bg-grey pt-[1.6rem] pb-[14.1rem] md:pt-[7.9rem] [ layout-padding ]">
         <BackButton onClick={() => router.back()} />
-        <CheckoutFormLayout />
+        {children}
       </div>
       <Footer />
-    </Elements>
+    </>
   );
 }

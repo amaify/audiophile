@@ -2,8 +2,8 @@ import React from "react";
 import { clsx } from "clsx";
 import dynamic from "next/dynamic";
 import Brand from "./Brand";
+import Cart from "../Cart/Cart";
 
-const Cart = dynamic(import("@/components/Cart/Cart"), { ssr: false });
 const NavigationLinks = dynamic(import("./NavLink"), { ssr: false });
 
 const Navigation = ({ removeHero }: { removeHero: boolean }) => {
