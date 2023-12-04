@@ -22,11 +22,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "hero-image": "url('/assets/home/desktop/image-hero.jpg')",
-        "bg-pattern": "url('/assets/home/desktop/pattern-circles.svg')"
-      },
-
       colors: {
         primary: "#D87D4A",
         primaryHover: "#fbaf85",
