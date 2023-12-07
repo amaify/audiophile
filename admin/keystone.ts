@@ -17,13 +17,7 @@ import { withAuth, session } from "./auth";
 
 dotenv.config();
 
-const {
-  S3_BUCKET_NAME: bucketName,
-  S3_REGION: region,
-  S3_ACCESS_KEY_ID: accessKeyId,
-  S3_SECRET_ACCESS_KEY: secretAccessKey,
-  ASSET_BASE_URL: baseURL,
-} = process.env;
+const { DATABASE_URI } = process.env;
 
 export default withAuth(
   // Using the config function helps typescript guide you to the available options.
@@ -31,7 +25,7 @@ export default withAuth(
     // the db sets the database provider - we're using sqlite for the fastest startup experience
     db: {
       provider: "postgresql",
-      url: "postgres://postgres:2251@localhost:5432/keystone",
+      url: DATABASE_URI ?? "postgres://postgres:2251@localhost:5432/keystone",
     },
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {
@@ -57,26 +51,13 @@ export default withAuth(
     },
     server: {
       cors: {
-        origin: "*",
-        methods: "*",
+        origin: ["http://localhost:9000", "http://localhost:5454"],
         credentials: true,
-        allowedHeaders: "*",
-        exposedHeaders: "*",
       },
       healthCheck: true,
       port: 8000,
     },
     lists,
     session,
-    storage: {
-      product_images: {
-        kind: "s3",
-        type: "image",
-        bucketName: bucketName ?? "",
-        region: region ?? "",
-        accessKeyId: accessKeyId ?? "",
-        secretAccessKey: secretAccessKey ?? "",
-      },
-    },
   })
 );

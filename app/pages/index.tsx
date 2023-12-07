@@ -19,11 +19,14 @@ interface Props {
 }
 
 export default function Home({ data, error }: Props) {
+  const isHeroSectionError = !!error || data.homePageHeroes.length === 0;
   return (
     <section>
       <Hero
-        heroItem={!error ? data.homePageHeroes : [{ heroCategory: "", heroDescription: "", heroTitle: "" }]}
-        error={error}
+        heroItem={
+          !isHeroSectionError ? data.homePageHeroes : [{ heroCategory: "", heroDescription: "", heroTitle: "" }]
+        }
+        error={isHeroSectionError ? "Could not get content" : error}
       />
       <div className="[ layout-padding ]">
         <div className="mb-[12rem] mt-48 relative lg:mt-[20rem] lg:mb-[16.8rem]">

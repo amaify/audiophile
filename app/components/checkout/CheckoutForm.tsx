@@ -187,7 +187,7 @@ export default function CheckoutForm() {
                 </div>
 
                 <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
-                  <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardCVV">
+                  <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardExpiryDate">
                     e-Money exp. Month
                   </label>
                   <CardExpiryElement

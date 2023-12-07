@@ -8,8 +8,7 @@ export async function fetchDataFromAdmin<T, U = void>({ query, variables }: Quer
   const options = {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "http://localhost:8000"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       query,
