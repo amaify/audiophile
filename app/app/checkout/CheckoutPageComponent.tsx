@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { ReactNode, useLayoutEffect } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
@@ -14,6 +13,20 @@ import SubPageHeader from "@/components/layout/SubPageHeader";
 import BackButton from "@/components/shared/BackButton";
 
 const CheckoutFormLayout = dynamic(() => import("@/components/checkout"));
+
+function CheckoutPageLayout({ children }: { children: ReactNode }) {
+  const router = useRouter();
+  return (
+    <>
+      <SubPageHeader />
+      <div className="bg-grey pt-[1.6rem] pb-[14.1rem] md:pt-[7.9rem] [ layout-padding ]">
+        <BackButton onClick={() => router.back()} />
+        {children}
+      </div>
+      <Footer />
+    </>
+  );
+}
 
 export default function CheckoutPageComponent() {
   const router = useRouter();
@@ -36,19 +49,5 @@ export default function CheckoutPageComponent() {
         <CheckoutFormLayout />
       </CheckoutPageLayout>
     </Elements>
-  );
-}
-
-function CheckoutPageLayout({ children }: { children: ReactNode }) {
-  const router = useRouter();
-  return (
-    <>
-      <SubPageHeader />
-      <div className="bg-grey pt-[1.6rem] pb-[14.1rem] md:pt-[7.9rem] [ layout-padding ]">
-        <BackButton onClick={() => router.back()} />
-        {children}
-      </div>
-      <Footer />
-    </>
   );
 }
