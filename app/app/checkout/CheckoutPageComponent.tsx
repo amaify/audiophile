@@ -2,7 +2,6 @@
 
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { ReactNode, useLayoutEffect } from "react";
-// import dynamic from "next/dynamic";
 import { Elements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -13,12 +12,8 @@ import { Alert } from "@/components/shared/Alert";
 import Footer from "@/components/shared/Footer";
 import SubPageHeader from "@/components/layout/SubPageHeader";
 import BackButton from "@/components/shared/BackButton";
-// import CheckoutFormLayout from "@/components/checkout";
 
-// const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 const CheckoutFormLayout = dynamic(() => import("@/components/checkout"));
-// const BackButton = dynamic(import("@/components/shared/BackButton"), { ssr: false });
-// const SubPageHeader = dynamic(import("@/components/layout/SubPageHeader"), { ssr: true });
 
 export default function CheckoutPageComponent() {
   const router = useRouter();
