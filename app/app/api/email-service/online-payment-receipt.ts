@@ -1,6 +1,6 @@
 import { formatPrice } from "@/helpers/FormatPrice";
 import { calculateVAT } from "@/store/cart/CartReducer";
-import { BodyRequest } from ".";
+import { BodyRequest } from "./route";
 
 const date = new Date(Date.now());
 const formattedDate = new Intl.DateTimeFormat("en-GB", {

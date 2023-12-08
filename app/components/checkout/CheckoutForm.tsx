@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useSelector } from "react-redux";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { CardCvcElement, CardExpiryElement, CardNumberElement } from "@stripe/react-stripe-js";
 import type { StripeCardNumberElementOptions } from "@stripe/stripe-js";
@@ -8,8 +7,7 @@ import { selectCart } from "@/store/cart/CartReducer";
 import CashIcon from "@/public/shared/desktop/cash-payment.svg";
 import { Alert } from "@/components/shared/Alert";
 import useCheckoutForm from "./hooks/useCheckoutForm";
-
-const Input = dynamic(import("@/components/shared/Input"), { ssr: false });
+import Input from "../shared/Input";
 
 function CheckoutSectionTitle({ title }: { title: string }) {
   return <h2 className="[ sub-title ] mb-[1.6rem]">{title}</h2>;

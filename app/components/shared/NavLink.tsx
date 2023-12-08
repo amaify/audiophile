@@ -1,6 +1,8 @@
+"use client";
+
 import clsx from "clsx";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 interface NavigationLInks {
   name: "home" | "headphones" | "speakers" | "earphones";
@@ -19,8 +21,7 @@ interface Props {
 }
 
 const NavigationLinks = ({ isFooter }: Props) => {
-  const router = useRouter();
-  const pathName = router.asPath;
+  const pathName = usePathname();
 
   return (
     <nav
@@ -34,7 +35,7 @@ const NavigationLinks = ({ isFooter }: Props) => {
         <Link
           key={link.name}
           href={`${link.href}`}
-          className={clsx("[ nav-link ] hover:cursor-pointer", pathName.includes(link.name) && "[ nav-link-active ]")}
+          className={clsx("[ nav-link ] hover:cursor-pointer", pathName?.includes(link.name) && "[ nav-link-active ]")}
         >
           {link.name}
         </Link>

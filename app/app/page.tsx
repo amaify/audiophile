@@ -1,6 +1,6 @@
 import Image from "next/image";
 import clsx from "clsx";
-import dynamic from "next/dynamic";
+import { Metadata } from "next";
 import { fetchDataFromAdmin } from "@/helpers/ServiceClient";
 import { HOME_PAGE_HERO_SECTION } from "@/queries/AllQueries";
 import { HomePageContent } from "@/Types/shared-types";
@@ -8,25 +8,44 @@ import Hero from "@/components/layout/Hero";
 import Button from "@/components/shared/Button";
 import SpeakerZX9Image from "@/public/home/desktop/image-speaker-zx9.png";
 import CirclePattern from "@/public/home/desktop/pattern-circles.svg";
+import SubFooter from "@/components/shared/SubFooter";
+import Footer from "@/components/shared/Footer";
+import ProductThumbnails from "@/components/shared/ProductThumbnails";
 
-const Footer = dynamic(import("@/components/shared/Footer"), { ssr: false });
-const SubFooter = dynamic(import("@/components/shared/SubFooter"), { ssr: false });
-const ProductThumbnails = dynamic(import("@/components/shared/ProductThumbnails"), { ssr: false });
+async function getHeroSection() {
+  let requestError = "";
+  let fetchedData!: HomePageContent;
+  try {
+    const { data } = await fetchDataFromAdmin<HomePageContent>({
+      query: HOME_PAGE_HERO_SECTION
+    });
+    fetchedData = data;
+  } catch (error: any) {
+    console.error(JSON.stringify(error, undefined, 4));
+    requestError = `Fetch failed: Could not retrieve hero data due to ${error.message}`;
+  }
 
-interface Props {
-  data: HomePageContent;
-  error: string;
+  return {
+    requestError,
+    fetchedData
+  };
 }
 
-export default function Home({ data, error }: Props) {
-  const isHeroSectionError = !!error || data.homePageHeroes.length === 0;
+export const metadata: Metadata = {
+  title: "Audiophile - Home"
+};
+
+export default async function Page() {
+  const { fetchedData, requestError } = await getHeroSection();
+  const isHeroSectionError = !!requestError || fetchedData.homePageHeroes.length === 0;
+
   return (
     <section>
       <Hero
         heroItem={
-          !isHeroSectionError ? data.homePageHeroes : [{ heroCategory: "", heroDescription: "", heroTitle: "" }]
+          !isHeroSectionError ? fetchedData.homePageHeroes : [{ heroCategory: "", heroDescription: "", heroTitle: "" }]
         }
-        error={isHeroSectionError ? "Could not get content" : error}
+        error={isHeroSectionError ? "Could not get content" : requestError}
       />
       <div className="[ layout-padding ]">
         <div className="mb-[12rem] mt-48 relative lg:mt-[20rem] lg:mb-[16.8rem]">
@@ -89,23 +108,4 @@ export default function Home({ data, error }: Props) {
       <Footer />
     </section>
   );
-}
-
-export async function getServerSideProps() {
-  try {
-    const { data } = await fetchDataFromAdmin<HomePageContent>({
-      query: HOME_PAGE_HERO_SECTION
-    });
-
-    return {
-      props: { data }
-    };
-  } catch (error: any) {
-    console.error(JSON.stringify(error, undefined, 4));
-    return {
-      props: {
-        error: `Fetch failed: Could not retrieve hero data due to ${error.message}`
-      }
-    };
-  }
 }

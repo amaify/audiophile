@@ -1,5 +1,5 @@
 import { formatPrice } from "@/helpers/FormatPrice";
-import type { BodyRequest } from ".";
+import type { BodyRequest } from "./route";
 
 export const cashPaymentConfirmationEmail = ({
   cart,

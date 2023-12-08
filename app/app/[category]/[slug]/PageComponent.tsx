@@ -1,11 +1,11 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import { fetchDataFromAdmin } from "@/helpers/ServiceClient";
-import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/AllQueries";
-import { Product, ProductsQuery } from "@/Types/shared-types";
+import { useParams, useRouter } from "next/navigation";
+import { Product } from "@/Types/shared-types";
 import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
 import { Alert } from "@/components/shared/Alert";
 import ProductDetailsLayout from "@/components/layout/ProductDetailsLayout";
@@ -22,11 +22,18 @@ interface Props {
   error: string;
 }
 
-const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
-  const router = useRouter();
-  const { slug } = router.query;
+export default function PageComponent({ data: productDetail, allProducts, error }: Props) {
+  const params = useParams();
+  const { back } = useRouter();
   const itemCount = useSelector(selectItemCount);
   const dispatch = useDispatch();
+
+  if (error)
+    return (
+      <ProductDetailsLayout removeSubFooter={false} onClick={() => back()}>
+        <Alert message={error} alertVariant="error" />
+      </ProductDetailsLayout>
+    );
 
   const [productSuggestions, setProductSuggestions] = useState<Product[]>([]);
 
@@ -57,21 +64,10 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
   useEffect(() => {
     dispatch(resetCount());
     setProductSuggestions(randomizeProductSuggestion());
-  }, [slug]);
-
-  if (error)
-    return (
-      <ProductDetailsLayout
-        pageTitle={productDetail?.title ?? ""}
-        removeSubFooter={false}
-        onClick={() => router.back()}
-      >
-        <Alert message={error} alertVariant="error" />
-      </ProductDetailsLayout>
-    );
+  }, [params]);
 
   return (
-    <ProductDetailsLayout pageTitle={productDetail?.title ?? ""} removeSubFooter={false} onClick={() => router.back()}>
+    <ProductDetailsLayout removeSubFooter={false} onClick={() => back()}>
       {productDetail ? (
         <>
           <div className="flex flex-col gap-[3.2rem] mb-[8.8rem] sm:flex-row sm:gap-[6.95rem] md:mb-lg md:gap-[12.5rem]">
@@ -113,60 +109,4 @@ const ProductDetails = ({ data: productDetail, allProducts, error }: Props) => {
       )}
     </ProductDetailsLayout>
   );
-};
-
-export default ProductDetails;
-
-export const getStaticPaths = async () => {
-  try {
-    const { data } = await fetchDataFromAdmin<ProductsQuery>({
-      query: GET_ALL_PRODUCTS
-    });
-
-    if (!data) return null;
-
-    const { products } = data;
-    const paths = products?.map((product) => ({ params: { category: product.category, slug: product.slug } }));
-    return { paths, fallback: false };
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
-    return { paths: [], fallback: false };
-  }
-};
-
-export const getStaticProps = async (context: { params: { slug: string } }) => {
-  const { slug } = context.params;
-
-  try {
-    const [{ data: pageProduct }, { data: allProducts }] = await Promise.all([
-      await fetchDataFromAdmin<ProductsQuery, typeof slug>({
-        query: GET_PRODUCT,
-        variables: { slug }
-      }),
-      await fetchDataFromAdmin<ProductsQuery>({
-        query: GET_ALL_PRODUCTS
-      })
-    ]);
-
-    if (!pageProduct || !allProducts) {
-      return {
-        notFound: true
-      };
-    }
-
-    return {
-      props: {
-        data: pageProduct.products[0],
-        allProducts: allProducts.products
-      }
-    };
-  } catch (error) {
-    console.error(JSON.stringify(error, undefined, 4));
-    return {
-      props: {
-        error: `Fetch failed: Could not retrieve page data for ${slug} due to server error, please try again!`
-      }
-    };
-  }
-};
+}
