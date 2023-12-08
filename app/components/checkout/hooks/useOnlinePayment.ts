@@ -15,9 +15,10 @@ interface Props {
 }
 
 async function getClientSecret(amount: string) {
+  const payload = { amount };
   const request = await fetch("/api/stripe-checkout", {
     method: "POST",
-    body: JSON.stringify({ amount })
+    body: JSON.stringify(payload)
   });
   const response: { data: string } = await request.json();
   return response;

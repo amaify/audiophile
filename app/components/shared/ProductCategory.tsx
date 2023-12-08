@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Category } from "@/app/[category]/page";
 import Button from "./Button";
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
   productDescription: string;
   productSlug: string;
   newProduct: boolean;
-  category: string;
+  category: Category;
 }
 
 const ProductCategory = ({

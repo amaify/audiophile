@@ -1,26 +1,24 @@
 import React from "react";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import clsx from "clsx";
 import { HomePageContent } from "@/Types/shared-types";
 import Button from "@/components/shared/Button";
 import { Alert } from "@/components/shared/Alert";
+import NavigationLayout from "./NavigationLayout";
 
-const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
+// const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
 
 interface Props {
   heroItem: HomePageContent["homePageHeroes"];
   error: string;
 }
 
-const NavigationLayout = dynamic(import("./NavigationLayout"), { ssr: false });
-
-const Hero = ({ heroItem, error }: Props) => {
+export default function Hero({ heroItem, error }: Props) {
   const { heroTitle, heroDescription, heroCategory } = heroItem[0];
   const heroSlug = `${heroTitle.toLowerCase().replaceAll(" ", "-")}-${heroCategory.toLowerCase()}`;
 
   return (
     <header className={clsx("relative", !error ? "[ hero ]" : "[ hero-error ]")}>
-      <Meta pageTitle="Home" />
       <section className="[ layout-padding ]">
         <NavigationLayout />
       </section>
@@ -49,6 +47,4 @@ const Hero = ({ heroItem, error }: Props) => {
       )}
     </header>
   );
-};
-
-export default Hero;
+}

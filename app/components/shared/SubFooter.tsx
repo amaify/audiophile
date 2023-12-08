@@ -1,4 +1,4 @@
-const SubFooter = () => {
+export default function SubFooter() {
   return (
     <section className="flex flex-col-reverse w-full gap-[4rem] mb-[12rem] relative -z-10 sm:mb-[9.6rem] lg:mb-[16rem] lg:flex-row lg:gap-[12.5rem]">
       <div className="w-full self-center mr-0 text-center lg:w-[60%] lg:mr-auto lg:text-left xl:w-1/2">
@@ -18,6 +18,4 @@ const SubFooter = () => {
       <div className="rounded-lg [ best-gear ]" />
     </section>
   );
-};
-
-export default SubFooter;
+}

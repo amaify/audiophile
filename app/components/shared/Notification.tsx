@@ -1,3 +1,5 @@
+"use client";
+
 import { Transition } from "@headlessui/react";
 import toast, { ToastBar, Toaster } from "react-hot-toast";
 import { XMarkIcon } from "@heroicons/react/20/solid";

@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { createTransport } from "nodemailer";
 import { MailOptions } from "nodemailer/lib/sendmail-transport";
+import { NextResponse } from "next/server";
 import { Cart } from "@/store/cart/CartReducer";
 import { onlinePaymentReceiptEmail } from "./online-payment-receipt";
 import { cashPaymentConfirmationEmail } from "./cash-payment-confirmation";
@@ -11,10 +11,10 @@ export interface BodyRequest extends Cart {
   paymentMethod: "cash" | "online";
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: Request) {
   const user = process.env.NODEMAILER_USER;
   const pass = process.env.NODEMAILER_PASS;
-  const bodyRequest = JSON.parse(req.body) as BodyRequest;
+  const bodyRequest = (await req.json()) as BodyRequest;
   const { cart, total, grandTotal, clientName, paymentMethod } = bodyRequest;
 
   const transporter = createTransport({
@@ -35,14 +35,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   };
 
   transporter.sendMail(mailOptions, (error, _) => {
-    if (!error) return res.status(200).json({ status: "success" });
+    if (!error) return "success";
 
-    return res.status(400).json({ status: "failed", errMessage: error.message });
+    return "failed";
   });
-}
 
-export const config = {
-  api: {
-    externalResolver: true
+  try {
+    return NextResponse.json({ data: "Email sent successfully" }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ data: "Unable to send email" }, { status: 400 });
   }
-};
+}
