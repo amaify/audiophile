@@ -42,7 +42,7 @@ export default withAuth(
             
             import SigninPage from '../../../admin/pages/signin';  
 
-            export default SigninPage 
+            export default SigninPage
             `,
             outputPath: "pages/signin.js",
           },
