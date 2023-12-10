@@ -9,7 +9,7 @@ export async function fetchDataFromAdmin<T, U = void>({
   variables,
   cache = "default"
 }: QueryData<U>): Promise<{ data: T }> {
-  const uri = "http://localhost:8000/api/graphql";
+  const uri = "https://audiophile-admin.onrender.com/api/graphql";
   const options = {
     method: "POST",
     headers: {
