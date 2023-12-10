@@ -5,12 +5,12 @@ import { Elements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-import getStripe from "@/helpers/GetStripe";
 import { selectCart } from "@/store/cart/CartReducer";
 import { Alert } from "@/components/shared/Alert";
 import Footer from "@/components/shared/Footer";
 import SubPageHeader from "@/components/layout/SubPageHeader";
 import BackButton from "@/components/shared/BackButton";
+import getStripe from "../../helpers/GetStripe";
 
 const CheckoutFormLayout = dynamic(() => import("@/components/checkout"));
 
