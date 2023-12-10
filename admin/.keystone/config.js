@@ -285,7 +285,11 @@ var keystone_default = withAuth(
     },
     server: {
       cors: {
-        origin: ["http://localhost:9000", "http://localhost:5454"],
+        origin: [
+          "http://localhost:9000",
+          "http://localhost:5454",
+          "https://tobe-audiophile.vercel.app/"
+        ],
         credentials: true
       },
       healthCheck: true,
