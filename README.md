@@ -20,8 +20,8 @@ The admin store was built using [keystone JS](https://keystonejs.com/) a powerfu
 - Visit https://audiophile-admin.onrender.com/signin then;
   > Enter the following login details
   >
-  > email: test@test.com
-  > password: test1234
+  > - email: test@test.com
+  > - password: test1234
 
 The client side was build using NextJS 14 App router. It's a basic application where users can:
 
