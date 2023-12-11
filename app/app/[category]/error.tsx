@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import ErrorBoundaryLayout from "@/components/layout/ErrorBoundaryLayout";
-import { Alert } from "@/components/shared/Alert";
+import ErrorBoundaryComponent from "@/components/shared/ErrorBoundary";
 
 interface Props {
   error: Error & { digest?: string };
@@ -15,12 +14,5 @@ export default function Error({ error, reset }: Props) {
     console.error(error);
   }, [error]);
 
-  return (
-    <ErrorBoundaryLayout>
-      <Alert message={error.message} alertVariant="error" />
-      <button className="[ phile-btn phile-btn-1 ]" onClick={() => reset()}>
-        Try again
-      </button>
-    </ErrorBoundaryLayout>
-  );
+  return <ErrorBoundaryComponent error={error} reset={reset} />;
 }
