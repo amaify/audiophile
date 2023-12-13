@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Product } from "@/Types/shared-types";
+import { Product } from "@/Types/sharedTypes";
 import Button from "@/components/shared/Button";
 
 interface Props {
@@ -17,7 +17,7 @@ export default function ProductSuggestion({ productSuggestions }: Props) {
           <div className="flex flex-col items-center w-full" key={item.title}>
             <div className="w-full bg-darkGrey h-[12rem] sm:h-[31.8rem]">
               <Image
-                src={item.previewImage.publicUrl}
+                src={item.previewImage.secure_url}
                 alt={item.title}
                 width={350}
                 height={318}

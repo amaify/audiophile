@@ -1,6 +1,6 @@
-import { fetchDataFromAdmin } from "@/helpers/ServiceClient";
-import { GET_ALL_PRODUCTS, GET_PRODUCT } from "@/queries/AllQueries";
-import { Product, ProductsQuery } from "@/Types/shared-types";
+import { fetchHygraphData } from "@/helpers/ServiceClient";
+import { Product, ProductsQuery } from "@/Types/sharedTypes";
+import { GetAllProducts, GetProduct } from "@/queries/AllQueries";
 import PageComponent from "./PageComponent";
 import { Category } from "../page";
 
@@ -10,8 +10,8 @@ export type ProductDetailParam = {
 
 export async function generateStaticParams() {
   try {
-    const { data } = await fetchDataFromAdmin<ProductsQuery>({
-      query: GET_ALL_PRODUCTS
+    const { data } = await fetchHygraphData<ProductsQuery>({
+      query: GetAllProducts
     });
 
     const { products } = data;
@@ -30,16 +30,15 @@ async function getProductInformation({ params }: ProductDetailParam) {
 
   try {
     const [{ data: pageProduct }, { data: allProducts }] = await Promise.all([
-      await fetchDataFromAdmin<ProductsQuery, typeof slug>({
-        query: GET_PRODUCT,
+      await fetchHygraphData<{ product: Product }, typeof slug>({
+        query: GetProduct,
         variables: { slug },
         cache: "no-store"
       }),
-      await fetchDataFromAdmin<ProductsQuery>({ query: GET_ALL_PRODUCTS })
+      await fetchHygraphData<ProductsQuery>({ query: GetAllProducts })
     ]);
-
     allProductsData = allProducts?.products;
-    pageProductData = pageProduct?.products[0];
+    pageProductData = pageProduct?.product;
   } catch (error: any) {
     console.error(JSON.stringify(error, undefined, 4));
     errorResponse = `Fetch failed: Could not retrieve page data for ${slug} due to server error, please try again or refresh!`;

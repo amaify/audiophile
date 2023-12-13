@@ -1,11 +1,11 @@
-import type { ProductsQuery } from "@/Types/shared-types";
-import { GET_PRODUCTS } from "@/queries/AllQueries";
-import { fetchDataFromAdmin } from "@/helpers/ServiceClient";
+import type { ProductsQuery } from "@/Types/sharedTypes";
+import { fetchHygraphData } from "@/helpers/ServiceClient";
 import { Alert } from "@/components/shared/Alert";
 import ProductCategory from "@/components/shared/ProductCategory";
 import ProductCategoryLayout from "@/components/layout/ProductCategoryLayout";
+import { GetProductByCategory } from "@/queries/AllQueries";
 
-export type Category = ("headphones" | "earphones" | "speakers")[];
+export type Category = "headphones" | "earphones" | "speakers";
 
 type PageParam = {
   params: {
@@ -14,19 +14,21 @@ type PageParam = {
 };
 
 export async function generateStaticParams() {
-  const categories: Category = ["headphones", "speakers", "earphones"];
+  const categories: Category[] = ["headphones", "speakers", "earphones"];
   return categories.map((category) => ({ category }));
 }
 
-async function getProductsInCategory({ params }: PageParam) {
+async function getProductByCategory({ params }: PageParam) {
   const { category } = params;
+  const firstLetterInCategory = category.charAt(0).toUpperCase();
+  const capitalizedCategory = firstLetterInCategory + category.slice(1);
   let productCategoryData!: ProductsQuery;
   let errorResponse = "";
 
   try {
-    const { data } = await fetchDataFromAdmin<ProductsQuery, typeof category>({
-      query: GET_PRODUCTS,
-      variables: { category },
+    const { data } = await fetchHygraphData<ProductsQuery, typeof category>({
+      query: GetProductByCategory,
+      variables: { category: capitalizedCategory as Category },
       cache: "no-store"
     });
     productCategoryData = data;
@@ -48,7 +50,7 @@ export async function generateMetadata({ params }: PageParam) {
 }
 
 export default async function Page(pageParams: PageParam) {
-  const { errorResponse, productCategoryData } = await getProductsInCategory(pageParams);
+  const { errorResponse, productCategoryData } = await getProductByCategory(pageParams);
   const pageTitle = pageParams.params.category;
 
   if (errorResponse) {
@@ -75,7 +77,7 @@ export default async function Page(pageParams: PageParam) {
             key={prodData.id}
             productSlug={prodData.slug}
             productDescription={prodData.description}
-            productImage={prodData.previewImage.publicUrl}
+            productImage={prodData.previewImage.secure_url}
             productTitle={prodData.title}
             newProduct={prodData.newProduct}
             category={pageTitle}

@@ -1,5 +1,5 @@
-const PRODUCT_FRAGMENT = `
-  fragment product_fragment on Product {
+const hygraphFragment = `
+  fragment hygraph_fragment on Product {
     id
     newProduct
     title
@@ -7,65 +7,56 @@ const PRODUCT_FRAGMENT = `
     category
     description
     features {
-      document
+      html
+      raw
     }
     suggestionTitle
     price
     boxContent
     cartTitle
     suggestionTitle
-    previewImage {
-      publicUrl
-    }
-    cartImage {
-      publicUrl
-    }
+    previewImage
+    cartImage
   }
 `;
 
-export const GET_PRODUCTS = `
-  query GET_PRODUCTS($category: String!) {
-    products(where: { category: { equals: $category } }) {
-      ...product_fragment
-    }
-  }
-  ${PRODUCT_FRAGMENT}
-`;
-
-export const GET_ALL_PRODUCTS = `
-  query GET_ALL_PRODUCTS {
-    products {
-      ...product_fragment
-    }
-  }
-  ${PRODUCT_FRAGMENT}
-`;
-
-export const GET_PRODUCT = `
-  query GET_PRODUCTS($slug: String!) {
-    products(where: { slug: { equals: $slug } }) {
-      ...product_fragment
-      cartTitle
-      galleryOne {
-        publicUrl
-      }
-      galleryTwo {
-        publicUrl
-      }
-      galleryThree {
-        publicUrl
-      }
-    }
-  }
-  ${PRODUCT_FRAGMENT}
-`;
-
-export const HOME_PAGE_HERO_SECTION = `
+export const getHeroSection = `
   query heroSection {
-    homePageHeroes {
-      heroCategory
-      heroDescription
-      heroTitle
+    heroSections {
+      title
+      category
+      description
     }
   }
+`;
+
+export const GetProductByCategory = `
+  query queryProductByCategory($category: Category!) {
+    products(where: { category: $category }) {
+      ...hygraph_fragment
+    }
+  }
+  ${hygraphFragment}
+`;
+
+export const GetAllProducts = `
+  query getAllProducts {
+    products {
+      ...hygraph_fragment
+    }
+  }
+${hygraphFragment}
+`;
+
+export const GetProduct = `
+  query getProduct($slug: String!) {
+    product(where: { slug: $slug }) {
+      ...hygraph_fragment
+      cartTitle
+      productGalleryImage1
+      productGalleryImage2
+      productGalleryImage3
+    }
+  }
+  ${hygraphFragment}
 `;

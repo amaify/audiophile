@@ -1,12 +1,12 @@
 import Image from "next/image";
-import type { Product } from "@/Types/shared-types";
+import type { Product } from "@/Types/sharedTypes";
 
 function ProductDetailsGallery({ productDetail }: { productDetail: Product }) {
   return (
     <div className="flex flex-col gap-[1.6rem] w-full md:gap-[3rem] md:flex-row">
       <div className="flex flex-col gap-[1.6rem] w-full relative md:w-[35%] md:gap-[3.6rem]">
         <Image
-          src={productDetail.galleryOne.publicUrl}
+          src={productDetail.productGalleryImage1.secure_url}
           alt="Image Gallery"
           width={455}
           height={280}
@@ -14,7 +14,7 @@ function ProductDetailsGallery({ productDetail }: { productDetail: Product }) {
         />
 
         <Image
-          src={productDetail.galleryTwo.publicUrl}
+          src={productDetail.productGalleryImage2.secure_url}
           alt="Image Gallery"
           width={455}
           height={280}
@@ -24,7 +24,7 @@ function ProductDetailsGallery({ productDetail }: { productDetail: Product }) {
 
       <div className="w-full h-[36.8rem] relative md:w-[65%] md:h-auto">
         <Image
-          src={productDetail.galleryThree.publicUrl}
+          src={productDetail.productGalleryImage3.secure_url}
           alt="Image Gallery"
           width={635}
           height={592}

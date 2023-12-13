@@ -15,6 +15,7 @@
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build"
   },
   "dependencies": {
+    "@graphcms/rich-text-react-renderer": "^0.6.1",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.12",
     "@hookform/resolvers": "^3.3.2",
