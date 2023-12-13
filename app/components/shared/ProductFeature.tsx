@@ -1,5 +1,5 @@
-import { DocumentRenderer } from "@keystone-6/document-renderer";
-import type { Product } from "@/Types/shared-types";
+import { RichText } from "@graphcms/rich-text-react-renderer";
+import type { Product } from "@/Types/sharedTypes";
 
 interface Props {
   productDetail: Product;
@@ -11,7 +11,7 @@ const productFeature = ({ productDetail }: Props) => {
       <div className="w-full md:w-1/2">
         <h3 className="[ heading-3 ] mb-[2.4rem] md:mb-[3.2rem]">features</h3>
         <div className="[ body-text ] [ product-feature ] text-black opacity-50">
-          <DocumentRenderer document={productDetail.features.document} />
+          <RichText content={productDetail.features.raw} />
         </div>
       </div>
 

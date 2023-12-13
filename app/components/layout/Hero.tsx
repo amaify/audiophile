@@ -1,21 +1,18 @@
 import React from "react";
-// import dynamic from "next/dynamic";
 import clsx from "clsx";
-import { HomePageContent } from "@/Types/shared-types";
+import { HeroSectionData } from "@/Types/sharedTypes";
 import Button from "@/components/shared/Button";
 import { Alert } from "@/components/shared/Alert";
 import NavigationLayout from "./NavigationLayout";
 
-// const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
-
 interface Props {
-  heroItem: HomePageContent["homePageHeroes"];
+  heroItem: HeroSectionData["heroSections"];
   error: string;
 }
 
 export default function Hero({ heroItem, error }: Props) {
-  const { heroTitle, heroDescription, heroCategory } = heroItem[0];
-  const heroSlug = `${heroTitle.toLowerCase().replaceAll(" ", "-")}-${heroCategory.toLowerCase()}`;
+  const { title, description, category } = heroItem[0];
+  const heroSlug = `${title.toLowerCase().replaceAll(" ", "-")}-${category.toLowerCase()}`;
 
   return (
     <header className={clsx("relative", !error ? "[ hero ]" : "[ hero-error ]")}>
@@ -32,12 +29,12 @@ export default function Hero({ heroItem, error }: Props) {
         >
           <p className="[ overline-text ] text-white opacity-50 mb-6">new product</p>
           <h1 className="[ heading-1 ] text-white mb-6">
-            <span className="block">{heroTitle}</span>
+            <span className="block">{title}</span>
             <span>headphones</span>
           </h1>
-          <p className="[ body-text ] text-white opacity-75 w-full mb-10 sm:w-[90%]">{heroDescription}</p>
+          <p className="[ body-text ] text-white opacity-75 w-full mb-10 sm:w-[90%]">{description}</p>
           <div className="w-full flex justify-center lg:justify-start">
-            <Button btnText="see product" btnType={1} to={`${heroCategory.toLowerCase()}/${heroSlug}`} />
+            <Button btnText="see product" btnType={1} to={`${category.toLowerCase()}/${heroSlug}`} />
           </div>
         </section>
       ) : (

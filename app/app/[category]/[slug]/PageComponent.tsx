@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
-import { Product } from "@/Types/shared-types";
+import { Product } from "@/Types/sharedTypes";
 import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
 import { Alert } from "@/components/shared/Alert";
 import ProductDetailsLayout from "@/components/layout/ProductDetailsLayout";
@@ -53,7 +53,7 @@ export default function PageComponent({ data: productDetail, allProducts, error 
         productTitle: productDetail.title,
         price: productDetail.price,
         itemCount,
-        cartImage: productDetail.cartImage.publicUrl,
+        cartImage: productDetail.cartImage.secure_url,
         totalPrice: productDetail.price * itemCount
       })
     );
@@ -73,7 +73,7 @@ export default function PageComponent({ data: productDetail, allProducts, error 
           <div className="flex flex-col gap-[3.2rem] mb-[8.8rem] sm:flex-row sm:gap-[6.95rem] md:mb-lg md:gap-[12.5rem]">
             <div className="w-full bg-darkGrey rounded-lg h-[32.7rem] sm:w-[28.1rem] sm:h-[48rem] lg:w-1/2 lg:h-auto">
               <Image
-                src={productDetail.previewImage.publicUrl}
+                src={productDetail.previewImage.secure_url}
                 alt={`${productDetail.title} Image`}
                 width={540}
                 height={560}

@@ -1,9 +1,8 @@
 import Image from "next/image";
 import clsx from "clsx";
 import { Metadata } from "next";
-import { fetchDataFromAdmin } from "@/helpers/ServiceClient";
-import { HOME_PAGE_HERO_SECTION } from "@/queries/AllQueries";
-import { HomePageContent } from "@/Types/shared-types";
+import { fetchHygraphData } from "@/helpers/ServiceClient";
+import type { HeroSectionData } from "@/Types/sharedTypes";
 import Hero from "@/components/layout/Hero";
 import Button from "@/components/shared/Button";
 import SpeakerZX9Image from "@/public/home/desktop/image-speaker-zx9.png";
@@ -11,23 +10,24 @@ import CirclePattern from "@/public/home/desktop/pattern-circles.svg";
 import SubFooter from "@/components/shared/SubFooter";
 import Footer from "@/components/shared/Footer";
 import ProductThumbnails from "@/components/shared/ProductThumbnails";
+import { getHeroSection } from "@/queries/AllQueries";
 
-async function getHeroSection() {
+async function getHeroSectionData() {
   let requestError = "";
-  let fetchedData!: HomePageContent;
+  let heroSectionData!: HeroSectionData;
   try {
-    const { data } = await fetchDataFromAdmin<HomePageContent>({
-      query: HOME_PAGE_HERO_SECTION
+    const { data } = await fetchHygraphData<HeroSectionData>({
+      query: getHeroSection
     });
-    fetchedData = data;
+    heroSectionData = data;
   } catch (error: any) {
     console.error(JSON.stringify(error, undefined, 4));
     requestError = `Fetch failed: Could not retrieve hero data due to ${error.message}`;
   }
 
   return {
-    requestError,
-    fetchedData
+    heroSectionData,
+    requestError
   };
 }
 
@@ -36,15 +36,13 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const { fetchedData, requestError } = await getHeroSection();
-  const isHeroSectionError = !!requestError || fetchedData.homePageHeroes.length === 0;
+  const { heroSectionData, requestError } = await getHeroSectionData();
+  const isHeroSectionError = !!requestError || heroSectionData.heroSections.length === 0;
 
   return (
     <section>
       <Hero
-        heroItem={
-          !isHeroSectionError ? fetchedData.homePageHeroes : [{ heroCategory: "", heroDescription: "", heroTitle: "" }]
-        }
+        heroItem={!isHeroSectionError ? heroSectionData.heroSections : [{ title: "", description: "", category: "" }]}
         error={isHeroSectionError ? "Could not get content" : requestError}
       />
       <div className="[ layout-padding ]">
