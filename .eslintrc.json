@@ -68,6 +68,8 @@
     }
   ],
   "globals": {
-    "JSX": true
+    "JSX": true,
+    "RequestInit": true,
+    "RequestCache": true
   }
 }
