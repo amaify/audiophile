@@ -1,6 +1,8 @@
 # Audiophile
 
-### An e-commerce store for your sound needs.
+![Design preview for the Audiophile web app coding challenge](./preview.jpg)
+
+### An e-commerce store for your sound needs
 
 ## Getting started
 
