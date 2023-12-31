@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -11,13 +11,6 @@ import "../styles/main.css";
 
 const queryClient = new QueryClient();
 export default function AppProvider({ children }: { children: ReactNode }) {
-  useEffect(() => {
-    if (navigator.userAgent.indexOf("iphone") > -1) {
-      document
-        .querySelector("meta[name=viewport]")
-        ?.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0");
-    }
-  });
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
