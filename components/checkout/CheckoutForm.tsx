@@ -30,7 +30,7 @@ export default function CheckoutForm() {
         color: "black",
         fontWeight: 700,
         fontFamily: "Manrope, sans-serif",
-        fontSize: "14px",
+        fontSize: "16px",
         fontSmoothing: "antialiased",
         "::placeholder": {
           color: "#989898",

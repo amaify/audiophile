@@ -36,19 +36,20 @@ interface CheckoutFormContextValues {
 }
 
 export const CheckoutFormContext = createContext<CheckoutFormContextValues | null>(null);
+const defaultValues: FormInputSchema = {
+  name: "",
+  address: "",
+  city: "",
+  country: "",
+  emailAddress: "",
+  phoneNumber: "",
+  zipCode: "",
+  paymentMethod: "online"
+};
 
 export default function CheckoutFormLayout() {
   const { register, watch, handleSubmit, getValues, reset, formState } = useForm<FormInputSchema>({
-    defaultValues: {
-      name: "",
-      address: "",
-      city: "",
-      country: "",
-      emailAddress: "",
-      phoneNumber: "",
-      zipCode: "",
-      paymentMethod: "online"
-    },
+    defaultValues,
     resolver: zodResolver(inputFieldSchema),
     mode: "onTouched"
   });
