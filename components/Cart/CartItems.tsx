@@ -36,8 +36,8 @@ const CartItems = () => {
   return (
     <div
       className={clsx(
-        "bg-white flex flex-col py-[3.1rem] pr-[2.4rem] pl-[2.4rem] rounded-lg w-[32.7rem] max-h-[49.8rem] overflow-auto",
-        "absolute top-[6rem] right-0 z-30",
+        "bg-white flex flex-col py-[3.1rem] pr-[1.8rem] pl-[1.8rem] rounded-lg w-[88vw] min-w-[28rem] max-h-[49.8rem] overflow-auto",
+        "absolute top-[6rem] right-0 z-30 2xs:w-[32.7rem] sm:py-[3.1rem] sm:pl-[2.4rem] sm:pr-[2.4rem]",
         "lg:w-[37.7rem] md:top-[6.7rem] md:pr-[3.1rem] md:pl-[3.3rem]"
       )}
     >
@@ -64,8 +64,8 @@ const CartItems = () => {
                   className="rounded-lg w-auto h-auto"
                 />
                 <div>
-                  <p className="text-[1.5rem] text-black font-bold uppercase">{item.cartTitle}</p>
-                  <p className="text-[1.4rem] text-black/50 font-bold">{formatPrice(item.price)}</p>
+                  <p className="text-[1.3rem] text-black font-bold uppercase sm:text-[1.5rem]">{item.cartTitle}</p>
+                  <p className="text-[1.2rem] text-black/50 font-bold sm:text-[1.4rem]">{formatPrice(item.price)}</p>
                 </div>
               </div>
               <ProductCounter

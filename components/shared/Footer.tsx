@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <footer
       className={clsx(
-        "relative after:content-[' '] after:w-[10.1rem] after:h-[.4rem] after:bg-primary after:block",
+        "relative mt-auto after:content-[' '] after:w-[10.1rem] after:h-[.4rem] after:bg-primary after:block",
         "after:absolute after:top-0 after:left-1/2 after:-translate-x-1/2",
         "sm:after:left-[8.8rem]",
         "lg:after:left-[9.8rem]",

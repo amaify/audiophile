@@ -77,7 +77,7 @@ export default function PageComponent({ data: productDetail, allProducts, error 
                 alt={`${productDetail.title} Image`}
                 width={540}
                 height={560}
-                loading="lazy"
+                priority
                 className="rounded-lg object-contain w-full h-full"
               />
             </div>

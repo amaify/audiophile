@@ -8,10 +8,10 @@ function Notification() {
   return (
     <Toaster
       position="bottom-left"
-      toastOptions={{ className: "", style: { background: "transparent", boxShadow: "none" } }}
+      toastOptions={{ className: "", style: { background: "transparent", boxShadow: "none", width: "100%" } }}
     >
       {(t) => (
-        <ToastBar toast={t}>
+        <ToastBar toast={t} style={{ width: "100%" }}>
           {({ icon, message }) => (
             <Transition
               appear
@@ -22,10 +22,11 @@ function Notification() {
               leave="transition-all duration-150"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-75"
+              className="w-full"
             >
-              <span className="bg-white flex gap-2 p-5 w-[28.4rem] shadow-[2px_2px_12px_1px_rgba(0,0,0,0.3)] rounded-md relative sm:w-[38.4rem]">
+              <span className="bg-white flex gap-2 p-5 w-full shadow-[2px_2px_12px_1px_rgba(0,0,0,0.3)] rounded-md relative sm:w-[38.4rem]">
                 {icon}
-                <span className="text-[1.4rem] font-medium">{message}</span>
+                <span className="text-[1.4rem] font-medium pr-6">{message}</span>
                 <XMarkIcon
                   className="absolute right-2 top-3 w-8 h-8 hover:fill-primary hover:cursor-pointer"
                   onClick={() => toast.dismiss(t.id)}

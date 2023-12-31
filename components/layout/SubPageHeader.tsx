@@ -4,7 +4,7 @@ import Navigation from "../shared/Navigation";
 const SubPageHeader = () => {
   return (
     <div className="bg-black w-full relative z-50 [ sub-page-header layout-padding ]">
-      <Navigation removeHero />
+      <Navigation removeHero subpageHeader />
       <MobileNav />
     </div>
   );

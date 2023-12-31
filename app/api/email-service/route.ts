@@ -42,7 +42,7 @@ export async function POST(req: Request) {
 
   try {
     return NextResponse.json({ data: "Email sent successfully" }, { status: 200 });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({ data: "Unable to send email" }, { status: 400 });
   }
 }

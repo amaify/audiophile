@@ -1,14 +1,9 @@
 import React, { type ReactNode } from "react";
-// import dynamic from "next/dynamic";
 import Footer from "../shared/Footer";
 import SubFooter from "../shared/SubFooter";
 import BackButton from "../shared/BackButton";
 import ProductThumbnails from "../shared/ProductThumbnails";
 import SubPageHeader from "./SubPageHeader";
-
-// const Meta = dynamic(import("@/components/shared/Meta"), { ssr: false });
-// const ProductThumbnails = dynamic(import("@/components//shared/ProductThumbnails"), { ssr: false });
-// const SubPageHeader = dynamic(import("@/components/layout/SubPageHeader"), { ssr: false });
 
 interface Props {
   children: ReactNode;
