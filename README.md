@@ -8,7 +8,6 @@
 
 > The data for this web application comes from [Hygraph](https://hygraph.com/). A powerful Headless CMS platform that stores data to be consumed anywhere; Backend or Frontend
 
-> Setting up the client-side server (NextJS 14 App router).
 #### Run
 - `yarn install or pnpm install or npm install (Depending on your package manager)`
 - `yarn dev`
