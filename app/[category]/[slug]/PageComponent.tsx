@@ -6,15 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import { Product } from "@/Types/sharedTypes";
-import ProductDetailsGallery from "@/components/shared/ProductDetailsGallery";
 import { Alert } from "@/components/shared/Alert";
 import ProductDetailsLayout from "@/components/layout/ProductDetailsLayout";
-import ProductSuggestion from "@/components/layout/ProductSuggestion";
 import { decrementCount, incrementCount, resetCount, selectItemCount } from "@/store/cart/ProductCounterReducer";
 import ProductCounter from "@/components/shared/ProductCounter";
 import { formatPrice } from "@/helpers/FormatPrice";
-import ProductFeature from "@/components/shared/ProductFeature";
 import { addToCart } from "@/store/cart/CartReducer";
+import dynamic from "next/dynamic";
+
+const ProductFeature = dynamic(import("@/components/shared/ProductFeature"), { ssr: false });
+const ProductDetailsGallery = dynamic(import("@/components/shared/ProductDetailsGallery"), { ssr: false });
+const ProductSuggestion = dynamic(import("@/components/layout/ProductSuggestion"), { ssr: false });
 
 interface Props {
   data: Product;

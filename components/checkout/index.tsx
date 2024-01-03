@@ -5,13 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
 import useOnlinePayment from "./hooks/useOnlinePayment";
-import CheckoutForm from "./CheckoutForm";
 
 const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const numberFormat = /^[0-9]*$/;
 
 const PaymentConfirmation = dynamic(() => import("./PaymentConfirmation"), { ssr: false });
 const CheckoutSummary = dynamic(() => import("./CheckoutSummary"), { ssr: false });
+const CheckoutForm = dynamic(() => import("./CheckoutForm"), { ssr: false });
 
 const inputFieldSchema = z.object({
   name: z.string().min(1, "Cannot be emtpy").min(2, "Name is required"),

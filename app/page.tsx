@@ -40,7 +40,7 @@ export default async function Page() {
   const isHeroSectionError = !!requestError || heroSectionData.heroSections.length === 0;
 
   return (
-    <section>
+    <main>
       <Hero
         heroItem={!isHeroSectionError ? heroSectionData.heroSections : [{ title: "", description: "", category: "" }]}
         error={isHeroSectionError ? "Could not get content" : requestError}
@@ -104,6 +104,6 @@ export default async function Page() {
       </div>
 
       <Footer />
-    </section>
+    </main>
   );
 }

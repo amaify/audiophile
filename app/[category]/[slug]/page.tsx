@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import { fetchHygraphData } from "@/helpers/ServiceClient";
 import { Product, ProductsQuery } from "@/Types/sharedTypes";
 import { GetAllProducts, GetProduct } from "@/queries/AllQueries";
+import ProductCategoryLayoutSkeleton from "@/components/layout/ProductCategoryLayoutSkeleton";
 import PageComponent from "./PageComponent";
 import { Category } from "../page";
 
@@ -60,5 +62,9 @@ export async function generateMetadata({ params }: ProductDetailParam) {
 export default async function Page(pageParams: ProductDetailParam) {
   const { allProductsData, pageProductData, errorResponse } = await getProductInformation(pageParams);
 
-  return <PageComponent allProducts={allProductsData} data={pageProductData} error={errorResponse ?? ""} />;
+  return (
+    <Suspense fallback={<ProductCategoryLayoutSkeleton />}>
+      <PageComponent allProducts={allProductsData} data={pageProductData} error={errorResponse ?? ""} />
+    </Suspense>
+  );
 }

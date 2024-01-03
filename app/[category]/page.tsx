@@ -4,6 +4,8 @@ import { Alert } from "@/components/shared/Alert";
 import ProductCategory from "@/components/shared/ProductCategory";
 import ProductCategoryLayout from "@/components/layout/ProductCategoryLayout";
 import { GetProductByCategory } from "@/queries/AllQueries";
+import { Suspense } from "react";
+import ProductCategoryLayoutSkeleton from "@/components/layout/ProductCategoryLayoutSkeleton";
 
 export type Category = "headphones" | "earphones" | "speakers";
 
@@ -55,35 +57,41 @@ export default async function Page(pageParams: PageParam) {
 
   if (errorResponse) {
     return (
-      <ProductCategoryLayout layoutTitle={pageTitle}>
-        <Alert message={errorResponse} alertVariant="error" />
-      </ProductCategoryLayout>
+      <Suspense fallback={<ProductCategoryLayoutSkeleton />}>
+        <ProductCategoryLayout layoutTitle={pageTitle}>
+          <Alert message={errorResponse} alertVariant="error" />
+        </ProductCategoryLayout>
+      </Suspense>
     );
   }
 
   if (productCategoryData?.length === 0) {
     return (
-      <ProductCategoryLayout layoutTitle={pageTitle}>
-        <Alert message="No product" alertVariant="warning" />
-      </ProductCategoryLayout>
+      <Suspense fallback={<ProductCategoryLayoutSkeleton />}>
+        <ProductCategoryLayout layoutTitle={pageTitle}>
+          <Alert message="No product" alertVariant="warning" />
+        </ProductCategoryLayout>
+      </Suspense>
     );
   }
 
   return (
-    <ProductCategoryLayout layoutTitle={pageTitle}>
-      <section className="w-full flex flex-col gap-[12rem] md:gap-[16rem]">
-        {productCategoryData?.map((prodData) => (
-          <ProductCategory
-            key={prodData.id}
-            productSlug={prodData.slug}
-            productDescription={prodData.description}
-            productImage={prodData.previewImage.secure_url}
-            productTitle={prodData.title}
-            newProduct={prodData.newProduct}
-            category={pageTitle}
-          />
-        ))}
-      </section>
-    </ProductCategoryLayout>
+    <Suspense fallback={<ProductCategoryLayoutSkeleton />}>
+      <ProductCategoryLayout layoutTitle={pageTitle}>
+        <section className="w-full flex flex-col gap-[12rem] md:gap-[16rem]">
+          {productCategoryData?.map((prodData) => (
+            <ProductCategory
+              key={prodData.id}
+              productSlug={prodData.slug}
+              productDescription={prodData.description}
+              productImage={prodData.previewImage.secure_url}
+              productTitle={prodData.title}
+              newProduct={prodData.newProduct}
+              category={pageTitle}
+            />
+          ))}
+        </section>
+      </ProductCategoryLayout>
+    </Suspense>
   );
 }
