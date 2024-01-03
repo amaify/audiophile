@@ -1,7 +1,7 @@
 import HeadphoneImage from "@/public/shared/desktop/image-category-thumbnail-headphones.png";
 import SpeakerImage from "@/public/shared/desktop/image-category-thumbnail-speakers.png";
 import EarphonesImage from "@/public/shared/desktop/image-category-thumbnail-earphones.png";
-import Thumbnail from "./Thumbnail";
+import Thumbnail from "@/components/shared/Thumbnail";
 
 const productThumbnail = [
   { title: "headphones", img: HeadphoneImage },

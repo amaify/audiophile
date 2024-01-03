@@ -4,7 +4,7 @@ import { type SubmitHandler, useForm, UseFormRegister, FieldErrors } from "react
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
-import useOnlinePayment from "./hooks/useOnlinePayment";
+import useOnlinePayment from "../hooks/useOnlinePayment";
 
 const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const numberFormat = /^[0-9]*$/;

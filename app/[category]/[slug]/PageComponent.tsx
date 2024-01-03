@@ -7,16 +7,16 @@ import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import { Product } from "@/Types/sharedTypes";
 import { Alert } from "@/components/shared/Alert";
-import ProductDetailsLayout from "@/components/layout/ProductDetailsLayout";
 import { decrementCount, incrementCount, resetCount, selectItemCount } from "@/store/cart/ProductCounterReducer";
-import ProductCounter from "@/components/shared/ProductCounter";
+import ProductCounter from "@/app/[category]/components/ProductCounter";
 import { formatPrice } from "@/helpers/FormatPrice";
 import { addToCart } from "@/store/cart/CartReducer";
 import dynamic from "next/dynamic";
 
-const ProductFeature = dynamic(import("@/components/shared/ProductFeature"), { ssr: false });
-const ProductDetailsGallery = dynamic(import("@/components/shared/ProductDetailsGallery"), { ssr: false });
-const ProductSuggestion = dynamic(import("@/components/layout/ProductSuggestion"), { ssr: false });
+const ProductFeature = dynamic(() => import("../components/ProductFeature"), { ssr: false });
+const ProductDetailsGallery = dynamic(() => import("../components/ProductDetailsGallery"), { ssr: false });
+const ProductSuggestion = dynamic(() => import("../components/ProductSuggestion"), { ssr: false });
+const ProductDetailsLayout = dynamic(() => import("../layout/ProductDetailsLayout"), { ssr: false });
 
 interface Props {
   data: Product;
@@ -44,6 +44,7 @@ export default function PageComponent({ data: productDetail, allProducts, error 
       .filter((data) => data.title !== productDetail.title)
       .sort(() => Math.random() - 0.5)
       .slice(0, 3);
+
     return sortedArray;
   };
 

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { fetchHygraphData } from "@/helpers/ServiceClient";
 import { Product, ProductsQuery } from "@/Types/sharedTypes";
 import { GetAllProducts, GetProduct } from "@/queries/AllQueries";
-import ProductCategoryLayoutSkeleton from "@/components/layout/ProductCategoryLayoutSkeleton";
+import ProductCategoryLayoutSkeleton from "@/app/[category]/layout/ProductCategoryLayoutSkeleton";
 import PageComponent from "./PageComponent";
 import { Category } from "../page";
 

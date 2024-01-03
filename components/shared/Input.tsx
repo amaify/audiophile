@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { clsx } from "clsx";
 import type { UseFormRegister, Path, FieldErrors } from "react-hook-form";
-import { FormInputSchema } from "../checkout";
+import { FormInputSchema } from "../../app/checkout/components";
 
 interface Props extends ComponentPropsWithoutRef<"input"> {
   control: "radio" | "text";

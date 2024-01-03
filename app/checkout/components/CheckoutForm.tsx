@@ -6,8 +6,8 @@ import type { StripeCardNumberElementOptions } from "@stripe/stripe-js";
 import { selectCart } from "@/store/cart/CartReducer";
 import CashIcon from "@/public/shared/desktop/cash-payment.svg";
 import { Alert } from "@/components/shared/Alert";
-import useCheckoutForm from "./hooks/useCheckoutForm";
-import Input from "../shared/Input";
+import useCheckoutForm from "@/app/checkout/hooks/useCheckoutForm";
+import Input from "@/components/shared/Input";
 
 function CheckoutSectionTitle({ title }: { title: string }) {
   return <h2 className="[ sub-title ] mb-[1.6rem]">{title}</h2>;

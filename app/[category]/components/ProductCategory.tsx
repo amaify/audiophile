@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Category } from "@/app/[category]/page";
-import Button from "./Button";
+import Button from "../../../components/shared/Button";
 
 interface Props {
   productImage: string;

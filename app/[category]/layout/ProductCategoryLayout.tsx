@@ -2,8 +2,8 @@ import React from "react";
 import Footer from "@/components/shared/Footer";
 import SubFooter from "@/components/shared/SubFooter";
 import { Category } from "@/app/[category]/page";
-import ProductThumbnails from "../shared/ProductThumbnails";
-import NavigationLayout from "./NavigationLayout";
+import NavigationLayout from "@/components/layout/NavigationLayout";
+import ProductThumbnails from "@/app/[category]/components/ProductThumbnails";
 
 interface Props {
   children: React.ReactNode;

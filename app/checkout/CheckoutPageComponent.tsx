@@ -12,7 +12,7 @@ import Footer from "@/components/shared/Footer";
 import SubPageHeader from "@/components/layout/SubPageHeader";
 import BackButton from "@/components/shared/BackButton";
 
-const CheckoutFormLayout = dynamic(() => import("@/components/checkout"), { ssr: false });
+const CheckoutFormLayout = dynamic(() => import("@/app/checkout/components"), { ssr: false });
 
 let stripePromise: Promise<Stripe | null>;
 

@@ -1,9 +1,9 @@
+import SubPageHeader from "@/components/layout/SubPageHeader";
+import BackButton from "@/components/shared/BackButton";
 import React, { type ReactNode } from "react";
-import Footer from "../shared/Footer";
-import SubFooter from "../shared/SubFooter";
-import BackButton from "../shared/BackButton";
-import ProductThumbnails from "../shared/ProductThumbnails";
-import SubPageHeader from "./SubPageHeader";
+import SubFooter from "@/components/shared/SubFooter";
+import Footer from "@/components/shared/Footer";
+import ProductThumbnails from "../components/ProductThumbnails";
 
 interface Props {
   children: ReactNode;

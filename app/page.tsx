@@ -9,7 +9,7 @@ import SpeakerZX9Image from "@/public/home/desktop/image-speaker-zx9.png";
 import CirclePattern from "@/public/home/desktop/pattern-circles.svg";
 import SubFooter from "@/components/shared/SubFooter";
 import Footer from "@/components/shared/Footer";
-import ProductThumbnails from "@/components/shared/ProductThumbnails";
+import ProductThumbnails from "@/app/[category]/components/ProductThumbnails";
 import { getHeroSection } from "@/queries/AllQueries";
 
 async function getHeroSectionData() {

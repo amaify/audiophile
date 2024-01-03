@@ -5,9 +5,9 @@ import clsx from "clsx";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import { Dialog } from "@headlessui/react";
 import { resetCart, selectCart } from "@/store/cart/CartReducer";
-import { formatPrice } from "../../helpers/FormatPrice";
+import { formatPrice } from "../../../helpers/FormatPrice";
 import PaymentConfirmationItems from "./PaymentConfirmationItems";
-import useCheckoutForm from "./hooks/useCheckoutForm";
+import useCheckoutForm from "../hooks/useCheckoutForm";
 
 const Confirmation = () => {
   const dispatch = useDispatch();

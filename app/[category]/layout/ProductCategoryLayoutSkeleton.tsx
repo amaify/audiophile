@@ -1,4 +1,4 @@
-import Skeleton from "../shared/Skeleton";
+import Skeleton from "../../../components/shared/Skeleton";
 
 export default function ProductCategoryLayoutSkeleton() {
   return (

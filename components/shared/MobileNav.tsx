@@ -6,7 +6,7 @@ import clsx from "clsx";
 import HamburgerIcon from "@/public/shared/tablet/icon-hamburger.svg";
 import Brand from "./Brand";
 import Cart from "../Cart/Cart";
-import ProductThumbnails from "./ProductThumbnails";
+import ProductThumbnails from "../../app/[category]/components/ProductThumbnails";
 
 const MobileNav = () => {
   return (

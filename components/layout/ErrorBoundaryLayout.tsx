@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import NavigationLayout from "./NavigationLayout";
-import ProductThumbnails from "../shared/ProductThumbnails";
+import ProductThumbnails from "../../app/[category]/components/ProductThumbnails";
 import SubFooter from "../shared/SubFooter";
 import Footer from "../shared/Footer";
 

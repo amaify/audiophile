@@ -12,7 +12,7 @@ import {
   resetCart,
   selectCart
 } from "@/store/cart/CartReducer";
-import ProductCounter from "../shared/ProductCounter";
+import ProductCounter from "../../app/[category]/components/ProductCounter";
 
 const CartItems = () => {
   const dispatch = useDispatch();

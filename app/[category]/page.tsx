@@ -1,11 +1,13 @@
+import { Suspense } from "react";
 import type { ProductsQuery } from "@/Types/sharedTypes";
 import { fetchHygraphData } from "@/helpers/ServiceClient";
 import { Alert } from "@/components/shared/Alert";
-import ProductCategory from "@/components/shared/ProductCategory";
-import ProductCategoryLayout from "@/components/layout/ProductCategoryLayout";
 import { GetProductByCategory } from "@/queries/AllQueries";
-import { Suspense } from "react";
-import ProductCategoryLayoutSkeleton from "@/components/layout/ProductCategoryLayoutSkeleton";
+import dynamic from "next/dynamic";
+import ProductCategoryLayoutSkeleton from "./layout/ProductCategoryLayoutSkeleton";
+
+const ProductCategoryLayout = dynamic(() => import("./layout/ProductCategoryLayout"), { ssr: true });
+const ProductCategory = dynamic(() => import("./components/ProductCategory"), { ssr: true });
 
 export type Category = "headphones" | "earphones" | "speakers";
 
