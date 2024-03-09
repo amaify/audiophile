@@ -146,7 +146,16 @@ export default function CheckoutForm() {
           <section className="flex flex-col mb-0">
             <CheckoutSectionTitle title="Payment details" />
             <div className="flex flex-col gap-[1.6rem] md:flex-row">
-              <p className="text-[1.2rem] text-black capitalize font-bold w-1/2">Payment Method</p>
+              <div className="w-full flex flex-col gap-1 md:w-1/2">
+                <p className="text-[1.2rem] text-black capitalize font-bold w-full">Payment Method</p>
+                {paymentMethod === "online" && (
+                  <ul className="text-[1.2rem] w-full font-normal">
+                    <li className="">Card number: 4242 4242 4242 4242</li>
+                    <li>CVV: Any random 3 digits</li>
+                    <li>Expiry date: Any date in the future</li>
+                  </ul>
+                )}
+              </div>
               <div className="flex flex-col gap-[1.6rem] w-full mb-[2.4rem] md:w-/12">
                 {methodOfPayment.map((m) => (
                   <Input

@@ -1,9 +1,11 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { z } from "zod";
 import { type SubmitHandler, useForm, UseFormRegister, FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
+import { useDispatch } from "react-redux";
+import { resetCart } from "@/store/cart/CartReducer";
 import useOnlinePayment from "../hooks/useOnlinePayment";
 
 const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -48,6 +50,7 @@ const defaultValues: FormInputSchema = {
 };
 
 export default function CheckoutFormLayout() {
+  const dispatch = useDispatch();
   const { register, watch, handleSubmit, getValues, reset, formState } = useForm<FormInputSchema>({
     defaultValues,
     resolver: zodResolver(inputFieldSchema),
@@ -71,6 +74,15 @@ export default function CheckoutFormLayout() {
     if (paymentMethod === "cash") initializeClientInvoice();
   };
 
+  useEffect(() => {
+    const item = JSON.parse(sessionStorage.getItem("orderSubmitted")!);
+
+    if (item) {
+      dispatch(resetCart());
+      sessionStorage.clear();
+    }
+  }, []);
+
   const contextValue = {
     isOpen: isSuccess,
     isValid,
@@ -79,6 +91,10 @@ export default function CheckoutFormLayout() {
     paymentMethod,
     register
   };
+
+  if (isSuccess) {
+    sessionStorage.setItem("orderSubmitted", JSON.stringify(isSuccess));
+  }
 
   return (
     <CheckoutFormContext.Provider value={contextValue}>
