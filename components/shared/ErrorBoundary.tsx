@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import ErrorBoundaryLayout from "@/components/layout/ErrorBoundaryLayout";
 import { Alert } from "@/components/shared/Alert";
 
@@ -11,8 +10,6 @@ interface Props {
 }
 
 export default function ErrorBoundaryComponent({ error, reset }: Props) {
-  const router = useRouter();
-
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -22,7 +19,7 @@ export default function ErrorBoundaryComponent({ error, reset }: Props) {
     <ErrorBoundaryLayout>
       <div className="space-y-4">
         <Alert message={error.message} alertVariant="error" />
-        <button className="[ phile-btn phile-btn-1 ]" onClick={() => router.refresh()}>
+        <button className="[ phile-btn phile-btn-1 ]" onClick={() => window.location.reload()}>
           Try again
         </button>
       </div>

@@ -34,8 +34,7 @@ async function getProductInformation({ params }: ProductDetailParam) {
     const [{ data: pageProduct }, { data: allProducts }] = await Promise.all([
       await fetchHygraphData<{ product: Product }, typeof slug>({
         query: GetProduct,
-        variables: { slug },
-        cache: "no-store"
+        variables: { slug }
       }),
       await fetchHygraphData<ProductsQuery>({ query: GetAllProducts })
     ]);

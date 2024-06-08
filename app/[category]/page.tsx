@@ -22,8 +22,7 @@ export async function generateStaticParams() {
   return categories.map((category) => ({ category }));
 }
 
-async function getProductByCategory({ params }: PageParam) {
-  const { category } = params;
+async function getProductByCategory({ category }: PageParam["params"]) {
   const firstLetterInCategory = category.charAt(0).toUpperCase();
   const capitalizedCategory = firstLetterInCategory + category.slice(1);
   let productCategoryData!: ProductsQuery;
@@ -32,8 +31,7 @@ async function getProductByCategory({ params }: PageParam) {
   try {
     const { data } = await fetchHygraphData<ProductsQuery, typeof category>({
       query: GetProductByCategory,
-      variables: { category: capitalizedCategory as Category },
-      cache: "no-store"
+      variables: { category: capitalizedCategory as Category }
     });
     productCategoryData = data;
   } catch (error: any) {
@@ -53,9 +51,9 @@ export async function generateMetadata({ params }: PageParam) {
   };
 }
 
-export default async function Page(pageParams: PageParam) {
-  const { errorResponse, productCategoryData } = await getProductByCategory(pageParams);
-  const pageTitle = pageParams.params.category;
+export default async function Page({ params }: PageParam) {
+  const { errorResponse, productCategoryData } = await getProductByCategory(params);
+  const pageTitle = params.category;
 
   if (errorResponse) {
     return (

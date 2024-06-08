@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { ExclamationCircleIcon, CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { clsx } from "clsx";
 
 interface Props {
   message: string;
@@ -13,7 +14,7 @@ export const Alert = ({ message, alertVariant }: Props) => {
     error: <XCircleIcon className="w-8 h-8 " aria-hidden="true" />
   };
   return (
-    <div className={`relative bg-white shadow rounded-md overflow-hidden border border-${alertVariant} p-6`}>
+    <div className={clsx("relative bg-white shadow rounded-md overflow-hidden border p-6", `border-${alertVariant}`)}>
       <div
         className={`absolute top-0 -left-[-40%] w-[100%] h-[250%] -translate-x-24 bg-gradient-to-r from-${alertVariant} to-transparent mix-blend-multiply opacity-20 rotate-12 blur-3xl`}
       />
