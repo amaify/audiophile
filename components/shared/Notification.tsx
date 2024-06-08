@@ -22,7 +22,6 @@ function Notification() {
               leave="transition-all duration-150"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-75"
-              className="w-full"
             >
               <span className="bg-white flex gap-2 p-5 w-full shadow-[2px_2px_12px_1px_rgba(0,0,0,0.3)] rounded-md relative sm:w-[38.4rem]">
                 {icon}

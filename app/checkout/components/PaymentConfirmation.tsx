@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import clsx from "clsx";
 import { CheckIcon } from "@heroicons/react/20/solid";
-import { Dialog } from "@headlessui/react";
+import { Dialog, DialogPanel } from "@headlessui/react";
 import { resetCart, selectCart } from "@/store/cart/CartReducer";
 import { formatPrice } from "../../../helpers/FormatPrice";
 import PaymentConfirmationItems from "./PaymentConfirmationItems";
@@ -26,8 +26,8 @@ const Confirmation = () => {
 
   return (
     <Dialog open={isOpen} onClose={() => {}} as="div">
-      <Dialog.Backdrop className="fixed inset-0 z-50 bg-black/40" />
-      <Dialog.Panel
+      <div className="fixed inset-0 z-50 bg-black/40" />
+      <DialogPanel
         className={clsx(
           "bg-white p-[2.4rem] rounded-lg w-11/12 h-[58.1rem] min-w-[30rem] max-h-[71.3rem] overflow-auto md:w-[54rem] md:p-[4.8rem]",
           "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
@@ -91,7 +91,7 @@ const Confirmation = () => {
         >
           Back to Home
         </Link>
-      </Dialog.Panel>
+      </DialogPanel>
     </Dialog>
   );
 };
