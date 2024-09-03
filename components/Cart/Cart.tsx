@@ -1,4 +1,4 @@
-import { Popover, Transition } from "@headlessui/react";
+import { Popover, PopoverBackdrop, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import { selectCart } from "@/store/cart/CartReducer";
@@ -10,7 +10,7 @@ const Cart = () => {
 
   return (
     <Popover>
-      <Popover.Button className="relative outline-none border-none">
+      <PopoverButton className="relative outline-none border-none">
         <Image src={CartIcon} alt="Shopping Cart" className="hover:cursor-pointer" />
         {cart.length > 0 && (
           <p className="w-9 h-9 bg-primary text-white absolute -top-1/2 left-1/2 text-center rounded-full">
@@ -19,24 +19,18 @@ const Cart = () => {
             </span>
           </p>
         )}
-      </Popover.Button>
+      </PopoverButton>
+      <PopoverBackdrop
+        transition
+        className="fixed inset-0 bg-black/50 z-20 duration-300 ease-out transition data-[closed]:opacity-0"
+      />
 
-      <Popover.Overlay className="fixed inset-0 bg-black/50 z-20" />
-
-      <div className="w-full relative z-50">
-        <Transition.Child
-          enter="transition ease-in-out duration-300 transform"
-          enterFrom="scale-0"
-          enterTo="scale-100"
-          leave="transition ease-out duration-300 transform"
-          leaveFrom="scale-100"
-          leaveTo="scale-0"
-        >
-          <Popover.Panel>
-            <CartItems />
-          </Popover.Panel>
-        </Transition.Child>
-      </div>
+      <PopoverPanel
+        transition
+        className="w-full relative z-50 ease-out transition duration-300 data-[closed]:scale-0 transform"
+      >
+        <CartItems />
+      </PopoverPanel>
     </Popover>
   );
 };

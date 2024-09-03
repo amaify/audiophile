@@ -13,8 +13,8 @@ interface Props {
 const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
   return (
     <>
+      <NavigationLayout />
       <div className="bg-black relative [ product-category-header layout-padding ]">
-        <NavigationLayout />
         <div className="py-[3.2rem] w-full text-center md:py-[9.8rem]">
           <h2 className="[ heading-2 ] text-white">{layoutTitle}</h2>
         </div>

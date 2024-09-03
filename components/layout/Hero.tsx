@@ -16,9 +16,7 @@ export default function Hero({ heroItem, error }: Props) {
 
   return (
     <header className={clsx("relative", !error ? "[ hero ]" : "[ hero-error ]")}>
-      <section className="[ layout-padding ]">
-        <NavigationLayout />
-      </section>
+      <NavigationLayout />
       {!error ? (
         <section
           className={clsx(

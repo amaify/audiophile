@@ -15,7 +15,7 @@ const Navigation = ({ removeHero, subpageHeader }: Props) => {
   return (
     <nav
       className={clsx(
-        "hidden lg:flex lg:flex-wrap lg:pt-[3.5rem]",
+        "hidden lg:flex lg:flex-wrap lg:pt-[3.5rem] [ layout-padding ]",
         !removeHero && "[ nav ]",
         subpageHeader && "lg:py-[3.5rem]"
       )}
