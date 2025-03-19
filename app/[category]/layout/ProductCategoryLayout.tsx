@@ -2,8 +2,8 @@ import React from "react";
 import Footer from "@/components/shared/Footer";
 import SubFooter from "@/components/shared/SubFooter";
 import { Category } from "@/app/[category]/page";
-import NavigationLayout from "@/components/layout/NavigationLayout";
 import ProductThumbnails from "@/app/[category]/components/ProductThumbnails";
+import SubPageHeader from "@/components/layout/SubPageHeader";
 
 interface Props {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ interface Props {
 const ProductCategoryLayout = ({ children, layoutTitle }: Props) => {
   return (
     <>
-      <NavigationLayout />
+      <SubPageHeader showUnderline />
       <div className="bg-black relative [ product-category-header layout-padding ]">
         <div className="py-[3.2rem] w-full text-center md:py-[9.8rem]">
           <h2 className="[ heading-2 ] text-white">{layoutTitle}</h2>

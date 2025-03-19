@@ -13,7 +13,7 @@ const MobileNav = () => {
     <Popover className="relative z-50 w-full lg:hidden" as="nav">
       {({ close, open }) => (
         <>
-          <section className="w-full bg-black flex items-center pt-8 pb-14 z-50 relative border-b border-b-white/20 [ layout-padding ]">
+          <section className="w-full flex items-center pt-8 pb-14 z-50 relative border-b border-b-white/20 [ layout-padding ]">
             <PopoverButton className="size-8 mr-auto focus-visible:outline-none sm:mr-[4.2rem]">
               <Image src={HamburgerIcon} alt="Hamburger menu" className="size-full" />
             </PopoverButton>

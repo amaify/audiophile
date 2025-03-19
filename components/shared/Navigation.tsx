@@ -9,15 +9,17 @@ import NavigationLinks from "./NavLink";
 interface Props {
   removeHero: boolean;
   subpageHeader?: boolean;
+  showUnderline?: boolean;
 }
 
-const Navigation = ({ removeHero, subpageHeader }: Props) => {
+const Navigation = ({ removeHero, subpageHeader, showUnderline }: Props) => {
   return (
     <nav
       className={clsx(
-        "hidden lg:flex lg:flex-wrap lg:pt-[3.5rem] lg:bg-black [ layout-padding ]",
+        "hidden lg:flex lg:flex-wrap lg:pt-[3.5rem] [ layout-padding ]",
         !removeHero && "[ nav ]",
-        subpageHeader && "lg:py-[3.5rem]"
+        subpageHeader && "lg:py-[3.5rem]",
+        showUnderline && "[ nav ]"
       )}
     >
       <Brand />
