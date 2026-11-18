@@ -1,9 +1,9 @@
 export type ProductCategory = "headphones" | "earphones" | "speakers";
 
 export type ProductParam = {
-  params: {
+  params: Promise<{
     category: ProductCategory;
-  };
+  }>;
 };
 
 type HygraphImageUrl = { secure_url: string };

@@ -12,7 +12,7 @@
 - `yarn install or pnpm install or npm install (Depending on your package manager)`
 - `yarn dev`
 
-The client side was built using NextJS 14 App router. It's a basic application where users can:
+The client side was built using Next.js 16 App Router (React 19). It's a basic application where users can:
 
 - Add/remove items from cart.
 - make payment to the store via `stripe`

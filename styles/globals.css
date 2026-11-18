@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/*                                 Design tokens                              */
+/* -------------------------------------------------------------------------- */
+
+@theme {
+  /* Manrope is loaded with next/font in app/layout.tsx */
+  --font-sans: var(--font-manrope), "Manrope", sans-serif;
+
+  --breakpoint-*: initial;
+  --breakpoint-2xs: 450px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1380px;
+  --breakpoint-2xl: 1536px;
+
+  --color-primary: #d87d4a;
+  --color-primary-hover: #fbaf85;
+  --color-error: #cd2c2c;
+  --color-warning: #a56300;
+  --color-success: #00801a;
+  --color-dark-grey: #f1f1f1;
+  --color-grey: #f2f2f2;
+  --color-silver: #cfcfcf;
+  --color-charcoal: #4c4c4c;
+  --color-off-black: #191919;
+
+  /* Responsive background images: bg-hero-mobile, bg-zx7-tablet, ... */
+  --background-image-hero-mobile: url("https://res.cloudinary.com/dwdqg2k8e/image/upload/v1700824503/audiophile_hero/hero_image_mobile.jpg");
+  --background-image-hero-tablet: url("https://res.cloudinary.com/dwdqg2k8e/image/upload/v1700824503/audiophile_hero/hero_image_tablet.jpg");
+  --background-image-hero-desktop: url("https://res.cloudinary.com/dwdqg2k8e/image/upload/v1700824503/audiophile_hero/hero_image_desktop.jpg");
+  --background-image-zx7-mobile: url("/home/mobile/image-speaker-zx7.jpg");
+  --background-image-zx7-tablet: url("/home/tablet/image-speaker-zx7.jpg");
+  --background-image-zx7-desktop: url("/home/desktop/image-speaker-zx7.jpg");
+  --background-image-yx1-mobile: url("/home/mobile/image-earphones-yx1.jpg");
+  --background-image-yx1-tablet: url("/home/tablet/image-earphones-yx1.jpg");
+  --background-image-yx1-desktop: url("/home/desktop/image-earphones-yx1.jpg");
+  --background-image-best-gear-mobile: url("/shared/mobile/image-best-gear.jpg");
+  --background-image-best-gear-tablet: url("/shared/tablet/image-best-gear.jpg");
+  --background-image-best-gear-desktop: url("/shared/desktop/image-best-gear.jpg");
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                     Base                                   */
+/* -------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    font-size: 62.5%;
+    max-width: 1920px;
+    min-width: 325px;
+    height: 100%;
+    margin: 0 auto;
+    scroll-behavior: smooth;
+    overflow: visible !important;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-black);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  /* Tailwind v4 resets buttons to `cursor: default`; keep the v3 behaviour. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Utilities                                */
+/* -------------------------------------------------------------------------- */
+
+@utility heading-1 {
+  @apply text-[3.6rem] leading-16 tracking-[2px] lg:text-[5.6rem] lg:leading-[5.8rem] font-normal;
+}
+
+@utility heading-2 {
+  @apply text-[2.8rem] leading-normal tracking-[1px] lg:text-[4rem] lg:leading-[4.4rem] lg:tracking-[1.5px] font-normal;
+}
+
+@utility heading-3 {
+  @apply text-[2.4rem] leading-9 tracking-[0.857px] lg:text-[3.2rem] lg:tracking-[1.15px];
+}
+
+@utility heading-4 {
+  @apply text-[2.8rem] leading-[3.8rem] tracking-[2px];
+}
+
+@utility heading-5 {
+  @apply text-[2.4rem] leading-[3.3rem] tracking-[1.7px];
+}
+
+@utility heading-6 {
+  @apply text-[1.5rem] leading-6 tracking-[1.3px] lg:text-[1.8rem];
+}
+
+@utility overline-text {
+  @apply text-[1.4em] leading-4.75 font-normal tracking-[10px] uppercase;
+}
+
+@utility sub-title {
+  @apply text-[1.3em] leading-4.75 font-bold tracking-[1px] text-primary uppercase;
+}
+
+@utility body-text {
+  @apply text-[1.5rem] leading-10 font-medium;
+}
+
+@utility layout-padding {
+  @apply px-[2.4rem] sm:px-16 lg:px-30 xl:px-70;
+}
+
+/*
+ * Stretches an absolutely positioned box to the full viewport width behind its
+ * (max-width constrained) parent. Use with a pseudo-element variant, e.g.
+ * `xl:before:full-bleed xl:before:bg-black`.
+ */
+@utility full-bleed {
+  @apply absolute right-0 -z-1 block h-full w-screen;
+  margin: 0 calc(-50vw + 50%);
+}

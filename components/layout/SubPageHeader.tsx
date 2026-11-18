@@ -7,8 +7,8 @@ interface Props {
 
 const SubPageHeader = ({ showUnderline = false }: Props) => {
   return (
-    <div className="bg-black w-full relative z-50 [ sub-page-header ]">
-      <Navigation removeHero subpageHeader showUnderline={showUnderline} />
+    <div className="bg-black w-full relative z-50 xl:before:full-bleed xl:before:bg-black">
+      <Navigation removeHero subpageHeader />
       <MobileNav />
     </div>
   );

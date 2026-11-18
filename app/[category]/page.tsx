@@ -12,9 +12,9 @@ const ProductCategory = dynamic(() => import("./components/ProductCategory"), { 
 export type Category = "headphones" | "earphones" | "speakers";
 
 type PageParam = {
-  params: {
+  params: Promise<{
     category: Category;
-  };
+  }>;
 };
 
 export async function generateStaticParams() {
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
   return categories.map((category) => ({ category }));
 }
 
-async function getProductByCategory({ category }: PageParam["params"]) {
+async function getProductByCategory(category: Category) {
   const firstLetterInCategory = category.charAt(0).toUpperCase();
   const capitalizedCategory = firstLetterInCategory + category.slice(1);
   let productCategoryData!: ProductsQuery;
@@ -46,18 +46,20 @@ async function getProductByCategory({ category }: PageParam["params"]) {
 }
 
 export async function generateMetadata({ params }: PageParam) {
+  const { category } = await params;
   return {
-    title: `Audiophile | ${params.category}`
+    title: `Audiophile | ${category}`
   };
 }
 
 export default async function Page({ params }: PageParam) {
-  const { errorResponse, productCategoryData } = await getProductByCategory(params);
-  const pageTitle = params.category;
+  const { category } = await params;
+  const { errorResponse, productCategoryData } = await getProductByCategory(category);
+  const pageTitle = category;
 
   if (errorResponse) {
     return (
-      <Suspense fallback={<ProductCategoryLayoutSkeleton />}>
+      <Suspense fallback={<ProductCategoryLayoutSkeleton layoutTitle={pageTitle} />}>
         <ProductCategoryLayout layoutTitle={pageTitle}>
           <Alert message={errorResponse} alertVariant="error" />
         </ProductCategoryLayout>
@@ -67,7 +69,7 @@ export default async function Page({ params }: PageParam) {
 
   if (productCategoryData?.length === 0) {
     return (
-      <Suspense fallback={<ProductCategoryLayoutSkeleton />}>
+      <Suspense fallback={<ProductCategoryLayoutSkeleton layoutTitle={pageTitle} />}>
         <ProductCategoryLayout layoutTitle={pageTitle}>
           <Alert message="No product" alertVariant="warning" />
         </ProductCategoryLayout>
@@ -76,9 +78,9 @@ export default async function Page({ params }: PageParam) {
   }
 
   return (
-    <Suspense fallback={<ProductCategoryLayoutSkeleton />}>
+    <Suspense fallback={<ProductCategoryLayoutSkeleton layoutTitle={pageTitle} />}>
       <ProductCategoryLayout layoutTitle={pageTitle}>
-        <section className="w-full flex flex-col gap-[12rem] md:gap-[16rem]">
+        <section className="w-full flex flex-col gap-48 md:gap-64">
           {productCategoryData?.map((prodData) => (
             <ProductCategory
               key={prodData.id}

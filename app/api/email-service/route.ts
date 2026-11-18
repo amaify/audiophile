@@ -1,5 +1,4 @@
-import { createTransport } from "nodemailer";
-import { MailOptions } from "nodemailer/lib/sendmail-transport";
+import { createTransport, type SendMailOptions } from "nodemailer";
 import { NextResponse } from "next/server";
 import { Cart } from "@/store/cart/CartReducer";
 import { onlinePaymentReceiptEmail } from "./online-payment-receipt";
@@ -25,7 +24,7 @@ export async function POST(req: Request) {
   const isOnline = paymentMethod === "online";
   const payerName = clientName.split(" ")[0];
 
-  const mailOptions: MailOptions = {
+  const mailOptions: SendMailOptions = {
     from: `Audiophile <${user}>`,
     to: bodyRequest.email,
     subject: isOnline ? "Receipt for your purchase on Audiophile" : "Order confirmation for cash payment",

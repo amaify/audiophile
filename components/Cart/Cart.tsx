@@ -10,11 +10,11 @@ const Cart = () => {
 
   return (
     <Popover>
-      <PopoverButton className="relative outline-none border-none">
+      <PopoverButton className="relative outline-hidden border-none">
         <Image src={CartIcon} alt="Shopping Cart" className="hover:cursor-pointer" />
         {cart.length > 0 && (
           <p className="w-9 h-9 bg-primary text-white absolute -top-1/2 left-1/2 text-center rounded-full">
-            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [ body-text ] font-light">
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 body-text font-light">
               {cart.length}
             </span>
           </p>
@@ -22,13 +22,10 @@ const Cart = () => {
       </PopoverButton>
       <PopoverBackdrop
         transition
-        className="fixed inset-0 bg-black/50 z-20 duration-300 ease-out transition data-[closed]:opacity-0"
+        className="fixed inset-0 bg-black/50 z-20 duration-300 ease-out transition data-closed:opacity-0"
       />
 
-      <PopoverPanel
-        transition
-        className="w-full relative z-50 ease-out transition duration-300 data-[closed]:scale-0 transform"
-      >
+      <PopoverPanel transition className="w-full relative z-50 ease-out transition duration-300 data-closed:scale-0">
         <CartItems />
       </PopoverPanel>
     </Popover>

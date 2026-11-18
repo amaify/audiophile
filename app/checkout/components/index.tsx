@@ -17,7 +17,10 @@ const CheckoutForm = dynamic(() => import("./CheckoutForm"), { ssr: false });
 
 const inputFieldSchema = z.object({
   name: z.string().min(1, "Cannot be emtpy").min(2, "Name is required"),
-  emailAddress: z.string().min(1, "Email is required").email("Email not valid").regex(mailFormat, "Email not valid"),
+  emailAddress: z
+    .string()
+    .min(1, "Email is required")
+    .pipe(z.email({ pattern: mailFormat, error: "Email not valid" })),
   address: z.string().min(1, "Address is required"),
   zipCode: z.string().min(1, "Zip Code is required").min(4, "Min. 4 characters"),
   city: z.string().min(1, "City is required"),
@@ -98,7 +101,7 @@ export default function CheckoutFormLayout() {
 
   return (
     <CheckoutFormContext.Provider value={contextValue}>
-      <form className="relative flex flex-col gap-[3rem] xl:flex-row" onSubmit={handleSubmit(onSubmit)}>
+      <form className="relative flex flex-col gap-12 xl:flex-row" onSubmit={handleSubmit(onSubmit)}>
         <CheckoutForm />
         <CheckoutSummary />
         {isSuccess && <PaymentConfirmation />}

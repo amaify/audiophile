@@ -11,7 +11,7 @@ const productThumbnail = [
 
 const ProductThumbnails = ({ onClick }: { onClick?: () => void }) => {
   return (
-    <section className="flex w-full flex-col gap-[9rem] sm:flex-row sm:gap-[1rem] md:gap-[3rem]">
+    <section className="flex w-full flex-col gap-36 sm:flex-row sm:gap-4 md:gap-12">
       {productThumbnail.map((product) => (
         <Thumbnail key={product.title} title={product.title} img={product.img} onClick={onClick} />
       ))}

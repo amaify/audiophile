@@ -6,7 +6,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { store, persistor } from "@/store/store";
 import Notification from "@/components/shared/Notification";
-import "../styles/main.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();

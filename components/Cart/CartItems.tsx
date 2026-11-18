@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
+import { cn } from "@/helpers/cn";
+import { buttonVariants } from "@/components/shared/Button";
 import { formatPrice } from "@/helpers/FormatPrice";
 import {
   CartItem,
@@ -42,9 +44,9 @@ const CartItems = () => {
       )}
     >
       <div className="mb-[3.1rem] flex">
-        <h6 className="mr-auto [ heading-6 ] font-bold">{`cart (${cart.length})`}</h6>
+        <h6 className="mr-auto heading-6 font-bold">{`cart (${cart.length})`}</h6>
         <button
-          className="[ body-text ] text-black opacity-50 capitalize border-none outline-none hover:cursor-pointer underline hover:text-primary hover:opacity-100"
+          className="body-text text-black opacity-50 capitalize border-none outline-hidden hover:cursor-pointer underline hover:text-primary hover:opacity-100"
           onClick={() => cart.length > 0 && dispatch(resetCart())}
         >
           remove all
@@ -78,20 +80,20 @@ const CartItems = () => {
             </div>
           ))
         ) : (
-          <p className="[ body-text ] text-center">Your cart is empty!</p>
+          <p className="body-text text-center">Your cart is empty!</p>
         )}
       </div>
 
       <div className="flex mb-[2.4rem]">
-        <p className="mr-auto [ body-text ] text-black opacity-50 uppercase">total</p>
-        <p className="[ body-text ] text-black">{formatPrice(total)}</p>
+        <p className="mr-auto body-text text-black opacity-50 uppercase">total</p>
+        <p className="body-text text-black">{formatPrice(total)}</p>
       </div>
       <Link
         href="/checkout"
         aria-disabled={checkoutDisabled}
-        className={clsx(
-          "bg-primary hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]",
-          checkoutDisabled && "bg-primary/40 hover:bg-primary/40 cursor-not-allowed pointer-events-none"
+        className={cn(
+          buttonVariants({ size: "block" }),
+          checkoutDisabled && "pointer-events-none bg-primary/40 hover:bg-primary/40"
         )}
       >
         checkout

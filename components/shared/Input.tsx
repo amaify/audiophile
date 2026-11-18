@@ -13,34 +13,30 @@ interface Props extends ComponentPropsWithoutRef<"input"> {
 }
 
 const Input = ({ control, label, addedStyle, error, name, register, ...props }: Props) => {
-  const inputError = {
-    inputFieldError: error && error[`${name}`] ? "[ input-error ]" : null,
-    inputLabelError: error && error[`${name}`] ? "[ input-label-error ]" : null
-  };
+  const hasError = Boolean(error && error[`${name}`]);
   return (
     <>
       {control === "text" && (
         <div className={clsx("flex flex-col gap-[9px] relative", addedStyle && addedStyle)}>
           <label
-            className={clsx("text-[12px] text-black font-bold leading-4 capitalize", inputError.inputLabelError)}
+            className={clsx("text-[12px] font-bold leading-4 capitalize", hasError ? "text-error" : "text-black")}
             htmlFor={props.id}
           >
             {label}
           </label>
           <input
             autoComplete="off"
-            className={clsx("[ input ]", inputError.inputFieldError)}
+            className={clsx(
+              "w-full rounded-[8px] border-none px-[24px] py-[18px] text-[16px] leading-[19px] font-bold tracking-[-0.25px] text-black caret-primary",
+              "placeholder:text-[14px] placeholder:leading-[19px] placeholder:font-bold placeholder:text-black/40",
+              hasError ? "outline-2 outline-error" : "outline outline-silver focus:outline-primary"
+            )}
             {...props}
             {...register(name)}
           />
-          {error && error[`${name}`] ? (
-            <p
-              className={clsx(
-                "font-medium capitalize leading-4 absolute top-0 right-0",
-                inputError.inputLabelError ? [inputError.inputLabelError, "font-bold"] : null
-              )}
-            >
-              {error[`${name}`]?.message}
+          {hasError ? (
+            <p className="absolute top-0 right-0 font-bold capitalize leading-4 text-error">
+              {error?.[`${name}`]?.message}
             </p>
           ) : null}
         </div>
@@ -50,7 +46,7 @@ const Input = ({ control, label, addedStyle, error, name, register, ...props }: 
         <label
           className={clsx(
             addedStyle && addedStyle,
-            "[ payment-method ] border hover:cursor-pointer hover:border-primary",
+            "rounded-[8px] border border-gray-200 px-[24px] py-[18px] hover:cursor-pointer hover:border-primary",
             props.checked && "border-primary"
           )}
           htmlFor={props.id}

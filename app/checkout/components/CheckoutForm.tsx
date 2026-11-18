@@ -9,8 +9,13 @@ import { Alert } from "@/components/shared/Alert";
 import useCheckoutForm from "@/app/checkout/hooks/useCheckoutForm";
 import Input from "@/components/shared/Input";
 
+const stripeInputStyle = [
+  "h-[56px] rounded-[8px] border-none px-[24px] py-[18px] text-[14px] leading-[19px] font-bold tracking-[-0.25px] text-black",
+  "outline outline-silver [&.StripeElement--focus]:outline-primary"
+].join(" ");
+
 function CheckoutSectionTitle({ title }: { title: string }) {
-  return <h2 className="[ sub-title ] mb-[1.6rem]">{title}</h2>;
+  return <h2 className="sub-title mb-[1.6rem]">{title}</h2>;
 }
 
 export default function CheckoutForm() {
@@ -46,7 +51,7 @@ export default function CheckoutForm() {
 
   return (
     <div className="bg-white px-[2.4rem] pt-[2.4rem] pb-[4.8rem] w-full rounded-lg lg:pt-[5.4rem] lg:px-[4.8rem] xl:w-[70%]">
-      <h1 className="[ heading-3 ] mb-[2.4rem] md:mb-[4.1rem]">Checkout</h1>
+      <h1 className="heading-3 mb-[2.4rem] md:mb-[4.1rem]">Checkout</h1>
       {cart.length === 0 && (
         <Alert message="To make an order, you should add an item to the cart!" alertVariant="warning" />
       )}
@@ -179,29 +184,21 @@ export default function CheckoutForm() {
                   <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardNumber">
                     e-Money number
                   </label>
-                  <CardNumberElement
-                    options={cardOptions}
-                    className="[ stripe-input StripeElement--focus ]"
-                    id="cardNumber"
-                  />
+                  <CardNumberElement options={cardOptions} className={stripeInputStyle} id="cardNumber" />
                 </div>
 
                 <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
                   <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardCVV">
                     e-Money CVV
                   </label>
-                  <CardCvcElement options={cvcOptions} className="[ stripe-input StripeElement--focus ]" id="cardCVV" />
+                  <CardCvcElement options={cvcOptions} className={stripeInputStyle} id="cardCVV" />
                 </div>
 
                 <div className="flex flex-col gap-[9px] relative w-full md:w-1/2">
                   <label className="text-[12px] text-black font-bold leading-4" htmlFor="cardExpiryDate">
                     e-Money exp. Month
                   </label>
-                  <CardExpiryElement
-                    options={cvcOptions}
-                    className="[ stripe-input StripeElement--focus ]"
-                    id="cardExpiryDate"
-                  />
+                  <CardExpiryElement options={cvcOptions} className={stripeInputStyle} id="cardExpiryDate" />
                 </div>
               </div>
             ) : (
@@ -209,7 +206,7 @@ export default function CheckoutForm() {
                 <div className="w-20 h-20 mr-8 self-center">
                   <Image src={CashIcon} alt="Bank note icon" className="w-full h-full" />
                 </div>
-                <p className="[ body-text ] text-black/50 font-medium w-[80%]">
+                <p className="body-text text-black/50 font-medium w-[80%]">
                   The &lsquo;Cash on Delivery&rsquo; option enables you to pay in cash when our delivery courier arrives
                   at your residence. Just make sure your address is correct so that your order will not be cancelled.
                 </p>

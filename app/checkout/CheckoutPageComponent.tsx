@@ -28,7 +28,7 @@ function CheckoutPageLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <SubPageHeader />
-      <div className="flex-grow bg-grey pt-[1.6rem] pb-[14.1rem] md:pt-[7.9rem] [ layout-padding ]">
+      <div className="grow bg-grey pt-[1.6rem] pb-[14.1rem] md:pt-[7.9rem] layout-padding">
         <BackButton onClick={() => router.back()} />
         {children}
       </div>

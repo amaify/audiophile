@@ -2,12 +2,12 @@ import { Suspense } from "react";
 import { fetchHygraphData } from "@/helpers/ServiceClient";
 import { Product, ProductsQuery } from "@/Types/sharedTypes";
 import { GetAllProducts, GetProduct } from "@/queries/AllQueries";
-import ProductCategoryLayoutSkeleton from "@/app/[category]/layout/ProductCategoryLayoutSkeleton";
 import PageComponent from "./PageComponent";
 import { Category } from "../page";
+import ProductDetailsLayoutSkeleton from "../layout/ProductDetailsLayoutSkeleton";
 
 export type ProductDetailParam = {
-  params: { category: Category; slug: string };
+  params: Promise<{ category: Category; slug: string }>;
 };
 
 export async function generateStaticParams() {
@@ -17,15 +17,14 @@ export async function generateStaticParams() {
     });
 
     const { products } = data;
-    return products.map((product) => ({ category: product.category, slug: product.slug }));
+    return products.map((product) => ({ category: product.category.toLowerCase(), slug: product.slug }));
   } catch (error) {
     console.error(JSON.stringify(error, undefined, 4));
     return [];
   }
 }
 
-async function getProductInformation({ params }: ProductDetailParam) {
-  const { slug } = params;
+async function getProductInformation(slug: string) {
   let allProductsData!: Product[];
   let pageProductData!: Product;
   let errorResponse = "";
@@ -53,16 +52,18 @@ async function getProductInformation({ params }: ProductDetailParam) {
 }
 
 export async function generateMetadata({ params }: ProductDetailParam) {
+  const { slug } = await params;
   return {
-    title: `Audiophile | ${params.slug.replaceAll("-", " ").toUpperCase()}`
+    title: `Audiophile | ${slug.replaceAll("-", " ").toUpperCase()}`
   };
 }
 
-export default async function Page(pageParams: ProductDetailParam) {
-  const { allProductsData, pageProductData, errorResponse } = await getProductInformation(pageParams);
+export default async function Page({ params }: ProductDetailParam) {
+  const { slug } = await params;
+  const { allProductsData, pageProductData, errorResponse } = await getProductInformation(slug);
 
   return (
-    <Suspense fallback={<ProductCategoryLayoutSkeleton />}>
+    <Suspense fallback={<ProductDetailsLayoutSkeleton />}>
       <PageComponent allProducts={allProductsData} data={pageProductData} error={errorResponse ?? ""} />
     </Suspense>
   );

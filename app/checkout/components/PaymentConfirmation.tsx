@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { resetCart, selectCart } from "@/store/cart/CartReducer";
+import { buttonVariants } from "@/components/shared/Button";
 import { formatPrice } from "../../../helpers/FormatPrice";
 import PaymentConfirmationItems from "./PaymentConfirmationItems";
 import useCheckoutForm from "../hooks/useCheckoutForm";
@@ -40,15 +41,15 @@ const Confirmation = () => {
           />
         </div>
 
-        <Dialog.Title className="[ heading-3 ] text-black font-bold mb-[2.4rem]">
+        <Dialog.Title className="heading-3 text-black font-bold mb-[2.4rem]">
           <span className="block">Thank You</span>
           <span>for you order</span>
         </Dialog.Title>
-        <p className="[ body-text ] text-black/50 font-medium mb-[2.4rem]">
+        <p className="body-text text-black/50 font-medium mb-[2.4rem]">
           You will receive an email confirmation shortly.
         </p>
         <div className="flex items-stretch mb-[4.6rem] w-full">
-          <div className="bg-darkGrey p-[1.2rem] w-[65%] rounded-tl-lg rounded-bl-lg md:p-[2.4rem]">
+          <div className="bg-dark-grey p-[1.2rem] w-[65%] rounded-tl-lg rounded-bl-lg md:p-[2.4rem]">
             {!toggleItems ? (
               <PaymentConfirmationItems
                 itemTitle={firstCartItem.cartTitle}
@@ -68,11 +69,11 @@ const Confirmation = () => {
               ))
             )}
 
-            <hr className="my-3" />
+            <hr className="my-3 border-gray-200" />
 
             {cart.length > 1 && (
               <button
-                className="text-[1.2rem] w-full text-center font-bold text-black opacity-50 leading-4 border-none outline-none transition-colors hover:text-primary"
+                className="text-[1.2rem] w-full text-center font-bold text-black opacity-50 leading-4 border-none outline-hidden transition-colors hover:text-primary"
                 onClick={() => setToggleItems((currentState) => !currentState)}
               >
                 {!toggleItems ? `and ${cart.length - 1} other item(s)` : "Show less"}
@@ -80,15 +81,11 @@ const Confirmation = () => {
             )}
           </div>
           <div className="bg-black flex flex-col justify-end self-stretch w-[35%] rounded-tr-lg rounded-br-lg py-[2.1rem] pl-[1.2rem] md:py-[4.1rem] md:pl-[3.2rem]">
-            <p className="[ body-text ] text-white/50 uppercase">grand total</p>
+            <p className="body-text text-white/50 uppercase">grand total</p>
             <p className="text-[1.5rem] text-white font-bold sm:text-[1.8rem]">{formatPrice(grandTotal)}</p>
           </div>
         </div>
-        <Link
-          href="/"
-          className="bg-primary block hover:bg-primaryHover text-white text-center w-full py-[15px] font-bold [ phile-btn ]"
-          onClick={handleClose}
-        >
+        <Link href="/" className={buttonVariants({ size: "block" })} onClick={handleClose}>
           Back to Home
         </Link>
       </DialogPanel>

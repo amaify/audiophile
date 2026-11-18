@@ -16,14 +16,14 @@ const ProductDetailsLayout = ({ children, removeSubFooter, onClick }: Props) => 
     <>
       <SubPageHeader />
 
-      <div className="[ layout-padding ]">
-        <div className="mt-[1.6rem] mb-[16rem] lg:mt-[7.9rem]">
+      <div className="layout-padding">
+        <div className="mt-[1.6rem] mb-64 lg:mt-[7.9rem]">
           <BackButton onClick={onClick} />
           {children}
         </div>
 
         {!removeSubFooter && (
-          <div className="flex flex-col gap-[16rem]">
+          <div className="flex flex-col gap-64">
             <ProductThumbnails />
             <SubFooter />
           </div>

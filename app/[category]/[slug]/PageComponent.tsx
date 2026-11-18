@@ -73,8 +73,8 @@ export default function PageComponent({ data: productDetail, allProducts, error 
     <ProductDetailsLayout removeSubFooter={false} onClick={() => back()}>
       {productDetail ? (
         <>
-          <div className="flex flex-col gap-[3.2rem] mb-[8.8rem] sm:flex-row sm:gap-[6.95rem] md:mb-lg md:gap-[12.5rem]">
-            <div className="w-full bg-darkGrey rounded-lg h-[32.7rem] sm:w-[28.1rem] sm:h-[48rem] lg:w-1/2 lg:h-auto">
+          <div className="flex flex-col gap-[3.2rem] mb-[8.8rem] sm:flex-row sm:gap-[6.95rem] md:mb-64 md:gap-50">
+            <div className="w-full bg-dark-grey rounded-lg h-[32.7rem] sm:w-[28.1rem] sm:h-192 lg:w-1/2 lg:h-auto">
               <Image
                 src={productDetail.previewImage.secure_url}
                 alt={`${productDetail.title} Image`}
@@ -86,10 +86,10 @@ export default function PageComponent({ data: productDetail, allProducts, error 
             </div>
 
             <div className="w-full self-center sm:w-[33.9rem] md:w-1/2">
-              {productDetail.newProduct && <p className="[ overline-text ] text-primary mb-[1.6rem]">new product</p>}
-              <h2 className="[ heading-2 ] mb-[2.4rem] md:mb-[3.2rem]">{productDetail.title}</h2>
-              <p className="[ body-text ] opacity-50 mb-[2.4rem] md:mb-[3.2rem]">{productDetail.description}</p>
-              <h6 className="[ heading-6 ] mb-[3.1rem] md:mb-[4.7rem]">{formatPrice(+productDetail.price)}</h6>
+              {productDetail.newProduct && <p className="overline-text text-primary mb-[1.6rem]">new product</p>}
+              <h2 className="heading-2 mb-[2.4rem] md:mb-[3.2rem]">{productDetail.title}</h2>
+              <p className="body-text opacity-50 mb-[2.4rem] md:mb-[3.2rem]">{productDetail.description}</p>
+              <h6 className="heading-6 mb-[3.1rem] md:mb-[4.7rem]">{formatPrice(+productDetail.price)}</h6>
               <ProductCounter
                 addedStyle="w-[12rem] h-[4.8rem]"
                 decrementCountBtn="&#8722;"

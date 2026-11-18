@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import CheckoutPageSkeleton from "./CheckoutPageSkeleton";
-
-const CheckoutPageComponent = dynamic(() => import("./CheckoutPageComponent"), { ssr: false });
+import CheckoutPageLoader from "./CheckoutPageLoader";
 
 export const metadata: Metadata = {
   title: "Audiophile | Checkout"
@@ -12,7 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <Suspense fallback={<CheckoutPageSkeleton />}>
-      <CheckoutPageComponent />
+      <CheckoutPageLoader />
     </Suspense>
   );
 }

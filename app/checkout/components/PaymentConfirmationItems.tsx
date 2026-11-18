@@ -22,11 +22,11 @@ export default function PaymentConfirmationItems({ itemTitle, itemImage, itemCou
       </div>
 
       <div className="self-center mr-auto">
-        <p className="[ body-text ] uppercase text-black font-bold">{itemTitle}</p>
+        <p className="body-text uppercase text-black font-bold">{itemTitle}</p>
         <p className="text-[1.4rem] text-black font-bold opacity-50 leading-[25px]">{formatPrice(itemPrice)}</p>
       </div>
 
-      <p className="[ body-text ] font-bold text-black opacity-50">x{itemCount}</p>
+      <p className="body-text font-bold text-black opacity-50">x{itemCount}</p>
     </div>
   );
 }

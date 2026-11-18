@@ -25,11 +25,11 @@ export default function CheckoutSummaryItems() {
               </div>
             </div>
 
-            <p className="[ body-text ] font-bold text-black/50">{`x${item.itemCount}`}</p>
+            <p className="body-text font-bold text-black/50">{`x${item.itemCount}`}</p>
           </div>
         ))
       ) : (
-        <p className="[ body-text ] text-center">Your cart is empty</p>
+        <p className="body-text text-center">Your cart is empty</p>
       )}
     </div>
   );

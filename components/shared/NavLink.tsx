@@ -35,7 +35,11 @@ const NavigationLinks = ({ isFooter }: Props) => {
         <Link
           key={link.name}
           href={`${link.href}`}
-          className={clsx("[ nav-link ] hover:cursor-pointer", pathName?.includes(link.name) && "[ nav-link-active ]")}
+          className={clsx(
+            "text-[1.3rem] leading-[25px] font-bold tracking-[2px] uppercase transition-all duration-300",
+            "hover:cursor-pointer hover:text-primary",
+            pathName?.includes(link.name) ? "text-primary" : "text-white"
+          )}
         >
           {link.name}
         </Link>

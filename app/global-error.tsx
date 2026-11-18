@@ -1,6 +1,7 @@
 "use client";
 
 import ErrorBoundaryComponent from "@/components/shared/ErrorBoundary";
+import "@/styles/globals.css";
 
 interface Props {
   error: Error & { digest?: string };

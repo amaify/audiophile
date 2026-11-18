@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import ErrorBoundaryLayout from "@/components/layout/ErrorBoundaryLayout";
 import { Alert } from "@/components/shared/Alert";
+import { buttonVariants } from "@/components/shared/Button";
 
 interface Props {
   error: Error & { digest?: string };
@@ -19,7 +20,7 @@ export default function ErrorBoundaryComponent({ error, reset }: Props) {
     <ErrorBoundaryLayout>
       <div className="space-y-4">
         <Alert message={error.message} alertVariant="error" />
-        <button className="[ phile-btn phile-btn-1 ]" onClick={() => window.location.reload()}>
+        <button className={buttonVariants()} onClick={() => window.location.reload()}>
           Try again
         </button>
       </div>
